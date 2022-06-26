@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Qt">
+      <UniqueIdentifier>{23a1595d-3733-4a96-80d5-96abfa2d2a23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D">
+      <UniqueIdentifier>{af832177-1ee7-4003-ae5b-b4fc4c9c1702}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Framework">
+      <UniqueIdentifier>{d54dc531-152a-4076-9845-bd7f92145d00}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game">
+      <UniqueIdentifier>{1a9d99a8-cae4-4057-9a87-61ba7350d842}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="mainwindow.cpp">
+      <Filter>Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="d3d11renderwidget.cpp">
+      <Filter>Qt</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="d3dApp.cpp">
+      <Filter>D3D\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="gameApp.cpp">
+      <Filter>D3D\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="GameTimer.cpp">
+      <Filter>D3D\Framework</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="mainwindow.h">
+      <Filter>Qt</Filter>
+    </QtMoc>
+    <QtMoc Include="d3d11renderwidget.h">
+      <Filter>Qt</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="mainwindow.ui">
+      <Filter>Qt</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d3dApp.h">
+      <Filter>D3D\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="d3dUtil.hpp">
+      <Filter>D3D\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="gameApp.h">
+      <Filter>D3D\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="GameTimer.h">
+      <Filter>D3D\Framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
