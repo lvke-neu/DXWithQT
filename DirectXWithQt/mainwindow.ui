@@ -39,7 +39,7 @@
       <string>Show Something</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButton">
+    <widget class="QPushButton" name="pushButtonRed">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -49,7 +49,33 @@
       </rect>
      </property>
      <property name="text">
-      <string>PushButton</string>
+      <string>Red</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButtonGreen">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>110</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Green</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="pushButtonBlue">
+     <property name="geometry">
+      <rect>
+       <x>20</x>
+       <y>160</y>
+       <width>75</width>
+       <height>23</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>Blue</string>
      </property>
     </widget>
    </widget>

@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include "d3d11renderwidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -15,8 +16,12 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public slots:
+	void changeRenderViewColor();
+
 private:
     Ui::MainWindow *ui;
+	D3d11RenderWidget *m_widget{ nullptr };
 };
 
 #endif // MAINWINDOW_H

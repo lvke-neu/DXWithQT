@@ -1,6 +1,5 @@
 #include <QKeyEvent>
 #include "d3d11renderwidget.h"
-#include "d3dUtil.hpp"
 
 
 D3d11RenderWidget::D3d11RenderWidget(QWidget *parent)
@@ -10,6 +9,7 @@ D3d11RenderWidget::D3d11RenderWidget(QWidget *parent)
 
 	setAttribute(Qt::WA_PaintOnScreen,true);
 	setAttribute(Qt::WA_NativeWindow,true);
+	setFocusPolicy(Qt::StrongFocus);
 
 	m_gameApp = new GameApp((HWND)winId(), width(), height());
 	m_Timer.Start();
@@ -43,7 +43,7 @@ void D3d11RenderWidget::resizeEvent(QResizeEvent *event)
 
 void D3d11RenderWidget::keyPressEvent(QKeyEvent *event)
 {
-	
+
 	
 }
 
