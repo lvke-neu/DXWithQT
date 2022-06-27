@@ -14,11 +14,9 @@ MainWindow::MainWindow(QWidget *parent) :
 	D3d11RenderWidget *widget = new D3d11RenderWidget(this);
 	setCentralWidget(widget);
 
-	QDockWidget *dock_widget = new QDockWidget("浮动窗口", this);    
-	this->addDockWidget(Qt::LeftDockWidgetArea, dock_widget);     
-	dock_widget->setAllowedAreas(Qt::BottomDockWidgetArea | Qt::TopDockWidgetArea);
 
-
+	ui->dockWidget->setFixedWidth(120);
+	ui->dockWidget->setTitleBarWidget(new QWidget);
 }
 
 MainWindow::~MainWindow()
