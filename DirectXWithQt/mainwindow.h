@@ -18,6 +18,7 @@ public:
 
 public slots:
 	void changeRenderViewColor();
+	void showRenderViewColor(const QColor& qColor);
 
 private:
     Ui::MainWindow *ui;

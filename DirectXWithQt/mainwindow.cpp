@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QColorDialog>
 #include <qdebug.h>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -34,7 +34,24 @@ void MainWindow::changeRenderViewColor()
 
 	if (button->text() == "Red")
 	{
-		m_widget->m_gameApp->setRenderTargetViewColor(1.0f, 0.0f, 0.0f, 1.0f);
+		
+
+		QColorDialog dlg(this);
+
+		dlg.setWindowTitle("Color Editor");         // 设置窗口名称
+		dlg.setCurrentColor(QColor(100, 111, 222)); // 设置当前窗口颜色
+
+	
+		connect(&dlg, &QColorDialog::currentColorChanged, this, &MainWindow::showRenderViewColor);
+
+		if (dlg.exec() == QColorDialog::Accepted)
+		{
+			QColor color = dlg.selectedColor();
+			m_widget->m_gameApp->setRenderTargetViewColor(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 1.0f);
+		}
+
+
+
 	}
 	else if (button->text() == "Green")
 	{
@@ -44,4 +61,9 @@ void MainWindow::changeRenderViewColor()
 	{
 		m_widget->m_gameApp->setRenderTargetViewColor(0.0f, 0.0f, 1.0f, 1.0f);
 	}
+}
+
+void MainWindow::showRenderViewColor(const QColor& qColor)
+{
+	m_widget->m_gameApp->setRenderTargetViewColor(qColor.red() / 255.0f, qColor.green() / 255.0f, qColor.blue() / 255.0f, 1.0f);
 }
