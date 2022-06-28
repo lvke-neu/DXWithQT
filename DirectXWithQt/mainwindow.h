@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include "d3d11renderwidget.h"
+#include <qlistwidget.h>
 
 namespace Ui {
 class MainWindow;
@@ -16,9 +17,12 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+
+
 public slots:
-	void changeRenderViewColor();
-	void showRenderViewColor(const QColor& qColor);
+    void changeChapter(QListWidgetItem* item);
+	void selectRenderViewColor();
+	void confirmRenderViewColor(const QColor& qColor);
 
 private:
     Ui::MainWindow *ui;

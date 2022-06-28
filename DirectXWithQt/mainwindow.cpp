@@ -2,6 +2,8 @@
 #include "ui_mainwindow.h"
 #include <QColorDialog>
 #include <qdebug.h>
+#include <qlabel.h>
+#include <qpushbutton.h>
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -11,16 +13,11 @@ MainWindow::MainWindow(QWidget *parent) :
 	m_widget = new D3d11RenderWidget(this);
 	setCentralWidget(m_widget);
 
-	ui->dockWidget->setFixedWidth(120);
+	ui->dockWidget->setFixedWidth(115);
 	ui->dockWidget->setTitleBarWidget(new QWidget);
-	ui->dockWidget_2->setFixedWidth(120);
-	ui->dockWidget_2->setTitleBarWidget(new QWidget);
 
 
-	connect(ui->pushButtonColor, &QPushButton::clicked, this, &MainWindow::changeRenderViewColor);
-
-	
-
+	connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::changeChapter);
 }
 
 MainWindow::~MainWindow()
@@ -29,7 +26,31 @@ MainWindow::~MainWindow()
 	SAFERELEASE(m_widget);
 }
 
-void MainWindow::changeRenderViewColor()
+
+void MainWindow::changeChapter(QListWidgetItem* item)
+{
+	if (item->text() == "Chapter 1")
+	{
+		QDockWidget* dockWidget = new QDockWidget(this);
+		dockWidget->setFixedWidth(115);
+		dockWidget->setTitleBarWidget(new QWidget);
+		dockWidget->setLayout(new QGridLayout());
+
+		QLabel* label = new QLabel("show something", dockWidget);
+		label->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
+
+		QPushButton* button = new QPushButton("Color", dockWidget);
+		button->move(0, 30);
+		
+		this->addDockWidget(Qt::RightDockWidgetArea, dockWidget);
+
+		connect(button, &QPushButton::clicked, this, &MainWindow::selectRenderViewColor);
+
+	}
+}
+
+
+void MainWindow::selectRenderViewColor()
 {
 
 	QPushButton* button = (QPushButton*)sender();
@@ -43,7 +64,7 @@ void MainWindow::changeRenderViewColor()
 		dlg.setCurrentColor(QColor(100, 111, 222)); 
 
 	
-		connect(&dlg, &QColorDialog::currentColorChanged, this, &MainWindow::showRenderViewColor);
+		connect(&dlg, &QColorDialog::currentColorChanged, this, &MainWindow::confirmRenderViewColor);
 
 		if (dlg.exec() == QColorDialog::Accepted)
 		{
@@ -51,12 +72,10 @@ void MainWindow::changeRenderViewColor()
 			m_widget->m_gameApp->setRenderTargetViewColor(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 1.0f);
 		}
 
-
-
 	}
 }
 
-void MainWindow::showRenderViewColor(const QColor& qColor)
+void MainWindow::confirmRenderViewColor(const QColor& qColor)
 {
 	m_widget->m_gameApp->setRenderTargetViewColor(qColor.red() / 255.0f, qColor.green() / 255.0f, qColor.blue() / 255.0f, 1.0f);
 }
