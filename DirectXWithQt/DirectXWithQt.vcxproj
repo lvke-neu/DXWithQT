@@ -107,6 +107,7 @@
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
+    <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h" />
@@ -118,6 +119,7 @@
     <QtMoc Include="d3d11renderwidget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Transform.h" />
     <QtMoc Include="ChapterDockWidget.h" />
     <ClInclude Include="d3dApp.h" />
     <ClInclude Include="d3dUtil.hpp" />

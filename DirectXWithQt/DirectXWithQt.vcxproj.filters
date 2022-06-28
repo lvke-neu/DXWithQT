@@ -43,6 +43,9 @@
     <ClCompile Include="gameApp.cpp">
       <Filter>D3D\Game\Runtime</Filter>
     </ClCompile>
+    <ClCompile Include="Transform.cpp">
+      <Filter>D3D\Game\GameObject</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -72,6 +75,9 @@
     </ClInclude>
     <ClInclude Include="gameApp.h">
       <Filter>D3D\Game\Runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="Transform.h">
+      <Filter>D3D\Game\GameObject</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
