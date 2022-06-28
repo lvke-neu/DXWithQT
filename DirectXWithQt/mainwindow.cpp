@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	ui->dockWidget->setFixedWidth(120);
 	ui->dockWidget->setTitleBarWidget(new QWidget);
+	ui->dockWidget_2->setFixedWidth(120);
+	ui->dockWidget_2->setTitleBarWidget(new QWidget);
+
 
 	connect(ui->pushButtonColor, &QPushButton::clicked, this, &MainWindow::changeRenderViewColor);
 

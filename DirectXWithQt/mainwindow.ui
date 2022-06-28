@@ -71,6 +71,29 @@
    <addaction name="separator"/>
    <addaction name="action_2"/>
   </widget>
+  <widget class="QDockWidget" name="dockWidget_2">
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="dockWidgetContents_2">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QListWidget" name="listWidget">
+       <item>
+        <property name="text">
+         <string>Chapter 1</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>Chapter 2</string>
+        </property>
+       </item>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
   <action name="action">
    <property name="text">
     <string>切换视角</string>
