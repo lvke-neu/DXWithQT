@@ -6,8 +6,24 @@ Transform::Transform(XMFLOAT3 scale, XMFLOAT3 rotation, XMFLOAT3 position)
 
 }
 
+Transform::Transform(const Transform& transform)
+	:m_scale(transform.m_scale), m_rotation(transform.m_rotation), m_position(transform.m_position)
+{
 
-XMMATRIX  Transform::getWVPMatrix()
+}
+
+Transform& Transform::operator=(const Transform& transform)
+{
+	if (this != &transform)
+	{
+		m_scale = transform.m_scale;
+		m_rotation = transform.m_rotation;
+		m_position = transform.m_position;
+	}
+	return *this;
+}
+
+XMMATRIX  Transform::getWorldMatrix()
 {
 	return XMMatrixScalingFromVector(XMLoadFloat3(&m_scale)) * 
 		XMMatrixRotationRollPitchYawFromVector(XMLoadFloat3(&m_rotation)) *

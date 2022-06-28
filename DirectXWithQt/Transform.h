@@ -1,14 +1,31 @@
 #pragma once 
 #include <DirectXMath.h>
 
+/*
+注意拷贝构造函数与 “=”的区别
+
+调用拷贝构造函数:
+	Transform a;
+	Transform b = a;
+
+调用重载的 “=” 号:
+	Transform a;
+	Transform b;
+	a = b;
+
+*/
+
 using namespace DirectX;
 class Transform
 {
 public:
 	Transform() = default;
 	Transform(XMFLOAT3 scale, XMFLOAT3 rotation, XMFLOAT3 position);
+	Transform(const Transform& transform);
+	Transform& operator=(const Transform& transform);
 
-	XMMATRIX getWVPMatrix();
+public:
+	XMMATRIX getWorldMatrix();
 
 	void move(const XMFLOAT3& direction, float distance);
 	void moveZAxis(float distance);
