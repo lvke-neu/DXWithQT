@@ -13,6 +13,9 @@
     <Filter Include="D3D\Game">
       <UniqueIdentifier>{1a9d99a8-cae4-4057-9a87-61ba7350d842}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Qt\ChapterDockWidget">
+      <UniqueIdentifier>{23876989-e846-4351-abfc-338a0f304ef8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -31,6 +34,9 @@
     <ClCompile Include="GameTimer.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="ChapterDockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -38,6 +44,9 @@
     </QtMoc>
     <QtMoc Include="d3d11renderwidget.h">
       <Filter>Qt</Filter>
+    </QtMoc>
+    <QtMoc Include="ChapterDockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

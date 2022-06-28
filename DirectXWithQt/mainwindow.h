@@ -2,8 +2,9 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QListWidgetItem>
 #include "d3d11renderwidget.h"
-#include <qlistwidget.h>
+#include "ChapterDockWidget.h"
 
 namespace Ui {
 class MainWindow;
@@ -21,12 +22,12 @@ public:
 
 public slots:
     void changeChapter(QListWidgetItem* item);
-	void selectRenderViewColor();
-	void confirmRenderViewColor(const QColor& qColor);
+
 
 private:
     Ui::MainWindow *ui;
-	D3d11RenderWidget *m_widget{ nullptr };
+	D3d11RenderWidget *m_RenderWidget{ nullptr };
+    ChapterDockWidget* m_ChapterDockWidget{ nullptr };
 };
 
 #endif // MAINWINDOW_H
