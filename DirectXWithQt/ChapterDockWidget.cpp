@@ -6,30 +6,67 @@
 
 ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* widget): m_parent(parent), m_RenderWidget(widget)
 {
+	QDockWidget* dockWidget = new QDockWidget(m_parent);
+	dockWidget->setFixedWidth(115);
+	dockWidget->setTitleBarWidget(new QWidget);
+
+	QLabel* label = new QLabel("show something", dockWidget);
+	label->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
+
+	QPushButton* button = new QPushButton("Color", dockWidget);
+	button->move(0, 30);
+
+	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget);
+
+	QWidget::connect(button, &QPushButton::clicked, this, &ChapterDockWidget::selectRenderViewColor);
+
+	dockWidget->hide();
+
+	m_cptDockWidget.push_back(dockWidget);
+
+	//*****************************************************************************
+	QDockWidget* dockWidget2 = new QDockWidget(m_parent);
+	dockWidget2->setFixedWidth(115);
+	dockWidget2->setTitleBarWidget(new QWidget);
+
+	QLabel* label2 = new QLabel("show something2", dockWidget2);
+	label2->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
+
+	QPushButton* button2 = new QPushButton("Color2", dockWidget2);
+	button2->move(0, 30);
+
+	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget2);
+
+	QWidget::connect(button2, &QPushButton::clicked, this, &ChapterDockWidget::selectRenderViewColor);
+
+	dockWidget2->hide();
+
+	m_cptDockWidget.push_back(dockWidget2);
+
+
+
 
 }
 
 ChapterDockWidget::~ChapterDockWidget()
 {
-
+	for (auto x : m_cptDockWidget)
+		SAFERELEASE(x);
 }
 
 
 void ChapterDockWidget::generateDockWidget(std::string chapterType)
 {
-	QDockWidget* m_ChapterDockWidget = new QDockWidget(m_parent);
-	m_ChapterDockWidget->setFixedWidth(115);
-	m_ChapterDockWidget->setTitleBarWidget(new QWidget);
-
-	QLabel* label = new QLabel("show something", m_ChapterDockWidget);
-	label->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
-
-	QPushButton* button = new QPushButton("Color", m_ChapterDockWidget);
-	button->move(0, 30);
-
-	m_parent->addDockWidget(Qt::RightDockWidgetArea, m_ChapterDockWidget);
-
-	QWidget::connect(button, &QPushButton::clicked, this, &ChapterDockWidget::selectRenderViewColor);
+	if (chapterType == "Chapter 1")
+	{
+		m_cptDockWidget[0]->show();
+		m_cptDockWidget[1]->hide();
+	}
+	else if (chapterType == "Chapter 2")
+	{
+		m_cptDockWidget[0]->hide();
+		m_cptDockWidget[1]->show();
+	}
 }
 
 

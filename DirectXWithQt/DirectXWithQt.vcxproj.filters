@@ -16,6 +16,12 @@
     <Filter Include="Qt\ChapterDockWidget">
       <UniqueIdentifier>{23876989-e846-4351-abfc-338a0f304ef8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\Runtime">
+      <UniqueIdentifier>{a0baa114-f806-42e5-95fd-70445d6d5cdb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\GameObject">
+      <UniqueIdentifier>{e058aae6-d4d2-438c-ad40-3f6238b02db9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -28,14 +34,14 @@
     <ClCompile Include="d3dApp.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="gameApp.cpp">
-      <Filter>D3D\Game</Filter>
-    </ClCompile>
     <ClCompile Include="GameTimer.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
     <ClCompile Include="ChapterDockWidget.cpp">
       <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="gameApp.cpp">
+      <Filter>D3D\Game\Runtime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -61,11 +67,11 @@
     <ClInclude Include="d3dUtil.hpp">
       <Filter>D3D\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="gameApp.h">
-      <Filter>D3D\Game</Filter>
-    </ClInclude>
     <ClInclude Include="GameTimer.h">
       <Filter>D3D\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="gameApp.h">
+      <Filter>D3D\Game\Runtime</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

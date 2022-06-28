@@ -4,6 +4,7 @@
 #include <QMainWindow>
 #include <QDockWidget>
 #include <string>
+#include <vector>
 #include "d3d11renderwidget.h"
 
 class ChapterDockWidget : public QObject
@@ -22,5 +23,6 @@ public slots:
 private:
 	QMainWindow* m_parent{ nullptr };
 	D3d11RenderWidget* m_RenderWidget{ nullptr };
+	std::vector<QDockWidget*> m_cptDockWidget;
 
 };
