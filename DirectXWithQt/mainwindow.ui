@@ -15,8 +15,11 @@
   </property>
   <widget class="QWidget" name="centralWidget"/>
   <widget class="QDockWidget" name="dockWidget">
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
    <attribute name="dockWidgetArea">
-    <number>1</number>
+    <number>2</number>
    </attribute>
    <widget class="QWidget" name="dockWidgetContents">
     <widget class="QLabel" name="label">
@@ -39,7 +42,7 @@
       <string>Show Something</string>
      </property>
     </widget>
-    <widget class="QPushButton" name="pushButtonRed">
+    <widget class="QPushButton" name="pushButtonColor">
      <property name="geometry">
       <rect>
        <x>20</x>
@@ -49,33 +52,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>Red</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButtonGreen">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>110</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Green</string>
-     </property>
-    </widget>
-    <widget class="QPushButton" name="pushButtonBlue">
-     <property name="geometry">
-      <rect>
-       <x>20</x>
-       <y>160</y>
-       <width>75</width>
-       <height>23</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>Blue</string>
+      <string>Color</string>
      </property>
     </widget>
    </widget>

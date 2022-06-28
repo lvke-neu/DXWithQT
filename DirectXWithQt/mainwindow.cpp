@@ -14,9 +14,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	ui->dockWidget->setFixedWidth(120);
 	ui->dockWidget->setTitleBarWidget(new QWidget);
 
-	connect(ui->pushButtonRed, &QPushButton::clicked, this, &MainWindow::changeRenderViewColor);
-	connect(ui->pushButtonGreen, &QPushButton::clicked, this, &MainWindow::changeRenderViewColor);
-	connect(ui->pushButtonBlue, &QPushButton::clicked, this, &MainWindow::changeRenderViewColor);
+	connect(ui->pushButtonColor, &QPushButton::clicked, this, &MainWindow::changeRenderViewColor);
+
 	
 
 }
@@ -32,14 +31,13 @@ void MainWindow::changeRenderViewColor()
 
 	QPushButton* button = (QPushButton*)sender();
 
-	if (button->text() == "Red")
+	if (button->text() == "Color")
 	{
 		
-
 		QColorDialog dlg(this);
 
-		dlg.setWindowTitle("Color Editor");         // 设置窗口名称
-		dlg.setCurrentColor(QColor(100, 111, 222)); // 设置当前窗口颜色
+		dlg.setWindowTitle("Color Editor");         
+		dlg.setCurrentColor(QColor(100, 111, 222)); 
 
 	
 		connect(&dlg, &QColorDialog::currentColorChanged, this, &MainWindow::showRenderViewColor);
@@ -52,14 +50,6 @@ void MainWindow::changeRenderViewColor()
 
 
 
-	}
-	else if (button->text() == "Green")
-	{
-		m_widget->m_gameApp->setRenderTargetViewColor(0.0f, 1.0f, 0.0f, 1.0f);
-	}
-	else
-	{
-		m_widget->m_gameApp->setRenderTargetViewColor(0.0f, 0.0f, 1.0f, 1.0f);
 	}
 }
 
