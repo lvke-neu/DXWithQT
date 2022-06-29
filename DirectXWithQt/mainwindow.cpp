@@ -21,9 +21,23 @@ MainWindow::MainWindow(QWidget *parent) :
 
 MainWindow::~MainWindow()
 {
-	SAFERELEASE(ui);
-	SAFERELEASE(m_RenderWidget);
-	SAFERELEASE(m_ChapterDockWidget);
+	if (ui)
+	{
+		delete ui;
+		ui = nullptr;
+	}
+
+	if (m_RenderWidget)
+	{
+		delete m_RenderWidget;
+		m_RenderWidget = nullptr;
+	}
+
+	if (m_ChapterDockWidget)
+	{
+		delete m_ChapterDockWidget;
+		m_ChapterDockWidget = nullptr;
+	}
 }
 
 

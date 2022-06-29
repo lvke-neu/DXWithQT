@@ -1,1 +1,0 @@
-#define SAFERELEASE(p) { if ((p)) { delete (p); (p) = nullptr; } }

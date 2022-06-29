@@ -19,7 +19,11 @@ D3d11RenderWidget::D3d11RenderWidget(QWidget *parent)
 
 D3d11RenderWidget::~D3d11RenderWidget()
 {
-	SAFERELEASE(m_gameApp);
+	if (m_gameApp)
+	{
+		delete m_gameApp;
+		m_gameApp = nullptr;
+	}
 }
 
 

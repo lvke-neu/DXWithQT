@@ -8,10 +8,8 @@ GameObject类，设置/获取GO的属性
 #pragma once
 
 #include "Transform.h"
-class Mesh {};
-class Shader {};
-class Texture {};
-class Material {};
+#include "Geometry.h"
+#include "Light_Material.h"
 
 
 class GameObject
@@ -22,10 +20,10 @@ public:
 public:
 	Mesh& getMesh() { return m_mesh; }
 	void setMesh(Mesh mesh) { m_mesh = mesh; }
-	Shader& getShader() { return m_shader; }
-	void setShader(Shader shader) { m_shader = shader; }
-	Texture& getTexturer() { return m_texture; }
-	void setTexture(Texture texture) { m_texture = texture; }
+	const wchar_t* getShader() { return m_shaderPath; }
+	void setShader(const wchar_t* shaderPath) { m_shaderPath = shaderPath; }
+	const wchar_t* getTexturer() { return m_texturePath; }
+	void setTexture(const wchar_t* texturePath) { m_texturePath = texturePath; }
 	Material& getMaterial() { return m_material; }
 	void setMaterial(Material material) { m_material = material; }
 	Transform& getTransform() { return m_transform; }
@@ -33,8 +31,8 @@ public:
 
 private:
 	Mesh m_mesh;
-	Shader m_shader;
-	Texture m_texture;
+	const wchar_t*  m_shaderPath;
+	const wchar_t* m_texturePath;
 	Material m_material;
 	Transform m_transform;
 

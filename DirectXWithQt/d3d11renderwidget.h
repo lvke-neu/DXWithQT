@@ -9,7 +9,7 @@ DirectX渲染到的widget
 #include <QWidget>
 #include "gameApp.h"
 #include "GameTimer.h"
-#include "d3dUtil.hpp"
+
 
 class ChapterDockWidget;
 

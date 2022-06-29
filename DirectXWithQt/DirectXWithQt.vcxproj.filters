@@ -22,11 +22,11 @@
     <Filter Include="D3D\Game\GameObject">
       <UniqueIdentifier>{e058aae6-d4d2-438c-ad40-3f6238b02db9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="D3D\Game\Common">
-      <UniqueIdentifier>{8898218b-fc07-4c58-a34c-d1915bffb841}</UniqueIdentifier>
-    </Filter>
     <Filter Include="D3D\Game\SceneManager">
       <UniqueIdentifier>{d5d48298-b692-4969-8cb5-5c37c67b2a13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\GameObject\Common">
+      <UniqueIdentifier>{8898218b-fc07-4c58-a34c-d1915bffb841}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -50,7 +50,19 @@
       <Filter>D3D\Game\Runtime</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>D3D\Game\Common</Filter>
+      <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Geometry.cpp">
+      <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Light_Material.h">
+      <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneManager.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="PipeLine.cpp">
+      <Filter>D3D\Game\GameObject\Common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -73,7 +85,7 @@
     <ClInclude Include="d3dApp.h">
       <Filter>D3D\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="d3dUtil.hpp">
+    <ClInclude Include="d3dUtil.h">
       <Filter>D3D\Framework</Filter>
     </ClInclude>
     <ClInclude Include="GameTimer.h">
@@ -82,14 +94,23 @@
     <ClInclude Include="gameApp.h">
       <Filter>D3D\Game\Runtime</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.hpp">
-      <Filter>D3D\Game\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>D3D\Game\Common</Filter>
+      <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
     <ClInclude Include="GameObject.h">
       <Filter>D3D\Game\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Geometry.h">
+      <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.hpp">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneManager.h">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="PipeLine.h">
+      <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

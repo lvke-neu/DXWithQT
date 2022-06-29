@@ -51,7 +51,13 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 ChapterDockWidget::~ChapterDockWidget()
 {
 	for (auto x : m_cptDockWidget)
-		SAFERELEASE(x);
+	{
+		if (x)
+		{
+			delete x;
+			x = nullptr;
+		}
+	}
 }
 
 
