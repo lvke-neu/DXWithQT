@@ -11,12 +11,13 @@ DirectX渲染到的widget
 #include "GameTimer.h"
 
 
+class MainWindow;
 class ChapterDockWidget;
-
 class D3d11RenderWidget : public QWidget
 {
 	Q_OBJECT
 
+		friend MainWindow;
 		friend ChapterDockWidget;
 public:
 	D3d11RenderWidget(QWidget *parent);

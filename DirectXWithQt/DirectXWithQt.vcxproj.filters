@@ -28,6 +28,18 @@
     <Filter Include="D3D\Game\GameObject\Common">
       <UniqueIdentifier>{8898218b-fc07-4c58-a34c-d1915bffb841}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Shader">
+      <UniqueIdentifier>{35f04dc2-c1a3-4b40-a58b-5b1409d0ced1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Shader\Chapter 1">
+      <UniqueIdentifier>{2c9bc6de-9df5-4910-b37f-d1913a20a88a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\SceneManager\Interface">
+      <UniqueIdentifier>{74d613d0-56b9-4c95-8549-91f059b9b744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Shader\Chapter 2">
+      <UniqueIdentifier>{7f87aa5f-1718-46d7-bc75-aae9e031f7c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -58,11 +70,20 @@
     <ClCompile Include="Light_Material.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClCompile>
-    <ClCompile Include="SceneManager.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="PipeLine.cpp">
       <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter1Scene.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter2Scene.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="DDSTextureLoader.cpp">
+      <Filter>D3D\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="DXTrace.cpp">
+      <Filter>D3D\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,11 +127,48 @@
     <ClInclude Include="Camera.hpp">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClInclude>
-    <ClInclude Include="SceneManager.h">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="PipeLine.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
+    <ClInclude Include="SceneInterface.h">
+      <Filter>D3D\Game\SceneManager\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter1Scene.h">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneFactory.h">
+      <Filter>D3D\Game\SceneManager\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter2Scene.h">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="DDSTextureLoader.h">
+      <Filter>D3D\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="DXTrace.h">
+      <Filter>D3D\Framework</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\Chapter 1\VS.hlsl">
+      <Filter>D3D\Shader\Chapter 1</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 1\PS.hlsl">
+      <Filter>D3D\Shader\Chapter 1</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 2\PS.hlsl">
+      <Filter>D3D\Shader\Chapter 2</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 2\VS.hlsl">
+      <Filter>D3D\Shader\Chapter 2</Filter>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\Chapter 1\Common.hlsli">
+      <Filter>D3D\Shader\Chapter 1</Filter>
+    </None>
+    <None Include="Shader\Chapter 2\Common.hlsli">
+      <Filter>D3D\Shader\Chapter 2</Filter>
+    </None>
   </ItemGroup>
 </Project>

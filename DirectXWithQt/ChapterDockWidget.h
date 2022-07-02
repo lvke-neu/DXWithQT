@@ -17,8 +17,8 @@ public:
 	void generateDockWidget(std::string chapterType);
 
 public slots:
-	void selectRenderViewColor();
-	void confirmRenderViewColor(const QColor& qColor);
+	void chapter1_setColor();
+	void chapter1_confirmColor(const QColor& color);
 
 private:
 	QMainWindow* m_parent{ nullptr };

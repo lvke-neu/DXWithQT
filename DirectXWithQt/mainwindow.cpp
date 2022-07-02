@@ -44,5 +44,6 @@ MainWindow::~MainWindow()
 void MainWindow::changeChapter(QListWidgetItem* item)
 {
 	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
+	m_RenderWidget->m_gameApp->setScene(item->text().toStdString());
 }
 

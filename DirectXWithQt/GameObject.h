@@ -20,10 +20,10 @@ public:
 public:
 	Mesh& getMesh() { return m_mesh; }
 	void setMesh(Mesh mesh) { m_mesh = mesh; }
-	const wchar_t* getShader() { return m_shaderPath; }
-	void setShader(const wchar_t* shaderPath) { m_shaderPath = shaderPath; }
-	const wchar_t* getTexturer() { return m_texturePath; }
-	void setTexture(const wchar_t* texturePath) { m_texturePath = texturePath; }
+	uint32_t& getShader() { return m_shader; }
+	void setShader(const uint32_t& shader) { m_shader = shader; }
+	const wchar_t* getTexturePath() { return m_texturePath; }
+	void setTexturePath(const wchar_t* texturePath) { m_texturePath = texturePath; }
 	Material& getMaterial() { return m_material; }
 	void setMaterial(Material material) { m_material = material; }
 	Transform& getTransform() { return m_transform; }
@@ -31,9 +31,9 @@ public:
 
 private:
 	Mesh m_mesh;
-	const wchar_t*  m_shaderPath;
-	const wchar_t* m_texturePath;
-	Material m_material;
-	Transform m_transform;
+	uint32_t m_shader = -1;
+	const wchar_t* m_texturePath = L"\0";
+	Material m_material{};
+	Transform m_transform{};
 
 };

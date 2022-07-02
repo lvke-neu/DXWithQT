@@ -20,6 +20,6 @@ struct Material
 
 	DirectX::XMFLOAT4 ambient;
 	DirectX::XMFLOAT4 diffuse;
-	DirectX::XMFLOAT4 specular; // w = 镜面反射强度
+	DirectX::XMFLOAT4 specular; 
 	DirectX::XMFLOAT4 reflect;
 };
