@@ -29,7 +29,7 @@ HRESULT CreateShaderFromFile(
 		return hr;
 	}
 
-	// 若指定了输出文件名，则将着色器二进制信息输出
+
 	if (csoFileNameInOut)
 	{
 		return D3DWriteBlobToFile(*ppBlobOut, csoFileNameInOut, FALSE);
