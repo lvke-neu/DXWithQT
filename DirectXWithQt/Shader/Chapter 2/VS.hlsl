@@ -1,9 +1,16 @@
 #include "Common.hlsli"
 
-// 顶点着色器
+
 VertexOut VS(VertexIn vIn)
 {
+	float4 posW = mul(float4(vIn.posL, 1.0f), g_world);
+	float4 posV = mul(posW, g_view);
+	float4 posH = mul(posV, g_proj);
+
 	VertexOut vOut;
-	vOut.posH = float4(vIn.pos, 1.0f);
+	vOut.posH = posH;
+	//vOut.normal = vIn.normalL;
+	vOut.texcoord = vIn.texcoord;
+
 	return vOut;
 }

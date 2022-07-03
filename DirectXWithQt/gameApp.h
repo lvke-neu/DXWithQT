@@ -17,6 +17,7 @@ public:
 public:
 	void setScene(std::string type);
 	IScene* getScene() { return m_scene; }
+
 private:
 	IScene* m_scene{ nullptr };
 

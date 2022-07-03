@@ -14,7 +14,9 @@ void Chapter1Scene::initScene()
 	Chapter1Scene::bindCB2PipeLine();
 }
 
-void Chapter1Scene::updateScene()
+
+
+void Chapter1Scene::updateScene(float deltaTime)
 {
 
 }

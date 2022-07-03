@@ -18,7 +18,31 @@ void PipeLine::bindGoToPipeLine(GameObject go)
 	{
 		ComPtr<ID3D11Buffer> vertexBuffer;
 		ComPtr<ID3D11Buffer> indexBuffer;
-		create_VtxIdx_Buffer(go.getMesh(), vertexBuffer, indexBuffer);
+
+
+		// VertexBuffer
+		D3D11_BUFFER_DESC vbd;
+		ZeroMemory(&vbd, sizeof(vbd));
+		vbd.Usage = D3D11_USAGE_IMMUTABLE;
+		vbd.ByteWidth = (UINT)go.getMesh().vertexBuffer.size() * sizeof(VertexPosNormalTex);
+		vbd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+		vbd.CPUAccessFlags = 0;
+		D3D11_SUBRESOURCE_DATA InitData;
+		ZeroMemory(&InitData, sizeof(InitData));
+		InitData.pSysMem = go.getMesh().vertexBuffer.data();
+		m_pd3dDevice->CreateBuffer(&vbd, &InitData, vertexBuffer.GetAddressOf());
+
+		//IndexBuffer
+		D3D11_BUFFER_DESC ibd;
+		ZeroMemory(&ibd, sizeof(ibd));
+		ibd.Usage = D3D11_USAGE_IMMUTABLE;
+		ibd.ByteWidth = go.getMesh().indexBuffer.size() * sizeof(DWORD);
+		ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
+		ibd.CPUAccessFlags = 0;
+		InitData.pSysMem = go.getMesh().indexBuffer.data();
+		m_pd3dDevice->CreateBuffer(&ibd, &InitData, indexBuffer.GetAddressOf());
+
+
 
 		UINT stride = sizeof(VertexPosNormalTex);
 		UINT offset = 0;
@@ -33,7 +57,18 @@ void PipeLine::bindGoToPipeLine(GameObject go)
 		ComPtr<ID3D11VertexShader> vertexShader;
 		ComPtr<ID3D11PixelShader> pixelShader;
 		ComPtr<ID3D11InputLayout> vertexLayout;
-		create_VtxIdx_Shader_InputLayout(go.getShader(), vertexShader, pixelShader, vertexLayout);
+
+
+		ComPtr<ID3DBlob> blob;
+		CreateShaderFromFile(m_shaderPath[go.getShader() - 1][0], m_shaderPath[go.getShader() - 1][1], "VS", "vs_5_0", blob.ReleaseAndGetAddressOf());
+		m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, vertexShader.GetAddressOf());
+
+		m_pd3dDevice->CreateInputLayout(VertexPosNormalTex::inputLayout, ARRAYSIZE(VertexPosNormalTex::inputLayout),
+			blob->GetBufferPointer(), blob->GetBufferSize(), vertexLayout.GetAddressOf());
+
+
+		CreateShaderFromFile(m_shaderPath[go.getShader() - 1][2], m_shaderPath[go.getShader() - 1][3], "PS", "ps_5_0", blob.ReleaseAndGetAddressOf());
+		m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, pixelShader.GetAddressOf());
 
 		m_pd3dImmediateContext->IASetInputLayout(vertexLayout.Get());
 		m_pd3dImmediateContext->VSSetShader(vertexShader.Get(), nullptr, 0);
@@ -48,58 +83,6 @@ void PipeLine::bindGoToPipeLine(GameObject go)
 
 		m_pd3dImmediateContext->PSSetShaderResources(0, 1, texture.GetAddressOf());
 	}
-	
-
-
-
-
 }
 
-void PipeLine::create_VtxIdx_Buffer(const Mesh& mesh, ComPtr<ID3D11Buffer>& vertexBuffer, ComPtr<ID3D11Buffer>& indexBuffer)
-{
-	// VertexBuffer
-	D3D11_BUFFER_DESC vbd;
-	ZeroMemory(&vbd, sizeof(vbd));
-	vbd.Usage = D3D11_USAGE_IMMUTABLE;
-	vbd.ByteWidth = (UINT)mesh.vertexBuffer.size() * sizeof(VertexPosNormalTex);
-	vbd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-	vbd.CPUAccessFlags = 0;
-	D3D11_SUBRESOURCE_DATA InitData;
-	ZeroMemory(&InitData, sizeof(InitData));
-	InitData.pSysMem = mesh.vertexBuffer.data();
-	m_pd3dDevice->CreateBuffer(&vbd, &InitData, vertexBuffer.GetAddressOf());
 
-	//IndexBuffer
-	D3D11_BUFFER_DESC ibd;
-	ZeroMemory(&ibd, sizeof(ibd));
-	ibd.Usage = D3D11_USAGE_IMMUTABLE;
-	ibd.ByteWidth = mesh.indexBuffer.size() * sizeof(DWORD);
-	ibd.BindFlags = D3D11_BIND_INDEX_BUFFER;
-	ibd.CPUAccessFlags = 0;
-	InitData.pSysMem = mesh.indexBuffer.data();
-	m_pd3dDevice->CreateBuffer(&ibd, &InitData, indexBuffer.GetAddressOf());
-}
-
-void PipeLine::create_VtxIdx_Shader_InputLayout(uint32_t shader, ComPtr<ID3D11VertexShader>& vertexShader, ComPtr<ID3D11PixelShader>& pixelShader, ComPtr<ID3D11InputLayout>& vertexLayout)
-{
-;	ComPtr<ID3DBlob> blob;
-
-
-
-	CreateShaderFromFile(m_shaderPath[shader - 1][0], m_shaderPath[shader - 1][1], "VS", "vs_5_0", blob.ReleaseAndGetAddressOf());
-	m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, vertexShader.GetAddressOf());
-
-
-
-	D3D11_INPUT_ELEMENT_DESC inputLayout[1] =
-	{
-		{"POSITION",0,DXGI_FORMAT_R32G32B32_FLOAT,0,0,D3D11_INPUT_PER_VERTEX_DATA,0}
-	};
-
-	m_pd3dDevice->CreateInputLayout(inputLayout, ARRAYSIZE(inputLayout),
-		blob->GetBufferPointer(), blob->GetBufferSize(), vertexLayout.GetAddressOf());
-
-
-	CreateShaderFromFile(m_shaderPath[shader - 1][2], m_shaderPath[shader - 1][3], "PS", "ps_5_0", blob.ReleaseAndGetAddressOf());
-	m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, pixelShader.GetAddressOf());
-}

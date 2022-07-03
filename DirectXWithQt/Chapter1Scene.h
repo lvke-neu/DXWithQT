@@ -11,11 +11,12 @@ public:
 public:
 	//override IScene
 	virtual void initScene() override;
-	virtual void updateScene() override;
+	virtual void updateScene(float deltaTime) override;
 	virtual void drawScene() override;
 
 	//override PipeLine
 	virtual void bindCB2PipeLine() override;
+	void onReize() {}
 
 public:
 	void setColor(float r, float g, float b, float a);

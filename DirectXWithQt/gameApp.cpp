@@ -25,13 +25,15 @@ void GameApp::InitD3D()
 void GameApp::OnResize(UINT windowWidth, UINT windowHeight)
 {
 	D3DApp::OnResize(windowWidth, windowHeight);
+	if(m_scene)
+		m_scene->onResize(windowWidth, windowHeight);
 }
 
 void GameApp::UpdateScene(float deltaTime)
 {
 	if (m_scene)
 	{
-		m_scene->updateScene();
+		m_scene->updateScene(deltaTime);
 	}
 }
 
@@ -56,6 +58,11 @@ void GameApp::setScene(std::string type)
 		m_scene = nullptr;
 	}
 	m_scene = SceneFactory::createChpaterScene(type, m_pd3dDevice, m_pd3dImmediateContext);
-	if(m_scene)
+	if (m_scene)
+	{
+		m_scene->onResize(m_windowWidth, m_windowHeight);
 		m_scene->initScene();
+	}
+		
 }
+

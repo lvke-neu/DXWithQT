@@ -36,12 +36,12 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	QLabel* label2 = new QLabel("show something2", dockWidget2);
 	label2->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
 
-	QPushButton* button2 = new QPushButton("Color2", dockWidget2);
+	QPushButton* button2 = new QPushButton("Texture", dockWidget2);
 	button2->move(0, 30);
 
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget2);
 
-	QWidget::connect(button2, &QPushButton::clicked, this, &ChapterDockWidget::chapter1_setColor);
+	QWidget::connect(button2, &QPushButton::clicked, this, &ChapterDockWidget::chapter2_changeTexture);
 
 	dockWidget2->hide();
 
@@ -110,4 +110,10 @@ void ChapterDockWidget::chapter1_confirmColor(const QColor& color)
 	{
 		chapter1Scene->setColor(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 1.0f);
 	}
+}
+
+void ChapterDockWidget::chapter2_changeTexture()
+{
+	Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+	chapter2Scene->changeTexture();
 }
