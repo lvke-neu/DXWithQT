@@ -1,10 +1,10 @@
 #pragma once 
 
 #include "SceneInterface.h"
-#include "PipeLine.h"
+#include "GameObject.h"
 
 
-class Chapter1Scene : public IScene, PipeLine
+class Chapter1Scene : public IScene
 {
 public:
 	Chapter1Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
@@ -15,7 +15,7 @@ public:
 	virtual void drawScene() override;
 
 	//override PipeLine
-	virtual void bindCB2PipeLine() override;
+	void bindCB2PipeLine();
 	void onReize() {}
 
 public:

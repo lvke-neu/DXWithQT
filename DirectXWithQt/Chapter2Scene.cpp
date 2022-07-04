@@ -3,7 +3,7 @@
 Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 	:m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
 {
-	PipeLine::init(m_pd3dDevice, m_pd3dImmediateContext);
+
 
 	m_perspectiveCamera.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -14,6 +14,7 @@ Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 
 void Chapter2Scene::initScene()
 {
+	m_box = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box.setMesh(Geometry::buildBoxMesh());
 	m_box.setShader(2);
 	m_box.setTexturePath(L"Texture\\WoodCrate.dds");
@@ -22,22 +23,36 @@ void Chapter2Scene::initScene()
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
-	PipeLine::bindGoToPipeLine(m_box);
+
+
+
 	bindCB2PipeLine();
 }
 
+
 void Chapter2Scene::updateScene(float deltaTime)
 {
+	//static float angle = 0;
+	//angle += deltaTime;
+	//m_box.getTransform().setRotation(XMFLOAT3(angle,0,0));
+
+	//bindCB2PipeLine();
+
 	static float angle = 0;
 	angle += deltaTime;
-	m_box.getTransform().setRotation(XMFLOAT3(angle,0,0));
-
-	bindCB2PipeLine();
+	m_box.getTransform().setRotation(XMFLOAT3(angle, 0, 0));
 }
 
 void Chapter2Scene::drawScene()
 {
-	m_pd3dImmediateContext->DrawIndexed(m_box.getMesh().indexBuffer.size(), 0, 0);
+	m_box.getTransform().setPosition(XMFLOAT3(-1.5f, 0.0f, 0.0f));
+	bindCB2PipeLine();
+	m_box.draw();
+
+
+	m_box.getTransform().setPosition(XMFLOAT3(1.5f, 0.0f, 0.0f));
+	bindCB2PipeLine();
+	m_box.draw();
 }
 
 void Chapter2Scene::bindCB2PipeLine()
@@ -106,5 +121,4 @@ void Chapter2Scene::changeTexture()
 		break;
 	}
 
-	PipeLine::bindGoToPipeLine(m_box);
 }

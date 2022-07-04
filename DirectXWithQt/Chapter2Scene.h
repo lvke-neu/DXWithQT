@@ -1,10 +1,10 @@
 #pragma once 
 
 #include "SceneInterface.h"
-#include "PipeLine.h"
+#include "GameObject.h"
 
 
-class Chapter2Scene:public IScene, PipeLine
+class Chapter2Scene:public IScene
 {
 	struct WVPMatrixCB
 	{

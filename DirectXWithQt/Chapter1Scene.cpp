@@ -3,15 +3,16 @@
 Chapter1Scene::Chapter1Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 	:m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
 {
-	PipeLine::init(m_pd3dDevice, m_pd3dImmediateContext);
+	
 }
 
 void Chapter1Scene::initScene()
 {
+	m_triangle = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_triangle.setMesh(Geometry::buildTriangleMesh());
 	m_triangle.setShader(1);
-	PipeLine::bindGoToPipeLine(m_triangle);
-	Chapter1Scene::bindCB2PipeLine();
+
+	bindCB2PipeLine();
 }
 
 
@@ -23,7 +24,7 @@ void Chapter1Scene::updateScene(float deltaTime)
 
 void Chapter1Scene::drawScene()
 {
-	m_pd3dImmediateContext->DrawIndexed(m_triangle.getMesh().indexBuffer.size(), 0, 0);
+	m_triangle.draw();
 }
 
 void Chapter1Scene::bindCB2PipeLine()

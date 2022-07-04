@@ -70,9 +70,6 @@
     <ClCompile Include="Light_Material.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClCompile>
-    <ClCompile Include="PipeLine.cpp">
-      <Filter>D3D\Game\GameObject\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Chapter1Scene.cpp">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClCompile>
@@ -84,6 +81,9 @@
     </ClCompile>
     <ClCompile Include="DXTrace.cpp">
       <Filter>D3D\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>D3D\Game\GameObject</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -126,9 +126,6 @@
     </ClInclude>
     <ClInclude Include="Camera.hpp">
       <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="PipeLine.h">
-      <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
     <ClInclude Include="SceneInterface.h">
       <Filter>D3D\Game\SceneManager\Interface</Filter>
