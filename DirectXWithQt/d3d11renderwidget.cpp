@@ -47,29 +47,39 @@ void D3d11RenderWidget::resizeEvent(QResizeEvent *event)
 
 void D3d11RenderWidget::keyPressEvent(QKeyEvent *event)
 {
-
-	
+	m_gameApp->onKeyPress(event->key());
 }
 
 void D3d11RenderWidget::keyReleaseEvent(QKeyEvent *event)
 {
-
+	m_gameApp->onKeyRelease(event->key());
 }
 
-
+QPoint prePos;
 void D3d11RenderWidget::mousePressEvent(QMouseEvent *event)
 {
+	if (event->button() == Qt::RightButton)
+	{
+		/*prePos = event->pos();*/
 
-
+		m_gameApp->onRightButtonMove(0.1, 0.1);
+	}
 }
 
 void D3d11RenderWidget::mouseReleaseEvent(QMouseEvent *event)
 {
+	//if (event->button() == Qt::RightButton)
+	//{
+	//	/*prePos = event->pos();*/
 
+	//	m_gameApp->onRightButtonMove(0.1, 0.1);
+	//}
 }
 
 void D3d11RenderWidget::mouseMoveEvent(QMouseEvent *event)
 {
+		//m_gameApp->onRightButtonMove(event->pos().x() - prePos.x(), event->pos().y() - prePos.y());
+		//prePos = event->pos();
 	
 }
 

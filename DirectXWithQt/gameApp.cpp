@@ -66,3 +66,17 @@ void GameApp::setScene(std::string type)
 		
 }
 
+void GameApp::onKeyPress(int key)
+{
+	KeyBoard::getInstance().pressKey(key);
+}
+
+void GameApp::onKeyRelease(int key)
+{
+	KeyBoard::getInstance().releaseKey(key);
+}
+
+void GameApp::onRightButtonMove(float deltaX, float deltaY)
+{
+	Mouse::setDelta(Delta(deltaX, deltaY));
+}

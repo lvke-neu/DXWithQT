@@ -18,6 +18,11 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 class GameObject
 {
 
+	struct WorldMatrix
+	{
+		XMMATRIX g_world;
+	};
+
 public:
 	GameObject() = default;
 	GameObject(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext):
@@ -44,11 +49,14 @@ public:
 
 	void draw();
 
-
+	void changeWorldMatrixCB();
 private:
 	ComPtr<ID3D11Device> m_pd3dDevice;
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext;
 private:
+
+	ComPtr<ID3D11Buffer> m_pWorldMatrixCB;//常量buffer，存放世界矩阵，放在槽0
+
 	ComPtr<ID3D11Buffer> m_pVertexBuffer{ nullptr };
 	ComPtr<ID3D11Buffer> m_pIndexBuffer{ nullptr };
 

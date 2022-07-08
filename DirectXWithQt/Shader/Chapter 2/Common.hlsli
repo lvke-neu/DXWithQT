@@ -13,9 +13,17 @@ struct VertexOut
 
 };
 
-cbuffer VsConstantBuffer : register(b0)
+cbuffer WorldMatrix : register(b0)
 {
 	matrix g_world;
+}
+
+cbuffer ViewMatrix : register(b1)
+{
 	matrix g_view;
+}
+
+cbuffer ProjMatrix : register(b2)
+{
 	matrix g_proj;
 }

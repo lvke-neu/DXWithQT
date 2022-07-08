@@ -40,6 +40,9 @@
     <Filter Include="D3D\Shader\Chapter 2">
       <UniqueIdentifier>{7f87aa5f-1718-46d7-bc75-aae9e031f7c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\InputEvent">
+      <UniqueIdentifier>{4d0acfae-1f4f-4eea-b89e-3f489c13f333}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -85,6 +88,15 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>D3D\Game\GameObject</Filter>
     </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="KeyBoard.cpp">
+      <Filter>D3D\Game\InputEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Mouse.cpp">
+      <Filter>D3D\Game\InputEvent</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -124,7 +136,7 @@
     <ClInclude Include="Geometry.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.hpp">
+    <ClInclude Include="Camera.h">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="SceneInterface.h">
@@ -144,6 +156,12 @@
     </ClInclude>
     <ClInclude Include="DXTrace.h">
       <Filter>D3D\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="KeyBoard.h">
+      <Filter>D3D\Game\InputEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Mouse.h">
+      <Filter>D3D\Game\InputEvent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

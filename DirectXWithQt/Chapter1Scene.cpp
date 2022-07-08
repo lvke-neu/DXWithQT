@@ -3,7 +3,7 @@
 Chapter1Scene::Chapter1Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 	:m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
 {
-	
+	m_perspectiveCamera.init(m_pd3dDevice, m_pd3dImmediateContext);
 }
 
 void Chapter1Scene::initScene()

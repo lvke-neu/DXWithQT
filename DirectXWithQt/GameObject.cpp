@@ -96,7 +96,8 @@ void GameObject::setMaterial(Material material)
 }
 
 Transform& GameObject::getTransform() 
-{ 
+{
+	changeWorldMatrixCB();
 	return m_transform;
 }
 
@@ -104,6 +105,28 @@ void GameObject::setTransform(Transform transform)
 {
 	m_transform = transform; 
 
+	changeWorldMatrixCB();
+	
+}
+
+void GameObject::changeWorldMatrixCB()
+{
+	WorldMatrix worldMatrix;
+	worldMatrix.g_world = XMMatrixTranspose(m_transform.getWorldMatrix());
+
+
+	D3D11_BUFFER_DESC cbd;
+	ZeroMemory(&cbd, sizeof(cbd));
+	cbd.Usage = D3D11_USAGE_DYNAMIC;
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbd.ByteWidth = sizeof(worldMatrix);
+	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pWorldMatrixCB.GetAddressOf());
+
+	D3D11_MAPPED_SUBRESOURCE mappedData;
+	m_pd3dImmediateContext->Map(m_pWorldMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(WorldMatrix), &worldMatrix, sizeof(WorldMatrix));
+	m_pd3dImmediateContext->Unmap(m_pWorldMatrixCB.Get(), 0);
 }
 
 void GameObject::draw()
@@ -119,6 +142,8 @@ void GameObject::draw()
 	m_pd3dImmediateContext->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
 
 	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
+
+	m_pd3dImmediateContext->VSSetConstantBuffers(0, 1, m_pWorldMatrixCB.GetAddressOf());
 
 	m_pd3dImmediateContext->DrawIndexed(m_mesh.indexBuffer.size(), 0, 0);
 }
