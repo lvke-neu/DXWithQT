@@ -1,6 +1,9 @@
 #include "gameApp.h"
 #include "RenderStates.h"
 
+#include "Connector.h"
+
+
 GameApp::GameApp(HWND hInstance, UINT windowWidth, UINT windowHeight)
 	:D3DApp(hInstance, windowWidth, windowHeight)
 {
@@ -37,6 +40,8 @@ void GameApp::UpdateScene(float deltaTime)
 	{
 		m_scene->updateScene(deltaTime);
 	}
+
+	
 }
 
 void GameApp::DrawScene()
@@ -48,9 +53,16 @@ void GameApp::DrawScene()
 	{
 		m_scene->drawScene();
 	}
-
 	m_pSwapChain->Present(0, 0);
+
+	//float static aa = 0.0f;
+	//aa += 0.001;
+	//Connector::notify(aa);
+
 }
+
+
+
 
 void GameApp::setScene(std::string type)
 {

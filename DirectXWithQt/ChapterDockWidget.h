@@ -22,6 +22,10 @@ public slots:
 
 	void chapter2_changeTexture();
 
+
+public:
+	void callbackFromGameApp(float test);
+
 private:
 	QMainWindow* m_parent{ nullptr };
 	D3d11RenderWidget* m_RenderWidget{ nullptr };

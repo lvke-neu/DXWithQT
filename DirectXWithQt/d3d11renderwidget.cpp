@@ -2,6 +2,14 @@
 #include "d3d11renderwidget.h"
 
 
+
+#include <QDockWidget>
+#include <QGridLayout>
+#include <QLabel>
+#include <QPushButton>
+#include <QColorDialog>
+
+
 D3d11RenderWidget::D3d11RenderWidget(QWidget *parent)
 	: QWidget(parent)
 {
@@ -11,12 +19,9 @@ D3d11RenderWidget::D3d11RenderWidget(QWidget *parent)
 	setAttribute(Qt::WA_NativeWindow,true);
 	setFocusPolicy(Qt::StrongFocus);
 
-
-
 	m_gameApp = new GameApp((HWND)winId(), width(), height());
 	m_Timer.Start();
 	m_Timer.Reset();
-
 }
 
 D3d11RenderWidget::~D3d11RenderWidget()
@@ -31,13 +36,14 @@ D3d11RenderWidget::~D3d11RenderWidget()
 
 void D3d11RenderWidget::paintEvent(QPaintEvent *event)
 {
-	
 	m_Timer.Tick();
 	CalculateFrameStats();
 	m_gameApp->UpdateScene(m_Timer.DeltaTime());
 	m_gameApp->DrawScene();
 
+
 	update();
+
 
 }
 
@@ -56,6 +62,7 @@ void D3d11RenderWidget::keyPressEvent(QKeyEvent *event)
 void D3d11RenderWidget::keyReleaseEvent(QKeyEvent *event)
 {
 	m_gameApp->onKeyRelease(event->key());
+
 }
 
 

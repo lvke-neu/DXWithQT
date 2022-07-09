@@ -14,7 +14,8 @@ public:
 	void drawScene() override;
 
 public:
-	void changeTexture();
+	void changeBoxTexture();
+	void changeFloorTexture();
 private:
 	ComPtr<ID3D11Device> m_pd3dDevice{ nullptr };
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext{ nullptr };

@@ -115,13 +115,7 @@ void GameObject::changeWorldMatrixCB()
 	worldMatrix.g_world = XMMatrixTranspose(m_transform.getWorldMatrix());
 
 
-	D3D11_BUFFER_DESC cbd;
-	ZeroMemory(&cbd, sizeof(cbd));
-	cbd.Usage = D3D11_USAGE_DYNAMIC;
-	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	cbd.ByteWidth = sizeof(worldMatrix);
-	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pWorldMatrixCB.GetAddressOf());
+
 
 	D3D11_MAPPED_SUBRESOURCE mappedData;
 	m_pd3dImmediateContext->Map(m_pWorldMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);

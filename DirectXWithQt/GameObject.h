@@ -28,9 +28,39 @@ public:
 	GameObject(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext):
 		m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
 	{
-
+		D3D11_BUFFER_DESC cbd;
+		ZeroMemory(&cbd, sizeof(cbd));
+		cbd.Usage = D3D11_USAGE_DYNAMIC;
+		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		cbd.ByteWidth = sizeof(WorldMatrix);
+		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pWorldMatrixCB.GetAddressOf());
 	}
 	virtual ~GameObject() = default;
+
+public:
+
+	XMFLOAT3& getScale() { return m_transform.getScale(); }
+	void setScale(float x, float y, float z)
+	{
+		m_transform.setScale(XMFLOAT3(x, y, z));
+		changeWorldMatrixCB();
+	}
+
+	XMFLOAT3& getRotation() { return m_transform.getRotation(); }
+	void setRotation(float x, float y, float z)
+	{
+		m_transform.setRotation(XMFLOAT3(x, y, z));
+		changeWorldMatrixCB();
+	}
+
+	XMFLOAT3& getPosition() { return m_transform.getPosition(); }
+	void setPosition(float x, float y, float z)
+	{
+		m_transform.setPosition(XMFLOAT3(x, y, z));
+		changeWorldMatrixCB();
+	}
+
 public:
 	Mesh& getMesh();
 	void setMesh(Mesh mesh);

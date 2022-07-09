@@ -33,20 +33,18 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	dockWidget2->setFixedWidth(115);
 	dockWidget2->setTitleBarWidget(new QWidget);
 
-	QLabel* label2 = new QLabel("CameraProperty:", dockWidget2);
-	label2->setObjectName("CameraProperty");
-	label2->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
 
-	QPushButton* button2 = new QPushButton("Texture", dockWidget2);
-	button2->move(0, 30);
+	QPushButton* button_change_box_texture = new QPushButton("Change1", dockWidget2);
+	QWidget::connect(button_change_box_texture, &QPushButton::clicked, this, &ChapterDockWidget::chapter2_changeTexture);
 	
+
+	QPushButton* button_change_floor_texture = new QPushButton("Change2", dockWidget2);
+	button_change_floor_texture->move(0, 30);
+	QWidget::connect(button_change_floor_texture, &QPushButton::clicked, this, &ChapterDockWidget::chapter2_changeTexture);
 
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget2);
 
-	QWidget::connect(button2, &QPushButton::clicked, this, &ChapterDockWidget::chapter2_changeTexture);
-
 	dockWidget2->hide();
-
 	m_cptDockWidget.push_back(dockWidget2);
 
 
@@ -116,6 +114,32 @@ void ChapterDockWidget::chapter1_confirmColor(const QColor& color)
 
 void ChapterDockWidget::chapter2_changeTexture()
 {
+	QPushButton *btn = qobject_cast<QPushButton*>(sender());
+	//获取按钮显示文本
+	QString text = btn->text();
+
+
 	Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
-	chapter2Scene->changeTexture();
+	if (text == "Change1")
+	{
+		if(chapter2Scene)
+			chapter2Scene->changeBoxTexture();
+	}
+	else if (text == "Change2")
+	{
+		if (chapter2Scene)
+			chapter2Scene->changeFloorTexture();
+	}
+}
+
+
+
+
+
+void ChapterDockWidget::callbackFromGameApp(float test)
+{
+	QDockWidget* dockWidget2 = m_parent->findChild<QDockWidget*>("dockWidget2");
+
+	QLabel* label2 = dockWidget2->findChild<QLabel*>("CameraProperty");
+	label2->setText(QString(std::to_string(test).c_str()));
 }

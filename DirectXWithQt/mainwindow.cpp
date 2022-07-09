@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "Connector.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -17,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::changeChapter);
 
 	m_ChapterDockWidget = new ChapterDockWidget(this, m_RenderWidget);
+
+	Connector::reg(m_ChapterDockWidget);
 }
 
 MainWindow::~MainWindow()

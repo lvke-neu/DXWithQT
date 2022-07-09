@@ -43,6 +43,9 @@
     <Filter Include="D3D\Game\InputEvent">
       <UniqueIdentifier>{4d0acfae-1f4f-4eea-b89e-3f489c13f333}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ConnectD3dAndQt">
+      <UniqueIdentifier>{9756e715-de98-4a79-9ef8-dab673c1c8a4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -99,6 +102,9 @@
     </ClCompile>
     <ClCompile Include="RenderStates.cpp">
       <Filter>D3D\Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Connector.cpp">
+      <Filter>ConnectD3dAndQt</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -168,6 +174,9 @@
     </ClInclude>
     <ClInclude Include="RenderStates.h">
       <Filter>D3D\Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Connector.h">
+      <Filter>ConnectD3dAndQt</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
