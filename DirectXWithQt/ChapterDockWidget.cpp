@@ -33,7 +33,7 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	dockWidget2->setFixedWidth(115);
 	dockWidget2->setTitleBarWidget(new QWidget);
 
-	QLabel* label2 = new QLabel("aaa", dockWidget2);
+	QLabel* label2 = new QLabel("CameraProperty:", dockWidget2);
 	label2->setObjectName("CameraProperty");
 	label2->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
 

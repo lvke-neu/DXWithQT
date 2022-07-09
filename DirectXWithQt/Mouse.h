@@ -22,21 +22,7 @@ public:
 class Mouse
 {
 public:
-    static void setDelta(const Delta& delta)
-    {
-        m_delta.m_x = delta.m_x;
-        m_delta.m_y = delta.m_x;
-    }
-
-    static float getDeltaX()
-    {
-        return m_delta.m_x;
-    }
-    static float getDeltaY()
-    {
-        return m_delta.m_y;
-    }
-private:
     static Delta m_delta;
+	static MouseButton m_whichButton;
 };
 

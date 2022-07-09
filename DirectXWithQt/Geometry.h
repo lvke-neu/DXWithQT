@@ -26,4 +26,5 @@ class Geometry
 public:
 	static Mesh buildTriangleMesh();
 	static Mesh buildBoxMesh();
+	static Mesh buildPlaneMesh(float texU,float texV);
 };

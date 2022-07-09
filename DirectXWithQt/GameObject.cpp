@@ -1,7 +1,7 @@
 #include "GameObject.h"
 #include "d3dUtil.h"
 #include "DDSTextureLoader.h"
-
+#include "RenderStates.h"
 
 std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
 {
@@ -140,8 +140,11 @@ void GameObject::draw()
 	m_pd3dImmediateContext->IASetInputLayout(m_pVertexLayout.Get());
 	m_pd3dImmediateContext->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
 	m_pd3dImmediateContext->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
-
+	
+	//设置贴图资源
 	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
+	//设置采样方式
+	m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
 	m_pd3dImmediateContext->VSSetConstantBuffers(0, 1, m_pWorldMatrixCB.GetAddressOf());
 

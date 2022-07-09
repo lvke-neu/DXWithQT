@@ -9,7 +9,7 @@ Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	m_perspectiveCamera.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(0.0f, 0.0f, 10.0f)
+		XMFLOAT3(0.0f, 0.0f, -20.0f)
 	));
 }
 
@@ -24,6 +24,16 @@ void Chapter2Scene::initScene()
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
+
+	m_plane = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_plane.setMesh(Geometry::buildPlaneMesh(5.0f, 5.0f));
+	m_plane.setShader(2);
+	m_plane.setTexturePath(L"Texture\\floor.dds");
+	m_plane.setTransform(Transform(
+		XMFLOAT3(10.0f, 10.0f, 10.0f),
+		XMFLOAT3(XM_PI/2, 0.0f, 0.0f),
+		XMFLOAT3(0.0f, -5.0f, 0.0f)
+	));
 }
 
 
@@ -46,14 +56,24 @@ void Chapter2Scene::updateScene(float deltaTime)
 	{
 		m_perspectiveCamera.moveXAxis(deltaTime * 10);
 	}
-	//m_box.getTransform().setRotation(XMFLOAT3(angle, 0, 0));
 
-	//m_perspectiveCamera.getTransform().setRotation(XMFLOAT3(0, angle, 0));
-	static float deltaX = 0.0f;
-	static float deltaY = 0.0f;
-	deltaX += Mouse::getDeltaX() * deltaTime * 10;
-	deltaY += Mouse::getDeltaY() * deltaTime * 10;
-	m_perspectiveCamera.getTransform().setRotation(XMFLOAT3(deltaX, deltaY, 0.0f));
+
+	if (Mouse::m_whichButton == RightButton)
+	{
+		float deltaX;
+		float deltaY;
+		deltaX = m_perspectiveCamera.getTransform().getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
+		deltaY = m_perspectiveCamera.getTransform().getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
+		m_perspectiveCamera.getTransform().setRotation(XMFLOAT3(deltaY, deltaX, 0.0f));
+
+	}
+
+	static float x = 0.0f;
+	static float y = 0.0f;
+	x += deltaTime;
+	y += deltaTime;
+	m_box.getTransform().setRotation(XMFLOAT3(x, 0.0f, 0.0f));
+	
 }
 
 void Chapter2Scene::drawScene()
@@ -63,6 +83,8 @@ void Chapter2Scene::drawScene()
 
 	m_box.getTransform().setPosition(XMFLOAT3(1.5f, 0.0f, 0.0f));
 	m_box.draw();
+
+	m_plane.draw();
 }
 
 

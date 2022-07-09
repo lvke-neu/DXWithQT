@@ -44,6 +44,8 @@ private:
 	QWidget* m_parent{ nullptr };
 	GameApp* m_gameApp{ nullptr };
 	GameTimer m_Timer;
+	QPoint m_preCursorPos;
+	Qt::MouseButton m_button = Qt::NoButton;
                     
 };
 

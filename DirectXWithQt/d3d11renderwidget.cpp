@@ -11,6 +11,8 @@ D3d11RenderWidget::D3d11RenderWidget(QWidget *parent)
 	setAttribute(Qt::WA_NativeWindow,true);
 	setFocusPolicy(Qt::StrongFocus);
 
+
+
 	m_gameApp = new GameApp((HWND)winId(), width(), height());
 	m_Timer.Start();
 	m_Timer.Reset();
@@ -36,6 +38,7 @@ void D3d11RenderWidget::paintEvent(QPaintEvent *event)
 	m_gameApp->DrawScene();
 
 	update();
+
 }
 
 void D3d11RenderWidget::resizeEvent(QResizeEvent *event)
@@ -55,32 +58,37 @@ void D3d11RenderWidget::keyReleaseEvent(QKeyEvent *event)
 	m_gameApp->onKeyRelease(event->key());
 }
 
-QPoint prePos;
+
 void D3d11RenderWidget::mousePressEvent(QMouseEvent *event)
 {
 	if (event->button() == Qt::RightButton)
 	{
-		/*prePos = event->pos();*/
-
-		m_gameApp->onRightButtonMove(0.1, 0.1);
+		m_button = Qt::RightButton;
+		m_preCursorPos = event->pos();
 	}
+}
+
+
+
+void D3d11RenderWidget::mouseMoveEvent(QMouseEvent *event)
+{
+	if (m_button == Qt::RightButton)
+	{
+		m_gameApp->onRightButtonMove(event->pos().x() - m_preCursorPos.x(), event->pos().y() - m_preCursorPos.y());
+		m_preCursorPos = event->pos();
+
+		repaint();
+	}
+
 }
 
 void D3d11RenderWidget::mouseReleaseEvent(QMouseEvent *event)
 {
-	//if (event->button() == Qt::RightButton)
-	//{
-	//	/*prePos = event->pos();*/
-
-	//	m_gameApp->onRightButtonMove(0.1, 0.1);
-	//}
-}
-
-void D3d11RenderWidget::mouseMoveEvent(QMouseEvent *event)
-{
-		//m_gameApp->onRightButtonMove(event->pos().x() - prePos.x(), event->pos().y() - prePos.y());
-		//prePos = event->pos();
-	
+	if (m_button == Qt::RightButton)
+	{
+		m_button = Qt::NoButton;
+		m_gameApp->onButtonRelease();
+	}
 }
 
 void D3d11RenderWidget::wheelEvent(QWheelEvent *event)

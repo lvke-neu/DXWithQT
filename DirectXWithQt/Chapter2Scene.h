@@ -20,8 +20,8 @@ private:
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext{ nullptr };
 private:
 	GameObject m_box;
+	GameObject m_plane;
 
-public:
 
 
 

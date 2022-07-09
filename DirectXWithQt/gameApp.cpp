@@ -1,10 +1,12 @@
 #include "gameApp.h"
-
+#include "RenderStates.h"
 
 GameApp::GameApp(HWND hInstance, UINT windowWidth, UINT windowHeight)
 	:D3DApp(hInstance, windowWidth, windowHeight)
 {
 	InitD3D();
+
+	RenderStates::Init(m_pd3dDevice);
 }
 
 GameApp::~GameApp()
@@ -78,5 +80,7 @@ void GameApp::onKeyRelease(int key)
 
 void GameApp::onRightButtonMove(float deltaX, float deltaY)
 {
-	Mouse::setDelta(Delta(deltaX, deltaY));
+	Mouse::m_whichButton = RightButton;
+	Mouse::m_delta.m_x = deltaX;
+	Mouse::m_delta.m_y = deltaY;
 }

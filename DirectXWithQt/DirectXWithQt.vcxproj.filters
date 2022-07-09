@@ -97,6 +97,9 @@
     <ClCompile Include="Mouse.cpp">
       <Filter>D3D\Game\InputEvent</Filter>
     </ClCompile>
+    <ClCompile Include="RenderStates.cpp">
+      <Filter>D3D\Framework</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -162,6 +165,9 @@
     </ClInclude>
     <ClInclude Include="Mouse.h">
       <Filter>D3D\Game\InputEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="RenderStates.h">
+      <Filter>D3D\Framework</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

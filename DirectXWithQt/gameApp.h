@@ -23,6 +23,7 @@ public:
 
 
 	void onRightButtonMove(float deltaX, float deltaY);
+	void onButtonRelease() { Mouse::m_whichButton = NoButton; }
 
 public:
 	void setScene(std::string type);

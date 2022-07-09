@@ -99,3 +99,33 @@ Mesh Geometry::buildBoxMesh()
 
 	return boxMesh;
 }
+
+Mesh Geometry::buildPlaneMesh(float texU, float texV)
+{
+	Mesh planeMesh;
+
+	planeMesh.vertexBuffer.resize(4);
+
+	planeMesh.vertexBuffer[0].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);
+	planeMesh.vertexBuffer[1].position = XMFLOAT3(1.0f, 1.0f, 0.0f);
+	planeMesh.vertexBuffer[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);
+	planeMesh.vertexBuffer[3].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);
+
+	for (UINT i = 0; i < 4; ++i)
+	{
+		planeMesh.vertexBuffer[i].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
+	}
+
+	planeMesh.vertexBuffer[0].texcoord = XMFLOAT2(0.0f, 0.0f);
+	planeMesh.vertexBuffer[1].texcoord = XMFLOAT2(texU, 0.0f);
+	planeMesh.vertexBuffer[2].texcoord = XMFLOAT2(texU, texV);
+	planeMesh.vertexBuffer[3].texcoord = XMFLOAT2(0.0f, texV);
+
+	planeMesh.indexBuffer =
+	{
+		0, 1, 3,
+		1, 2, 3
+	};
+
+	return planeMesh;
+}
