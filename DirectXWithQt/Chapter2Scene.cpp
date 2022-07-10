@@ -1,6 +1,8 @@
 #include "Chapter2Scene.h"
 #include "KeyBoard.h"
 #include "Mouse.h"
+#include "Light_Material.h"
+
 
 Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 	:m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
@@ -15,6 +17,9 @@ Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 
 void Chapter2Scene::initScene()
 {
+
+	set_light_material();
+
 	m_box = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box.setMesh(Geometry::buildBoxMesh());
 	m_box.setShader(2);
@@ -68,11 +73,11 @@ void Chapter2Scene::updateScene(float deltaTime)
 
 	}
 
-	static float x = 0.0f;
-	static float y = 0.0f;
-	x += deltaTime;
-	y += deltaTime;
-	m_box.setRotation(x, 0.0f, 0.0f);
+	//static float x = 0.0f;
+	//static float y = 0.0f;
+	//x += deltaTime;
+	//y += deltaTime;
+	//m_box.setRotation(x, 0.0f, 0.0f);
 	
 }
 
@@ -87,6 +92,70 @@ void Chapter2Scene::drawScene()
 	m_plane.draw();
 }
 
+void Chapter2Scene::set_light_material()
+{
+	ComPtr<ID3D11Buffer> plightAndMaterialCB;
+
+	D3D11_BUFFER_DESC cbd;
+	ZeroMemory(&cbd, sizeof(cbd));
+	cbd.Usage = D3D11_USAGE_DYNAMIC;
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbd.ByteWidth = sizeof(LightAndMaterial);
+	m_pd3dDevice->CreateBuffer(&cbd, nullptr, plightAndMaterialCB.GetAddressOf());
+
+	LightAndMaterial lightAndMaterial;
+
+	lightAndMaterial.directionLight.ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
+	lightAndMaterial.directionLight.diffuse = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
+	lightAndMaterial.directionLight.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
+	lightAndMaterial.directionLight.direction = XMFLOAT3(0.0f, -0.5f, 0.5f);
+
+	lightAndMaterial.material.ambient = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
+	lightAndMaterial.material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	lightAndMaterial.material.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 5.0f);
+
+	D3D11_MAPPED_SUBRESOURCE mappedData;
+	m_pd3dImmediateContext->Map(plightAndMaterialCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(LightAndMaterial), &lightAndMaterial, sizeof(LightAndMaterial));
+	m_pd3dImmediateContext->Unmap(plightAndMaterialCB.Get(), 0);
+
+	m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, plightAndMaterialCB.GetAddressOf());
+}
+
+void Chapter2Scene::changeLight()
+{
+	ComPtr<ID3D11Buffer> plightAndMaterialCB;
+
+	D3D11_BUFFER_DESC cbd;
+	ZeroMemory(&cbd, sizeof(cbd));
+	cbd.Usage = D3D11_USAGE_DYNAMIC;
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbd.ByteWidth = sizeof(LightAndMaterial);
+	m_pd3dDevice->CreateBuffer(&cbd, nullptr, plightAndMaterialCB.GetAddressOf());
+
+	LightAndMaterial lightAndMaterial;
+
+	static float y = -0.5f;
+	y += 0.1;
+
+	lightAndMaterial.directionLight.ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
+	lightAndMaterial.directionLight.diffuse = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
+	lightAndMaterial.directionLight.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
+	lightAndMaterial.directionLight.direction = XMFLOAT3(0.0f, y, 0.5f);
+
+	lightAndMaterial.material.ambient = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
+	lightAndMaterial.material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	lightAndMaterial.material.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 5.0f);
+
+	D3D11_MAPPED_SUBRESOURCE mappedData;
+	m_pd3dImmediateContext->Map(plightAndMaterialCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(LightAndMaterial), &lightAndMaterial, sizeof(LightAndMaterial));
+	m_pd3dImmediateContext->Unmap(plightAndMaterialCB.Get(), 0);
+
+	m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, plightAndMaterialCB.GetAddressOf());
+}
 
 
 void Chapter2Scene::changeBoxTexture()

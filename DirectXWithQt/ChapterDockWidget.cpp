@@ -42,6 +42,11 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	button_change_floor_texture->move(0, 30);
 	QWidget::connect(button_change_floor_texture, &QPushButton::clicked, this, &ChapterDockWidget::chapter2_changeTexture);
 
+	QPushButton* button_change_light = new QPushButton("Change3", dockWidget2);
+	button_change_light->move(0, 60);
+	QWidget::connect(button_change_light, &QPushButton::clicked, this, &ChapterDockWidget::chapter2_changeTexture);
+
+
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget2);
 
 	dockWidget2->hide();
@@ -129,6 +134,10 @@ void ChapterDockWidget::chapter2_changeTexture()
 	{
 		if (chapter2Scene)
 			chapter2Scene->changeFloorTexture();
+	}
+	else if (text == "Change3")
+	{
+		chapter2Scene->changeLight();
 	}
 }
 

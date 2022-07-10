@@ -19,6 +19,8 @@ class Camera
 	struct ViewMatrix
 	{
 		XMMATRIX g_view;
+		XMFLOAT3 g_eyePoW;
+		float pad;
 	};
 
 	struct ProjMatrix

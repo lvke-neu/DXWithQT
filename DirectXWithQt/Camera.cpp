@@ -16,7 +16,7 @@ void Camera::changeViewMatrixCB()
 {
 	ViewMatrix viewMatrix;
 	viewMatrix.g_view = XMMatrixTranspose(XMMatrixInverse(nullptr, getViewMatrix()));
-
+	viewMatrix.g_eyePoW = XMFLOAT3(m_transform.getPosition());
 
 
 
@@ -26,6 +26,7 @@ void Camera::changeViewMatrixCB()
 	m_pd3dImmediateContext->Unmap(m_pViewMatrixCB.Get(), 0);
 
 	m_pd3dImmediateContext->VSSetConstantBuffers(1, 1, m_pViewMatrixCB.GetAddressOf());
+	m_pd3dImmediateContext->PSSetConstantBuffers(1, 1, m_pViewMatrixCB.GetAddressOf());
 }
 
 void Camera::setFrustum(float FovAngleY, float AspectRatio, float NearZ, float FarZ)

@@ -1,3 +1,6 @@
+#include "LightHelper.hlsli"
+
+
 struct VertexIn
 {
 	float3 posL : POSITION;
@@ -8,22 +11,32 @@ struct VertexIn
 struct VertexOut
 {
 	float4 posH : SV_POSITION;
-	float4 normal: NORMAL;
+	float3 posW : POSITION;
+	float3 normalW: NORMAL;
 	float2 texcoord: TEXCOORD;
-
 };
 
 cbuffer WorldMatrix : register(b0)
 {
 	matrix g_world;
+	matrix g_worldInvTranspose;
 }
 
 cbuffer ViewMatrix : register(b1)
 {
 	matrix g_view;
+	float3 g_eyePosW;
+	float pad;
+
 }
 
 cbuffer ProjMatrix : register(b2)
 {
 	matrix g_proj;
+}
+
+cbuffer LightAndMaterial : register(b3)
+{
+	DirectionLight g_directionLight;
+	Material g_material;
 }

@@ -202,6 +202,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="LightHelper.hlsli" />
     <None Include="Shader\Chapter 1\Common.hlsli" />
     <None Include="Shader\Chapter 2\Common.hlsli" />
   </ItemGroup>

@@ -13,9 +13,11 @@ public:
 	void updateScene(float deltaTime) override;
 	void drawScene() override;
 
+	void set_light_material();
 public:
 	void changeBoxTexture();
 	void changeFloorTexture();
+	void changeLight();
 private:
 	ComPtr<ID3D11Device> m_pd3dDevice{ nullptr };
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext{ nullptr };

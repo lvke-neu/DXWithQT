@@ -1,6 +1,13 @@
 #pragma once 
 #include <DirectXMath.h>
 
+/*
+
+环境光
+漫反射光
+高光
+*/
+
 
 using namespace DirectX;
 
@@ -14,12 +21,27 @@ struct Material
 	Material(Material&&) = default;
 	Material& operator=(Material&&) = default;
 
-	Material(const DirectX::XMFLOAT4& _ambient, const DirectX::XMFLOAT4& _diffuse, const DirectX::XMFLOAT4& _specular,
-		const DirectX::XMFLOAT4& _reflect) :
+	Material(const XMFLOAT4& _ambient, const XMFLOAT4& _diffuse, const XMFLOAT4& _specular,
+		const XMFLOAT4& _reflect) :
 		ambient(_ambient), diffuse(_diffuse), specular(_specular), reflect(_reflect) {}
 
-	DirectX::XMFLOAT4 ambient;
-	DirectX::XMFLOAT4 diffuse;
-	DirectX::XMFLOAT4 specular; 
-	DirectX::XMFLOAT4 reflect;
+	XMFLOAT4 ambient;
+	XMFLOAT4 diffuse;
+	XMFLOAT4 specular; 
+	XMFLOAT4 reflect;
+};
+
+struct DirectionLight
+{
+	XMFLOAT4 ambient;
+	XMFLOAT4 diffuse;
+	XMFLOAT4 specular;
+	XMFLOAT3 direction;
+	float pad;
+};
+
+struct LightAndMaterial 
+{
+	DirectionLight directionLight;
+	Material material;
 };

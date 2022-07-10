@@ -9,7 +9,8 @@ VertexOut VS(VertexIn vIn)
 
 	VertexOut vOut;
 	vOut.posH = posH;
-	//vOut.normal = vIn.normalL;
+	vOut.posW = posW.xyz;
+	vOut.normalW = mul(vIn.normalL, (float3x3)g_worldInvTranspose);
 	vOut.texcoord = vIn.texcoord;
 
 	return vOut;

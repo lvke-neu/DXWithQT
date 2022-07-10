@@ -21,6 +21,7 @@ class GameObject
 	struct WorldMatrix
 	{
 		XMMATRIX g_world;
+		XMMATRIX g_worldInvTranspose;
 	};
 
 public:
