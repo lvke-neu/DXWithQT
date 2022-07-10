@@ -20,9 +20,11 @@ public slots:
 	void chapter1_setColor();
 	void chapter1_confirmColor(const QColor& color);
 
-	void chapter2_changeTexture();
-
-
+	void chapter2_change();
+	void chapter2_change_ambient(const QColor& color);
+	void chapter2_change_diffuse(const QColor& color);
+	void chapter2_change_specular(const QColor& color);
+	
 public:
 	void callbackFromGameApp(float test);
 

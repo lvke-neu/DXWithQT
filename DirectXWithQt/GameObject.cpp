@@ -113,8 +113,6 @@ XMMATRIX XM_CALLCONV InverseTranspose(DirectX::FXMMATRIX M)
 {
 	using namespace DirectX;
 
-	// 世界矩阵的逆的转置仅针对法向量，我们也不需要世界矩阵的平移分量
-	// 而且不去掉的话，后续再乘上观察矩阵之类的就会产生错误的变换结果
 	XMMATRIX A = M;
 	A.r[3] = g_XMIdentityR3;
 
@@ -153,7 +151,7 @@ void GameObject::draw()
 	m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
 	m_pd3dImmediateContext->VSSetConstantBuffers(0, 1, m_pWorldMatrixCB.GetAddressOf());
-	m_pd3dImmediateContext->PSSetConstantBuffers(0, 1, m_pWorldMatrixCB.GetAddressOf());
+	//m_pd3dImmediateContext->PSSetConstantBuffers(0, 1, m_pWorldMatrixCB.GetAddressOf());
 
 	m_pd3dImmediateContext->DrawIndexed(m_mesh.indexBuffer.size(), 0, 0);
 }
