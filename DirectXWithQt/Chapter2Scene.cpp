@@ -110,7 +110,7 @@ void Chapter2Scene::set_light_material()
 	lightAndMaterial.directionLight.ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
 	lightAndMaterial.directionLight.diffuse = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
 	lightAndMaterial.directionLight.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
-	lightAndMaterial.directionLight.direction = XMFLOAT3(0.0f, -0.5f, 0.5f);
+	lightAndMaterial.directionLight.direction = XMFLOAT3(0.0f, m_lightDir_y, 0.5f);
 
 	lightAndMaterial.material.ambient  = m_ambient;
 	lightAndMaterial.material.diffuse  = m_diffuse;

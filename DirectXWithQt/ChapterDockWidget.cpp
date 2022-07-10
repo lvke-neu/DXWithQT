@@ -67,8 +67,23 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 
 
 
-
-
+	QSlider* qSlider = new QSlider(Qt::Horizontal, dockWidget2);
+	qSlider->move(0, 210);
+	qSlider->setMinimum(0);
+	qSlider->setMaximum(1000);
+	qSlider->setSingleStep(1);
+	qSlider->setValue(0);
+	
+	QWidget::connect(qSlider, &QSlider::valueChanged, this, 
+		[=] 
+		{
+			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter2Scene)
+			{
+				float y = qSlider->value() / 1000.0f - 0.5f;
+				chapter2Scene->setLightY(y);
+			}
+		});
 
 
 
