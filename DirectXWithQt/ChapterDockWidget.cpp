@@ -3,6 +3,7 @@
 #include <QLabel>
 #include <QPushButton>
 #include <QColorDialog>
+#include <qslider.h>
 
 ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* widget): m_parent(parent), m_RenderWidget(widget)
 {
@@ -63,7 +64,6 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	QPushButton* MatSpecular = new QPushButton("MatSpecular", dockWidget2);
 	MatSpecular->move(0, 180);
 	QWidget::connect(MatSpecular, &QPushButton::clicked, this, &ChapterDockWidget::chapter2_change);
-
 
 
 
@@ -170,7 +170,16 @@ void ChapterDockWidget::chapter2_change()
 		dlg.setWindowTitle("MatAmbient");
 		dlg.setCurrentColor(QColor(100, 111, 222));
 
-		QWidget::connect(&dlg, &QColorDialog::currentColorChanged, this, &ChapterDockWidget::chapter2_change_ambient);
+		QWidget::connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& color)
+			{
+				if (chapter2Scene)
+				{
+					chapter2Scene->setAmbient(XMFLOAT4(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 1.0f));
+				}
+			});
+
+
+
 
 		dlg.exec();
 	}
@@ -182,7 +191,13 @@ void ChapterDockWidget::chapter2_change()
 		dlg.setWindowTitle("MatDiffuse");
 		dlg.setCurrentColor(QColor(100, 111, 222));
 
-		QWidget::connect(&dlg, &QColorDialog::currentColorChanged, this, &ChapterDockWidget::chapter2_change_diffuse);
+		QWidget::connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& color)
+			{
+				if (chapter2Scene)
+				{
+					chapter2Scene->setDiffuse(XMFLOAT4(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 1.0f));
+				}
+			});
 
 		dlg.exec();
 	}
@@ -194,37 +209,19 @@ void ChapterDockWidget::chapter2_change()
 		dlg.setWindowTitle("MatSpecular");
 		dlg.setCurrentColor(QColor(100, 111, 222));
 
-		QWidget::connect(&dlg, &QColorDialog::currentColorChanged, this, &ChapterDockWidget::chapter2_change_specular);
+		QWidget::connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& color)
+			{
+				if (chapter2Scene)
+				{
+					chapter2Scene->setSpecula(XMFLOAT4(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 1.0f));
+				}
+			});
 
 		dlg.exec();
 	}
 
 }
 
-void ChapterDockWidget::chapter2_change_ambient(const QColor& color)
-{
-	Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
-	if (chapter2Scene)
-	{
-		chapter2Scene->setAmbient(XMFLOAT4(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 1.0f));
-	}
-}
-void ChapterDockWidget::chapter2_change_diffuse(const QColor& color)
-{
-	Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
-	if (chapter2Scene)
-	{
-		chapter2Scene->setDiffuse(XMFLOAT4(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 1.0f));
-	}
-}
-void ChapterDockWidget::chapter2_change_specular(const QColor& color)
-{
-	Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
-	if (chapter2Scene)
-	{
-		chapter2Scene->setSpecula(XMFLOAT4(color.red() / 255.0f, color.green() / 255.0f, color.blue() / 255.0f, 5.0f));
-	}
-}
 
 void ChapterDockWidget::callbackFromGameApp(float test)
 {
