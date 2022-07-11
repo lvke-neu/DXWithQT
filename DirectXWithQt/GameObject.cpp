@@ -93,6 +93,11 @@ Material& GameObject::getMaterial()
 void GameObject::setMaterial(Material material) 
 { 
 	m_material = material; 
+
+	D3D11_MAPPED_SUBRESOURCE mappedData;
+	m_pd3dImmediateContext->Map(m_pMaterialCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(Material), &m_material, sizeof(Material));
+	m_pd3dImmediateContext->Unmap(m_pMaterialCB.Get(), 0);
 }
 
 Transform& GameObject::getTransform() 
@@ -151,7 +156,7 @@ void GameObject::draw()
 	m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
 	m_pd3dImmediateContext->VSSetConstantBuffers(0, 1, m_pWorldMatrixCB.GetAddressOf());
-	//m_pd3dImmediateContext->PSSetConstantBuffers(0, 1, m_pWorldMatrixCB.GetAddressOf());
+	m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
 
 	m_pd3dImmediateContext->DrawIndexed(m_mesh.indexBuffer.size(), 0, 0);
 }

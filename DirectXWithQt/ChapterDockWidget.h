@@ -20,9 +20,7 @@ public slots:
 	void chapter1_setColor();
 	void chapter1_confirmColor(const QColor& color);
 
-	void chapter2_change();
 
-	
 public:
 	void callbackFromGameApp(float test);
 

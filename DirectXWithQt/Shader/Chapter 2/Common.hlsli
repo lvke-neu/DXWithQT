@@ -35,8 +35,12 @@ cbuffer ProjMatrix : register(b2)
 	matrix g_proj;
 }
 
-cbuffer LightAndMaterial : register(b3)
+cbuffer  MaterialCB : register(b3)
+{
+	Material g_material;
+}
+
+cbuffer LightCB : register(b4)
 {
 	DirectionLight g_directionLight;
-	Material g_material;
 }

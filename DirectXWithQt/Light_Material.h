@@ -40,8 +40,3 @@ struct DirectionLight
 	float pad;
 };
 
-struct LightAndMaterial 
-{
-	DirectionLight directionLight;
-	Material material;
-};

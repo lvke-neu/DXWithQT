@@ -36,6 +36,10 @@ public:
 		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		cbd.ByteWidth = sizeof(WorldMatrix);
 		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pWorldMatrixCB.GetAddressOf());
+
+
+		cbd.ByteWidth = sizeof(Material);
+		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pMaterialCB.GetAddressOf());
 	}
 	virtual ~GameObject() = default;
 
@@ -96,6 +100,8 @@ private:
 	ComPtr<ID3D11InputLayout> m_pVertexLayout{ nullptr };
 
 	ComPtr<ID3D11ShaderResourceView> m_pTexture{ nullptr };
+
+	ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };
 private:
 	Mesh m_mesh;
 	uint32_t m_shader = -1;
