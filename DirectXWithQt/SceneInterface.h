@@ -4,9 +4,12 @@ Date:2022/7/2 9:41
 Description:
 场景接口类，每个章节的场景均继承自该类
 ************************************************************************/
+#pragma once 
+
+
 #include "Camera.h"
 
-#pragma once 
+
 class IScene
 {
 public:
