@@ -93,7 +93,9 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 			if (chapter2Scene)
 			{
 				float y = qSlider->value() / 1000.0f - 0.5f;
-				chapter2Scene->setLightY(y);
+				XMFLOAT3 dirLight_dir = chapter2Scene->get_dirLight_dir();
+				dirLight_dir.y = y;
+				chapter2Scene->setDirLight(dirLight_dir);
 			}
 		});
 

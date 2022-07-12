@@ -10,7 +10,7 @@ GameObject类，设置/获取GO的属性
 #include <wrl/client.h>
 #include "Transform.h"
 #include "Geometry.h"
-#include "Light_Material.h"
+#include "Material.h"
 
 
 template <class T>
@@ -26,25 +26,10 @@ class GameObject
 
 public:
 	GameObject() = default;
-	GameObject(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext):
-		m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
-	{
-		D3D11_BUFFER_DESC cbd;
-		ZeroMemory(&cbd, sizeof(cbd));
-		cbd.Usage = D3D11_USAGE_DYNAMIC;
-		cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-		cbd.ByteWidth = sizeof(WorldMatrix);
-		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pWorldMatrixCB.GetAddressOf());
-
-
-		cbd.ByteWidth = sizeof(Material);
-		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pMaterialCB.GetAddressOf());
-	}
+	GameObject(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 	virtual ~GameObject() = default;
 
 public:
-
 	XMFLOAT3& getScale() { return m_transform.getScale(); }
 	void setScale(float x, float y, float z)
 	{

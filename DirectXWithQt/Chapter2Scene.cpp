@@ -5,25 +5,10 @@
 
 
 Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
-	:m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
 {
-	//light
-	D3D11_BUFFER_DESC cbd;
-	ZeroMemory(&cbd, sizeof(cbd));
-	cbd.Usage = D3D11_USAGE_DYNAMIC;
-	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
-	cbd.ByteWidth = sizeof(DirectionLight);
-	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pLightCB.GetAddressOf());
-	setLight();
+	
+	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 
-	//camera
-	m_perspectiveCamera.init(m_pd3dDevice, m_pd3dImmediateContext);
-	m_perspectiveCamera.setTransform(Transform(
-		XMFLOAT3(1.0f, 1.0f, 1.0f),
-		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(0.0f, 0.0f, -20.0f)
-	));
 }
 
 void Chapter2Scene::initScene()
@@ -128,19 +113,17 @@ void Chapter2Scene::drawScene()
 	m_plane.draw();
 }
 
-void Chapter2Scene::setLight()
-{
 
+
+
+void Chapter2Scene::setDirLight(XMFLOAT3 dir)
+{
 	DirectionLight directionLight;
 
-	//directionLight.ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
-	//directionLight.diffuse = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
-	//directionLight.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
 	directionLight.ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
 	directionLight.diffuse = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
 	directionLight.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	directionLight.direction = XMFLOAT3(0.0f, m_lightDir_y, 0.5f);
-
+	directionLight.direction = dir;
 
 	D3D11_MAPPED_SUBRESOURCE mappedData;
 	m_pd3dImmediateContext->Map(m_pLightCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
@@ -149,8 +132,6 @@ void Chapter2Scene::setLight()
 
 	m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pLightCB.GetAddressOf());
 }
-
-
 
 void Chapter2Scene::changeBox1Texture()
 {
@@ -280,3 +261,4 @@ void Chapter2Scene::changeFloorTexture()
 	}
 
 }
+

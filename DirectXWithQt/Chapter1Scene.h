@@ -13,17 +13,15 @@ public:
 	virtual void initScene() override;
 	virtual void updateScene(float deltaTime) override;
 	virtual void drawScene() override;
+	void setDirLight(XMFLOAT3 dir) {};
 
-	//override PipeLine
 	void bindCB2PipeLine();
 	void onReize() {}
 
 public:
 	void setColor(float r, float g, float b, float a);
 
-private:
-	ComPtr<ID3D11Device> m_pd3dDevice{ nullptr };
-	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext{ nullptr };
+
 
 	XMFLOAT4 m_color{ 0.0f, 1.0f, 0.0f, 1.0f };
 	

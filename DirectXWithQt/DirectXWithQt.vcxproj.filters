@@ -73,9 +73,6 @@
     <ClCompile Include="Geometry.cpp">
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Light_Material.h">
-      <Filter>D3D\Game\GameObject\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Chapter1Scene.cpp">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClCompile>
@@ -105,6 +102,12 @@
     </ClCompile>
     <ClCompile Include="Connector.cpp">
       <Filter>ConnectD3dAndQt</Filter>
+    </ClCompile>
+    <ClCompile Include="Material.h">
+      <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneInterface.cpp">
+      <Filter>D3D\Game\SceneManager\Interface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -177,6 +180,9 @@
     </ClInclude>
     <ClInclude Include="Connector.h">
       <Filter>ConnectD3dAndQt</Filter>
+    </ClInclude>
+    <ClInclude Include="Light.h">
+      <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

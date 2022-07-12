@@ -122,11 +122,12 @@
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
-    <ClCompile Include="Light_Material.h" />
+    <ClCompile Include="Material.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
     <ClCompile Include="Mouse.cpp" />
     <ClCompile Include="RenderStates.cpp" />
+    <ClCompile Include="SceneInterface.cpp" />
     <ClCompile Include="Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -148,6 +149,7 @@
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="KeyBoard.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="RenderStates.h" />
     <ClInclude Include="SceneFactory.h" />

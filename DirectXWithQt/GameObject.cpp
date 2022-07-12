@@ -19,6 +19,22 @@ std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
 	}
 };
 
+GameObject::GameObject(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) :
+	m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
+{
+	D3D11_BUFFER_DESC cbd;
+	ZeroMemory(&cbd, sizeof(cbd));
+	cbd.Usage = D3D11_USAGE_DYNAMIC;
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbd.ByteWidth = sizeof(WorldMatrix);
+	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pWorldMatrixCB.GetAddressOf());
+
+
+	cbd.ByteWidth = sizeof(Material);
+	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pMaterialCB.GetAddressOf());
+}
+
 
 Mesh& GameObject::getMesh() 
 {
