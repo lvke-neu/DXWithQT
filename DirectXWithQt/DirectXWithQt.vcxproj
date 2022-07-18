@@ -112,7 +112,6 @@
     <ClCompile Include="Chapter1Scene.cpp" />
     <ClCompile Include="Chapter2Scene.cpp" />
     <ClCompile Include="ChapterDockWidget.cpp" />
-    <ClCompile Include="Connector.cpp" />
     <ClCompile Include="d3d11renderwidget.cpp" />
     <ClCompile Include="d3dApp.cpp" />
     <ClCompile Include="DDSTextureLoader.cpp" />
@@ -122,6 +121,7 @@
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
+    <ClCompile Include="ListeningEvent.cpp" />
     <ClCompile Include="Material.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
@@ -143,13 +143,13 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Chapter1Scene.h" />
     <ClInclude Include="Chapter2Scene.h" />
-    <ClInclude Include="Connector.h" />
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="DXTrace.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="Light.h" />
+    <ClInclude Include="ListeningEvent.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="RenderStates.h" />
     <ClInclude Include="SceneFactory.h" />

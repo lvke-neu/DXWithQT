@@ -43,8 +43,8 @@
     <Filter Include="D3D\Game\InputEvent">
       <UniqueIdentifier>{4d0acfae-1f4f-4eea-b89e-3f489c13f333}</UniqueIdentifier>
     </Filter>
-    <Filter Include="ConnectD3dAndQt">
-      <UniqueIdentifier>{9756e715-de98-4a79-9ef8-dab673c1c8a4}</UniqueIdentifier>
+    <Filter Include="D3D\Game\ListeningEvent">
+      <UniqueIdentifier>{7b4c31ac-8d41-4f79-918b-d0bea7c8e1ac}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -100,14 +100,14 @@
     <ClCompile Include="RenderStates.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="Connector.cpp">
-      <Filter>ConnectD3dAndQt</Filter>
-    </ClCompile>
     <ClCompile Include="Material.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClCompile>
     <ClCompile Include="SceneInterface.cpp">
       <Filter>D3D\Game\SceneManager\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="ListeningEvent.cpp">
+      <Filter>D3D\Game\ListeningEvent</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -178,11 +178,11 @@
     <ClInclude Include="RenderStates.h">
       <Filter>D3D\Framework</Filter>
     </ClInclude>
-    <ClInclude Include="Connector.h">
-      <Filter>ConnectD3dAndQt</Filter>
-    </ClInclude>
     <ClInclude Include="Light.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ListeningEvent.h">
+      <Filter>D3D\Game\ListeningEvent</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

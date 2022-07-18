@@ -99,8 +99,12 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 			}
 		});
 
+	QLabel* labelCamProperty = new QLabel(dockWidget2);
+	labelCamProperty->setObjectName("CameraProperty");
+	labelCamProperty->move(0, 250);
+	labelCamProperty->setFixedHeight(200);
 
-
+	dockWidget2->setObjectName("dockWidget2");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget2);
 
 	dockWidget2->hide();
@@ -135,6 +139,12 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 	{
 		m_cptDockWidget[0]->hide();
 		m_cptDockWidget[1]->show();
+
+		Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+
+		if(chapter2Scene)
+			chapter2Scene->registerListeningEvent(this);
+
 	}
 }
 
@@ -172,10 +182,15 @@ void ChapterDockWidget::chapter1_confirmColor(const QColor& color)
 }
 
 
-void ChapterDockWidget::callbackFromGameApp(float test)
+void ChapterDockWidget::callback(const std::string& msg)
 {
 	QDockWidget* dockWidget2 = m_parent->findChild<QDockWidget*>("dockWidget2");
-
-	QLabel* label2 = dockWidget2->findChild<QLabel*>("CameraProperty");
-	label2->setText(QString(std::to_string(test).c_str()));
+	if (dockWidget2)
+	{
+		QLabel* labelCamProperty = dockWidget2->findChild<QLabel*>("CameraProperty");
+		if(labelCamProperty)
+			labelCamProperty->setText(QString(msg.c_str()));
+	}
+		
+	
 }

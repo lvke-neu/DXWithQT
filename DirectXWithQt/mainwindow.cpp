@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "Connector.h"
+
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,7 +19,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	m_ChapterDockWidget = new ChapterDockWidget(this, m_RenderWidget);
 
-	Connector::reg(m_ChapterDockWidget);
 }
 
 MainWindow::~MainWindow()
@@ -46,7 +45,7 @@ MainWindow::~MainWindow()
 
 void MainWindow::changeChapter(QListWidgetItem* item)
 {
-	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
 	m_RenderWidget->m_gameApp->setScene(item->text().toStdString());
+	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
 }
 

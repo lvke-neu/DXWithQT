@@ -1,7 +1,6 @@
 #include "gameApp.h"
 #include "RenderStates.h"
 
-#include "Connector.h"
 
 
 GameApp::GameApp(HWND hInstance, UINT windowWidth, UINT windowHeight)

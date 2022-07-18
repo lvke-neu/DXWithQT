@@ -2,9 +2,9 @@
 
 #include "SceneInterface.h"
 #include "GameObject.h"
+#include "ListeningEvent.h"
 
-
-class Chapter2Scene:public IScene
+class Chapter2Scene : public IScene, public ListeningEvent
 {
 public:
 	Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
@@ -18,6 +18,8 @@ public:
 	void changeBox1Texture();
 	void changeBox2Texture();
 	void changeFloorTexture();
+
+	void notifyAll();
 
 private:
 	GameObject m_box1;

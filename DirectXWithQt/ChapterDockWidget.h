@@ -22,7 +22,7 @@ public slots:
 
 
 public:
-	void callbackFromGameApp(float test);
+	void callback(const std::string& msg);
 
 private:
 	QMainWindow* m_parent{ nullptr };
