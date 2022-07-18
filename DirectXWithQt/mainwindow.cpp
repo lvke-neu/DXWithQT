@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+	
+
 
 	m_RenderWidget = new D3d11RenderWidget(this);
 	setCentralWidget(m_RenderWidget);

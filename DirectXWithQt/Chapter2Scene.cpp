@@ -2,7 +2,7 @@
 #include "KeyBoard.h"
 #include "Mouse.h"
 #include <string>
-
+#include "RenderStates.h"
 
 Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
@@ -282,4 +282,20 @@ void Chapter2Scene::notifyAll()
 		std::to_string(pos.z);
 	ListeningEvent::notifyAll(msg);
 
+}
+
+void Chapter2Scene::setWireframe(bool b)
+{
+	if(b)
+		m_pd3dImmediateContext->RSSetState(RenderStates::RSWireframe.Get());
+	else
+		m_pd3dImmediateContext->RSSetState(nullptr);
+}
+
+void Chapter2Scene::setNoCull(bool b)
+{
+	if (b)
+		m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
+	else
+		m_pd3dImmediateContext->RSSetState(nullptr);
 }

@@ -18,6 +18,9 @@ public:
 	void changeBox1Texture();
 	void changeBox2Texture();
 	void changeFloorTexture();
+	void setWireframe(bool b);
+	void setNoCull(bool b);
+
 
 	void notifyAll();
 

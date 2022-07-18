@@ -99,10 +99,62 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 			}
 		});
 
+
 	QLabel* labelCamProperty = new QLabel(dockWidget2);
 	labelCamProperty->setObjectName("CameraProperty");
 	labelCamProperty->move(0, 250);
 	labelCamProperty->setFixedHeight(200);
+
+	QPushButton* button_wireframe = new QPushButton("开启线框模式", dockWidget2);
+	button_wireframe->move(0, 460);
+	QWidget::connect(button_wireframe, &QPushButton::clicked, this,
+		[=]
+		{
+			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter2Scene)
+			{
+				chapter2Scene->setWireframe(true);
+			}
+		});
+
+	QPushButton* button_wireframe_cancel = new QPushButton("关闭线框模式", dockWidget2);
+	button_wireframe_cancel->move(0, 490);
+	QWidget::connect(button_wireframe_cancel, &QPushButton::clicked, this,
+		[=]
+		{
+			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter2Scene)
+			{
+				chapter2Scene->setWireframe(false);
+			}
+		});
+
+
+	QPushButton* button_nocull = new QPushButton("无背面裁剪", dockWidget2);
+	button_nocull->move(0, 520);
+	QWidget::connect(button_nocull, &QPushButton::clicked, this,
+		[=]
+		{
+			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter2Scene)
+			{
+				chapter2Scene->setNoCull(true);
+			}
+		});
+
+	QPushButton* button_nocull_cancel = new QPushButton("背面裁剪", dockWidget2);
+	button_nocull_cancel->move(0, 550);
+	QWidget::connect(button_nocull_cancel, &QPushButton::clicked, this,
+		[=]
+		{
+			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter2Scene)
+			{
+				chapter2Scene->setNoCull(false);
+			}
+		});
+
+
 
 	dockWidget2->setObjectName("dockWidget2");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget2);
