@@ -46,6 +46,9 @@
     <Filter Include="D3D\Game\ListeningEvent">
       <UniqueIdentifier>{7b4c31ac-8d41-4f79-918b-d0bea7c8e1ac}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Shader\Chapter 3">
+      <UniqueIdentifier>{0daf7245-690c-4a61-b7c0-deac630d66bd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -108,6 +111,9 @@
     </ClCompile>
     <ClCompile Include="ListeningEvent.cpp">
       <Filter>D3D\Game\ListeningEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter3Scene.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -184,6 +190,9 @@
     <ClInclude Include="ListeningEvent.h">
       <Filter>D3D\Game\ListeningEvent</Filter>
     </ClInclude>
+    <ClInclude Include="Chapter3Scene.h">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\Chapter 1\VS.hlsl">
@@ -198,6 +207,12 @@
     <FxCompile Include="Shader\Chapter 2\VS.hlsl">
       <Filter>D3D\Shader\Chapter 2</Filter>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 3\PS.hlsl">
+      <Filter>D3D\Shader\Chapter 3</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 3\VS.hlsl">
+      <Filter>D3D\Shader\Chapter 3</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Chapter 1\Common.hlsli">
@@ -208,6 +223,12 @@
     </None>
     <None Include="LightHelper.hlsli">
       <Filter>D3D\Shader\Chapter 2</Filter>
+    </None>
+    <None Include="Shader\Chapter 3\Common.hlsli">
+      <Filter>D3D\Shader\Chapter 3</Filter>
+    </None>
+    <None Include="Shader\Chapter 3\LightHelper.hlsli">
+      <Filter>D3D\Shader\Chapter 3</Filter>
     </None>
   </ItemGroup>
 </Project>

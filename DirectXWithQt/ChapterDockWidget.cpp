@@ -7,7 +7,55 @@
 
 ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* widget): m_parent(parent), m_RenderWidget(widget)
 {
-	
+	initChpa1DockWidget();
+	initChpa2DockWidget();
+	initChpa3DockWidget();
+}
+
+ChapterDockWidget::~ChapterDockWidget()
+{
+	for (auto x : m_cptDockWidget)
+	{
+		if (x)
+		{
+			delete x;
+			x = nullptr;
+		}
+	}
+}
+
+
+void ChapterDockWidget::generateDockWidget(std::string chapterType)
+{
+	if (chapterType == "Chapter 1")
+	{
+		m_cptDockWidget[0]->show();
+		m_cptDockWidget[1]->hide();
+		m_cptDockWidget[2]->hide();
+	}
+	else if (chapterType == "Chapter 2")
+	{
+		m_cptDockWidget[0]->hide();
+		m_cptDockWidget[1]->show();
+		m_cptDockWidget[2]->hide();
+
+		Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+
+		if(chapter2Scene)
+			chapter2Scene->registerListeningEvent(this);
+	}
+	else if (chapterType == "Chapter 3")
+	{
+		m_cptDockWidget[0]->hide();
+		m_cptDockWidget[1]->hide();
+		m_cptDockWidget[2]->show();
+	}
+}
+
+
+
+void ChapterDockWidget::initChpa1DockWidget()
+{
 	//************************************ Chapter 1 *****************************************
 	QDockWidget* dockWidget = new QDockWidget(m_parent);
 	dockWidget->setFixedWidth(115);
@@ -19,30 +67,30 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 
 	QPushButton* button = new QPushButton("Color", dockWidget);
 	button->move(0, 50);
-
-	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget);
-
 	QWidget::connect(button, &QPushButton::clicked, this, &ChapterDockWidget::chapter1_setColor);
 
+
+	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget);
 	dockWidget->hide();
-
 	m_cptDockWidget.push_back(dockWidget);
+}
 
-
+void ChapterDockWidget::initChpa2DockWidget()
+{
 	//************************************ Chapter 2 *****************************************
 
 	QDockWidget* dockWidget2 = new QDockWidget(m_parent);
 	dockWidget2->setFixedWidth(115);
 	dockWidget2->setTitleBarWidget(new QWidget);
 
-	
+
 
 	//change texture
 	QLabel* labelTexture = new QLabel("Change Texture", dockWidget2);
 
 	QPushButton* texture_button1 = new QPushButton("Box1", dockWidget2);
 	texture_button1->move(0, 30);
-	QWidget::connect(texture_button1, &QPushButton::clicked, this, 
+	QWidget::connect(texture_button1, &QPushButton::clicked, this,
 		[=]()
 		{
 			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
@@ -51,7 +99,7 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 				chapter2Scene->changeBox1Texture();
 			}
 		});
-	
+
 	QPushButton* texture_button2 = new QPushButton("Box2", dockWidget2);
 	texture_button2->move(0, 60);
 	QWidget::connect(texture_button2, &QPushButton::clicked, this,
@@ -85,9 +133,9 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	qSlider->setMaximum(1000);
 	qSlider->setSingleStep(1);
 	qSlider->setValue(0);
-	
-	QWidget::connect(qSlider, &QSlider::valueChanged, this, 
-		[=] 
+
+	QWidget::connect(qSlider, &QSlider::valueChanged, this,
+		[=]
 		{
 			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
 			if (chapter2Scene)
@@ -162,43 +210,24 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	dockWidget2->hide();
 	m_cptDockWidget.push_back(dockWidget2);
 
-
-
-
 }
 
-ChapterDockWidget::~ChapterDockWidget()
+void ChapterDockWidget::initChpa3DockWidget()
 {
-	for (auto x : m_cptDockWidget)
-	{
-		if (x)
-		{
-			delete x;
-			x = nullptr;
-		}
-	}
+	//************************************ Chapter 3 *****************************************
+	QDockWidget* dockWidget3 = new QDockWidget(m_parent);
+	dockWidget3->setFixedWidth(115);
+	dockWidget3->setTitleBarWidget(new QWidget);
+
+
+	QLabel* label = new QLabel(u8" hhhhhhhhh", dockWidget3);
+	label->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
+
+	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget3);
+	dockWidget3->hide();
+	m_cptDockWidget.push_back(dockWidget3);
 }
 
-
-void ChapterDockWidget::generateDockWidget(std::string chapterType)
-{
-	if (chapterType == "Chapter 1")
-	{
-		m_cptDockWidget[0]->show();
-		m_cptDockWidget[1]->hide();
-	}
-	else if (chapterType == "Chapter 2")
-	{
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->show();
-
-		Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
-
-		if(chapter2Scene)
-			chapter2Scene->registerListeningEvent(this);
-
-	}
-}
 
 
 void ChapterDockWidget::chapter1_setColor()

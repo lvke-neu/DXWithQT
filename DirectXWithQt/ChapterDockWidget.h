@@ -13,8 +13,6 @@ class ChapterDockWidget : public QObject
 public:
 	ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* widget);
 	virtual ~ChapterDockWidget();
-public:
-	void generateDockWidget(std::string chapterType);
 
 public slots:
 	void chapter1_setColor();
@@ -22,6 +20,12 @@ public slots:
 
 
 public:
+	void generateDockWidget(std::string chapterType);
+
+	void initChpa1DockWidget();
+	void initChpa2DockWidget();
+	void initChpa3DockWidget();
+
 	void callback(const std::string& msg);
 
 private:
