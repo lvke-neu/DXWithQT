@@ -40,7 +40,6 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 		m_cptDockWidget[2]->hide();
 
 		Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
-
 		if(chapter2Scene)
 			chapter2Scene->registerListeningEvent(this);
 	}
@@ -49,6 +48,11 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 		m_cptDockWidget[0]->hide();
 		m_cptDockWidget[1]->hide();
 		m_cptDockWidget[2]->show();
+
+		Chapter3Scene* chapter3Scene = (Chapter3Scene*)m_RenderWidget->m_gameApp->getScene();
+		if (chapter3Scene)
+			chapter3Scene->registerListeningEvent(this);
+
 	}
 }
 
@@ -220,9 +224,11 @@ void ChapterDockWidget::initChpa3DockWidget()
 	dockWidget3->setTitleBarWidget(new QWidget);
 
 
-	QLabel* label = new QLabel(u8" hhhhhhhhh", dockWidget3);
-	label->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
+	QLabel* labelCamProperty = new QLabel(dockWidget3);
+	labelCamProperty->setObjectName("CameraProperty");
+	labelCamProperty->setFixedHeight(200);
 
+	dockWidget3->setObjectName("dockWidget3");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget3);
 	dockWidget3->hide();
 	m_cptDockWidget.push_back(dockWidget3);
@@ -273,5 +279,11 @@ void ChapterDockWidget::callback(const std::string& msg)
 			labelCamProperty->setText(QString(msg.c_str()));
 	}
 		
-	
+	QDockWidget* dockWidget3 = m_parent->findChild<QDockWidget*>("dockWidget3");
+	if (dockWidget3)
+	{
+		QLabel* labelCamProperty = dockWidget3->findChild<QLabel*>("CameraProperty");
+		if (labelCamProperty)
+			labelCamProperty->setText(QString(msg.c_str()));
+	}
 }

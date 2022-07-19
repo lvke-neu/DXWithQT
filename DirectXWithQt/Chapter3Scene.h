@@ -15,10 +15,14 @@ public:
 	void drawScene() override;
 	void setDirLight(XMFLOAT3 dir) override;
 
-
+	void notifyAll();
 private:
-	GameObject m_box1;
-
+	//四面墙
+	GameObject m_wall;
+	//底
+	GameObject m_floor;
+	//水面
+	GameObject m_water;
 
 };
 

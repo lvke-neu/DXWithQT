@@ -21,8 +21,8 @@ float4 PS(VertexOut pIn) : SV_Target
 
 	float4 color = g_Tex.Sample(g_SamplerState, pIn.texcoord);
 
-	color = color * (ambient + diffuse)+ specular;
-	color.a = 1.0f;
+	//color = color * (ambient + diffuse)+ specular;
+	//color.a = 1.0f;
 
 	return color;
 

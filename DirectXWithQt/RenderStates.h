@@ -23,6 +23,8 @@ public:
 	static ComPtr<ID3D11RasterizerState> RSWireframe;	
 	static ComPtr<ID3D11RasterizerState> RSNoCull;
 
+	static ComPtr<ID3D11BlendState> BSTransparent;
+
 public:
 	static void Init(ComPtr<ID3D11Device> pd3dDevice);
 };

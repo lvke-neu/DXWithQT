@@ -7,6 +7,8 @@ ComPtr<ID3D11SamplerState> RenderStates::SSAnisotropicWrap;
 ComPtr<ID3D11RasterizerState> RenderStates::RSNoCull = nullptr;
 ComPtr<ID3D11RasterizerState> RenderStates::RSWireframe = nullptr;
 
+ComPtr<ID3D11BlendState> RenderStates::BSTransparent = nullptr;
+
 void RenderStates::Init(ComPtr<ID3D11Device> pd3dDevice)
 {
 
@@ -52,4 +54,22 @@ void RenderStates::Init(ComPtr<ID3D11Device> pd3dDevice)
 	rasterizerDesc.DepthClipEnable = true;
 	pd3dDevice->CreateRasterizerState(&rasterizerDesc, RSNoCull.GetAddressOf());
 
+
+
+	/*******************************ID3D11BlendState***********************************/
+	D3D11_BLEND_DESC blendDesc;
+	ZeroMemory(&blendDesc, sizeof(blendDesc));
+	auto& rtDesc = blendDesc.RenderTarget[0];
+
+	blendDesc.AlphaToCoverageEnable = false;
+	blendDesc.IndependentBlendEnable = false;
+	rtDesc.BlendEnable = true;
+	rtDesc.SrcBlend = D3D11_BLEND_SRC_ALPHA;
+	rtDesc.DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+	rtDesc.BlendOp = D3D11_BLEND_OP_ADD;
+	rtDesc.SrcBlendAlpha = D3D11_BLEND_ONE;
+	rtDesc.DestBlendAlpha = D3D11_BLEND_ZERO;
+	rtDesc.BlendOpAlpha = D3D11_BLEND_OP_ADD;
+
+	pd3dDevice->CreateBlendState(&blendDesc, BSTransparent.GetAddressOf());
 }
