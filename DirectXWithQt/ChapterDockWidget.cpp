@@ -90,7 +90,7 @@ void ChapterDockWidget::initChpa2DockWidget()
 
 
 	//change texture
-	QLabel* labelTexture = new QLabel("Change Texture", dockWidget2);
+	QLabel* labelTexture = new QLabel("换贴图", dockWidget2);
 
 	QPushButton* texture_button1 = new QPushButton("Box1", dockWidget2);
 	texture_button1->move(0, 30);
@@ -130,7 +130,7 @@ void ChapterDockWidget::initChpa2DockWidget()
 
 
 
-	QLabel* labelLight = new QLabel("Change Light Dir", dockWidget2);
+	QLabel* labelLight = new QLabel("改光的方向", dockWidget2);
 	labelLight->move(0, 180);
 	QSlider* qSlider = new QSlider(Qt::Horizontal, dockWidget2);
 	qSlider->move(0, 210);
@@ -230,7 +230,7 @@ void ChapterDockWidget::initChpa3DockWidget()
 	labelCamProperty->setFixedHeight(200);
 
 
-	QLabel* labelTransparency = new QLabel("Transparency", dockWidget3);
+	QLabel* labelTransparency = new QLabel(u8"改水的透明度", dockWidget3);
 	labelTransparency->move(0, 220);
 	QSlider* qSlider = new QSlider(Qt::Horizontal, dockWidget3);
 	qSlider->move(0, 250);
