@@ -64,6 +64,7 @@ void RenderStates::Init(ComPtr<ID3D11Device> pd3dDevice)
 	blendDesc.AlphaToCoverageEnable = false;
 	blendDesc.IndependentBlendEnable = false;
 	rtDesc.BlendEnable = true;
+	rtDesc.RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
 	rtDesc.SrcBlend = D3D11_BLEND_SRC_ALPHA;
 	rtDesc.DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
 	rtDesc.BlendOp = D3D11_BLEND_OP_ADD;

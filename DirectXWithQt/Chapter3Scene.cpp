@@ -7,9 +7,8 @@
 Chapter3Scene::Chapter3Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
-	m_perspectiveCamera.setPosition(0.0f, 0.0f, 5.0f);
-
-	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
+	m_perspectiveCamera.setPosition(-9.75f, 2.03f, 1.69f);
+	m_perspectiveCamera.setRotation(0.2f, 0.98f, 0.0f);
 }
 
 void Chapter3Scene::initScene()
@@ -36,6 +35,8 @@ void Chapter3Scene::initScene()
 		XMFLOAT3(0.0f, -5.0f, 10.0f)
 	));
 
+
+	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 0.5f);
 	m_water = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_water.setMesh(Geometry::buildPlaneMesh(5.0f, 5.0f));
 	m_water.setShader(3);
@@ -44,8 +45,33 @@ void Chapter3Scene::initScene()
 	m_water.setTransform(Transform(
 		XMFLOAT3(10.0f, 10.0f, 1.0f),
 		XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
-		XMFLOAT3(0.0f, -2.0f, 10.0f)
+		XMFLOAT3(0.0f, -3.0f, 10.0f)
 	));
+
+
+	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	m_staticBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_staticBox.setMesh(Geometry::buildBoxMesh());
+	m_staticBox.setShader(3);
+	m_staticBox.setTexturePath(L"Texture\\WireFence.dds");
+	m_staticBox.setMaterial(material);
+	m_staticBox.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(2.0f, -3.0f, 7.0f)
+	));
+	m_dynamicBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_dynamicBox.setMesh(Geometry::buildBoxMesh());
+	m_dynamicBox.setShader(3);
+	m_dynamicBox.setTexturePath(L"Texture\\WireFence.dds");
+	m_dynamicBox.setMaterial(material);
+	m_dynamicBox.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(-2.0f, -3.0f, 7.0f)
+	));
+
+	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
 
 }
 
@@ -89,6 +115,9 @@ void Chapter3Scene::updateScene(float deltaTime)
 		notifyAll();
 	}
 
+	static float rotx = 0.0f;
+	rotx += deltaTime;
+	m_dynamicBox.setRotation(rotx, 0.0f, 0.0f);
 	
 }
 
@@ -131,9 +160,12 @@ void Chapter3Scene::drawScene()
 	m_floor.draw();
 
 
+	m_staticBox.draw();
+	m_dynamicBox.draw();
 
+	m_pd3dImmediateContext->OMSetBlendState(RenderStates::BSTransparent.Get(), nullptr, 0xFFFFFFFF);
 	m_water.draw();
-
+	m_pd3dImmediateContext->OMSetBlendState(nullptr, nullptr, 0xFFFFFFFF);
 
 
 }
@@ -158,6 +190,16 @@ void Chapter3Scene::setDirLight(XMFLOAT3 dir)
 	m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pLightCB.GetAddressOf());
 }
 
+
+void Chapter3Scene::setWaterTransparency(float transparency)
+{
+	Material material;
+	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, transparency);
+	material.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 250.0f);
+
+	m_water.setMaterial(material);
+}
 
 void Chapter3Scene::notifyAll()
 {

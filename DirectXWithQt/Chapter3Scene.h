@@ -14,6 +14,8 @@ public:
 	void updateScene(float deltaTime) override;
 	void drawScene() override;
 	void setDirLight(XMFLOAT3 dir) override;
+public:
+	void setWaterTransparency(float transparency);
 
 	void notifyAll();
 private:
@@ -24,5 +26,7 @@ private:
 	//水面
 	GameObject m_water;
 
+	GameObject m_staticBox;
+	GameObject m_dynamicBox;
 };
 

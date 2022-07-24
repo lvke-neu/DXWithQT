@@ -130,7 +130,8 @@ void ChapterDockWidget::initChpa2DockWidget()
 
 
 
-
+	QLabel* labelLight = new QLabel("Change Light Dir", dockWidget2);
+	labelLight->move(0, 180);
 	QSlider* qSlider = new QSlider(Qt::Horizontal, dockWidget2);
 	qSlider->move(0, 210);
 	qSlider->setMinimum(0);
@@ -227,6 +228,29 @@ void ChapterDockWidget::initChpa3DockWidget()
 	QLabel* labelCamProperty = new QLabel(dockWidget3);
 	labelCamProperty->setObjectName("CameraProperty");
 	labelCamProperty->setFixedHeight(200);
+
+
+	QLabel* labelTransparency = new QLabel("Transparency", dockWidget3);
+	labelTransparency->move(0, 220);
+	QSlider* qSlider = new QSlider(Qt::Horizontal, dockWidget3);
+	qSlider->move(0, 250);
+	qSlider->setMinimum(0);
+	qSlider->setMaximum(1000);
+	qSlider->setSingleStep(1);
+	qSlider->setValue(500);
+
+	QWidget::connect(qSlider, &QSlider::valueChanged, this,
+		[=]
+		{
+			Chapter3Scene* chapter3Scene = (Chapter3Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter3Scene)
+			{
+				float transparency = qSlider->value() / 1000.0f;
+				chapter3Scene->setWaterTransparency(transparency);
+			}
+		});
+
+
 
 	dockWidget3->setObjectName("dockWidget3");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget3);
