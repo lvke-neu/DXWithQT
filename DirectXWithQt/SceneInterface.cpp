@@ -15,7 +15,7 @@ void IScene::initCameraAndLight(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11De
 	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 	cbd.ByteWidth = sizeof(DirectionLight);
 	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pLightCB.GetAddressOf());
-
+	m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pLightCB.GetAddressOf());
 	setDirLight(m_dirLight_dir);
 
 	//camera

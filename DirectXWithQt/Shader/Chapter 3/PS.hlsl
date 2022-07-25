@@ -4,9 +4,21 @@
 Texture2D g_Tex : register(t0);
 SamplerState g_SamplerState : register(s0);
 float4 PS(VertexOut pIn) : SV_Target
-{
+{ 
+	float4 color;
 
-	float4 color = g_Tex.Sample(g_SamplerState, pIn.texcoord);
+	[unroll]
+	if (enableDM)
+	{
+		float2 texcoord = mul(float4(pIn.texcoord, 0, 1.0f), rotMatrix).xy;
+		color = g_Tex.Sample(g_SamplerState, texcoord);
+	}
+	else
+	{
+		color = g_Tex.Sample(g_SamplerState, pIn.texcoord);
+	}
+	
+
 	clip(color.a - 0.1f);
 
 

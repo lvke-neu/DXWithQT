@@ -9,6 +9,16 @@ Chapter3Scene::Chapter3Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	m_perspectiveCamera.setPosition(-9.75f, 2.03f, 1.69f);
 	m_perspectiveCamera.setRotation(0.2f, 0.98f, 0.0f);
+
+	D3D11_BUFFER_DESC cbd;
+	ZeroMemory(&cbd, sizeof(cbd));
+	cbd.Usage = D3D11_USAGE_DYNAMIC;
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbd.ByteWidth = sizeof(DirectionLight);
+	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pDmCB.GetAddressOf());
+
+	m_pd3dImmediateContext->PSSetConstantBuffers(5, 1, m_pDmCB.GetAddressOf());
 }
 
 void Chapter3Scene::initScene()
@@ -53,7 +63,7 @@ void Chapter3Scene::initScene()
 	m_staticBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_staticBox.setMesh(Geometry::buildBoxMesh());
 	m_staticBox.setShader(3);
-	m_staticBox.setTexturePath(L"Texture\\WireFence.dds");
+	m_staticBox.setTexturePath(L"Texture\\flare.dds");
 	m_staticBox.setMaterial(material);
 	m_staticBox.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -123,8 +133,6 @@ void Chapter3Scene::updateScene(float deltaTime)
 
 void Chapter3Scene::drawScene()
 {
-
-
 	//前
 	m_wall.setTransform(Transform(
 		XMFLOAT3(10.0f, 5.0f, 1.0f),
@@ -159,8 +167,27 @@ void Chapter3Scene::drawScene()
 
 	m_floor.draw();
 
+	//开启 让贴图动起来
+	static float rotz = 0.0f;
+	rotz += 0.0001;
+	DynamicMap dm;
+	dm.enableDM = true;
+
+	dm.rotMatrix = XMMatrixTranspose(XMMatrixTranslation(-0.5f, -0.5f, 0.0f) * XMMatrixRotationRollPitchYaw(0, 0, rotz) * XMMatrixTranslation(0.5f, 0.5f, 0.0f));
+
+	D3D11_MAPPED_SUBRESOURCE mappedData;
+	m_pd3dImmediateContext->Map(m_pDmCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(DynamicMap), &dm, sizeof(DynamicMap));
+	m_pd3dImmediateContext->Unmap(m_pDmCB.Get(), 0);
 
 	m_staticBox.draw();
+
+	//关闭不让贴图动
+	dm.enableDM = false;
+	m_pd3dImmediateContext->Map(m_pDmCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(DynamicMap), &dm, sizeof(DynamicMap));
+	m_pd3dImmediateContext->Unmap(m_pDmCB.Get(), 0);
+
 	m_dynamicBox.draw();
 
 	m_pd3dImmediateContext->OMSetBlendState(RenderStates::BSTransparent.Get(), nullptr, 0xFFFFFFFF);
@@ -169,7 +196,6 @@ void Chapter3Scene::drawScene()
 
 
 }
-
 
 
 
@@ -187,7 +213,7 @@ void Chapter3Scene::setDirLight(XMFLOAT3 dir)
 	memcpy_s(mappedData.pData, sizeof(DirectionLight), &directionLight, sizeof(DirectionLight));
 	m_pd3dImmediateContext->Unmap(m_pLightCB.Get(), 0);
 
-	m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pLightCB.GetAddressOf());
+	
 }
 
 

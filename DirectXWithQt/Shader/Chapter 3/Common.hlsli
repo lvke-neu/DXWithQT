@@ -44,3 +44,10 @@ cbuffer LightCB : register(b4)
 {
 	DirectionLight g_directionLight;
 }
+
+cbuffer DynamicMapCB : register(b5)
+{
+	float enableDM;
+	matrix rotMatrix;
+	float3 pad222;
+}
