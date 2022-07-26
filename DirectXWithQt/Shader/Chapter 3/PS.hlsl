@@ -8,7 +8,7 @@ float4 PS(VertexOut pIn) : SV_Target
 { 
 	float4 color;
 
-	[unroll]
+	[flatten]
 	if (enableDM)
 	{
 		float2 texcoord = mul(float4(pIn.texcoord, 0, 1.0f), rotMatrix).xy;
