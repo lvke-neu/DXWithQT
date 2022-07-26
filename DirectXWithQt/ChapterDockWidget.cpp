@@ -54,6 +54,12 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 			chapter3Scene->registerListeningEvent(this);
 
 	}
+	else
+	{
+		m_cptDockWidget[0]->hide();
+		m_cptDockWidget[1]->hide();
+		m_cptDockWidget[2]->hide();
+	}
 }
 
 

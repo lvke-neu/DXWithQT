@@ -49,6 +49,9 @@
     <Filter Include="D3D\Shader\Chapter 3">
       <UniqueIdentifier>{0daf7245-690c-4a61-b7c0-deac630d66bd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Shader\Chapter 4">
+      <UniqueIdentifier>{81b0faad-7f1b-4c0f-be22-e1618fcacd40}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -91,9 +94,6 @@
     <ClCompile Include="GameObject.cpp">
       <Filter>D3D\Game\GameObject</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="KeyBoard.cpp">
       <Filter>D3D\Game\InputEvent</Filter>
     </ClCompile>
@@ -113,6 +113,12 @@
       <Filter>D3D\Game\ListeningEvent</Filter>
     </ClCompile>
     <ClCompile Include="Chapter3Scene.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>D3D\Game\SceneManager\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter4Scene.cpp">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
@@ -154,9 +160,6 @@
     <ClInclude Include="Geometry.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="SceneInterface.h">
       <Filter>D3D\Game\SceneManager\Interface</Filter>
     </ClInclude>
@@ -193,6 +196,12 @@
     <ClInclude Include="Chapter3Scene.h">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>D3D\Game\SceneManager\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter4Scene.h">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\Chapter 1\VS.hlsl">
@@ -213,6 +222,12 @@
     <FxCompile Include="Shader\Chapter 3\VS.hlsl">
       <Filter>D3D\Shader\Chapter 3</Filter>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 4\PS.hlsl">
+      <Filter>D3D\Shader\Chapter 4</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 4\VS.hlsl">
+      <Filter>D3D\Shader\Chapter 4</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Chapter 1\Common.hlsli">
@@ -229,6 +244,12 @@
     </None>
     <None Include="Shader\Chapter 3\LightHelper.hlsli">
       <Filter>D3D\Shader\Chapter 3</Filter>
+    </None>
+    <None Include="Shader\Chapter 4\Common.hlsli">
+      <Filter>D3D\Shader\Chapter 4</Filter>
+    </None>
+    <None Include="Shader\Chapter 4\LightHelper.hlsli">
+      <Filter>D3D\Shader\Chapter 4</Filter>
     </None>
   </ItemGroup>
 </Project>
