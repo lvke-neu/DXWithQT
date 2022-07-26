@@ -9,8 +9,9 @@ class Chapter3Scene : public IScene, public ListeningEvent
 	struct DynamicMap
 	{
 		float enableDM;
+		float enableMultiMap;
 		XMMATRIX rotMatrix;
-		XMFLOAT3 pad;
+		XMFLOAT2 pad;
 	};
 
 public:
@@ -29,6 +30,7 @@ public:
 	void notifyAll();
 private:
 	ComPtr<ID3D11Buffer> m_pDmCB;
+	ComPtr<ID3D11ShaderResourceView> m_pTextureArr[6];
 private:
 	//四面墙
 	GameObject m_wall;
@@ -39,5 +41,8 @@ private:
 
 	GameObject m_staticBox;
 	GameObject m_dynamicBox;
+
+	//六面贴不同图的盒子
+	GameObject m_differetMapBox;
 };
 

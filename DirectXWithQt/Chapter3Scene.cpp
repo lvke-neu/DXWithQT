@@ -3,6 +3,7 @@
 #include "Mouse.h"
 #include <string>
 #include "RenderStates.h"
+#include "DDSTextureLoader.h"
 
 Chapter3Scene::Chapter3Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
@@ -19,6 +20,15 @@ Chapter3Scene::Chapter3Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pDmCB.GetAddressOf());
 
 	m_pd3dImmediateContext->PSSetConstantBuffers(5, 1, m_pDmCB.GetAddressOf());
+
+
+	
+	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\changeTexture\\7.dds", nullptr, m_pTextureArr[0].GetAddressOf());
+	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\changeTexture\\2.dds", nullptr, m_pTextureArr[1].GetAddressOf());
+	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\changeTexture\\3.dds", nullptr, m_pTextureArr[2].GetAddressOf());
+	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\changeTexture\\4.dds", nullptr, m_pTextureArr[3].GetAddressOf());
+	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\changeTexture\\5.dds", nullptr, m_pTextureArr[4].GetAddressOf());
+	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\changeTexture\\6.dds", nullptr, m_pTextureArr[5].GetAddressOf());
 }
 
 void Chapter3Scene::initScene()
@@ -81,10 +91,20 @@ void Chapter3Scene::initScene()
 		XMFLOAT3(-2.0f, -3.0f, 7.0f)
 	));
 
+	m_differetMapBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_differetMapBox.setMesh(Geometry::buildBoxMesh());
+	m_differetMapBox.setShader(3);
+	m_differetMapBox.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(0.0f, 3.0f, 7.0f)
+	));
+
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
 
 }
 
+static float rotz = 0.0f;
 
 void Chapter3Scene::updateScene(float deltaTime)
 {
@@ -124,7 +144,7 @@ void Chapter3Scene::updateScene(float deltaTime)
 		m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
 		notifyAll();
 	}
-
+	rotz += deltaTime*2;
 	static float rotx = 0.0f;
 	rotx += deltaTime;
 	m_dynamicBox.setRotation(rotx, 0.0f, 0.0f);
@@ -168,11 +188,10 @@ void Chapter3Scene::drawScene()
 	m_floor.draw();
 
 	//开启 让贴图动起来
-	static float rotz = 0.0f;
-	rotz += 0.0001;
+
 	DynamicMap dm;
 	dm.enableDM = true;
-
+	dm.enableMultiMap = true;
 	dm.rotMatrix = XMMatrixTranspose(XMMatrixTranslation(-0.5f, -0.5f, 0.0f) * XMMatrixRotationRollPitchYaw(0, 0, rotz) * XMMatrixTranslation(0.5f, 0.5f, 0.0f));
 
 	D3D11_MAPPED_SUBRESOURCE mappedData;
@@ -182,8 +201,10 @@ void Chapter3Scene::drawScene()
 
 	m_staticBox.draw();
 
+
 	//关闭不让贴图动
 	dm.enableDM = false;
+	dm.enableMultiMap = false;
 	m_pd3dImmediateContext->Map(m_pDmCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
 	memcpy_s(mappedData.pData, sizeof(DynamicMap), &dm, sizeof(DynamicMap));
 	m_pd3dImmediateContext->Unmap(m_pDmCB.Get(), 0);
@@ -191,8 +212,45 @@ void Chapter3Scene::drawScene()
 	m_dynamicBox.draw();
 
 	m_pd3dImmediateContext->OMSetBlendState(RenderStates::BSTransparent.Get(), nullptr, 0xFFFFFFFF);
+
+
+	dm.enableDM = true;
+	dm.enableMultiMap = false;
+	dm.rotMatrix = XMMatrixTranspose(XMMatrixTranslation(-0.5f, -0.5f, 0.0f) * XMMatrixRotationRollPitchYaw(0, 0, rotz) * XMMatrixTranslation(0.5f, 0.5f, 0.0f));
+	m_pd3dImmediateContext->Map(m_pDmCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(DynamicMap), &dm, sizeof(DynamicMap));
+	m_pd3dImmediateContext->Unmap(m_pDmCB.Get(), 0);
+
 	m_water.draw();
+
+
+	//关闭不让贴图动
+	dm.enableDM = false;
+	m_pd3dImmediateContext->Map(m_pDmCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(DynamicMap), &dm, sizeof(DynamicMap));
+	m_pd3dImmediateContext->Unmap(m_pDmCB.Get(), 0);
+
 	m_pd3dImmediateContext->OMSetBlendState(nullptr, nullptr, 0xFFFFFFFF);
+
+
+	//给盒子六面贴上不同的图
+	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTextureArr[0].GetAddressOf());
+	m_differetMapBox.draw(6, 0);
+
+	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTextureArr[1].GetAddressOf());
+	m_differetMapBox.draw(6, 6);
+
+	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTextureArr[2].GetAddressOf());
+	m_differetMapBox.draw(6, 12);
+
+	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTextureArr[3].GetAddressOf());
+	m_differetMapBox.draw(6, 18);
+
+	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTextureArr[4].GetAddressOf());
+	m_differetMapBox.draw(6, 24);
+
+	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTextureArr[5].GetAddressOf());
+	m_differetMapBox.draw(6, 30);
 
 
 }
@@ -223,6 +281,7 @@ void Chapter3Scene::setWaterTransparency(float transparency)
 	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, transparency);
 	material.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 250.0f);
+
 
 	m_water.setMaterial(material);
 }

@@ -48,6 +48,7 @@ cbuffer LightCB : register(b4)
 cbuffer DynamicMapCB : register(b5)
 {
 	float enableDM;
+	float enableMultiMap;
 	matrix rotMatrix;
-	float3 pad222;
+	float2 pad222;
 }

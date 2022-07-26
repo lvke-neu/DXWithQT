@@ -67,7 +67,8 @@ public:
 	Transform& getTransform();
 	void setTransform(Transform transform);
 
-	void draw();
+	void draw();     
+	void draw(UINT IndexCount, UINT StartIndexLocation);
 
 	void changeWorldMatrixCB();
 private:
@@ -85,6 +86,7 @@ private:
 	ComPtr<ID3D11InputLayout> m_pVertexLayout{ nullptr };
 
 	ComPtr<ID3D11ShaderResourceView> m_pTexture{ nullptr };
+	ComPtr<ID3D11ShaderResourceView> m_pTexture2{ nullptr };
 
 	ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };
 private:

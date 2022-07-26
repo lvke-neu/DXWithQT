@@ -2,6 +2,7 @@
 
 
 Texture2D g_Tex : register(t0);
+Texture2D g_Tex2 : register(t2);
 SamplerState g_SamplerState : register(s0);
 float4 PS(VertexOut pIn) : SV_Target
 { 
@@ -12,6 +13,11 @@ float4 PS(VertexOut pIn) : SV_Target
 	{
 		float2 texcoord = mul(float4(pIn.texcoord, 0, 1.0f), rotMatrix).xy;
 		color = g_Tex.Sample(g_SamplerState, texcoord);
+		if (enableMultiMap)
+		{
+			float4 color2 = g_Tex2.Sample(g_SamplerState, pIn.texcoord);
+			color = color * color2;
+		}
 	}
 	else
 	{
