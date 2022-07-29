@@ -7,7 +7,7 @@ Description:
 
 #pragma once
 #include <vector>
-
+#include <string>
 
 class ChapterDockWidget;
 
