@@ -25,6 +25,7 @@ public:
 	void initChpa1DockWidget();
 	void initChpa2DockWidget();
 	void initChpa3DockWidget();
+	void initChpa4DockWidget();
 
 	void callback(const std::string& msg);
 

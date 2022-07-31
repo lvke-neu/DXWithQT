@@ -23,7 +23,7 @@ float4 PS(VertexOut pIn) : SV_Target
 
 	//color = color * (ambient + diffuse)+ specular;
 	//color.a = 1.0f;
-
+	color.a = g_material.diffuse.a;
 	return color;
 
 }
