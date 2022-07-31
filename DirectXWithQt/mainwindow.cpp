@@ -80,7 +80,12 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 		}
 		else if (item->text().toStdString() == "Chapter 4")
 		{
-			introductionLabel->setText(u8"通过混合+反射矩阵实现镜面效果、滑动右侧滑动条来调整镜面的透明度");
+			introductionLabel->setText(u8"通过混合+反射矩阵实现镜面效果、滑动右侧滑动条来调整镜面的透明度\n点击右侧按钮切换第一人称与自由相机");
+			introductionLabel->setFixedWidth(430);
+		}
+		else if (item->text().toStdString() == "Chapter 5")
+		{
+			introductionLabel->setText(u8"光照（方向光、点光源、聚光灯）+ 阴影");
 			introductionLabel->setFixedWidth(430);
 		}
 	}

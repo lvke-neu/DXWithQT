@@ -43,6 +43,17 @@ void Chapter4Scene::initScene()
 		XMFLOAT3(0.0f, -1.0f, 10.0f)
 	));
 
+	m_firstPersonBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_firstPersonBox.setMesh(Geometry::buildBoxMesh());
+	m_firstPersonBox.setShader(4);
+	m_firstPersonBox.setTexturePath(L"Texture\\WoodCrate.dds");
+	m_firstPersonBox.setMaterial(material);
+	m_firstPersonBox.setTransform(Transform(
+		XMFLOAT3(0.5f, 0.5f, 0.5f),
+		XMFLOAT3(0.0f, XM_PI / 2, 0.0f),
+		XMFLOAT3(0.0f, -4.0f, 10.0f)
+	));
+
 	m_wall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_wall.setMesh(Geometry::buildPlaneMesh(4.0f, 2.0f));
 	m_wall.setShader(4);
@@ -86,39 +97,66 @@ void Chapter4Scene::initScene()
 
 void Chapter4Scene::updateScene(float deltaTime)
 {
+	if (!m_isFirstPerson)
+	{
+		if (KeyBoard::getInstance().isKeyPress('W'))
+		{
+			m_perspectiveCamera.moveZAxis(deltaTime * 20);
+			notifyAll();
+		}
+		if (KeyBoard::getInstance().isKeyPress('S'))
+		{
+			m_perspectiveCamera.moveZAxis(-deltaTime * 20);
+			notifyAll();
+		}
+		if (KeyBoard::getInstance().isKeyPress('A'))
+		{
+			m_perspectiveCamera.moveXAxis(-deltaTime * 20);
+			notifyAll();
+		}
+		if (KeyBoard::getInstance().isKeyPress('D'))
+		{
+			m_perspectiveCamera.moveXAxis(deltaTime * 20);
+			notifyAll();
+		}
 
-	if (KeyBoard::getInstance().isKeyPress('W'))
-	{
-		m_perspectiveCamera.moveZAxis(deltaTime * 20);
-		notifyAll();
+		if (Mouse::m_whichButton == RightButton)
+		{
+			float deltaX;
+			float deltaY;
+			deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
+			deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
+			m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
+			notifyAll();
+		}
 	}
-	if (KeyBoard::getInstance().isKeyPress('S'))
+	else
 	{
-		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('A'))
-	{
-		m_perspectiveCamera.moveXAxis(-deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('D'))
-	{
-		m_perspectiveCamera.moveXAxis(deltaTime * 20);
-		notifyAll();
+		if (KeyBoard::getInstance().isKeyPress('W'))
+		{
+			m_firstPersonBox.moveZAxis(deltaTime * 20);
+		}
+		if (KeyBoard::getInstance().isKeyPress('S'))
+		{
+			m_firstPersonBox.moveZAxis(-deltaTime * 20);
+		}
+		if (KeyBoard::getInstance().isKeyPress('A'))
+		{
+			m_firstPersonBox.moveXAxis(-deltaTime * 20);
+		}
+		if (KeyBoard::getInstance().isKeyPress('D'))
+		{
+			m_firstPersonBox.moveXAxis(deltaTime * 20);
+		}
+
+		XMFLOAT3 adjustedPos;
+		XMStoreFloat3(&adjustedPos, XMVectorClamp(XMLoadFloat3(&m_firstPersonBox.getPosition()), XMVectorSet(-9.5f, -9.5f, 0.0f, 0.0f), XMVectorSet(9.5f, 9.5f, 19.5f, 0.0f)));
+		m_firstPersonBox.setPosition(adjustedPos);
+
+		m_perspectiveCamera.setPosition(m_firstPersonBox.getPosition());
 	}
 
 
-	if (Mouse::m_whichButton == RightButton)
-	{
-		float deltaX;
-		float deltaY;
-		deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
-		deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
-		m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
-		notifyAll();
-
-	}
 
 	static float rotx = 0.0f;
 	rotx += deltaTime;
@@ -169,6 +207,8 @@ void Chapter4Scene::drawScene()
 	m_floor.draw();
 
 	m_box.draw();
+
+	m_firstPersonBox.draw();
 
 	//绘制镜面
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
@@ -225,6 +265,10 @@ void Chapter4Scene::drawScene()
 	m_floor.draw();
 
 	m_box.draw();
+
+	if(!m_isFirstPerson)
+		m_firstPersonBox.draw();
+	
 }
 
 

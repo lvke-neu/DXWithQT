@@ -24,6 +24,7 @@ public:
 public:
 	void setIsReflection(bool b);
 	void setMirrorTransparency(float transparency);
+	void setFirstPerson(bool b) { m_isFirstPerson = b; if(m_isFirstPerson)m_perspectiveCamera.setRotation(0.0f, 1.5f, 0.0f); }
 
 	void notifyAll();
 private:
@@ -34,6 +35,10 @@ private:
 	GameObject m_floor;
 	GameObject m_mirror;
 	GameObject m_box;
+
+	GameObject m_firstPersonBox;
+private:
+	bool m_isFirstPerson = false;
 
 };
 
