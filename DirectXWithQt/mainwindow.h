@@ -20,6 +20,8 @@ public:
 
 
 
+
+
 public slots:
     void changeChapter(QListWidgetItem* item);
 

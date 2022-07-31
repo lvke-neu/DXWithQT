@@ -1,6 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <qlabel.h>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -20,6 +20,14 @@ MainWindow::MainWindow(QWidget *parent) :
 	connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::changeChapter);
 
 	m_ChapterDockWidget = new ChapterDockWidget(this, m_RenderWidget);
+
+
+	QLabel* introductionLabel = new QLabel(this);
+	introductionLabel->hide();
+	introductionLabel->setObjectName("introductionLabel");
+	introductionLabel->setAutoFillBackground(true);
+	introductionLabel->move(120, 23);
+	introductionLabel->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
 
 }
 
@@ -49,5 +57,32 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 {
 	m_RenderWidget->m_gameApp->setScene(item->text().toStdString());
 	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
+
+	QLabel* introductionLabel = findChild<QLabel*>("introductionLabel");
+	if (introductionLabel)
+	{
+		introductionLabel->show();
+
+		if (item->text().toStdString() == "Chapter 1")
+		{
+			introductionLabel->setText(u8"简单的三角形可以调整其颜色");
+			introductionLabel->setFixedWidth(180);
+		}
+		else if (item->text().toStdString() == "Chapter 2")
+		{
+			introductionLabel->setText(u8"简单场景框架，带相机交互、光照、贴图、材质\n点击右侧更换贴图、设置光照方向以及设置线框模式和背面裁剪");
+			introductionLabel->setFixedWidth(400);
+		}
+		else if (item->text().toStdString() == "Chapter 3")
+		{
+			introductionLabel->setText(u8"通过混合模式实现透明效果、立方体的六个面贴不同的贴图、立方体的一个面同时贴两张图\n通过动态的修改贴图坐标让贴图动起来、滑动右侧滑动条来调整水的透明度");
+			introductionLabel->setFixedWidth(550);
+		}
+		else if (item->text().toStdString() == "Chapter 4")
+		{
+			introductionLabel->setText(u8"通过混合+反射矩阵实现镜面效果、滑动右侧滑动条来调整镜面的透明度");
+			introductionLabel->setFixedWidth(430);
+		}
+	}
 }
 
