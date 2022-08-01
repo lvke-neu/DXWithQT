@@ -14,6 +14,7 @@ public:
 	void updateScene(float deltaTime) override;
 	void drawScene() override;
 	void setDirLight(XMFLOAT3 dir) override;
+	void setDirLight(float x, float y, float z) { setDirLight(XMFLOAT3(x, y, z)); }
 public:
 
 

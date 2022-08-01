@@ -17,6 +17,7 @@ public:
 public slots:
 	void chapter1_setColor();
 	void chapter1_confirmColor(const QColor& color);
+	void chapter5_changeDirLight();
 
 
 public:

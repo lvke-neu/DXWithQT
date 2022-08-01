@@ -4,7 +4,8 @@
 #include <QPushButton>
 #include <QColorDialog>
 #include <qslider.h>
-
+#include <qlineedit.h>
+#include <QRegExpValidator>
 
 ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* widget): m_parent(parent), m_RenderWidget(widget)
 {
@@ -368,19 +369,42 @@ void ChapterDockWidget::initChpa4DockWidget()
 void ChapterDockWidget::initChpa5DockWidget()
 {
 	//************************************ Chapter 5 *****************************************
-	QDockWidget* dockWidget4 = new QDockWidget(m_parent);
-	dockWidget4->setFixedWidth(115);
-	dockWidget4->setTitleBarWidget(new QWidget);
+	QDockWidget* dockWidget5 = new QDockWidget(m_parent);
+	dockWidget5->setFixedWidth(115);
+	dockWidget5->setTitleBarWidget(new QWidget);
 
 
-	QLabel* labelCamProperty = new QLabel(dockWidget4);
+	QLabel* labelCamProperty = new QLabel(dockWidget5);
 	labelCamProperty->setObjectName("CameraProperty");
 	labelCamProperty->setFixedHeight(200);
 
-	dockWidget4->setObjectName("dockWidget4");
-	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget4);
-	dockWidget4->hide();
-	m_cptDockWidget.push_back(dockWidget4);
+
+	QLabel* labelDirLight = new QLabel(u8"方向光方向(x,y,z)：", dockWidget5);
+	labelDirLight->move(0, 200);
+	
+	QLineEdit* lineDirLightX = new QLineEdit(dockWidget5);
+	lineDirLightX->setPlaceholderText("x");
+	lineDirLightX->move(0, 230);
+	lineDirLightX->setObjectName("lineDirLightX");
+	connect(lineDirLightX, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+
+
+	QLineEdit* lineDirLightY = new QLineEdit(dockWidget5);
+	lineDirLightY->setPlaceholderText("y");
+	lineDirLightY->move(0, 260);
+	lineDirLightY->setObjectName("lineDirLightY");
+	connect(lineDirLightY, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+
+	QLineEdit* lineDirLightZ = new QLineEdit(dockWidget5);
+	lineDirLightZ->setPlaceholderText("z");
+	lineDirLightZ->move(0, 290);
+	lineDirLightZ->setObjectName("lineDirLightZ");
+	connect(lineDirLightZ, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+
+	dockWidget5->setObjectName("dockWidget5");
+	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget5);
+	dockWidget5->hide();
+	m_cptDockWidget.push_back(dockWidget5);
 }
 
 void ChapterDockWidget::chapter1_setColor()
@@ -415,6 +439,32 @@ void ChapterDockWidget::chapter1_confirmColor(const QColor& color)
 	}
 }
 
+void ChapterDockWidget::chapter5_changeDirLight()
+{
+	QDockWidget* dockWidget5 = m_parent->findChild<QDockWidget*>("dockWidget5");
+	if (dockWidget5)
+	{
+		QLineEdit* lineDirLightX = dockWidget5->findChild<QLineEdit*>("lineDirLightX");
+		QLineEdit* lineDirLightY = dockWidget5->findChild<QLineEdit*>("lineDirLightY");
+		QLineEdit* lineDirLightZ = dockWidget5->findChild<QLineEdit*>("lineDirLightZ");
+		if (lineDirLightX && lineDirLightY && lineDirLightZ)
+		{
+
+			bool bX, bY, bZ;
+			float x, y, z;
+			x = lineDirLightX->text().toFloat(&bX);
+			y = lineDirLightY->text().toFloat(&bY);
+			z = lineDirLightZ->text().toFloat(&bZ);
+
+			Chapter5Scene* chapter5Scene = (Chapter5Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter5Scene && bX && bY &&bZ)
+			{
+				chapter5Scene->setDirLight(x, y, z);
+			}
+		}
+	}
+
+}
 
 void ChapterDockWidget::callback(const std::string& msg)
 {

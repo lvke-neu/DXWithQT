@@ -17,7 +17,7 @@ void Chapter5Scene::initScene()
 	Material material;
 	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	material.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 250.0f);
+	material.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 5.0f);
 
 	m_wall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_wall.setMesh(Geometry::buildPlaneMesh(4.0f, 2.0f));
