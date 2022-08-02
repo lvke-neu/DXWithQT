@@ -384,6 +384,7 @@ void ChapterDockWidget::initChpa5DockWidget()
 	
 	QLineEdit* lineDirLightX = new QLineEdit(dockWidget5);
 	lineDirLightX->setPlaceholderText("x");
+	lineDirLightX->setText("0.0");
 	lineDirLightX->move(0, 230);
 	lineDirLightX->setObjectName("lineDirLightX");
 	connect(lineDirLightX, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
@@ -391,12 +392,14 @@ void ChapterDockWidget::initChpa5DockWidget()
 
 	QLineEdit* lineDirLightY = new QLineEdit(dockWidget5);
 	lineDirLightY->setPlaceholderText("y");
+	lineDirLightY->setText("-0.5");
 	lineDirLightY->move(0, 260);
 	lineDirLightY->setObjectName("lineDirLightY");
 	connect(lineDirLightY, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
 
 	QLineEdit* lineDirLightZ = new QLineEdit(dockWidget5);
 	lineDirLightZ->setPlaceholderText("z");
+	lineDirLightZ->setText("0.5");
 	lineDirLightZ->move(0, 290);
 	lineDirLightZ->setObjectName("lineDirLightZ");
 	connect(lineDirLightZ, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);

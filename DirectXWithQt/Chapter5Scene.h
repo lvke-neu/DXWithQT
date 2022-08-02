@@ -26,5 +26,7 @@ private:
 	//底
 	GameObject m_floor;
 
+	GameObject m_box;
+
 };
 

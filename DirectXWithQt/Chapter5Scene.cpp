@@ -15,9 +15,9 @@ Chapter5Scene::Chapter5Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 void Chapter5Scene::initScene()
 {
 	Material material;
-	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	material.ambient = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
 	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	material.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 5.0f);
+	material.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 5.0f);
 
 	m_wall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_wall.setMesh(Geometry::buildPlaneMesh(4.0f, 2.0f));
@@ -36,7 +36,16 @@ void Chapter5Scene::initScene()
 		XMFLOAT3(0.0f, -5.0f, 10.0f)
 	));
 
-
+	m_box = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_box.setMesh(Geometry::buildBoxMesh());
+	m_box.setShader(5);
+	m_box.setTexturePath(L"Texture\\WoodCrate.dds");
+	m_box.setMaterial(material);
+	m_box.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(-2.0f, 0.0f, 10.0f)
+	));
 }
 
 
@@ -74,6 +83,10 @@ void Chapter5Scene::updateScene(float deltaTime)
 		notifyAll();
 
 	}
+
+	static float rotX = 0.0f;
+	rotX += deltaTime;
+	m_box.setRotation(rotX, 0.0f, 0.0f);
 }
 
 void Chapter5Scene::drawScene()
@@ -111,6 +124,8 @@ void Chapter5Scene::drawScene()
 	m_wall.draw();
 
 	m_floor.draw();
+
+	m_box.draw();
 }
 
 
@@ -120,9 +135,9 @@ void Chapter5Scene::setDirLight(XMFLOAT3 dir)
 {
 	DirectionLight directionLight;
 
-	directionLight.ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
-	directionLight.diffuse = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
-	directionLight.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	directionLight.ambient = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
+	directionLight.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	directionLight.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 5.0f);
 	directionLight.direction = dir;
 
 	D3D11_MAPPED_SUBRESOURCE mappedData;
