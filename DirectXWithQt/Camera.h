@@ -72,7 +72,11 @@ public:
 	XMFLOAT3& getPosition() { return m_transform.getPosition(); }
 	void setPosition(float x, float y, float z)
 	{
-		m_transform.setPosition(XMFLOAT3(x, y, z));
+		setPosition(XMFLOAT3(x, y, z));
+	}
+	void setPosition(const XMFLOAT3& pos)
+	{
+		m_transform.setPosition(pos);
 		changeViewMatrixCB();
 	}
 private:

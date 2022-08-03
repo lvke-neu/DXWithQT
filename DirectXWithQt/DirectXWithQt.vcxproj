@@ -113,6 +113,7 @@
     <ClCompile Include="Chapter2Scene.cpp" />
     <ClCompile Include="Chapter3Scene.cpp" />
     <ClCompile Include="Chapter4Scene.cpp" />
+    <ClCompile Include="Chapter5Scene.cpp" />
     <ClCompile Include="ChapterDockWidget.cpp" />
     <ClCompile Include="d3d11renderwidget.cpp" />
     <ClCompile Include="d3dApp.cpp" />
@@ -147,6 +148,7 @@
     <ClInclude Include="Chapter2Scene.h" />
     <ClInclude Include="Chapter3Scene.h" />
     <ClInclude Include="Chapter4Scene.h" />
+    <ClInclude Include="Chapter5Scene.h" />
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="DXTrace.h" />
     <ClInclude Include="GameObject.h" />
@@ -246,6 +248,26 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shader/Chapter 4/%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shader/Chapter 4/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 5\PS.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 5\VS.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="LightHelper.hlsli" />
@@ -255,6 +277,8 @@
     <None Include="Shader\Chapter 3\LightHelper.hlsli" />
     <None Include="Shader\Chapter 4\Common.hlsli" />
     <None Include="Shader\Chapter 4\LightHelper.hlsli" />
+    <None Include="Shader\Chapter 5\Common.hlsli" />
+    <None Include="Shader\Chapter 5\LightHelper.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

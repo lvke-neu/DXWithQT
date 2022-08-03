@@ -17,6 +17,7 @@ public:
 public slots:
 	void chapter1_setColor();
 	void chapter1_confirmColor(const QColor& color);
+	void chapter5_changeDirLight();
 
 
 public:
@@ -25,6 +26,8 @@ public:
 	void initChpa1DockWidget();
 	void initChpa2DockWidget();
 	void initChpa3DockWidget();
+	void initChpa4DockWidget();
+	void initChpa5DockWidget();
 
 	void callback(const std::string& msg);
 

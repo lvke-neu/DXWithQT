@@ -22,8 +22,13 @@ public:
 
 	static ComPtr<ID3D11RasterizerState> RSWireframe;	
 	static ComPtr<ID3D11RasterizerState> RSNoCull;
+	static ComPtr<ID3D11RasterizerState> RSCullClockWise;
 
 	static ComPtr<ID3D11BlendState> BSTransparent;
+	static ComPtr<ID3D11BlendState> BSNoColorWrite;
+
+	static ComPtr<ID3D11DepthStencilState> DSSWriteStencil;
+	static ComPtr<ID3D11DepthStencilState> DSSDrawWithStencil;
 
 public:
 	static void Init(ComPtr<ID3D11Device> pd3dDevice);

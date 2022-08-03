@@ -47,10 +47,13 @@ public:
 	XMFLOAT3& getPosition() { return m_transform.getPosition(); }
 	void setPosition(float x, float y, float z)
 	{
-		m_transform.setPosition(XMFLOAT3(x, y, z));
+		setPosition(XMFLOAT3(x, y, z));
+	}
+	void setPosition(const XMFLOAT3& pos)
+	{
+		m_transform.setPosition(pos);
 		changeWorldMatrixCB();
 	}
-
 public:
 	Mesh& getMesh();
 	void setMesh(Mesh mesh);
@@ -70,6 +73,9 @@ public:
 	void draw();     
 	void draw(UINT IndexCount, UINT StartIndexLocation);
 
+
+	void moveZAxis(float distance) { m_transform.moveZAxis(distance); changeWorldMatrixCB(); }
+	void moveXAxis(float distance) { m_transform.moveXAxis(distance); changeWorldMatrixCB(); }
 	void changeWorldMatrixCB();
 private:
 	ComPtr<ID3D11Device> m_pd3dDevice;

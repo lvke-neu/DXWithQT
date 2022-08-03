@@ -56,6 +56,11 @@
          <string>Chapter 4</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Chapter 5</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>

@@ -44,10 +44,3 @@ cbuffer LightCB : register(b4)
 {
 	DirectionLight g_directionLight;
 }
-
-cbuffer RelectionCB	: register(b5)
-{
-	float g_isEnableReflec;
-	matrix g_reflectionMatrix;
-	float3 pad222;
-}

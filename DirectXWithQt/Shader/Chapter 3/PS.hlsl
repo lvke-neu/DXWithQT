@@ -9,11 +9,11 @@ float4 PS(VertexOut pIn) : SV_Target
 	float4 color;
 
 	[flatten]
-	if (enableDM)
+	if (g_enableDM)
 	{
-		float2 texcoord = mul(float4(pIn.texcoord, 0, 1.0f), rotMatrix).xy;
+		float2 texcoord = mul(float4(pIn.texcoord, 0, 1.0f), g_rotMatrix).xy;
 		color = g_Tex.Sample(g_SamplerState, texcoord);
-		if (enableMultiMap)
+		if (g_enableMultiMap)
 		{
 			float4 color2 = g_Tex2.Sample(g_SamplerState, pIn.texcoord);
 			color = color * color2;
