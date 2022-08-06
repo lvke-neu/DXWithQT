@@ -5,6 +5,8 @@ Texture2D g_Tex : register(t0);
 SamplerState g_SamplerState : register(s0);
 float4 PS(VertexOut pIn) : SV_Target
 {
+	float4 color = g_Tex.Sample(g_SamplerState, pIn.texcoord);
+	clip(color.a - 0.1f);
 
 	pIn.normalW = normalize(pIn.normalW);
 
@@ -19,10 +21,8 @@ float4 PS(VertexOut pIn) : SV_Target
 		specular);
 
 
-	float4 color = g_Tex.Sample(g_SamplerState, pIn.texcoord);
-
 	color = color * (ambient + diffuse)+ specular;
-	color.a = 1.0f;
+	color.a = g_material.diffuse.a;
 
 	return color;
 

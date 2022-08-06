@@ -8,7 +8,7 @@ Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 {
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
-	
+	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
 }
 
 void Chapter2Scene::initScene()

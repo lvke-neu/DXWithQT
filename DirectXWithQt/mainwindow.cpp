@@ -85,8 +85,8 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 		}
 		else if (item->text().toStdString() == "Chapter 5")
 		{
-			introductionLabel->setText(u8"光照（方向光、点光源、聚光灯）+ 阴影");
-			introductionLabel->setFixedWidth(430);
+			introductionLabel->setText(u8"光照（目前只实现方向光）+ 阴影(阴影通过阴影矩阵实现）\n注意阴影矩阵第二个参数的w为零表示方向光、为1表示点光，滑动右侧滑动条来调整方向光的方向");
+			introductionLabel->setFixedWidth(600);
 		}
 	}
 }

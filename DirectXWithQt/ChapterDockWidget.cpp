@@ -181,7 +181,7 @@ void ChapterDockWidget::initChpa2DockWidget()
 	qSlider->setMaximum(1000);
 	qSlider->setSingleStep(1);
 	qSlider->setValue(0);
-
+	
 	QWidget::connect(qSlider, &QSlider::valueChanged, this,
 		[=]
 		{
@@ -382,27 +382,88 @@ void ChapterDockWidget::initChpa5DockWidget()
 	QLabel* labelDirLight = new QLabel(u8"方向光方向(x,y,z)：", dockWidget5);
 	labelDirLight->move(0, 200);
 	
+	QSlider* qSliderX;
 	QLineEdit* lineDirLightX = new QLineEdit(dockWidget5);
 	lineDirLightX->setPlaceholderText("x");
-	lineDirLightX->setText("0.0");
+	lineDirLightX->setText("0.5");
 	lineDirLightX->move(0, 230);
 	lineDirLightX->setObjectName("lineDirLightX");
-	connect(lineDirLightX, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+	lineDirLightX->setReadOnly(true);
 
+	qSliderX = new QSlider(Qt::Horizontal, dockWidget5);
+	qSliderX->move(0, 260);
+	qSliderX->setMinimum(-1000);
+	qSliderX->setMaximum(1000);
+	qSliderX->setSingleStep(1);
+	qSliderX->setValue(500);
+	connect(qSliderX, &QSlider::valueChanged, this,
+		[=]
+		{
+			lineDirLightX->setText( std::to_string(qSliderX->value() / 1000.0f).c_str() );
+			chapter5_changeDirLight();
+		});
 
+	QSlider* qSliderY;
 	QLineEdit* lineDirLightY = new QLineEdit(dockWidget5);
 	lineDirLightY->setPlaceholderText("y");
-	lineDirLightY->setText("-0.5");
-	lineDirLightY->move(0, 260);
+	lineDirLightY->setText("-1.0");
+	lineDirLightY->move(0, 290);
 	lineDirLightY->setObjectName("lineDirLightY");
-	connect(lineDirLightY, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+	lineDirLightY->setReadOnly(true);
 
+	qSliderY = new QSlider(Qt::Horizontal, dockWidget5);
+	qSliderY->move(0, 320);
+	qSliderY->setMinimum(-1000);
+	qSliderY->setMaximum(1000);
+	qSliderY->setSingleStep(1);
+	qSliderY->setValue(-1000);
+	connect(qSliderY, &QSlider::valueChanged, this,
+		[=]
+		{
+			lineDirLightY->setText(std::to_string(qSliderY->value() / 1000.0f).c_str());
+			chapter5_changeDirLight();
+		});
+
+
+	QSlider* qSliderZ;
 	QLineEdit* lineDirLightZ = new QLineEdit(dockWidget5);
 	lineDirLightZ->setPlaceholderText("z");
-	lineDirLightZ->setText("0.5");
-	lineDirLightZ->move(0, 290);
+	lineDirLightZ->setText("0.0");
+	lineDirLightZ->move(0, 350);
 	lineDirLightZ->setObjectName("lineDirLightZ");
-	connect(lineDirLightZ, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+	lineDirLightZ->setReadOnly(true);
+
+	qSliderZ = new QSlider(Qt::Horizontal, dockWidget5);
+	qSliderZ->move(0, 380);
+	qSliderZ->setMinimum(-1000);
+	qSliderZ->setMaximum(1000);
+	qSliderZ->setSingleStep(1);
+	qSliderZ->setValue(0);
+	connect(qSliderZ, &QSlider::valueChanged, this,
+		[=]
+		{
+			lineDirLightZ->setText(std::to_string(qSliderZ->value() / 1000.0f).c_str());
+			chapter5_changeDirLight();
+		});
+
+
+	QPushButton* resetDir = new QPushButton("重置", dockWidget5);
+	resetDir->move(0, 420);
+	connect(resetDir, &QPushButton::clicked, this,
+		[=]()
+		{
+			Chapter5Scene* chapter5Scene = (Chapter5Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter5Scene )
+			{
+				lineDirLightX->setText("0.0");
+				qSliderX->setValue(0);
+				lineDirLightY->setText("0.0");	
+				qSliderY->setValue(0);
+				lineDirLightZ->setText("0.0");
+				qSliderZ->setValue(0);
+				chapter5Scene->setDirLight(0.0f, 0.0f, 0.0f);
+			}
+		});
 
 	dockWidget5->setObjectName("dockWidget5");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget5);
