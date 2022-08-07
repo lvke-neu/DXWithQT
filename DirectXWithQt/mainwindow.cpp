@@ -101,6 +101,11 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 			introductionLabel->setText(u8"实现了几个类似的序列图效果\n按1切换火焰、按2切换闪电");
 			introductionLabel->setFixedWidth(250);
 		}
+		else if (item->text().toStdString() == "Chapter 7")
+		{
+			introductionLabel->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型");
+			introductionLabel->setFixedWidth(400);
+		}
 	}
 }
 

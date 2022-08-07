@@ -115,6 +115,7 @@
     <ClCompile Include="Chapter4Scene.cpp" />
     <ClCompile Include="Chapter5Scene.cpp" />
     <ClCompile Include="Chapter6Scene.cpp" />
+    <ClCompile Include="Chapter7Scene.cpp" />
     <ClCompile Include="ChapterDockWidget.cpp" />
     <ClCompile Include="d3d11renderwidget.cpp" />
     <ClCompile Include="d3dApp.cpp" />
@@ -129,7 +130,9 @@
     <ClCompile Include="Material.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
+    <ClCompile Include="ModelObject.cpp" />
     <ClCompile Include="Mouse.cpp" />
+    <ClCompile Include="ObjReader.cpp" />
     <ClCompile Include="RenderStates.cpp" />
     <ClCompile Include="SceneInterface.cpp" />
     <ClCompile Include="Transform.cpp" />
@@ -152,6 +155,7 @@
     <ClInclude Include="Chapter4Scene.h" />
     <ClInclude Include="Chapter5Scene.h" />
     <ClInclude Include="Chapter6Scene.h" />
+    <ClInclude Include="Chapter7Scene.h" />
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="DXTrace.h" />
     <ClInclude Include="GameObject.h" />
@@ -159,7 +163,9 @@
     <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="ListeningEvent.h" />
+    <ClInclude Include="ModelObject.h" />
     <ClInclude Include="Mouse.h" />
+    <ClInclude Include="ObjReader.h" />
     <ClInclude Include="RenderStates.h" />
     <ClInclude Include="SceneFactory.h" />
     <ClInclude Include="SceneInterface.h" />
@@ -292,6 +298,26 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 7\PS.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 7\VS.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shader/Chapter 5/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="LightHelper.hlsli" />
@@ -304,6 +330,8 @@
     <None Include="Shader\Chapter 5\Common.hlsli" />
     <None Include="Shader\Chapter 5\LightHelper.hlsli" />
     <None Include="Shader\Chapter 6\Common.hlsli" />
+    <None Include="Shader\Chapter 7\Common.hlsli" />
+    <None Include="Shader\Chapter 7\LightHelper.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

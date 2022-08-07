@@ -58,6 +58,12 @@
     <Filter Include="D3D\Shader\Chpater 5">
       <UniqueIdentifier>{69876e97-646d-4ea2-ad84-c6911b9a583c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\GameObject\Model">
+      <UniqueIdentifier>{6c528bb3-13c0-4702-932b-ecb5ff14b7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Shader\Chpater 7">
+      <UniqueIdentifier>{8fc1bac6-869f-452f-ae9c-3be1f9a9c20e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -97,9 +103,6 @@
     <ClCompile Include="DXTrace.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
-    <ClCompile Include="GameObject.cpp">
-      <Filter>D3D\Game\GameObject</Filter>
-    </ClCompile>
     <ClCompile Include="KeyBoard.cpp">
       <Filter>D3D\Game\InputEvent</Filter>
     </ClCompile>
@@ -136,6 +139,18 @@
     <ClCompile Include="WICTextureLoader.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
+    <ClCompile Include="ObjReader.cpp">
+      <Filter>D3D\Game\GameObject\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="GameObject.cpp">
+      <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="ModelObject.cpp">
+      <Filter>D3D\Game\GameObject\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter7Scene.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -168,9 +183,6 @@
     </ClInclude>
     <ClInclude Include="Transform.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="GameObject.h">
-      <Filter>D3D\Game\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Geometry.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
@@ -226,6 +238,18 @@
     <ClInclude Include="WICTextureLoader.h">
       <Filter>D3D\Framework</Filter>
     </ClInclude>
+    <ClInclude Include="ObjReader.h">
+      <Filter>D3D\Game\GameObject\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="GameObject.h">
+      <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="ModelObject.h">
+      <Filter>D3D\Game\GameObject\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter7Scene.h">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\Chapter 1\VS.hlsl">
@@ -264,6 +288,12 @@
     <FxCompile Include="Shader\Chapter 6\VS.hlsl">
       <Filter>D3D\Shader\Chpater 6</Filter>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 7\PS.hlsl">
+      <Filter>D3D\Shader\Chpater 7</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 7\VS.hlsl">
+      <Filter>D3D\Shader\Chpater 7</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Chapter 1\Common.hlsli">
@@ -295,6 +325,12 @@
     </None>
     <None Include="Shader\Chapter 6\Common.hlsli">
       <Filter>D3D\Shader\Chpater 6</Filter>
+    </None>
+    <None Include="Shader\Chapter 7\Common.hlsli">
+      <Filter>D3D\Shader\Chpater 7</Filter>
+    </None>
+    <None Include="Shader\Chapter 7\LightHelper.hlsli">
+      <Filter>D3D\Shader\Chpater 7</Filter>
     </None>
   </ItemGroup>
 </Project>

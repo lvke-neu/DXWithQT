@@ -63,6 +63,7 @@ public:
 
 	const wchar_t* getTexturePath();
 	void setTexturePath(const wchar_t* texturePath);
+	void setTexturePathNotDDS(const wchar_t* texturePath);
 
 	Material& getMaterial();
 	void setMaterial(Material material);

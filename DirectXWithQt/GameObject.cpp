@@ -2,6 +2,8 @@
 #include "d3dUtil.h"
 #include "DDSTextureLoader.h"
 #include "RenderStates.h"
+#include "WICTextureLoader.h"
+
 
 std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
 {
@@ -35,11 +37,17 @@ std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
 		L"Shader\\Chapter 5\\PS.cso",
 		L"Shader\\Chapter 5\\PS.hlsl"
 	},
-		{
+	{
 		L"Shader\\Chapter 6\\VS.cso",
 		L"Shader\\Chapter 6\\VS.hlsl",
 		L"Shader\\Chapter 6\\PS.cso",
 		L"Shader\\Chapter 6\\PS.hlsl"
+	},
+	{
+		L"Shader\\Chapter 7\\VS.cso",
+		L"Shader\\Chapter 7\\VS.hlsl",
+		L"Shader\\Chapter 7\\PS.cso",
+		L"Shader\\Chapter 7\\PS.hlsl"
 	}
 };
 
@@ -126,6 +134,13 @@ void GameObject::setTexturePath(const wchar_t* texturePath)
 
 	
 	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\flarealpha.dds", nullptr, m_pTexture2.GetAddressOf());
+}
+
+void GameObject::setTexturePathNotDDS(const wchar_t* texturePath)
+{
+	m_texturePath = texturePath;
+
+	CreateWICTextureFromFile(m_pd3dDevice.Get(), m_texturePath, nullptr, m_pTexture.GetAddressOf());
 }
 
 Material& GameObject::getMaterial() 
