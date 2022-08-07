@@ -4,12 +4,27 @@
 #include <string>
 #include "RenderStates.h"
 
+
 Chapter2Scene::Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
+
+	D3D11_BUFFER_DESC cbd;
+	ZeroMemory(&cbd, sizeof(cbd));
+	cbd.Usage = D3D11_USAGE_DYNAMIC;
+	cbd.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+	cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+	cbd.ByteWidth = sizeof(Fog);
+	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pFogCB.GetAddressOf());
+
+	m_pd3dImmediateContext->VSSetConstantBuffers(5, 1, m_pFogCB.GetAddressOf());
+	m_pd3dImmediateContext->PSSetConstantBuffers(5, 1, m_pFogCB.GetAddressOf());
+
+	setFogEnabled(true);
 }
+
 
 void Chapter2Scene::initScene()
 {
@@ -40,16 +55,30 @@ void Chapter2Scene::initScene()
 		XMFLOAT3(2.0f, 0.0f, 0.0f)
 	));
 
+	m_box3 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_box3.setMesh(Geometry::buildBoxMesh());
+	m_box3.setShader(2);
+	m_box3.setTexturePath(L"Texture\\WoodCrate.dds");
+	m_box3.setMaterial(material);
+	m_box3.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(10.0f, -4.0f, 30.0f)
+	));
+
 	m_plane = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_plane.setMesh(Geometry::buildPlaneMesh(10.0f, 10.0f));
 	m_plane.setShader(2);
 	m_plane.setTexturePath(L"Texture\\grass.dds");
 	m_plane.setMaterial(material);
 	m_plane.setTransform(Transform(
-		XMFLOAT3(10.0f, 10.0f, 10.0f),
+		XMFLOAT3(100.0f, 100.0f, 100.0f),
 		XMFLOAT3(XM_PI/2, 0.0f, 0.0f),
 		XMFLOAT3(0.0f, -5.0f, 0.0f)
 	));
+
+
+
 }
 
 
@@ -111,9 +140,12 @@ void Chapter2Scene::updateScene(float deltaTime)
 
 void Chapter2Scene::drawScene()
 {
+	
 	m_box1.draw();
 
 	m_box2.draw();
+
+	m_box3.draw();
 
 	m_plane.draw();
 }
@@ -265,6 +297,36 @@ void Chapter2Scene::changeFloorTexture()
 		break;
 	}
 
+}
+
+
+void Chapter2Scene::setFogEnabled(bool b)
+{
+	Fog fog;
+	fog.fogColor = XMFLOAT4(0.75f, 0.75f, 0.75f, 1.0f);
+	fog.fogEnabled = b;
+	fog.fogStart = 15.0f;
+	fog.fogRange = 75.0f;
+
+
+	D3D11_MAPPED_SUBRESOURCE mappedData;
+	m_pd3dImmediateContext->Map(m_pFogCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(Fog), &fog, sizeof(Fog));
+	m_pd3dImmediateContext->Unmap(m_pFogCB.Get(), 0);
+}
+
+void Chapter2Scene::setFogRange(float range)
+{
+	Fog fog;
+	fog.fogColor = XMFLOAT4(0.75f, 0.75f, 0.75f, 1.0f);
+	fog.fogEnabled = true;
+	fog.fogStart = 15.0f;
+	fog.fogRange = range;
+
+	D3D11_MAPPED_SUBRESOURCE mappedData;
+	m_pd3dImmediateContext->Map(m_pFogCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(Fog), &fog, sizeof(Fog));
+	m_pd3dImmediateContext->Unmap(m_pFogCB.Get(), 0);
 }
 
 void Chapter2Scene::notifyAll()

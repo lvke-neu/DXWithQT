@@ -30,6 +30,13 @@ public:
 public:
 	void setScene(std::string type);
 	IScene* getScene() { return m_scene; }
+	void setRenderTargetViewColor(float x, float y, float z, float w)
+	{ 
+		m_renderTargetViewColor[0] = x;
+		m_renderTargetViewColor[1] = y;
+		m_renderTargetViewColor[2] = z;
+		m_renderTargetViewColor[3] = w;
+	};
 
 private:
 	IScene* m_scene{ nullptr };

@@ -57,6 +57,14 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 {
 	m_RenderWidget->m_gameApp->setScene(item->text().toStdString());
 	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
+	if (item->text().toStdString() == "Chapter 2")
+	{
+		m_RenderWidget->m_gameApp->setRenderTargetViewColor(0.752941251f, 0.752941251f, 0.752941251f, 1.000000000f);
+	}
+	else
+	{
+		m_RenderWidget->m_gameApp->setRenderTargetViewColor(0.0f, 0.0f, 0.0f, 1.000000000f);
+	}
 
 	QLabel* introductionLabel = findChild<QLabel*>("introductionLabel");
 	if (introductionLabel)
