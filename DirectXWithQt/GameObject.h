@@ -72,7 +72,7 @@ public:
 
 	void draw();     
 	void draw(UINT IndexCount, UINT StartIndexLocation);
-
+	void draw2d();
 
 	void moveZAxis(float distance) { m_transform.moveZAxis(distance); changeWorldMatrixCB(); }
 	void moveXAxis(float distance) { m_transform.moveXAxis(distance); changeWorldMatrixCB(); }

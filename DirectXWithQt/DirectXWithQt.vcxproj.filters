@@ -52,7 +52,10 @@
     <Filter Include="D3D\Shader\Chapter 4">
       <UniqueIdentifier>{81b0faad-7f1b-4c0f-be22-e1618fcacd40}</UniqueIdentifier>
     </Filter>
-    <Filter Include="D3D\Shader\Chpater5">
+    <Filter Include="D3D\Shader\Chpater 6">
+      <UniqueIdentifier>{ef7fdddf-bb96-4f30-9ddb-ef7971d45bda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Shader\Chpater 5">
       <UniqueIdentifier>{69876e97-646d-4ea2-ad84-c6911b9a583c}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -126,6 +129,12 @@
     </ClCompile>
     <ClCompile Include="Chapter5Scene.cpp">
       <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter6Scene.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="WICTextureLoader.cpp">
+      <Filter>D3D\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -211,6 +220,12 @@
     <ClInclude Include="Chapter5Scene.h">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClInclude>
+    <ClInclude Include="Chapter6Scene.h">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="WICTextureLoader.h">
+      <Filter>D3D\Framework</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\Chapter 1\VS.hlsl">
@@ -238,10 +253,16 @@
       <Filter>D3D\Shader\Chapter 4</Filter>
     </FxCompile>
     <FxCompile Include="Shader\Chapter 5\PS.hlsl">
-      <Filter>D3D\Shader\Chpater5</Filter>
+      <Filter>D3D\Shader\Chpater 5</Filter>
     </FxCompile>
     <FxCompile Include="Shader\Chapter 5\VS.hlsl">
-      <Filter>D3D\Shader\Chpater5</Filter>
+      <Filter>D3D\Shader\Chpater 5</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 6\PS.hlsl">
+      <Filter>D3D\Shader\Chpater 6</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 6\VS.hlsl">
+      <Filter>D3D\Shader\Chpater 6</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
@@ -267,10 +288,13 @@
       <Filter>D3D\Shader\Chapter 4</Filter>
     </None>
     <None Include="Shader\Chapter 5\Common.hlsli">
-      <Filter>D3D\Shader\Chpater5</Filter>
+      <Filter>D3D\Shader\Chpater 5</Filter>
     </None>
     <None Include="Shader\Chapter 5\LightHelper.hlsli">
-      <Filter>D3D\Shader\Chpater5</Filter>
+      <Filter>D3D\Shader\Chpater 5</Filter>
+    </None>
+    <None Include="Shader\Chapter 6\Common.hlsli">
+      <Filter>D3D\Shader\Chpater 6</Filter>
     </None>
   </ItemGroup>
 </Project>

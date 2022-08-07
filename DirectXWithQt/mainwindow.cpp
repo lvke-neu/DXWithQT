@@ -88,6 +88,11 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 			introductionLabel->setText(u8"光照（目前只实现方向光）+ 阴影(阴影通过阴影矩阵实现）\n注意阴影矩阵第二个参数的w为零表示方向光、为1表示点光，滑动右侧滑动条来调整方向光的方向");
 			introductionLabel->setFixedWidth(600);
 		}
+		else if (item->text().toStdString() == "Chapter 6")
+		{
+			introductionLabel->setText(u8"实现了几个类似的序列图效果\n按1切换火焰、按2切换闪电");
+			introductionLabel->setFixedWidth(250);
+		}
 	}
 }
 
