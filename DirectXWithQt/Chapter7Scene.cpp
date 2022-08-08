@@ -16,7 +16,6 @@ Chapter7Scene::Chapter7Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 
 void Chapter7Scene::initScene()
 {
-
 	m_house = ModelObject(L"Model\\house.mbo", L"Model\\house.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_house.setShader(7);
 	m_house.setTransform(Transform(
@@ -24,6 +23,15 @@ void Chapter7Scene::initScene()
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
 		XMFLOAT3(-2.0f, -5.0f, 0.0f)
 	));
+
+	m_tree = ModelObject(L"Model\\tree.mbo", L"Model\\tree.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_tree.setShader(7);
+	m_tree.setTransform(Transform(
+		XMFLOAT3(0.01f, 0.01f, 0.01f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(-2.0f, -3.0f, -100.0f)
+	));
+
 
 	Material material;
 	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -33,10 +41,10 @@ void Chapter7Scene::initScene()
 	m_plane = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_plane.setMesh(Geometry::buildPlaneMesh(10.0f, 10.0f));
 	m_plane.setShader(7);
-	m_plane.setTexturePath(L"Texture\\grass.dds");
+	m_plane.setTexturePathDDS(L"Texture\\grass.dds");
 	m_plane.setMaterial(material);
 	m_plane.setTransform(Transform(
-		XMFLOAT3(100.0f, 100.0f, 100.0f),
+		XMFLOAT3(1000.0f, 1000.0f, 1000.0f),
 		XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
 		XMFLOAT3(0.0f, -5.0f, 0.0f)
 	));
@@ -85,7 +93,9 @@ void Chapter7Scene::updateScene(float deltaTime)
 void Chapter7Scene::drawScene()
 {
 	m_house.draw();
+	m_tree.draw();
 	m_plane.draw();
+	
 }
 
 

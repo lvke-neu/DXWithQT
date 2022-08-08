@@ -62,8 +62,8 @@ public:
 	void setShader(const uint32_t& shader);
 
 	const wchar_t* getTexturePath();
-	void setTexturePath(const wchar_t* texturePath);
-	void setTexturePathNotDDS(const wchar_t* texturePath);
+	void setTexturePathDDS(const wchar_t* texturePath);
+	void setTexturePathWIC(const wchar_t* texturePath);
 
 	Material& getMaterial();
 	void setMaterial(Material material);

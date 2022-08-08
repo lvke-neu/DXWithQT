@@ -21,6 +21,7 @@ public:
 
 private:
 	ModelObject m_house;
+	ModelObject m_tree;
 	GameObject m_plane;
 
 };

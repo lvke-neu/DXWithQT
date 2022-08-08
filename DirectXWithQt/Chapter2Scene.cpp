@@ -36,7 +36,7 @@ void Chapter2Scene::initScene()
 	m_box1 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box1.setMesh(Geometry::buildBoxMesh());
 	m_box1.setShader(2);
-	m_box1.setTexturePath(L"Texture\\WoodCrate.dds");
+	m_box1.setTexturePathDDS(L"Texture\\WoodCrate.dds");
 	m_box1.setMaterial(material);
 	m_box1.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -47,7 +47,7 @@ void Chapter2Scene::initScene()
 	m_box2 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box2.setMesh(Geometry::buildBoxMesh());
 	m_box2.setShader(2);
-	m_box2.setTexturePath(L"Texture\\WoodCrate.dds");
+	m_box2.setTexturePathDDS(L"Texture\\WoodCrate.dds");
 	m_box2.setMaterial(material);
 	m_box2.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -58,7 +58,7 @@ void Chapter2Scene::initScene()
 	m_box3 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box3.setMesh(Geometry::buildBoxMesh());
 	m_box3.setShader(2);
-	m_box3.setTexturePath(L"Texture\\WoodCrate.dds");
+	m_box3.setTexturePathDDS(L"Texture\\WoodCrate.dds");
 	m_box3.setMaterial(material);
 	m_box3.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -69,7 +69,7 @@ void Chapter2Scene::initScene()
 	m_plane = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_plane.setMesh(Geometry::buildPlaneMesh(10.0f, 10.0f));
 	m_plane.setShader(2);
-	m_plane.setTexturePath(L"Texture\\grass.dds");
+	m_plane.setTexturePathDDS(L"Texture\\grass.dds");
 	m_plane.setMaterial(material);
 	m_plane.setTransform(Transform(
 		XMFLOAT3(100.0f, 100.0f, 100.0f),
@@ -178,34 +178,34 @@ void Chapter2Scene::changeBox1Texture()
 	switch (num1 % 11)
 	{
 	case 1:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\1.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\1.dds");
 		break;
 	case 2:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\2.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\2.dds");
 		break;
 	case 3:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\3.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\3.dds");
 		break;
 	case 4:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\4.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\4.dds");
 		break;
 	case 5:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\5.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\5.dds");
 		break;
 	case 6:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\6.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\6.dds");
 		break;
 	case 7:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\7.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\7.dds");
 		break;
 	case 8:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\8.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\8.dds");
 		break;
 	case 9:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\9.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\9.dds");
 		break;
 	case 10:
-		m_box1.setTexturePath(L"Texture\\changeTexture\\10.dds");
+		m_box1.setTexturePathDDS(L"Texture\\changeTexture\\10.dds");
 		break;
 	default:
 		break;
@@ -221,34 +221,34 @@ void Chapter2Scene::changeBox2Texture()
 	switch (num2 % 11)
 	{
 	case 1:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\1.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\1.dds");
 		break;
 	case 2:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\2.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\2.dds");
 		break;
 	case 3:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\3.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\3.dds");
 		break;
 	case 4:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\4.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\4.dds");
 		break;
 	case 5:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\5.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\5.dds");
 		break;
 	case 6:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\6.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\6.dds");
 		break;
 	case 7:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\7.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\7.dds");
 		break;
 	case 8:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\8.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\8.dds");
 		break;
 	case 9:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\9.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\9.dds");
 		break;
 	case 10:
-		m_box2.setTexturePath(L"Texture\\changeTexture\\10.dds");
+		m_box2.setTexturePathDDS(L"Texture\\changeTexture\\10.dds");
 		break;
 	default:
 		break;
@@ -264,34 +264,34 @@ void Chapter2Scene::changeFloorTexture()
 	switch (num3 % 11)
 	{
 	case 1:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\1.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\1.dds");
 		break;
 	case 2:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\2.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\2.dds");
 		break;
 	case 3:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\3.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\3.dds");
 		break;
 	case 4:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\4.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\4.dds");
 		break;
 	case 5:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\5.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\5.dds");
 		break;
 	case 6:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\6.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\6.dds");
 		break;
 	case 7:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\7.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\7.dds");
 		break;
 	case 8:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\8.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\8.dds");
 		break;
 	case 9:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\9.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\9.dds");
 		break;
 	case 10:
-		m_plane.setTexturePath(L"Texture\\changeTexture\\10.dds");
+		m_plane.setTexturePathDDS(L"Texture\\changeTexture\\10.dds");
 		break;
 	default:
 		break;

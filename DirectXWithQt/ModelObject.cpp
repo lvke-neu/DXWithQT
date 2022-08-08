@@ -5,7 +5,7 @@ ModelObject::ModelObject(wchar_t * mboFileName, wchar_t * objFileName, ComPtr<ID
 	m_mboFileName(mboFileName), m_objFileName(objFileName),GameObject(pd3dDevice, pd3dImmediateContext)
 {
 
-	if (objReader.Read(m_mboFileName, objFileName))
+	if (objReader.ReadObj(m_objFileName))
 	{
 		builMesh();
 		buildTexture();
@@ -17,9 +17,22 @@ ModelObject::ModelObject(wchar_t * mboFileName, wchar_t * objFileName, ComPtr<ID
 void ModelObject::builMesh()
 {
 	Mesh mesh;
-	mesh.vertexBuffer = objReader.objParts[0].vertices;
-	int size = objReader.objParts[0].indices16.size();
-	mesh.indexBuffer = size != 0 ? objReader.objParts[0].indices16 : objReader.objParts[0].indices32;
+	int size;
+	mesh.vertexBuffer.clear();
+	mesh.indexBuffer.clear();
+	for (auto& x : objReader.objParts)
+	{
+		mesh.vertexBuffer.insert(mesh.vertexBuffer.end(), x.vertices.begin(), x.vertices.end());
+		size = x.indices16.size();
+		if (size)
+		{
+			mesh.indexBuffer.insert(mesh.indexBuffer.end(), x.indices16.begin(), x.indices16.end());
+		}
+		else
+		{
+			mesh.indexBuffer.insert(mesh.indexBuffer.end(), x.indices32.begin(), x.indices32.end());
+		}
+	}
 
 	setMesh(mesh);
 
@@ -27,7 +40,7 @@ void ModelObject::builMesh()
 
 void ModelObject::buildTexture()
 {
-	setTexturePathNotDDS(objReader.objParts[0].texStrDiffuse.c_str());
+	setTexturePathWIC(objReader.objParts[0].texStrDiffuse.c_str());
 }
 
 void ModelObject::buildMaterial()
