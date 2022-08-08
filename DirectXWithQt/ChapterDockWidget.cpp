@@ -14,6 +14,8 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	initChpa3DockWidget();
 	initChpa4DockWidget();
 	initChpa5DockWidget();
+	initChpa6DockWidget();
+	initChpa7DockWidget();
 }
 
 ChapterDockWidget::~ChapterDockWidget()
@@ -38,6 +40,8 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 		m_cptDockWidget[2]->hide();
 		m_cptDockWidget[3]->hide();
 		m_cptDockWidget[4]->hide();
+		m_cptDockWidget[5]->hide();
+		m_cptDockWidget[6]->hide();
 	}
 	else if (chapterType == "Chapter 2")
 	{
@@ -46,6 +50,8 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 		m_cptDockWidget[2]->hide();
 		m_cptDockWidget[3]->hide();
 		m_cptDockWidget[4]->hide();
+		m_cptDockWidget[5]->hide();
+		m_cptDockWidget[6]->hide();
 
 		Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
 		if(chapter2Scene)
@@ -58,6 +64,8 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 		m_cptDockWidget[2]->show();
 		m_cptDockWidget[3]->hide();
 		m_cptDockWidget[4]->hide();
+		m_cptDockWidget[5]->hide();
+		m_cptDockWidget[6]->hide();
 
 		Chapter3Scene* chapter3Scene = (Chapter3Scene*)m_RenderWidget->m_gameApp->getScene();
 		if (chapter3Scene)
@@ -71,6 +79,8 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 		m_cptDockWidget[2]->hide();
 		m_cptDockWidget[3]->show();
 		m_cptDockWidget[4]->hide();
+		m_cptDockWidget[5]->hide();
+		m_cptDockWidget[6]->hide();
 
 		Chapter4Scene* chapter4Scene = (Chapter4Scene*)m_RenderWidget->m_gameApp->getScene();
 		if (chapter4Scene)
@@ -87,6 +97,32 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 		m_cptDockWidget[2]->hide();
 		m_cptDockWidget[3]->hide();
 		m_cptDockWidget[4]->show();
+		m_cptDockWidget[5]->hide();
+		m_cptDockWidget[6]->hide();
+	}
+	else if (chapterType == "Chapter 6")
+	{
+		m_cptDockWidget[0]->hide();
+		m_cptDockWidget[1]->hide();
+		m_cptDockWidget[2]->hide();
+		m_cptDockWidget[3]->hide();
+		m_cptDockWidget[4]->hide();
+		m_cptDockWidget[5]->hide();
+		m_cptDockWidget[6]->hide();
+	}
+	else if (chapterType == "Chapter 7")
+	{
+		Chapter7Scene* chapter7Scene = (Chapter7Scene*)m_RenderWidget->m_gameApp->getScene();
+		if (chapter7Scene)
+			chapter7Scene->registerListeningEvent(this);
+
+		m_cptDockWidget[0]->hide();
+		m_cptDockWidget[1]->hide();
+		m_cptDockWidget[2]->hide();
+		m_cptDockWidget[3]->hide();
+		m_cptDockWidget[4]->hide();
+		m_cptDockWidget[5]->hide();
+		m_cptDockWidget[6]->show();
 	}
 	else
 	{
@@ -95,6 +131,8 @@ void ChapterDockWidget::generateDockWidget(std::string chapterType)
 		m_cptDockWidget[2]->hide();
 		m_cptDockWidget[3]->hide();
 		m_cptDockWidget[4]->hide();
+		m_cptDockWidget[5]->hide();
+		m_cptDockWidget[6]->hide();
 	}
 }
 
@@ -181,7 +219,7 @@ void ChapterDockWidget::initChpa2DockWidget()
 	qSlider->setMaximum(1000);
 	qSlider->setSingleStep(1);
 	qSlider->setValue(0);
-
+	
 	QWidget::connect(qSlider, &QSlider::valueChanged, this,
 		[=]
 		{
@@ -250,6 +288,49 @@ void ChapterDockWidget::initChpa2DockWidget()
 			}
 		});
 
+
+	QPushButton* button_fog_open = new QPushButton("开启雾效果", dockWidget2);
+	button_fog_open->move(0, 580);
+	QWidget::connect(button_fog_open, &QPushButton::clicked, this,
+		[=]
+		{
+			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter2Scene)
+			{
+				chapter2Scene->setFogEnabled(true);
+			}
+		});
+
+
+	QPushButton* button_fog_close = new QPushButton("关闭雾效果", dockWidget2);
+	button_fog_close->move(0, 610);
+	QWidget::connect(button_fog_close, &QPushButton::clicked, this,
+		[=]
+		{
+			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter2Scene)
+			{
+				chapter2Scene->setFogEnabled(false);
+			}
+		});
+
+	QLabel* labelFogRange = new QLabel("改变雾的range", dockWidget2);
+	labelFogRange->move(0, 640);
+	QSlider* qSliderFogRange = new QSlider(Qt::Horizontal, dockWidget2);
+	qSliderFogRange->move(0, 670);
+	qSliderFogRange->setMinimum(15);
+	qSliderFogRange->setMaximum(190);
+	qSliderFogRange->setSingleStep(1);
+	qSliderFogRange->setValue(75);
+	connect(qSliderFogRange, &QSlider::valueChanged, this,
+		[=]
+		{
+			Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter2Scene)
+			{
+				chapter2Scene->setFogRange(qSliderFogRange->value());
+			}
+		});
 
 
 	dockWidget2->setObjectName("dockWidget2");
@@ -382,32 +463,121 @@ void ChapterDockWidget::initChpa5DockWidget()
 	QLabel* labelDirLight = new QLabel(u8"方向光方向(x,y,z)：", dockWidget5);
 	labelDirLight->move(0, 200);
 	
+	QSlider* qSliderX;
 	QLineEdit* lineDirLightX = new QLineEdit(dockWidget5);
 	lineDirLightX->setPlaceholderText("x");
-	lineDirLightX->setText("0.0");
+	lineDirLightX->setText("0.5");
 	lineDirLightX->move(0, 230);
 	lineDirLightX->setObjectName("lineDirLightX");
-	connect(lineDirLightX, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+	lineDirLightX->setReadOnly(true);
 
+	qSliderX = new QSlider(Qt::Horizontal, dockWidget5);
+	qSliderX->move(0, 260);
+	qSliderX->setMinimum(-1000);
+	qSliderX->setMaximum(1000);
+	qSliderX->setSingleStep(1);
+	qSliderX->setValue(500);
+	connect(qSliderX, &QSlider::valueChanged, this,
+		[=]
+		{
+			lineDirLightX->setText( std::to_string(qSliderX->value() / 1000.0f).c_str() );
+			chapter5_changeDirLight();
+		});
 
+	QSlider* qSliderY;
 	QLineEdit* lineDirLightY = new QLineEdit(dockWidget5);
 	lineDirLightY->setPlaceholderText("y");
-	lineDirLightY->setText("-0.5");
-	lineDirLightY->move(0, 260);
+	lineDirLightY->setText("-1.0");
+	lineDirLightY->move(0, 290);
 	lineDirLightY->setObjectName("lineDirLightY");
-	connect(lineDirLightY, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+	lineDirLightY->setReadOnly(true);
 
+	qSliderY = new QSlider(Qt::Horizontal, dockWidget5);
+	qSliderY->move(0, 320);
+	qSliderY->setMinimum(-1000);
+	qSliderY->setMaximum(1000);
+	qSliderY->setSingleStep(1);
+	qSliderY->setValue(-1000);
+	connect(qSliderY, &QSlider::valueChanged, this,
+		[=]
+		{
+			lineDirLightY->setText(std::to_string(qSliderY->value() / 1000.0f).c_str());
+			chapter5_changeDirLight();
+		});
+
+
+	QSlider* qSliderZ;
 	QLineEdit* lineDirLightZ = new QLineEdit(dockWidget5);
 	lineDirLightZ->setPlaceholderText("z");
-	lineDirLightZ->setText("0.5");
-	lineDirLightZ->move(0, 290);
+	lineDirLightZ->setText("0.0");
+	lineDirLightZ->move(0, 350);
 	lineDirLightZ->setObjectName("lineDirLightZ");
-	connect(lineDirLightZ, &QLineEdit::textChanged, this, &ChapterDockWidget::chapter5_changeDirLight);
+	lineDirLightZ->setReadOnly(true);
+
+	qSliderZ = new QSlider(Qt::Horizontal, dockWidget5);
+	qSliderZ->move(0, 380);
+	qSliderZ->setMinimum(-1000);
+	qSliderZ->setMaximum(1000);
+	qSliderZ->setSingleStep(1);
+	qSliderZ->setValue(0);
+	connect(qSliderZ, &QSlider::valueChanged, this,
+		[=]
+		{
+			lineDirLightZ->setText(std::to_string(qSliderZ->value() / 1000.0f).c_str());
+			chapter5_changeDirLight();
+		});
+
+
+	QPushButton* resetDir = new QPushButton("重置", dockWidget5);
+	resetDir->move(0, 420);
+	connect(resetDir, &QPushButton::clicked, this,
+		[=]()
+		{
+			Chapter5Scene* chapter5Scene = (Chapter5Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter5Scene )
+			{
+				lineDirLightX->setText("0.0");
+				qSliderX->setValue(0);
+				lineDirLightY->setText("0.0");	
+				qSliderY->setValue(0);
+				lineDirLightZ->setText("0.0");
+				qSliderZ->setValue(0);
+				chapter5Scene->setDirLight(0.0f, 0.0f, 0.0f);
+			}
+		});
 
 	dockWidget5->setObjectName("dockWidget5");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget5);
 	dockWidget5->hide();
 	m_cptDockWidget.push_back(dockWidget5);
+}
+
+void ChapterDockWidget::initChpa6DockWidget()
+{
+	//************************************ Chapter 7 *****************************************
+	QDockWidget* dockWidget6 = new QDockWidget(m_parent);
+	dockWidget6->hide();
+	m_cptDockWidget.push_back(dockWidget6);
+}
+
+void ChapterDockWidget::initChpa7DockWidget()
+{
+	//************************************ Chapter 7 *****************************************
+	QDockWidget* dockWidget7 = new QDockWidget(m_parent);
+	dockWidget7->setFixedWidth(115);
+	dockWidget7->setTitleBarWidget(new QWidget);
+
+	QLabel* labelCamProperty = new QLabel(dockWidget7);
+	labelCamProperty->setObjectName("CameraProperty");
+	labelCamProperty->setFixedHeight(200);
+
+
+	
+
+	dockWidget7->setObjectName("dockWidget7");
+	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget7);
+	dockWidget7->hide();
+	m_cptDockWidget.push_back(dockWidget7);
 }
 
 void ChapterDockWidget::chapter1_setColor()
@@ -499,6 +669,14 @@ void ChapterDockWidget::callback(const std::string& msg)
 	if (dockWidget5)
 	{
 		QLabel* labelCamProperty = dockWidget5->findChild<QLabel*>("CameraProperty");
+		if (labelCamProperty)
+			labelCamProperty->setText(QString(msg.c_str()));
+	}
+
+	QDockWidget* dockWidget7 = m_parent->findChild<QDockWidget*>("dockWidget7");
+	if (dockWidget7)
+	{
+		QLabel* labelCamProperty = dockWidget7->findChild<QLabel*>("CameraProperty");
 		if (labelCamProperty)
 			labelCamProperty->setText(QString(msg.c_str()));
 	}

@@ -2,6 +2,8 @@
 #include "d3dUtil.h"
 #include "DDSTextureLoader.h"
 #include "RenderStates.h"
+#include "WICTextureLoader.h"
+
 
 std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
 {
@@ -34,6 +36,18 @@ std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
 		L"Shader\\Chapter 5\\VS.hlsl",
 		L"Shader\\Chapter 5\\PS.cso",
 		L"Shader\\Chapter 5\\PS.hlsl"
+	},
+	{
+		L"Shader\\Chapter 6\\VS.cso",
+		L"Shader\\Chapter 6\\VS.hlsl",
+		L"Shader\\Chapter 6\\PS.cso",
+		L"Shader\\Chapter 6\\PS.hlsl"
+	},
+	{
+		L"Shader\\Chapter 7\\VS.cso",
+		L"Shader\\Chapter 7\\VS.hlsl",
+		L"Shader\\Chapter 7\\PS.cso",
+		L"Shader\\Chapter 7\\PS.hlsl"
 	}
 };
 
@@ -120,6 +134,13 @@ void GameObject::setTexturePath(const wchar_t* texturePath)
 
 	
 	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\flarealpha.dds", nullptr, m_pTexture2.GetAddressOf());
+}
+
+void GameObject::setTexturePathNotDDS(const wchar_t* texturePath)
+{
+	m_texturePath = texturePath;
+
+	CreateWICTextureFromFile(m_pd3dDevice.Get(), m_texturePath, nullptr, m_pTexture.GetAddressOf());
 }
 
 Material& GameObject::getMaterial() 
@@ -222,4 +243,22 @@ void GameObject::draw(UINT IndexCount, UINT StartIndexLocation)
 	m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
 
 	m_pd3dImmediateContext->DrawIndexed(IndexCount, StartIndexLocation, 0);
+}
+
+void GameObject::draw2d()
+{
+	UINT stride = sizeof(VertexPosNormalTex);
+	UINT offset = 0;
+	m_pd3dImmediateContext->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+	m_pd3dImmediateContext->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+	m_pd3dImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+	m_pd3dImmediateContext->IASetInputLayout(m_pVertexLayout.Get());
+	m_pd3dImmediateContext->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+	m_pd3dImmediateContext->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
+
+	//设置采样方式
+	m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
+
+	m_pd3dImmediateContext->DrawIndexed(m_mesh.indexBuffer.size(), 0, 0);
 }

@@ -28,7 +28,9 @@ public:
 	void initChpa3DockWidget();
 	void initChpa4DockWidget();
 	void initChpa5DockWidget();
-
+	void initChpa6DockWidget();
+	void initChpa7DockWidget();
+	
 	void callback(const std::string& msg);
 
 private:

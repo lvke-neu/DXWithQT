@@ -6,6 +6,18 @@
 
 class Chapter5Scene : public IScene, public ListeningEvent
 {
+	//是否开启阴影
+	struct EnableShadow
+	{
+		float isShadow;
+		XMFLOAT3 pad;
+	};
+	
+	//阴影矩阵
+	struct ShadowMatrix
+	{
+		XMMATRIX shadowMatrix;
+	};
 public:
 	Chapter5Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 	~Chapter5Scene() {};
@@ -17,6 +29,8 @@ public:
 	void setDirLight(float x, float y, float z) { setDirLight(XMFLOAT3(x, y, z)); }
 public:
 
+	void set_EnableShadow(bool b);
+	void set_ShadowMatrix();
 
 	void notifyAll();
 
@@ -27,6 +41,13 @@ private:
 	GameObject m_floor;
 
 	GameObject m_box;
+	GameObject m_box2;
+private:
+	Material m_generalMaterial; 
+	Material m_shadowMaterial;
+private:
+	ComPtr<ID3D11Buffer> m_pEnableShadowCB;
+	ComPtr<ID3D11Buffer> m_pShadowMatrixCB;
 
 };
 

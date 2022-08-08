@@ -63,6 +63,7 @@ public:
 
 	const wchar_t* getTexturePath();
 	void setTexturePath(const wchar_t* texturePath);
+	void setTexturePathNotDDS(const wchar_t* texturePath);
 
 	Material& getMaterial();
 	void setMaterial(Material material);
@@ -72,7 +73,7 @@ public:
 
 	void draw();     
 	void draw(UINT IndexCount, UINT StartIndexLocation);
-
+	void draw2d();
 
 	void moveZAxis(float distance) { m_transform.moveZAxis(distance); changeWorldMatrixCB(); }
 	void moveXAxis(float distance) { m_transform.moveXAxis(distance); changeWorldMatrixCB(); }

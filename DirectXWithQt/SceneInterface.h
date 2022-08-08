@@ -36,6 +36,6 @@ protected:
 	ComPtr<ID3D11Buffer> m_pLightCB{ nullptr };
 	Camera m_perspectiveCamera;
 
-	XMFLOAT3 m_dirLight_dir = XMFLOAT3(0.0f, -0.5f, 0.5f);
+	XMFLOAT3 m_dirLight_dir = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
 };

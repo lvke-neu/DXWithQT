@@ -57,6 +57,14 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 {
 	m_RenderWidget->m_gameApp->setScene(item->text().toStdString());
 	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
+	if (item->text().toStdString() == "Chapter 2")
+	{
+		m_RenderWidget->m_gameApp->setRenderTargetViewColor(0.752941251f, 0.752941251f, 0.752941251f, 1.000000000f);
+	}
+	else
+	{
+		m_RenderWidget->m_gameApp->setRenderTargetViewColor(0.0f, 0.0f, 0.0f, 1.000000000f);
+	}
 
 	QLabel* introductionLabel = findChild<QLabel*>("introductionLabel");
 	if (introductionLabel)
@@ -85,8 +93,18 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 		}
 		else if (item->text().toStdString() == "Chapter 5")
 		{
-			introductionLabel->setText(u8"光照（方向光、点光源、聚光灯）+ 阴影");
-			introductionLabel->setFixedWidth(430);
+			introductionLabel->setText(u8"光照（目前只实现方向光）+ 阴影(阴影通过阴影矩阵实现）\n注意阴影矩阵第二个参数的w为零表示方向光、为1表示点光，滑动右侧滑动条来调整方向光的方向");
+			introductionLabel->setFixedWidth(600);
+		}
+		else if (item->text().toStdString() == "Chapter 6")
+		{
+			introductionLabel->setText(u8"实现了几个类似的序列图效果\n按1切换火焰、按2切换闪电");
+			introductionLabel->setFixedWidth(250);
+		}
+		else if (item->text().toStdString() == "Chapter 7")
+		{
+			introductionLabel->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型");
+			introductionLabel->setFixedWidth(400);
 		}
 	}
 }

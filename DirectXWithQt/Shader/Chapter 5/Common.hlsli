@@ -44,3 +44,15 @@ cbuffer LightCB : register(b4)
 {
 	DirectionLight g_directionLight;
 }
+
+cbuffer EnableShadowCB : register(b5)
+{
+	float g_isShadow;
+	float3 pad222;
+}
+
+cbuffer ShadowMatrixCB : register(b6)
+{
+	matrix g_shadowMatrix;
+}
+
