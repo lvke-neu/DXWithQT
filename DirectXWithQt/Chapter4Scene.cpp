@@ -35,7 +35,7 @@ void Chapter4Scene::initScene()
 	m_box = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box.setMesh(Geometry::buildBoxMesh());
 	m_box.setShader(4);
-	m_box.setTexturePath(L"Texture\\WoodCrate.dds");
+	m_box.setTexturePathDDS(L"Texture\\WoodCrate.dds");
 	m_box.setMaterial(material);
 	m_box.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -46,7 +46,7 @@ void Chapter4Scene::initScene()
 	m_firstPersonBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_firstPersonBox.setMesh(Geometry::buildBoxMesh());
 	m_firstPersonBox.setShader(4);
-	m_firstPersonBox.setTexturePath(L"Texture\\WoodCrate.dds");
+	m_firstPersonBox.setTexturePathDDS(L"Texture\\WoodCrate.dds");
 	m_firstPersonBox.setMaterial(material);
 	m_firstPersonBox.setTransform(Transform(
 		XMFLOAT3(0.5f, 0.5f, 0.5f),
@@ -57,20 +57,20 @@ void Chapter4Scene::initScene()
 	m_wall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_wall.setMesh(Geometry::buildPlaneMesh(4.0f, 2.0f));
 	m_wall.setShader(4);
-	m_wall.setTexturePath(L"Texture\\brick.dds");
+	m_wall.setTexturePathDDS(L"Texture\\brick.dds");
 	m_wall.setMaterial(material);
 
 	
 	m_mirrorWall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_mirrorWall.setMesh(Geometry::buildPlaneMesh(1.0f, 2.0f));
 	m_mirrorWall.setShader(4);
-	m_mirrorWall.setTexturePath(L"Texture\\brick.dds");
+	m_mirrorWall.setTexturePathDDS(L"Texture\\brick.dds");
 	m_mirrorWall.setMaterial(material);
 
 	m_floor = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_floor.setMesh(Geometry::buildPlaneMesh(5.0f, 5.0f));
 	m_floor.setShader(4);
-	m_floor.setTexturePath(L"Texture\\floor.dds");
+	m_floor.setTexturePathDDS(L"Texture\\floor.dds");
 	m_floor.setMaterial(material);
 	m_floor.setTransform(Transform(
 		XMFLOAT3(10.0f, 10.0f, 1.0f),
@@ -83,7 +83,7 @@ void Chapter4Scene::initScene()
 	m_mirror = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_mirror.setMesh(Geometry::buildPlaneMesh(1.0f, 1.0f));
 	m_mirror.setShader(4);
-	m_mirror.setTexturePath(L"Texture\\ice.dds");
+	m_mirror.setTexturePathDDS(L"Texture\\ice.dds");
 	m_mirror.setMaterial(material);
 	m_mirror.setTransform(Transform(
 		XMFLOAT3(4.0f, 5.0f, 1.0f),

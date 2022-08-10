@@ -41,13 +41,13 @@ void Chapter3Scene::initScene()
 	m_wall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_wall.setMesh(Geometry::buildPlaneMesh(4.0f, 2.0f));
 	m_wall.setShader(3);
-	m_wall.setTexturePath(L"Texture\\brick.dds");
+	m_wall.setTexturePathDDS(L"Texture\\brick.dds");
 	m_wall.setMaterial(material);
 
 	m_floor = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_floor.setMesh(Geometry::buildPlaneMesh(5.0f, 5.0f));
 	m_floor.setShader(3);
-	m_floor.setTexturePath(L"Texture\\floor.dds");
+	m_floor.setTexturePathDDS(L"Texture\\floor.dds");
 	m_floor.setMaterial(material);
 	m_floor.setTransform(Transform(
 		XMFLOAT3(10.0f, 10.0f, 1.0f),
@@ -60,7 +60,7 @@ void Chapter3Scene::initScene()
 	m_water = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_water.setMesh(Geometry::buildPlaneMesh(5.0f, 5.0f));
 	m_water.setShader(3);
-	m_water.setTexturePath(L"Texture\\water.dds");
+	m_water.setTexturePathDDS(L"Texture\\water.dds");
 	m_water.setMaterial(material);
 	m_water.setTransform(Transform(
 		XMFLOAT3(10.0f, 10.0f, 1.0f),
@@ -73,7 +73,7 @@ void Chapter3Scene::initScene()
 	m_staticBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_staticBox.setMesh(Geometry::buildBoxMesh());
 	m_staticBox.setShader(3);
-	m_staticBox.setTexturePath(L"Texture\\flare.dds");
+	m_staticBox.setTexturePathDDS(L"Texture\\flare.dds");
 	m_staticBox.setMaterial(material);
 	m_staticBox.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -83,7 +83,7 @@ void Chapter3Scene::initScene()
 	m_dynamicBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_dynamicBox.setMesh(Geometry::buildBoxMesh());
 	m_dynamicBox.setShader(3);
-	m_dynamicBox.setTexturePath(L"Texture\\WireFence.dds");
+	m_dynamicBox.setTexturePathDDS(L"Texture\\WireFence.dds");
 	m_dynamicBox.setMaterial(material);
 	m_dynamicBox.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),

@@ -126,7 +126,7 @@ const wchar_t* GameObject::getTexturePath()
 	return m_texturePath;
 }
 
-void GameObject::setTexturePath(const wchar_t* texturePath) 
+void GameObject::setTexturePathDDS(const wchar_t* texturePath) 
 { 
 	m_texturePath = texturePath; 
 
@@ -136,7 +136,7 @@ void GameObject::setTexturePath(const wchar_t* texturePath)
 	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\flarealpha.dds", nullptr, m_pTexture2.GetAddressOf());
 }
 
-void GameObject::setTexturePathNotDDS(const wchar_t* texturePath)
+void GameObject::setTexturePathWIC(const wchar_t* texturePath)
 {
 	m_texturePath = texturePath;
 
