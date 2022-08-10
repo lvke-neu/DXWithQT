@@ -103,10 +103,23 @@ void Chapter7Scene::drawScene()
 	m_house.draw();
 	
 
-	for (UINT16 i = 0; i < RAND_TREE_NUM; i++)
+	for (UINT16 i = 0; i < RAND_TREE_NUM/2; i++)
 	{
-		m_tree.setPosition(m_randX[i], -3.0f, m_randZ[i]);
-		m_tree.draw();
+		//m_tree.setPosition(m_randX[i], -3.0f, m_randZ[i]);
+
+		////Frustum Culling
+		//
+		////local boundingbox
+		//BoundingBox localBoundingBox = m_tree.getBoundingBox();
+		//XMMATRIX worldviewMatrix = XMMatrixMultiply(m_tree.getTransform().getWorldMatrix(), m_perspectiveCamera.getViewMatrix());
+
+		////view boudingbox
+		//BoundingBox viewBoundingBox;
+		//localBoundingBox.Transform(viewBoundingBox, worldviewMatrix);
+
+		////intersection test
+		//if(!m_perspectiveCamera.getBoundingFrustum().Intersects(viewBoundingBox))
+			m_tree.draw();
 	}
 
 	m_plane.draw();

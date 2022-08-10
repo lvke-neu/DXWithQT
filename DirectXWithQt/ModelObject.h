@@ -8,6 +8,8 @@ Description:
 ************************************************************************/
 
 #pragma once 
+
+#include <DirectXCollision.h>
 #include "GameObject.h"
 #include "ObjReader.h"
 
@@ -22,10 +24,15 @@ public:
 
 public:
 	void setShader(const uint32_t& shader);
+
+	Transform getTransform();
 	void setTransform(const Transform& transform);
+	
 	void setPosition(float x, float y, float z);
 	void draw();
 
+	BoundingBox getBoundingBox() { return m_boundingBox; };
+	//void setBoundingBox(BoundingBox boundingBox) { m_boundingBox = boundingBox; };
 private:
 	const wchar_t * m_mboFileName;
 	const wchar_t * m_objFileName;
@@ -33,4 +40,6 @@ private:
 private:
 	ObjReader objReader;
 	std::vector<GameObject> m_gameObjects;
+	BoundingBox m_boundingBox;
+	Transform m_transform;
 };

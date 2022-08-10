@@ -7,6 +7,7 @@ GameObject类，设置/获取GO的属性
 
 #pragma once
 
+
 #include <wrl/client.h>
 #include "Transform.h"
 #include "Geometry.h"
@@ -71,6 +72,7 @@ public:
 	Transform& getTransform();
 	void setTransform(Transform transform);
 
+
 	void draw();     
 	void draw(UINT IndexCount, UINT StartIndexLocation);
 	void draw2d();
@@ -102,6 +104,8 @@ private:
 	const wchar_t* m_texturePath = L"\0";
 	Material m_material{};
 	Transform m_transform{};
+
+	
 
 public:
 	static std::vector<std::vector<const wchar_t*>> shaderPath;

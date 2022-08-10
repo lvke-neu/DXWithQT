@@ -69,8 +69,8 @@ bool ObjReader::ReadObj(const wchar_t * objFileName)
 			pos.z = -pos.z;
 			positions.push_back(pos);
 			XMVECTOR vecPos = XMLoadFloat3(&pos);
-			//vecMax = XMVectorMax(vecMax, vecPos);
-			//vecMin = XMVectorMin(vecMin, vecPos);
+			vecMax = XMVectorMax(vecMax, vecPos);
+			vecMin = XMVectorMin(vecMin, vecPos);
 		}
 		else if (wstr == L"vt")
 		{

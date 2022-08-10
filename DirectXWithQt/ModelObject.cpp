@@ -22,6 +22,8 @@ ModelObject::ModelObject(const wchar_t * mboFileName, const wchar_t * objFileNam
 			
 			m_gameObjects.push_back(go);
 		}
+
+		BoundingBox::CreateFromPoints(m_boundingBox, objReader.vecMax, objReader.vecMin);
 	}
 }
 
@@ -31,8 +33,14 @@ void ModelObject::setShader(const uint32_t& shader)
 		go.setShader(shader);
 }
 
+Transform ModelObject::getTransform()
+{
+	return m_transform;
+}
+
 void ModelObject::setTransform(const Transform& transform)
 {
+	m_transform = transform;
 	for (auto& go : m_gameObjects)
 		go.setTransform(transform);
 }

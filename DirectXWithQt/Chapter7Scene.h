@@ -4,7 +4,7 @@
 #include "ModelObject.h"
 #include "ListeningEvent.h"
 
-#define RAND_TREE_NUM 1000
+#define RAND_TREE_NUM 256
 class Chapter7Scene : public IScene, public ListeningEvent
 {
 public:

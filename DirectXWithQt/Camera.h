@@ -7,6 +7,7 @@ Description:
 
 #pragma once
 
+#include <DirectXCollision.h>
 #include "Transform.h"
 #include <d3d11.h>
 #include <wrl/client.h>
@@ -79,6 +80,9 @@ public:
 		m_transform.setPosition(pos);
 		changeViewMatrixCB();
 	}
+
+	BoundingFrustum& getBoundingFrustum() { return m_boundingFrustum; }
+	void setBoundingFrustum(const BoundingFrustum& boundingFrustum) { m_boundingFrustum = boundingFrustum; }
 private:
 	ComPtr<ID3D11Device> m_pd3dDevice;
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext;
@@ -93,5 +97,7 @@ private:
 	float m_aspectRatio;
 	float m_nearZ;
 	float m_farZ;
+	
+	BoundingFrustum m_boundingFrustum;
 	
 };

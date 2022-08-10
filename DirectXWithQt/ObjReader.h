@@ -30,7 +30,9 @@ public:
 		std::vector<VertexPosNormalTex> vertices;	
 		std::vector<DWORD> indices16;
 		std::vector<DWORD> indices32;				
-		std::wstring texStrDiffuse;					
+		std::wstring texStrDiffuse;		
+		
+
 	};
 
 	ObjReader()  {}
@@ -45,11 +47,12 @@ public:
 public:
 	std::vector<ObjPart> objParts;
 
+	XMVECTOR  vecMax = g_XMInfinity;
+	XMVECTOR  vecMin = g_XMNegInfinity;
 private:
 	void AddVertex(const VertexPosNormalTex& vertex, DWORD vpi, DWORD vti, DWORD vni);
-
-	
 	std::unordered_map<std::wstring, DWORD> vertexCache;
+
 };
 
 class MtlReader
