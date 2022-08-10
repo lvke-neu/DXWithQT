@@ -89,6 +89,7 @@ void GameObject::setMesh(Mesh mesh)
 	InitData.pSysMem = m_mesh.vertexBuffer.data();
 	m_pd3dDevice->CreateBuffer(&vbd, &InitData, m_pVertexBuffer.GetAddressOf());
 
+
 	//IndexBuffer
 	D3D11_BUFFER_DESC ibd;
 	ZeroMemory(&ibd, sizeof(ibd));

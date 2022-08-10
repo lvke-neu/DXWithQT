@@ -1,49 +1,51 @@
 #include "ModelObject.h"
 #include <thread>
 
-ModelObject::ModelObject(wchar_t * mboFileName, wchar_t * objFileName, ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext):
-	m_mboFileName(mboFileName), m_objFileName(objFileName),GameObject(pd3dDevice, pd3dImmediateContext)
+ModelObject::ModelObject(const wchar_t * mboFileName, const wchar_t * objFileName, ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext):
+	m_mboFileName(mboFileName), m_objFileName(objFileName)
 {
 
 	if (objReader.ReadObj(m_objFileName))
 	{
-		builMesh();
-		buildTexture();
-		buildMaterial();
-	}
-}
+		Mesh mesh;
 
+		for (auto& objPart : objReader.objParts)
+		{
+			mesh.vertexBuffer = objPart.vertices;
+			mesh.indexBuffer = objPart.indices16.size() != 0 ? objPart.indices16 : objPart.indices32;
 
-void ModelObject::builMesh()
-{
-	Mesh mesh;
-	int size;
-	mesh.vertexBuffer.clear();
-	mesh.indexBuffer.clear();
-	for (auto& x : objReader.objParts)
-	{
-		mesh.vertexBuffer.insert(mesh.vertexBuffer.end(), x.vertices.begin(), x.vertices.end());
-		size = x.indices16.size();
-		if (size)
-		{
-			mesh.indexBuffer.insert(mesh.indexBuffer.end(), x.indices16.begin(), x.indices16.end());
-		}
-		else
-		{
-			mesh.indexBuffer.insert(mesh.indexBuffer.end(), x.indices32.begin(), x.indices32.end());
+			GameObject go(pd3dDevice, pd3dImmediateContext);
+
+			go.setMesh(mesh);
+			go.setTexturePathWIC(objPart.texStrDiffuse.c_str());
+			go.setMaterial(objPart.material);
+			
+			m_gameObjects.push_back(go);
 		}
 	}
-
-	setMesh(mesh);
-
 }
 
-void ModelObject::buildTexture()
+void ModelObject::setShader(const uint32_t& shader)
 {
-	setTexturePathWIC(objReader.objParts[0].texStrDiffuse.c_str());
+	for (auto& go : m_gameObjects)
+		go.setShader(shader);
 }
 
-void ModelObject::buildMaterial()
+void ModelObject::setTransform(const Transform& transform)
 {
-	setMaterial(objReader.objParts[0].material);
+	for (auto& go : m_gameObjects)
+		go.setTransform(transform);
 }
+
+void ModelObject::setPosition(float x, float y, float z)
+{
+	for (auto& go : m_gameObjects)
+		go.setPosition(x, y, z);
+}
+
+void ModelObject::draw()
+{
+	for (auto& go : m_gameObjects)
+		go.draw();
+}
+

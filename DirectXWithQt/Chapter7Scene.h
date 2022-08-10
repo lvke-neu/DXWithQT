@@ -4,7 +4,7 @@
 #include "ModelObject.h"
 #include "ListeningEvent.h"
 
-
+#define RAND_TREE_NUM 1000
 class Chapter7Scene : public IScene, public ListeningEvent
 {
 public:
@@ -23,6 +23,9 @@ private:
 	ModelObject m_house;
 	ModelObject m_tree;
 	GameObject m_plane;
+private:
+	int m_randX[RAND_TREE_NUM];
+	int m_randZ[RAND_TREE_NUM];
 
 };
 

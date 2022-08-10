@@ -7,10 +7,19 @@
 
 Chapter7Scene::Chapter7Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
-	
+
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	m_perspectiveCamera.setPosition(0.7f, 11.0f, -69.f);
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
+
+
+	srand(time(0));
+	for (UINT32 i = 0; i < RAND_TREE_NUM; i++)
+	{
+		m_randX[i] = rand() % 2000 - 1000;
+		m_randZ[i] = rand() % 2000 - 1000;
+	}
+
 }
 
 
@@ -27,7 +36,7 @@ void Chapter7Scene::initScene()
 	m_tree = ModelObject(L"Model\\tree.mbo", L"Model\\tree.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_tree.setShader(7);
 	m_tree.setTransform(Transform(
-		XMFLOAT3(0.01f, 0.01f, 0.01f),
+		XMFLOAT3(0.1f, 0.1f, 0.1f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
 		XMFLOAT3(-2.0f, -3.0f, -100.0f)
 	));
@@ -56,22 +65,22 @@ void Chapter7Scene::updateScene(float deltaTime)
 
 	if (KeyBoard::getInstance().isKeyPress('W'))
 	{
-		m_perspectiveCamera.moveZAxis(deltaTime * 40);
+		m_perspectiveCamera.moveZAxis(deltaTime * 80);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('S'))
 	{
-		m_perspectiveCamera.moveZAxis(-deltaTime * 40);
+		m_perspectiveCamera.moveZAxis(-deltaTime * 80);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('A'))
 	{
-		m_perspectiveCamera.moveXAxis(-deltaTime * 40);
+		m_perspectiveCamera.moveXAxis(-deltaTime * 80);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('D'))
 	{
-		m_perspectiveCamera.moveXAxis(deltaTime * 40);
+		m_perspectiveCamera.moveXAxis(deltaTime * 80);
 		notifyAll();
 	}
 
@@ -87,17 +96,21 @@ void Chapter7Scene::updateScene(float deltaTime)
 	}
 
 
-
 }
 
 void Chapter7Scene::drawScene()
 {
 	m_house.draw();
-	m_tree.draw();
-	m_plane.draw();
 	
-}
 
+	for (UINT16 i = 0; i < RAND_TREE_NUM; i++)
+	{
+		m_tree.setPosition(m_randX[i], -3.0f, m_randZ[i]);
+		m_tree.draw();
+	}
+
+	m_plane.draw();
+}
 
 
 
