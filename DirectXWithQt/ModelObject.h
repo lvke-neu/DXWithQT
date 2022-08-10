@@ -19,7 +19,7 @@ class ModelObject
 
 public:
 	ModelObject() = default;
-	ModelObject(const wchar_t * mboFileName, const wchar_t * objFileName, ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
+	ModelObject(const ObjReader& objReader, ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 
 
 public:
@@ -33,10 +33,6 @@ public:
 
 	BoundingBox getBoundingBox() { return m_boundingBox; };
 	//void setBoundingBox(BoundingBox boundingBox) { m_boundingBox = boundingBox; };
-private:
-	const wchar_t * m_mboFileName;
-	const wchar_t * m_objFileName;
-
 private:
 	ObjReader objReader;
 	std::vector<GameObject> m_gameObjects;

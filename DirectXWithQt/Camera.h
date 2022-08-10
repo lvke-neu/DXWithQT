@@ -81,15 +81,18 @@ public:
 		changeViewMatrixCB();
 	}
 
-	BoundingFrustum& getBoundingFrustum() { return m_boundingFrustum; }
-	void setBoundingFrustum(const BoundingFrustum& boundingFrustum) { m_boundingFrustum = boundingFrustum; }
+public:
+	
+	//Frustum Culling in the world space
+	bool frustumCulling(const BoundingBox& AABB);
+
 private:
 	ComPtr<ID3D11Device> m_pd3dDevice;
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext;
 
-	ComPtr<ID3D11Buffer> m_pViewMatrixCB;//常量buffer，存放视图矩阵，放在槽1
+	ComPtr<ID3D11Buffer> m_pViewMatrixCB;
 
-	ComPtr<ID3D11Buffer> m_pProjMatrixCB;//常量buffer，存放视图矩阵，放在槽2
+	ComPtr<ID3D11Buffer> m_pProjMatrixCB;
 
 private:
 	Transform m_transform;
@@ -97,7 +100,5 @@ private:
 	float m_aspectRatio;
 	float m_nearZ;
 	float m_farZ;
-	
-	BoundingFrustum m_boundingFrustum;
 	
 };

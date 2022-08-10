@@ -55,3 +55,13 @@ void Camera::setFrustum(float FovAngleY, float AspectRatio, float NearZ, float F
 
 	m_pd3dImmediateContext->VSSetConstantBuffers(2, 1, m_pProjMatrixCB.GetAddressOf());
 }
+
+bool Camera::frustumCulling(const BoundingBox& AABB)
+{
+	BoundingFrustum worldBoundingFrustum;
+	BoundingFrustum viewBoundingFrustum(getProjMatrix());
+	viewBoundingFrustum.Transform(worldBoundingFrustum, DirectX::XMMatrixInverse(nullptr, getViewMatrix()));
+
+
+	return !worldBoundingFrustum.Contains(AABB);
+}

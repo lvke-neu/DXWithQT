@@ -47,8 +47,8 @@ public:
 public:
 	std::vector<ObjPart> objParts;
 
-	XMVECTOR  vecMax = g_XMInfinity;
-	XMVECTOR  vecMin = g_XMNegInfinity;
+	XMVECTOR  vecMax = g_XMNegInfinity;
+	XMVECTOR  vecMin = g_XMInfinity;
 private:
 	void AddVertex(const VertexPosNormalTex& vertex, DWORD vpi, DWORD vti, DWORD vni);
 	std::unordered_map<std::wstring, DWORD> vertexCache;

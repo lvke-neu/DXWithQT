@@ -25,7 +25,9 @@ Chapter7Scene::Chapter7Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 
 void Chapter7Scene::initScene()
 {
-	m_house = ModelObject(L"Model\\house.mbo", L"Model\\house.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	ObjReader objReader1;
+	objReader1.ReadObj(L"Model\\house.obj");
+	m_house = ModelObject(objReader1, m_pd3dDevice, m_pd3dImmediateContext);
 	m_house.setShader(7);
 	m_house.setTransform(Transform(
 		XMFLOAT3(0.1f, 0.1f, 0.1f),
@@ -33,13 +35,27 @@ void Chapter7Scene::initScene()
 		XMFLOAT3(-2.0f, -5.0f, 0.0f)
 	));
 
-	m_tree = ModelObject(L"Model\\tree.mbo", L"Model\\tree.obj", m_pd3dDevice, m_pd3dImmediateContext);
-	m_tree.setShader(7);
-	m_tree.setTransform(Transform(
-		XMFLOAT3(0.1f, 0.1f, 0.1f),
-		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(-2.0f, -3.0f, -100.0f)
-	));
+	ObjReader objReader2;
+	objReader2.ReadObj(L"Model\\tree.obj");
+
+	for (UINT32 i = 0; i < RAND_TREE_NUM; i++)
+	{
+		ModelObject tree(objReader2, m_pd3dDevice, m_pd3dImmediateContext);
+		tree.setShader(7);
+		tree.setTransform(Transform(
+			XMFLOAT3(0.1f, 0.1f, 0.1f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(-2.0f, -5.0f, 0.0f)
+		));
+		m_trees.push_back(tree);
+	}
+	//m_tree = ModelObject(objReader2, m_pd3dDevice, m_pd3dImmediateContext);
+	//m_tree.setShader(7);
+	//m_tree.setTransform(Transform(
+	//	XMFLOAT3(0.1f, 0.1f, 0.1f),
+	//	XMFLOAT3(0.0f, 0.0f, 0.0f),
+	//	XMFLOAT3(-2.0f, -3.0f, -100.0f)
+	//));
 
 
 	Material material;
@@ -103,23 +119,23 @@ void Chapter7Scene::drawScene()
 	m_house.draw();
 	
 
-	for (UINT16 i = 0; i < RAND_TREE_NUM/2; i++)
+	for (UINT16 i = 0; i < RAND_TREE_NUM; i++)
 	{
-		//m_tree.setPosition(m_randX[i], -3.0f, m_randZ[i]);
 
-		////Frustum Culling
-		//
-		////local boundingbox
-		//BoundingBox localBoundingBox = m_tree.getBoundingBox();
-		//XMMATRIX worldviewMatrix = XMMatrixMultiply(m_tree.getTransform().getWorldMatrix(), m_perspectiveCamera.getViewMatrix());
-
-		////view boudingbox
-		//BoundingBox viewBoundingBox;
-		//localBoundingBox.Transform(viewBoundingBox, worldviewMatrix);
-
-		////intersection test
-		//if(!m_perspectiveCamera.getBoundingFrustum().Intersects(viewBoundingBox))
-			m_tree.draw();
+		//Frustum Culling
+		
+		BoundingBox worldBoundingBox;
+		BoundingBox localBoundingBox = m_trees[i].getBoundingBox();
+		localBoundingBox.Transform(worldBoundingBox, m_trees[i].getTransform().getWorldMatrix());
+		if (m_enableFrustumCulling)
+		{
+			if (!m_perspectiveCamera.frustumCulling(worldBoundingBox))
+				m_trees[i].draw();
+		}
+		else
+		{
+			m_trees[i].draw();
+		}
 	}
 
 	m_plane.draw();

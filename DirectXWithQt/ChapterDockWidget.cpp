@@ -571,8 +571,29 @@ void ChapterDockWidget::initChpa7DockWidget()
 	labelCamProperty->setObjectName("CameraProperty");
 	labelCamProperty->setFixedHeight(200);
 
-
+	QPushButton* enableFC = new QPushButton("开启视锥体裁剪", dockWidget7);
+	enableFC->move(0, 280);
+	connect(enableFC, &QPushButton::clicked, this,
+		[=]()
+		{
+			Chapter7Scene* chapter7Scene = (Chapter7Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter7Scene)
+			{
+				chapter7Scene->set_enableFrustumCulling(true);
+			}
+		});
 	
+	QPushButton* disableFC = new QPushButton("关闭视锥体裁剪", dockWidget7);
+	disableFC->move(0, 310);
+	connect(disableFC, &QPushButton::clicked, this,
+		[=]()
+		{
+			Chapter7Scene* chapter7Scene = (Chapter7Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter7Scene)
+			{
+				chapter7Scene->set_enableFrustumCulling(false);
+			}
+		});
 
 	dockWidget7->setObjectName("dockWidget7");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget7);

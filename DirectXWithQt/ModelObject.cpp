@@ -1,30 +1,26 @@
 #include "ModelObject.h"
 #include <thread>
 
-ModelObject::ModelObject(const wchar_t * mboFileName, const wchar_t * objFileName, ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext):
-	m_mboFileName(mboFileName), m_objFileName(objFileName)
+ModelObject::ModelObject(const ObjReader& objReader, ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
+	Mesh mesh;
 
-	if (objReader.ReadObj(m_objFileName))
+	for (auto& objPart : objReader.objParts)
 	{
-		Mesh mesh;
+		mesh.vertexBuffer = objPart.vertices;
+		mesh.indexBuffer = objPart.indices16.size() != 0 ? objPart.indices16 : objPart.indices32;
 
-		for (auto& objPart : objReader.objParts)
-		{
-			mesh.vertexBuffer = objPart.vertices;
-			mesh.indexBuffer = objPart.indices16.size() != 0 ? objPart.indices16 : objPart.indices32;
+		GameObject go(pd3dDevice, pd3dImmediateContext);
 
-			GameObject go(pd3dDevice, pd3dImmediateContext);
-
-			go.setMesh(mesh);
-			go.setTexturePathWIC(objPart.texStrDiffuse.c_str());
-			go.setMaterial(objPart.material);
+		go.setMesh(mesh);
+		go.setTexturePathWIC(objPart.texStrDiffuse.c_str());
+		go.setMaterial(objPart.material);
 			
-			m_gameObjects.push_back(go);
-		}
-
-		BoundingBox::CreateFromPoints(m_boundingBox, objReader.vecMax, objReader.vecMin);
+		m_gameObjects.push_back(go);
 	}
+
+	BoundingBox::CreateFromPoints(m_boundingBox, objReader.vecMax, objReader.vecMin);
+	
 }
 
 void ModelObject::setShader(const uint32_t& shader)

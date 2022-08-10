@@ -64,6 +64,9 @@
     <Filter Include="D3D\Shader\Chpater 7">
       <UniqueIdentifier>{8fc1bac6-869f-452f-ae9c-3be1f9a9c20e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\GameObject\Camera">
+      <UniqueIdentifier>{31201827-48aa-490b-8743-606c6833072f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -124,9 +127,6 @@
     <ClCompile Include="Chapter3Scene.cpp">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>D3D\Game\SceneManager\Interface</Filter>
-    </ClCompile>
     <ClCompile Include="Chapter4Scene.cpp">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClCompile>
@@ -150,6 +150,9 @@
     </ClCompile>
     <ClCompile Include="Chapter7Scene.cpp">
       <Filter>D3D\Game\SceneManager</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>D3D\Game\GameObject\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -223,9 +226,6 @@
     <ClInclude Include="Chapter3Scene.h">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>D3D\Game\SceneManager\Interface</Filter>
-    </ClInclude>
     <ClInclude Include="Chapter4Scene.h">
       <Filter>D3D\Game\SceneManager</Filter>
     </ClInclude>
@@ -249,6 +249,9 @@
     </ClInclude>
     <ClInclude Include="Chapter7Scene.h">
       <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>D3D\Game\GameObject\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
