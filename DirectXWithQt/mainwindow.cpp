@@ -106,6 +106,11 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 			introductionLabel->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型");
 			introductionLabel->setFixedWidth(400);
 		}
+		else
+		{
+			introductionLabel->setText(u8"鼠标点选");
+			introductionLabel->setFixedWidth(200);
+		}
 	}
 }
 

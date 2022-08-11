@@ -22,3 +22,11 @@ void ListeningEvent::unregisterListeningEvent(ChapterDockWidget* chapterDockWidg
 			m_chapDockWidgets.erase(it); 
 	}
 }
+
+void ListeningEvent::messaegeBox(const std::string& msg)
+{
+	for (auto& chapDockWidget : m_chapDockWidgets)
+	{
+		chapDockWidget->messaegeBox(msg);
+	}
+}

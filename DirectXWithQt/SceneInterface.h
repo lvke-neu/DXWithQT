@@ -24,7 +24,7 @@ public:
 	virtual void drawScene() = 0;
 	virtual void setDirLight(XMFLOAT3 dir) = 0;
 
-	void onResize(float width, float height);
+	void onResize(float width, float height, const D3D11_VIEWPORT& viewPort);
 public:
 	XMFLOAT3 get_dirLight_dir() { return m_dirLight_dir; }
 protected:

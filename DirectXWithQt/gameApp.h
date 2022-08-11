@@ -23,7 +23,7 @@ public:
 	void onKeyPress(int key);
 	void onKeyRelease(int key);
 
-
+	void onLeftButtonPress(float x, float y);
 	void onRightButtonMove(float deltaX, float deltaY);
 	void onButtonRelease() { Mouse::m_whichButton = NoButton; }
 

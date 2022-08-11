@@ -29,7 +29,8 @@ void IScene::initCameraAndLight(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11De
 
 
 
-void IScene::onResize(float width, float height)
+void IScene::onResize(float width, float height, const D3D11_VIEWPORT& viewPort)
 {
 	m_perspectiveCamera.setFrustum(XM_PI / 3, static_cast<float>(width) / height, 0.5f, 1000.0f);
+	m_perspectiveCamera.setViewPort(viewPort);
 }

@@ -81,6 +81,10 @@ public:
 		changeViewMatrixCB();
 	}
 
+
+
+	D3D11_VIEWPORT& getViewPort() { return m_ScreenViewport; }
+	void setViewPort(const D3D11_VIEWPORT& viewPort) { m_ScreenViewport = viewPort; }
 public:
 	
 	//Frustum Culling in the world space
@@ -100,5 +104,7 @@ private:
 	float m_aspectRatio;
 	float m_nearZ;
 	float m_farZ;
+
+	D3D11_VIEWPORT m_ScreenViewport;
 	
 };

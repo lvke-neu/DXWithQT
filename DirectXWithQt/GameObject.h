@@ -7,7 +7,7 @@ GameObject类，设置/获取GO的属性
 
 #pragma once
 
-
+#include <DirectXCollision.h>
 #include <wrl/client.h>
 #include "Transform.h"
 #include "Geometry.h"
@@ -55,6 +55,10 @@ public:
 		m_transform.setPosition(pos);
 		changeWorldMatrixCB();
 	}
+
+
+	BoundingBox getBoundingBox() { return m_boundingBox; };
+	void setBoundingBox(BoundingBox boundingBox) { m_boundingBox = boundingBox; };
 public:
 	Mesh& getMesh();
 	void setMesh(Mesh mesh);
@@ -104,7 +108,7 @@ private:
 	const wchar_t* m_texturePath = L"\0";
 	Material m_material{};
 	Transform m_transform{};
-
+	BoundingBox m_boundingBox;
 	
 
 public:

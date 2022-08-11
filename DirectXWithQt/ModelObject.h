@@ -9,7 +9,6 @@ Description:
 
 #pragma once 
 
-#include <DirectXCollision.h>
 #include "GameObject.h"
 #include "ObjReader.h"
 

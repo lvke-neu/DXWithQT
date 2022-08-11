@@ -48,6 +48,12 @@ std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
 		L"Shader\\Chapter 7\\VS.hlsl",
 		L"Shader\\Chapter 7\\PS.cso",
 		L"Shader\\Chapter 7\\PS.hlsl"
+	},
+	{
+		L"Shader\\Chapter 8\\VS.cso",
+		L"Shader\\Chapter 8\\VS.hlsl",
+		L"Shader\\Chapter 8\\PS.cso",
+		L"Shader\\Chapter 8\\PS.hlsl"
 	}
 };
 

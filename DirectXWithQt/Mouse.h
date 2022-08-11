@@ -24,5 +24,7 @@ class Mouse
 public:
     static Delta m_delta;
 	static MouseButton m_whichButton;
+    static float x;
+    static float y;
 };
 

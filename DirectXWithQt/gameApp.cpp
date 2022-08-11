@@ -30,7 +30,7 @@ void GameApp::OnResize(UINT windowWidth, UINT windowHeight)
 {
 	D3DApp::OnResize(windowWidth, windowHeight);
 	if(m_scene)
-		m_scene->onResize(windowWidth, windowHeight);
+		m_scene->onResize(windowWidth, windowHeight, m_ScreenViewport);
 }
 
 void GameApp::UpdateScene(float deltaTime)
@@ -73,7 +73,7 @@ void GameApp::setScene(std::string type)
 	m_scene = SceneFactory::createChpaterScene(type, m_pd3dDevice, m_pd3dImmediateContext);
 	if (m_scene)
 	{
-		m_scene->onResize(m_windowWidth, m_windowHeight);
+		m_scene->onResize(m_windowWidth, m_windowHeight, m_ScreenViewport);
 		m_scene->initScene();
 	}
 		
@@ -87,6 +87,14 @@ void GameApp::onKeyPress(int key)
 void GameApp::onKeyRelease(int key)
 {
 	KeyBoard::getInstance().releaseKey(key);
+}
+
+
+void GameApp::onLeftButtonPress(float x, float y)
+{
+	Mouse::m_whichButton = LeftButton;
+	Mouse::x = x;
+	Mouse::y = y;
 }
 
 void GameApp::onRightButtonMove(float deltaX, float deltaY)

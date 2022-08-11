@@ -18,6 +18,8 @@ D3d11RenderWidget::D3d11RenderWidget(QWidget *parent)
 	setAttribute(Qt::WA_PaintOnScreen,true);
 	setAttribute(Qt::WA_NativeWindow,true);
 	setFocusPolicy(Qt::StrongFocus);
+	setMouseTracking(true);
+
 
 	m_gameApp = new GameApp((HWND)winId(), width(), height());
 	m_Timer.Start();
@@ -70,12 +72,18 @@ void D3d11RenderWidget::mousePressEvent(QMouseEvent *event)
 		m_button = Qt::RightButton;
 		m_preCursorPos = event->pos();
 	}
+	else if (event->button() == Qt::LeftButton)
+	{
+		m_gameApp->onLeftButtonPress(event->pos().x(), event->pos().y());
+	}
 }
 
 
 
 void D3d11RenderWidget::mouseMoveEvent(QMouseEvent *event)
 {
+	std::string str = std::to_string(event->pos().x()) + "," + std::to_string(event->pos().y());
+	m_parent->setWindowTitle(QString(str.c_str()));
 	if (m_button == Qt::RightButton)
 	{
 		m_gameApp->onRightButtonMove(event->pos().x() - m_preCursorPos.x(), event->pos().y() - m_preCursorPos.y());
@@ -91,8 +99,10 @@ void D3d11RenderWidget::mouseReleaseEvent(QMouseEvent *event)
 	if (m_button == Qt::RightButton)
 	{
 		m_button = Qt::NoButton;
-		m_gameApp->onButtonRelease();
+		
 	}
+
+	m_gameApp->onButtonRelease();
 }
 
 void D3d11RenderWidget::wheelEvent(QWheelEvent *event)
@@ -114,7 +124,7 @@ void D3d11RenderWidget::CalculateFrameStats()
 		float mspf = 1000.0f / fps;
 
 		std::string str = "FPS:" + std::to_string(fps);
-		m_parent->setWindowTitle(QString(str.c_str()));
+		//m_parent->setWindowTitle(QString(str.c_str()));
 
 
 		// Reset for next average.

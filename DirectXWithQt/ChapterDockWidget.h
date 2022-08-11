@@ -3,8 +3,10 @@
 #include <QObject>
 #include <QMainWindow>
 #include <QDockWidget>
+#include <qmessagebox.h>
 #include <string>
 #include <vector>
+
 #include "d3d11renderwidget.h"
 
 class ChapterDockWidget : public QObject
@@ -30,9 +32,14 @@ public:
 	void initChpa5DockWidget();
 	void initChpa6DockWidget();
 	void initChpa7DockWidget();
-	
-	void callback(const std::string& msg);
+	void initChpa8DockWidget();
 
+
+	void callback(const std::string& msg);
+	void messaegeBox(const std::string& msg) 
+	{ 
+		QMessageBox::information(m_parent, QStringLiteral("Info!"), QString(msg.c_str()), QMessageBox::Ok);
+	}
 private:
 	QMainWindow* m_parent{ nullptr };
 	D3d11RenderWidget* m_RenderWidget{ nullptr };

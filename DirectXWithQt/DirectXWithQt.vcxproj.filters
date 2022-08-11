@@ -67,6 +67,12 @@
     <Filter Include="D3D\Game\GameObject\Camera">
       <UniqueIdentifier>{31201827-48aa-490b-8743-606c6833072f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\Collision">
+      <UniqueIdentifier>{1f627aae-0e65-4674-b6e5-bc4d6792bb49}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Shader\Chpater 8">
+      <UniqueIdentifier>{05cf23d7-6e99-4815-ace0-a0239c9fa438}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -153,6 +159,12 @@
     </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>D3D\Game\GameObject\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Ray.cpp">
+      <Filter>D3D\Game\Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter8Scene.cpp">
+      <Filter>D3D\Game\SceneManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -253,6 +265,12 @@
     <ClInclude Include="Camera.h">
       <Filter>D3D\Game\GameObject\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Ray.h">
+      <Filter>D3D\Game\Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter8Scene.h">
+      <Filter>D3D\Game\SceneManager</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\Chapter 1\VS.hlsl">
@@ -297,6 +315,12 @@
     <FxCompile Include="Shader\Chapter 7\VS.hlsl">
       <Filter>D3D\Shader\Chpater 7</Filter>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 8\PS.hlsl">
+      <Filter>D3D\Shader\Chpater 8</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 8\VS.hlsl">
+      <Filter>D3D\Shader\Chpater 8</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Chapter 1\Common.hlsli">
@@ -334,6 +358,12 @@
     </None>
     <None Include="Shader\Chapter 7\LightHelper.hlsli">
       <Filter>D3D\Shader\Chpater 7</Filter>
+    </None>
+    <None Include="Shader\Chapter 8\Common.hlsli">
+      <Filter>D3D\Shader\Chpater 8</Filter>
+    </None>
+    <None Include="Shader\Chapter 8\LightHelper.hlsli">
+      <Filter>D3D\Shader\Chpater 8</Filter>
     </None>
   </ItemGroup>
 </Project>

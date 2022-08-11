@@ -71,6 +71,11 @@
          <string>Chapter 7</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>Chapter 8</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>
