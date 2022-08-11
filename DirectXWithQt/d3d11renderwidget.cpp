@@ -42,7 +42,7 @@ void D3d11RenderWidget::paintEvent(QPaintEvent *event)
 	CalculateFrameStats();
 	m_gameApp->UpdateScene(m_Timer.DeltaTime());
 	m_gameApp->DrawScene();
-
+	
 	update();
 }
 
@@ -82,8 +82,7 @@ void D3d11RenderWidget::mousePressEvent(QMouseEvent *event)
 
 void D3d11RenderWidget::mouseMoveEvent(QMouseEvent *event)
 {
-	std::string str = std::to_string(event->pos().x()) + "," + std::to_string(event->pos().y());
-	m_parent->setWindowTitle(QString(str.c_str()));
+	m_gameApp->onMouseMove(event->pos().x(), event->pos().y());
 	if (m_button == Qt::RightButton)
 	{
 		m_gameApp->onRightButtonMove(event->pos().x() - m_preCursorPos.x(), event->pos().y() - m_preCursorPos.y());
@@ -124,7 +123,7 @@ void D3d11RenderWidget::CalculateFrameStats()
 		float mspf = 1000.0f / fps;
 
 		std::string str = "FPS:" + std::to_string(fps);
-		//m_parent->setWindowTitle(QString(str.c_str()));
+		m_parent->setWindowTitle(QString(str.c_str()));
 
 
 		// Reset for next average.

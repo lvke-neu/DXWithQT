@@ -38,8 +38,10 @@ public:
 	void callback(const std::string& msg);
 	void messaegeBox(const std::string& msg) 
 	{ 
-		QMessageBox::information(m_parent, QStringLiteral("Info!"), QString(msg.c_str()), QMessageBox::Ok);
+		QMessageBox::information(m_RenderWidget, QStringLiteral("Info!"), QString(msg.c_str()), QMessageBox::Ok);
 	}
+	void stopTimer() { m_RenderWidget->m_Timer.Stop(); }
+	void startTimer() { m_RenderWidget->m_Timer.Start(); }
 private:
 	QMainWindow* m_parent{ nullptr };
 	D3d11RenderWidget* m_RenderWidget{ nullptr };

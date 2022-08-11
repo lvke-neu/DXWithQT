@@ -30,64 +30,103 @@ void Chapter8Scene::initScene()
 	m_box1.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(0.0f, 0.0f, 10.0f)
+		XMFLOAT3(2.0f, 0.0f, 10.0f)
 		));
 	BoundingBox aabb;
 	XMFLOAT3 vmin(-1.0f, -1.0f, -1.0f);
 	XMFLOAT3 vmax(1.0f, 1.0f, 1.0f);
 	BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&vmin), XMLoadFloat3(&vmax));
 	m_box1.setBoundingBox(aabb);
+
+
+	m_box2 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_box2.setMesh(Geometry::buildBoxMesh());
+	m_box2.setShader(8);
+	m_box2.setTexturePathDDS(L"Texture\\brick.dds");
+	m_box2.setMaterial(material);
+	m_box2.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(-2.0f, 0.0f, 10.0f)
+	));
+	m_box2.setBoundingBox(aabb);
 }
 
 
 void Chapter8Scene::updateScene(float deltaTime)
 {
+	static float rot = 0.0f;
+	rot += deltaTime;
+	m_box1.setRotation(rot, 0.0f, 0.0f);
+	m_box2.setRotation(0.0f, rot, 0.0f);
 
-	if (KeyBoard::getInstance().isKeyPress('W'))
-	{
-		m_perspectiveCamera.moveZAxis(deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('S'))
-	{
-		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('A'))
-	{
-		m_perspectiveCamera.moveXAxis(-deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('D'))
-	{
-		m_perspectiveCamera.moveXAxis(deltaTime * 20);
-		notifyAll();
-	}
+	//if (KeyBoard::getInstance().isKeyPress('W'))
+	//{
+	//	m_perspectiveCamera.moveZAxis(deltaTime * 20);
+	//	notifyAll();
+	//}
+	//if (KeyBoard::getInstance().isKeyPress('S'))
+	//{
+	//	m_perspectiveCamera.moveZAxis(-deltaTime * 20);
+	//	notifyAll();
+	//}
+	//if (KeyBoard::getInstance().isKeyPress('A'))
+	//{
+	//	m_perspectiveCamera.moveXAxis(-deltaTime * 20);
+	//	notifyAll();
+	//}
+	//if (KeyBoard::getInstance().isKeyPress('D'))
+	//{
+	//	m_perspectiveCamera.moveXAxis(deltaTime * 20);
+	//	notifyAll();
+	//}
 
 
-	if (Mouse::m_whichButton == RightButton)
-	{
-		float deltaX;
-		float deltaY;
-		deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
-		deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
-		m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
-		notifyAll();
+	//if (Mouse::m_whichButton == RightButton)
+	//{
+	//	float deltaX;
+	//	float deltaY;
+	//	deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
+	//	deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
+	//	m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
+	//	notifyAll();
 
-	}
-	if (Mouse::m_whichButton == LeftButton)
-	{
-		Ray ray_camera2pickPoint = Ray::ScreenToRay(m_perspectiveCamera, Mouse::x, Mouse::y);
-		//Ray ray_camera2pickPoint(XMFLOAT3(0, 0, 0), XMFLOAT3(0, 0.1, 0.5));
+	//}
 
-		float dis;
-		BoundingBox aabb;
-		m_box1.getBoundingBox().Transform(aabb, m_box1.getTransform().getWorldMatrix());
-		if (ray_camera2pickPoint.hit(aabb, dis))
+	Ray ray_camera2pickPoint = Ray::ScreenToRay(m_perspectiveCamera, Mouse::x, Mouse::y);
+
+	float dis;
+	BoundingBox aabb1,aabb2;
+	m_box1.getBoundingBox().Transform(aabb1, m_box1.getTransform().getWorldMatrix());
+	m_box2.getBoundingBox().Transform(aabb2, m_box2.getTransform().getWorldMatrix());
+
+
+	if (ray_camera2pickPoint.hit(aabb1, dis))
+	{
+		ListeningEvent::notifyAll("Pick RightBox");
+		if (Mouse::m_whichButton == LeftButton)
 		{
-			ListeningEvent::messaegeBox("pick box");
+			ListeningEvent::stopTimer();
+			ListeningEvent::messaegeBox("Pick RightBox");
+			ListeningEvent::startTimer();
+			Mouse::m_whichButton = NoButton;
+
+		}
+	}
+	else if (ray_camera2pickPoint.hit(aabb2, dis))
+	{
+		ListeningEvent::notifyAll("Pick LeftBox");
+		if (Mouse::m_whichButton == LeftButton)
+		{
+			ListeningEvent::stopTimer();
+			ListeningEvent::messaegeBox("Pick LeftBox");
+			ListeningEvent::startTimer();
 			Mouse::m_whichButton = NoButton;
 		}
+	}
+	else
+	{
+		ListeningEvent::notifyAll("Pick Null");
 	}
 	
 }
@@ -96,7 +135,7 @@ void Chapter8Scene::drawScene()
 {
 	
 	m_box1.draw();
-
+	m_box2.draw();
 }
 
 

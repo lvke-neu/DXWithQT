@@ -1,4 +1,4 @@
-﻿/************************************************************************
+/************************************************************************
 Author: lvke
 Date:2022/08/11 10:40
 Description:
@@ -16,6 +16,7 @@ public:
 	Ray(const XMFLOAT3& origin, const XMFLOAT3& dir);
 
 	bool hit(const BoundingBox& AABB, float& distance);
+	bool hit(const BoundingOrientedBox& OBB, float& distance);
 	static Ray ScreenToRay(Camera camera, float x, float y);
 private:
 	XMFLOAT3 m_origin;

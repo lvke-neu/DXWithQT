@@ -30,3 +30,19 @@ void ListeningEvent::messaegeBox(const std::string& msg)
 		chapDockWidget->messaegeBox(msg);
 	}
 }
+
+void ListeningEvent::stopTimer()
+{
+	for (auto& chapDockWidget : m_chapDockWidgets)
+	{
+		chapDockWidget->stopTimer();
+	}
+}
+
+void ListeningEvent::startTimer()
+{
+	for (auto& chapDockWidget : m_chapDockWidgets)
+	{
+		chapDockWidget->startTimer();
+	}
+}

@@ -103,3 +103,9 @@ void GameApp::onRightButtonMove(float deltaX, float deltaY)
 	Mouse::m_delta.m_x = deltaX;
 	Mouse::m_delta.m_y = deltaY;
 }
+
+void GameApp::onMouseMove(float x, float y)
+{
+	Mouse::x = x;
+	Mouse::y = y;
+}

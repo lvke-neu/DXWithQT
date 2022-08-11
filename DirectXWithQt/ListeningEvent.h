@@ -19,6 +19,8 @@ public:
 	void unregisterListeningEvent(ChapterDockWidget* chapterDockWidget);
 	void notifyAll(const std::string& msg);
 	void messaegeBox(const std::string& msg);
+	void stopTimer();
+	void startTimer();
 private:
 	std::vector<ChapterDockWidget*> m_chapDockWidgets;
 };

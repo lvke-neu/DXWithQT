@@ -26,6 +26,7 @@ public:
 	void onLeftButtonPress(float x, float y);
 	void onRightButtonMove(float deltaX, float deltaY);
 	void onButtonRelease() { Mouse::m_whichButton = NoButton; }
+	void onMouseMove(float x, float y);
 
 public:
 	void setScene(std::string type);
