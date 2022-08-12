@@ -45,7 +45,7 @@ public:
 	}
 
 
-	XMMATRIX getViewMatrix() { return m_transform.getWorldMatrix(); }
+	XMMATRIX getViewMatrix() { return XMMatrixInverse(nullptr, m_transform.getWorldMatrix()); }
 	XMMATRIX getProjMatrix() { return XMMatrixPerspectiveFovLH(m_fovAngleY, m_aspectRatio, m_nearZ, m_farZ); }
 public:
 	Transform& getTransform();

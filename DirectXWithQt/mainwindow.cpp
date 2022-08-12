@@ -106,9 +106,19 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 			introductionLabel->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型");
 			introductionLabel->setFixedWidth(400);
 		}
-		else
+		else if(item->text().toStdString() == "Chapter 8")
 		{
 			introductionLabel->setText(u8"鼠标点选");
+			introductionLabel->setFixedWidth(200);
+		}
+		else if (item->text().toStdString() == "Chapter 9")
+		{
+			introductionLabel->setText(u8"静态天空盒");
+			introductionLabel->setFixedWidth(200);
+		}
+		else
+		{
+			introductionLabel->setText(u8"");
 			introductionLabel->setFixedWidth(200);
 		}
 	}

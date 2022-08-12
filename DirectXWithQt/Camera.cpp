@@ -15,7 +15,7 @@ void Camera::setTransform(Transform transform)
 void Camera::changeViewMatrixCB()
 {
 	ViewMatrix viewMatrix;
-	viewMatrix.g_view = XMMatrixTranspose(XMMatrixInverse(nullptr, getViewMatrix()));
+	viewMatrix.g_view = XMMatrixTranspose(getViewMatrix());
 	viewMatrix.g_eyePoW = XMFLOAT3(m_transform.getPosition());
 
 

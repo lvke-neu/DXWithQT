@@ -6,6 +6,7 @@
 #include "Chapter6Scene.h"
 #include "Chapter7Scene.h"
 #include "Chapter8Scene.h"
+#include "Chapter9Scene.h"
 #include <string>
 
 
@@ -32,6 +33,8 @@ public:
 			return new Chapter7Scene(pd3dDevice, pd3dImmediateContext);
 		else if (type == "Chapter 8")
 			return new Chapter8Scene(pd3dDevice, pd3dImmediateContext);
+		else if (type == "Chapter 9")
+			return new Chapter9Scene(pd3dDevice, pd3dImmediateContext);
 
 		return nullptr;
 	}

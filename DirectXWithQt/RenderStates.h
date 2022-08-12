@@ -29,6 +29,7 @@ public:
 
 	static ComPtr<ID3D11DepthStencilState> DSSWriteStencil;
 	static ComPtr<ID3D11DepthStencilState> DSSDrawWithStencil;
+	static ComPtr<ID3D11DepthStencilState> DSSLessEqual;
 
 public:
 	static void Init(ComPtr<ID3D11Device> pd3dDevice);

@@ -73,6 +73,12 @@
     <Filter Include="D3D\Shader\Chpater 8">
       <UniqueIdentifier>{05cf23d7-6e99-4815-ace0-a0239c9fa438}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Shader\Chpater 9">
+      <UniqueIdentifier>{84192bf4-d8bd-45f1-a784-ed31791f94ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\SceneManager\Scene">
+      <UniqueIdentifier>{234483c9-3cae-40ba-80e6-557fb45d1fef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mainwindow.cpp">
@@ -100,12 +106,6 @@
     <ClCompile Include="Geometry.cpp">
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClCompile>
-    <ClCompile Include="Chapter1Scene.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Chapter2Scene.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="DDSTextureLoader.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
@@ -130,18 +130,6 @@
     <ClCompile Include="ListeningEvent.cpp">
       <Filter>D3D\Game\ListeningEvent</Filter>
     </ClCompile>
-    <ClCompile Include="Chapter3Scene.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Chapter4Scene.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Chapter5Scene.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
-    <ClCompile Include="Chapter6Scene.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="WICTextureLoader.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
@@ -154,17 +142,38 @@
     <ClCompile Include="ModelObject.cpp">
       <Filter>D3D\Game\GameObject\Model</Filter>
     </ClCompile>
-    <ClCompile Include="Chapter7Scene.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClCompile>
     <ClCompile Include="Camera.cpp">
       <Filter>D3D\Game\GameObject\Camera</Filter>
     </ClCompile>
     <ClCompile Include="Ray.cpp">
       <Filter>D3D\Game\Collision</Filter>
     </ClCompile>
+    <ClCompile Include="Chapter1Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter2Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter3Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter4Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter5Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter6Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter7Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="Chapter8Scene.cpp">
-      <Filter>D3D\Game\SceneManager</Filter>
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter9Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,14 +214,8 @@
     <ClInclude Include="SceneInterface.h">
       <Filter>D3D\Game\SceneManager\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Chapter1Scene.h">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="SceneFactory.h">
       <Filter>D3D\Game\SceneManager\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Chapter2Scene.h">
-      <Filter>D3D\Game\SceneManager</Filter>
     </ClInclude>
     <ClInclude Include="DDSTextureLoader.h">
       <Filter>D3D\Framework</Filter>
@@ -235,18 +238,6 @@
     <ClInclude Include="ListeningEvent.h">
       <Filter>D3D\Game\ListeningEvent</Filter>
     </ClInclude>
-    <ClInclude Include="Chapter3Scene.h">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Chapter4Scene.h">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Chapter5Scene.h">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
-    <ClInclude Include="Chapter6Scene.h">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="WICTextureLoader.h">
       <Filter>D3D\Framework</Filter>
     </ClInclude>
@@ -259,17 +250,38 @@
     <ClInclude Include="ModelObject.h">
       <Filter>D3D\Game\GameObject\Model</Filter>
     </ClInclude>
-    <ClInclude Include="Chapter7Scene.h">
-      <Filter>D3D\Game\SceneManager</Filter>
-    </ClInclude>
     <ClInclude Include="Camera.h">
       <Filter>D3D\Game\GameObject\Camera</Filter>
     </ClInclude>
     <ClInclude Include="Ray.h">
       <Filter>D3D\Game\Collision</Filter>
     </ClInclude>
+    <ClInclude Include="Chapter1Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter2Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter3Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter4Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter5Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter6Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter7Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="Chapter8Scene.h">
-      <Filter>D3D\Game\SceneManager</Filter>
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter9Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -321,6 +333,12 @@
     <FxCompile Include="Shader\Chapter 8\VS.hlsl">
       <Filter>D3D\Shader\Chpater 8</Filter>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 9\PS.hlsl">
+      <Filter>D3D\Shader\Chpater 9</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 9\VS.hlsl">
+      <Filter>D3D\Shader\Chpater 9</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Chapter 1\Common.hlsli">
@@ -364,6 +382,12 @@
     </None>
     <None Include="Shader\Chapter 8\LightHelper.hlsli">
       <Filter>D3D\Shader\Chpater 8</Filter>
+    </None>
+    <None Include="Shader\Chapter 9\Common.hlsli">
+      <Filter>D3D\Shader\Chpater 9</Filter>
+    </None>
+    <None Include="Shader\Chapter 9\LightHelper.hlsli">
+      <Filter>D3D\Shader\Chpater 9</Filter>
     </None>
   </ItemGroup>
 </Project>

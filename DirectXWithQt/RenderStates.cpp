@@ -13,7 +13,7 @@ ComPtr<ID3D11BlendState> RenderStates::BSNoColorWrite = nullptr;
 
 ComPtr<ID3D11DepthStencilState> RenderStates::DSSWriteStencil = nullptr;
 ComPtr<ID3D11DepthStencilState> RenderStates::DSSDrawWithStencil = nullptr;
-
+ComPtr<ID3D11DepthStencilState> RenderStates::DSSLessEqual = nullptr;
 
 void RenderStates::Init(ComPtr<ID3D11Device> pd3dDevice)
 {
@@ -142,4 +142,15 @@ void RenderStates::Init(ComPtr<ID3D11Device> pd3dDevice)
 	dsDesc.BackFace.StencilFunc = D3D11_COMPARISON_EQUAL;
 
 	pd3dDevice->CreateDepthStencilState(&dsDesc, DSSDrawWithStencil.GetAddressOf());
+
+
+	D3D11_DEPTH_STENCIL_DESC dsDesc222;
+
+	dsDesc222.DepthEnable = true;
+	dsDesc222.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	dsDesc222.DepthFunc = D3D11_COMPARISON_LESS_EQUAL;
+
+	dsDesc222.StencilEnable = false;
+
+	pd3dDevice->CreateDepthStencilState(&dsDesc222, DSSLessEqual.GetAddressOf());
 }

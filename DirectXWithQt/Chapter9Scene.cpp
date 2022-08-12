@@ -1,21 +1,24 @@
-#include "Chapter8Scene.h"
+#include "Chapter9Scene.h"
 #include "KeyBoard.h"
 #include "Mouse.h"
 #include <string>
 #include "RenderStates.h"
-#include "Ray.h"
 
-Chapter8Scene::Chapter8Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
+
+Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
-	m_perspectiveCamera.setPosition(0, 0, 0);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
+	m_perspectiveCamera.setPosition(0.0f, 0.0f, 0.0f);
 
+
+	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
+	m_pd3dImmediateContext->OMSetDepthStencilState(RenderStates::DSSLessEqual.Get(), 0);
 }
 
 
-void Chapter8Scene::initScene()
+void Chapter9Scene::initScene()
 {
 	Material material;
 	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -24,62 +27,43 @@ void Chapter8Scene::initScene()
 
 	m_box1 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box1.setMesh(Geometry::buildBoxMesh());
-	m_box1.setShader(8);
+	m_box1.setShader(9);
 	m_box1.setTexturePathDDS(L"Texture\\WoodCrate.dds");
 	m_box1.setMaterial(material);
 	m_box1.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(2.0f, 0.0f, 10.0f)
+		XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
-	BoundingBox aabb;
-	XMFLOAT3 vmin(-1.0f, -1.0f, -1.0f);
-	XMFLOAT3 vmax(1.0f, 1.0f, 1.0f);
-	BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&vmin), XMLoadFloat3(&vmax));
-	m_box1.setBoundingBox(aabb);
 
-
-	m_box2 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
-	m_box2.setMesh(Geometry::buildBoxMesh());
-	m_box2.setShader(8);
-	m_box2.setTexturePathDDS(L"Texture\\brick.dds");
-	m_box2.setMaterial(material);
-	m_box2.setTransform(Transform(
-		XMFLOAT3(1.0f, 1.0f, 1.0f),
-		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(-2.0f, 0.0f, 10.0f)
-	));
-	m_box2.setBoundingBox(aabb);
 }
 
 
-void Chapter8Scene::updateScene(float deltaTime)
+void Chapter9Scene::updateScene(float deltaTime)
 {
-	static float rot = 0.0f;
-	rot += deltaTime;
-	m_box1.setRotation(rot, 0.0f, 0.0f);
-	m_box2.setRotation(0.0f, rot, 0.0f);
 
 	if (KeyBoard::getInstance().isKeyPress('W'))
 	{
-		//m_box2.setPosition(-2.0f, 0.0f, m_box2.getPosition().z + deltaTime*10);
 		m_perspectiveCamera.moveZAxis(deltaTime * 20);
+		m_box1.moveZAxis(deltaTime * 20);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('S'))
 	{
-		//m_box2.setPosition(-2.0f, 0.0f, m_box2.getPosition().z - deltaTime*10);
 		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
+		m_box1.moveZAxis(-deltaTime * 20);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('A'))
 	{
 		m_perspectiveCamera.moveXAxis(-deltaTime * 20);
+		m_box1.moveXAxis(-deltaTime * 20);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('D'))
 	{
 		m_perspectiveCamera.moveXAxis(deltaTime * 20);
+		m_box1.moveXAxis(deltaTime * 20);
 		notifyAll();
 	}
 
@@ -91,59 +75,25 @@ void Chapter8Scene::updateScene(float deltaTime)
 		deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
 		deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
 		m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
+	
 		notifyAll();
 
 	}
 
-	Ray ray_camera2pickPoint = Ray::ScreenToRay(m_perspectiveCamera, Mouse::x, Mouse::y);
-
-	float dis;
-	BoundingBox aabb1,aabb2;
-	m_box1.getBoundingBox().Transform(aabb1, m_box1.getTransform().getWorldMatrix());
-	m_box2.getBoundingBox().Transform(aabb2, m_box2.getTransform().getWorldMatrix());
-
-
-	if (ray_camera2pickPoint.hit(aabb1, dis))
-	{
-		ListeningEvent::notifyAll("Pick RightBox");
-		if (Mouse::m_whichButton == LeftButton)
-		{
-			ListeningEvent::stopTimer();
-			ListeningEvent::messaegeBox("Pick RightBox");
-			ListeningEvent::startTimer();
-			Mouse::m_whichButton = NoButton;
-
-		}
-	}
-	else if (ray_camera2pickPoint.hit(aabb2, dis))
-	{
-		ListeningEvent::notifyAll("Pick LeftBox");
-		if (Mouse::m_whichButton == LeftButton)
-		{
-			ListeningEvent::stopTimer();
-			ListeningEvent::messaegeBox("Pick LeftBox");
-			ListeningEvent::startTimer();
-			Mouse::m_whichButton = NoButton;
-		}
-	}
-	else
-	{
-		ListeningEvent::notifyAll("Pick Null");
-	}
-	
 }
 
-void Chapter8Scene::drawScene()
+void Chapter9Scene::drawScene()
 {
 	
 	m_box1.draw();
-	m_box2.draw();
+
+
 }
 
 
 
 
-void Chapter8Scene::setDirLight(XMFLOAT3 dir)
+void Chapter9Scene::setDirLight(XMFLOAT3 dir)
 {
 	DirectionLight directionLight;
 
@@ -160,7 +110,8 @@ void Chapter8Scene::setDirLight(XMFLOAT3 dir)
 	m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pLightCB.GetAddressOf());
 }
 
-void Chapter8Scene::notifyAll()
+
+void Chapter9Scene::notifyAll()
 {
 	XMFLOAT3 rot = m_perspectiveCamera.getRotation();
 	XMFLOAT3 pos = m_perspectiveCamera.getPosition();
@@ -176,3 +127,4 @@ void Chapter8Scene::notifyAll()
 	ListeningEvent::notifyAll(msg);
 
 }
+

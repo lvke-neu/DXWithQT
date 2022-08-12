@@ -34,7 +34,7 @@ Ray Ray::ScreenToRay(Camera camera, float x, float y)
 	//
 
 	////proj->world space
-	//XMMATRIX vpInverse = XMMatrixInverse(nullptr, XMMatrixMultiply(camera.getViewMatrix(), camera.getProjMatrix()));
+	//XMMATRIX vpInverse = XMMatrixInverse(nullptr, XMMatrixMultiply(XMMatrixInverse(nullptr, camera.getViewMatrix()), camera.getProjMatrix()));
 	//screenPoint = XMVector3TransformCoord(screenPoint, vpInverse);
 
 	////Ray
