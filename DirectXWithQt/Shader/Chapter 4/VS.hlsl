@@ -5,7 +5,7 @@ VertexOut VS(VertexIn vIn)
 {
 	float4 posW = mul(float4(vIn.posL, 1.0f), g_world);
 
-	float normalW = mul(vIn.normalL, (float3x3)g_worldInvTranspose);
+	float3 normalW = mul(vIn.normalL, (float3x3)g_worldInvTranspose);
 
 	[flatten]
 	if (g_isEnableReflec)

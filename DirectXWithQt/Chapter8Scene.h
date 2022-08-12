@@ -22,5 +22,6 @@ public:
 private:
 	GameObject m_box1;
 	GameObject m_box2;
+	GameObject m_rectangle;
 };
 

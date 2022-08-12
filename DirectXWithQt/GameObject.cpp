@@ -111,6 +111,12 @@ void GameObject::setMesh(Mesh mesh)
 	ibd.CPUAccessFlags = 0;
 	InitData.pSysMem = m_mesh.indexBuffer.data();
 	m_pd3dDevice->CreateBuffer(&ibd, &InitData, m_pIndexBuffer.GetAddressOf());
+
+
+	//set boundingbox
+	BoundingBox aabb;
+	BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&m_mesh.vMin), XMLoadFloat3(&m_mesh.vMax));
+	setBoundingBox(aabb);
 }
 
 uint32_t& GameObject::getShader() 

@@ -25,8 +25,36 @@ Mesh Geometry::buildTriangleMesh()
 	triangleMesh.indexBuffer[1] = 1;
 	triangleMesh.indexBuffer[2] = 2;
 	
+
 	return triangleMesh;
 }
+
+Mesh Geometry::builRectangleMesh()
+{
+	Mesh rectangleMesh;
+
+	rectangleMesh.vertexBuffer.resize(4);
+
+	rectangleMesh.vertexBuffer[0].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);
+	rectangleMesh.vertexBuffer[1].position = XMFLOAT3(1.0f, 1.0f, 0.0f);
+	rectangleMesh.vertexBuffer[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);
+	rectangleMesh.vertexBuffer[3].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);
+
+	rectangleMesh.indexBuffer.resize(6);
+
+	rectangleMesh.indexBuffer[0] = 0;
+	rectangleMesh.indexBuffer[1] = 1;
+	rectangleMesh.indexBuffer[2] = 3;
+	rectangleMesh.indexBuffer[3] = 3;
+	rectangleMesh.indexBuffer[4] = 1;
+	rectangleMesh.indexBuffer[5] = 2;
+
+	rectangleMesh.vMin = XMFLOAT3(-1.0f, -1.0f, 0.0f);
+	rectangleMesh.vMax = XMFLOAT3(1.0f, 1.0f, 0.0f);
+
+	return rectangleMesh;
+}
+
 
 Mesh Geometry::buildBoxMesh()
 {
@@ -96,6 +124,9 @@ Mesh Geometry::buildBoxMesh()
 		16, 17, 18, 18, 19, 16, 
 		20, 21, 22, 22, 23, 20	
 	};
+
+	boxMesh.vMin = XMFLOAT3(-1.0f, -1.0f, -1.0f);
+	boxMesh.vMax = XMFLOAT3(1.0f, 1.0f, 1.0f);
 
 	return boxMesh;
 }

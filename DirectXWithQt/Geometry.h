@@ -19,12 +19,15 @@ struct Mesh
 {
 	std::vector<VertexPosNormalTex> vertexBuffer{};
 	std::vector<unsigned long> indexBuffer{};
+	XMFLOAT3 vMin;
+	XMFLOAT3 vMax;
 };
 
 class Geometry
 {
 public:
 	static Mesh buildTriangleMesh();
+	static Mesh builRectangleMesh();
 	static Mesh buildBoxMesh();
 	static Mesh buildPlaneMesh(float texU,float texV);
 };

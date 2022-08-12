@@ -9,9 +9,10 @@ Chapter8Scene::Chapter8Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 {
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
-	m_perspectiveCamera.setPosition(0, 0, 0);
+	m_perspectiveCamera.setPosition(0, 0, -5.0f);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
 
+	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
 }
 
 
@@ -30,14 +31,8 @@ void Chapter8Scene::initScene()
 	m_box1.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(2.0f, 0.0f, 10.0f)
+		XMFLOAT3(4.0f, 0.0f, 10.0f)
 		));
-	BoundingBox aabb;
-	XMFLOAT3 vmin(-1.0f, -1.0f, -1.0f);
-	XMFLOAT3 vmax(1.0f, 1.0f, 1.0f);
-	BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&vmin), XMLoadFloat3(&vmax));
-	m_box1.setBoundingBox(aabb);
-
 
 	m_box2 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box2.setMesh(Geometry::buildBoxMesh());
@@ -47,9 +42,21 @@ void Chapter8Scene::initScene()
 	m_box2.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(-2.0f, 0.0f, 10.0f)
+		XMFLOAT3(-4.0f, 0.0f, 10.0f)
 	));
-	m_box2.setBoundingBox(aabb);
+
+	m_rectangle = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_rectangle.setMesh(Geometry::builRectangleMesh());
+	m_rectangle.setShader(8);
+	m_rectangle.setTexturePathDDS(L"Texture\\flare.dds");
+	m_rectangle.setMaterial(material);
+	m_rectangle.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(0.0f, -4.0f, 5.0f)
+	));
+
+
 }
 
 
@@ -59,16 +66,15 @@ void Chapter8Scene::updateScene(float deltaTime)
 	rot += deltaTime;
 	m_box1.setRotation(rot, 0.0f, 0.0f);
 	m_box2.setRotation(0.0f, rot, 0.0f);
+	m_rectangle.setRotation(0.0f, rot, 0.0f);
 
 	if (KeyBoard::getInstance().isKeyPress('W'))
 	{
-		//m_box2.setPosition(-2.0f, 0.0f, m_box2.getPosition().z + deltaTime*10);
 		m_perspectiveCamera.moveZAxis(deltaTime * 20);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('S'))
 	{
-		//m_box2.setPosition(-2.0f, 0.0f, m_box2.getPosition().z - deltaTime*10);
 		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
 		notifyAll();
 	}
@@ -98,9 +104,10 @@ void Chapter8Scene::updateScene(float deltaTime)
 	Ray ray_camera2pickPoint = Ray::ScreenToRay(m_perspectiveCamera, Mouse::x, Mouse::y);
 
 	float dis;
-	BoundingBox aabb1,aabb2;
+	BoundingBox aabb1,aabb2,aabb3;
 	m_box1.getBoundingBox().Transform(aabb1, m_box1.getTransform().getWorldMatrix());
 	m_box2.getBoundingBox().Transform(aabb2, m_box2.getTransform().getWorldMatrix());
+	m_rectangle.getBoundingBox().Transform(aabb3, m_rectangle.getTransform().getWorldMatrix());
 
 
 	if (ray_camera2pickPoint.hit(aabb1, dis))
@@ -126,6 +133,17 @@ void Chapter8Scene::updateScene(float deltaTime)
 			Mouse::m_whichButton = NoButton;
 		}
 	}
+	else if (ray_camera2pickPoint.hit(aabb3, dis))
+	{
+		ListeningEvent::notifyAll("Pick Rectangle");
+		if (Mouse::m_whichButton == LeftButton)
+		{
+			ListeningEvent::stopTimer();
+			ListeningEvent::messaegeBox("Pick Rectangle");
+			ListeningEvent::startTimer();
+			Mouse::m_whichButton = NoButton;
+		}
+	}
 	else
 	{
 		ListeningEvent::notifyAll("Pick Null");
@@ -135,9 +153,9 @@ void Chapter8Scene::updateScene(float deltaTime)
 
 void Chapter8Scene::drawScene()
 {
-	
 	m_box1.draw();
 	m_box2.draw();
+	m_rectangle.draw();
 }
 
 
