@@ -88,7 +88,8 @@ public:
 public:
 	
 	//Frustum Culling in the world space
-	bool frustumCulling(const BoundingBox& AABB);
+	// return the result of culling
+	bool isNeedFrustumCulling(const BoundingBox& AABB);
 
 private:
 	ComPtr<ID3D11Device> m_pd3dDevice;

@@ -619,6 +619,52 @@ void ChapterDockWidget::initChpa7DockWidget()
 			}
 		});
 
+
+
+	QPushButton* button_fog_open = new QPushButton("开启雾效果", dockWidget7);
+	button_fog_open->move(0, 370);
+	QWidget::connect(button_fog_open, &QPushButton::clicked, this,
+		[=]
+		{
+			Chapter7Scene* chapter7Scene = (Chapter7Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter7Scene)
+			{
+				chapter7Scene->setFogEnabled(true);
+			}
+		});
+
+
+	QPushButton* button_fog_close = new QPushButton("关闭雾效果", dockWidget7);
+	button_fog_close->move(0, 400);
+	QWidget::connect(button_fog_close, &QPushButton::clicked, this,
+		[=]
+		{
+			Chapter7Scene* chapter7Scene = (Chapter7Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter7Scene)
+			{
+				chapter7Scene->setFogEnabled(false);
+			}
+		});
+
+	QLabel* labelFogRange = new QLabel("改变雾的range", dockWidget7);
+	labelFogRange->move(0, 640);
+	QSlider* qSliderFogRange = new QSlider(Qt::Horizontal, dockWidget7);
+	qSliderFogRange->move(0, 670);
+	qSliderFogRange->setMinimum(15);
+	qSliderFogRange->setMaximum(1900);
+	qSliderFogRange->setSingleStep(1);
+	qSliderFogRange->setValue(1500);
+	connect(qSliderFogRange, &QSlider::valueChanged, this,
+		[=]
+		{
+			Chapter7Scene* chapter7Scene = (Chapter7Scene*)m_RenderWidget->m_gameApp->getScene();
+			if (chapter7Scene)
+			{
+				chapter7Scene->setFogRange(qSliderFogRange->value());
+			}
+		});
+
+
 	dockWidget7->setObjectName("dockWidget7");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget7);
 	dockWidget7->hide();

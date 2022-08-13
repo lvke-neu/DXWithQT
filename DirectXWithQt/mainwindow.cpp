@@ -57,7 +57,7 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 {
 	m_RenderWidget->m_gameApp->setScene(item->text().toStdString());
 	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
-	if (item->text().toStdString() == "Chapter 2")
+	if (item->text().toStdString() == "Chapter 2" || item->text().toStdString() == "Chapter 7")
 	{
 		m_RenderWidget->m_gameApp->setRenderTargetViewColor(0.752941251f, 0.752941251f, 0.752941251f, 1.000000000f);
 	}
@@ -103,7 +103,7 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 		}
 		else if (item->text().toStdString() == "Chapter 7")
 		{
-			introductionLabel->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型");
+			introductionLabel->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型\n进行视锥体裁剪");
 			introductionLabel->setFixedWidth(400);
 		}
 		else if(item->text().toStdString() == "Chapter 8")

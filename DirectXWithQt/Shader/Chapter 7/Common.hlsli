@@ -45,3 +45,11 @@ cbuffer LightCB : register(b4)
 	DirectionLight g_directionLight;
 }
 
+cbuffer FogCB : register(b5)
+{
+	float4 g_fogColor;
+	int g_fogEnabled;
+	float g_fogStart;
+	float g_fogRange;
+	float pad222;
+}

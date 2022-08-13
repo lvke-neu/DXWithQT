@@ -12,7 +12,7 @@ float4 PS(VertexOut pIn) : SV_Target
 	pIn.normalW = normalize(pIn.normalW);
 
 	float3 toEyeW = normalize(g_eyePosW - pIn.posW);
-	
+	float distToEye = distance(g_eyePosW, pIn.posW);
 
 	float4 ambient, diffuse, specular;
 	ambient = diffuse = specular = float4(0.0f, 0.0f, 0.0f, 0.0f);
@@ -22,7 +22,16 @@ float4 PS(VertexOut pIn) : SV_Target
 		diffuse,
 		specular);
 
+
 	//color = color * (ambient + diffuse)+ specular;
+	[flatten]
+	if (g_fogEnabled)
+	{
+		float fogLerp = saturate((distToEye - g_fogStart) / g_fogRange);
+		color = lerp(color, g_fogColor, fogLerp);
+	}
+
+
 
 	//color.a = 1.0f;
 	//return color;
