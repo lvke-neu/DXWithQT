@@ -30,4 +30,5 @@ public:
 	static Mesh builRectangleMesh();
 	static Mesh buildBoxMesh();
 	static Mesh buildPlaneMesh(float texU,float texV);
+	static Mesh buildSphereMesh(float radius = 1.0f, UINT levels = 20, UINT slices = 20);
 };

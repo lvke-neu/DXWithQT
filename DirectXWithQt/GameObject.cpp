@@ -140,6 +140,22 @@ void GameObject::setShader(const uint32_t& shader)
 	m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pPixelShader.GetAddressOf());
 }
 
+void GameObject::setSkyBoxShader()
+{
+	m_shader = 250;
+
+	ComPtr<ID3DBlob> blob;
+
+	CreateShaderFromFile(L"Shader\\Chapter 9\\SkyBoxVS.cso", L"Shader\\Chapter 9\\SkyBoxVS.hlsl", "VS", "vs_5_0", blob.ReleaseAndGetAddressOf());
+	m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pVertexShader.GetAddressOf());
+
+	m_pd3dDevice->CreateInputLayout(VertexPosNormalTex::inputLayout, ARRAYSIZE(VertexPosNormalTex::inputLayout),
+		blob->GetBufferPointer(), blob->GetBufferSize(), m_pVertexLayout.GetAddressOf());
+
+	CreateShaderFromFile(L"Shader\\Chapter 9\\SkyBoxPS.cso", L"Shader\\Chapter 9\\SkyBoxPS.hlsl", "PS", "ps_5_0", blob.ReleaseAndGetAddressOf());
+	m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pPixelShader.GetAddressOf());
+}
+
 const wchar_t* GameObject::getTexturePath() 
 { 
 	return m_texturePath;

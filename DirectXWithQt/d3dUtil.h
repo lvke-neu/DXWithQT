@@ -1,39 +1,16 @@
 #pragma once 
 
-#include <d3dcompiler.h>
+#include <d3d11.h>
+#include <string>
 
-#define SAFERELEASE(p) { if ((p)) { delete (p); (p) = nullptr; } }
+//#define SAFERELEASE(p) { if ((p)) { delete (p); (p) = nullptr; } }
+#define SAFERELEASE(p) { if ((p)) { (p)->Release(); (p) = nullptr; } }
 
-HRESULT CreateShaderFromFile(
-	const WCHAR* csoFileNameInOut,
-	const WCHAR* hlslFileName,
-	LPCSTR entryPoint,
-	LPCSTR shaderModel,
-	ID3DBlob** ppBlobOut)
-{
-	HRESULT hr = S_OK;
-
-	DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+HRESULT CreateShaderFromFile(const WCHAR* csoFileNameInOut, const WCHAR* hlslFileName, LPCSTR entryPoint, LPCSTR shaderModel, ID3DBlob** ppBlobOut);
 
 
-	ID3DBlob* errorBlob = nullptr;
-	hr = D3DCompileFromFile(hlslFileName, nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE, entryPoint, shaderModel,
-		dwShaderFlags, 0, ppBlobOut, &errorBlob);
-	if (FAILED(hr))
-	{
-		if (errorBlob != nullptr)
-		{
-			OutputDebugStringA(reinterpret_cast<const char*>(errorBlob->GetBufferPointer()));
-		}
-		SAFERELEASE(errorBlob);
-		return hr;
-	}
 
-
-	if (csoFileNameInOut)
-	{
-		return D3DWriteBlobToFile(*ppBlobOut, csoFileNameInOut, FALSE);
-	}
-	
-	return hr;
-}
+HRESULT CreateWICTexture2DCubeFromFile(ID3D11Device * d3dDevice, ID3D11DeviceContext * d3dDeviceContext, const std::wstring & cubeMapFileName,
+	ID3D11Texture2D ** textureArray,
+	ID3D11ShaderResourceView ** textureCubeView,
+	bool generateMips);

@@ -65,6 +65,7 @@ public:
 
 	uint32_t& getShader();
 	void setShader(const uint32_t& shader);
+	void setSkyBoxShader();
 
 	const wchar_t* getTexturePath();
 	void setTexturePathDDS(const wchar_t* texturePath);
@@ -84,10 +85,10 @@ public:
 	void moveZAxis(float distance) { m_transform.moveZAxis(distance); changeWorldMatrixCB(); }
 	void moveXAxis(float distance) { m_transform.moveXAxis(distance); changeWorldMatrixCB(); }
 	void changeWorldMatrixCB();
-private:
+protected:
 	ComPtr<ID3D11Device> m_pd3dDevice;
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext;
-private:
+protected:
 
 	ComPtr<ID3D11Buffer> m_pWorldMatrixCB;//常量buffer，存放世界矩阵，放在槽0
 
@@ -102,7 +103,7 @@ private:
 	ComPtr<ID3D11ShaderResourceView> m_pTexture2{ nullptr };
 
 	ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };
-private:
+protected:
 	Mesh m_mesh;
 	uint32_t m_shader = -1;
 	const wchar_t* m_texturePath = L"\0";

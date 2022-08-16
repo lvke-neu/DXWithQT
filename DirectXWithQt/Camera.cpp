@@ -29,6 +29,22 @@ void Camera::changeViewMatrixCB()
 	m_pd3dImmediateContext->PSSetConstantBuffers(1, 1, m_pViewMatrixCB.GetAddressOf());
 }
 
+void Camera::changeViewMatrixCB(const XMMATRIX& view)
+{
+	ViewMatrix viewMatrix;
+	viewMatrix.g_view = XMMatrixTranspose(view);
+
+
+	D3D11_MAPPED_SUBRESOURCE mappedData;
+	m_pd3dImmediateContext->Map(m_pViewMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+	memcpy_s(mappedData.pData, sizeof(ViewMatrix), &viewMatrix, sizeof(ViewMatrix));
+	m_pd3dImmediateContext->Unmap(m_pViewMatrixCB.Get(), 0);
+
+	m_pd3dImmediateContext->VSSetConstantBuffers(1, 1, m_pViewMatrixCB.GetAddressOf());
+	m_pd3dImmediateContext->PSSetConstantBuffers(1, 1, m_pViewMatrixCB.GetAddressOf());
+}
+
+
 void Camera::setFrustum(float FovAngleY, float AspectRatio, float NearZ, float FarZ)
 {
 	m_fovAngleY = FovAngleY;

@@ -40,12 +40,6 @@
     <Filter Include="D3D\Shader\Chapter 2">
       <UniqueIdentifier>{7f87aa5f-1718-46d7-bc75-aae9e031f7c8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="D3D\Game\InputEvent">
-      <UniqueIdentifier>{4d0acfae-1f4f-4eea-b89e-3f489c13f333}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="D3D\Game\ListeningEvent">
-      <UniqueIdentifier>{7b4c31ac-8d41-4f79-918b-d0bea7c8e1ac}</UniqueIdentifier>
-    </Filter>
     <Filter Include="D3D\Shader\Chapter 3">
       <UniqueIdentifier>{0daf7245-690c-4a61-b7c0-deac630d66bd}</UniqueIdentifier>
     </Filter>
@@ -78,6 +72,18 @@
     </Filter>
     <Filter Include="D3D\Game\SceneManager\Scene">
       <UniqueIdentifier>{234483c9-3cae-40ba-80e6-557fb45d1fef}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Event">
+      <UniqueIdentifier>{b02f8c59-b4b6-4996-994d-30f3503e06fb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Event\InputEvent">
+      <UniqueIdentifier>{4d0acfae-1f4f-4eea-b89e-3f489c13f333}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Event\ListeningEvent">
+      <UniqueIdentifier>{7b4c31ac-8d41-4f79-918b-d0bea7c8e1ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\SkyBox">
+      <UniqueIdentifier>{816c2b68-10ec-4bfa-9c63-a1d60c6882f3}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -113,10 +119,10 @@
       <Filter>D3D\Framework</Filter>
     </ClCompile>
     <ClCompile Include="KeyBoard.cpp">
-      <Filter>D3D\Game\InputEvent</Filter>
+      <Filter>D3D\Event\InputEvent</Filter>
     </ClCompile>
     <ClCompile Include="Mouse.cpp">
-      <Filter>D3D\Game\InputEvent</Filter>
+      <Filter>D3D\Event\InputEvent</Filter>
     </ClCompile>
     <ClCompile Include="RenderStates.cpp">
       <Filter>D3D\Framework</Filter>
@@ -128,7 +134,7 @@
       <Filter>D3D\Game\SceneManager\Interface</Filter>
     </ClCompile>
     <ClCompile Include="ListeningEvent.cpp">
-      <Filter>D3D\Game\ListeningEvent</Filter>
+      <Filter>D3D\Event\ListeningEvent</Filter>
     </ClCompile>
     <ClCompile Include="WICTextureLoader.cpp">
       <Filter>D3D\Framework</Filter>
@@ -174,6 +180,12 @@
     </ClCompile>
     <ClCompile Include="Chapter9Scene.cpp">
       <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+      <Filter>D3D\Game\SkyBox</Filter>
+    </ClCompile>
+    <ClCompile Include="d3dUtil.cpp">
+      <Filter>D3D\Framework</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -224,10 +236,10 @@
       <Filter>D3D\Framework</Filter>
     </ClInclude>
     <ClInclude Include="KeyBoard.h">
-      <Filter>D3D\Game\InputEvent</Filter>
+      <Filter>D3D\Event\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="Mouse.h">
-      <Filter>D3D\Game\InputEvent</Filter>
+      <Filter>D3D\Event\InputEvent</Filter>
     </ClInclude>
     <ClInclude Include="RenderStates.h">
       <Filter>D3D\Framework</Filter>
@@ -236,7 +248,7 @@
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
     <ClInclude Include="ListeningEvent.h">
-      <Filter>D3D\Game\ListeningEvent</Filter>
+      <Filter>D3D\Event\ListeningEvent</Filter>
     </ClInclude>
     <ClInclude Include="WICTextureLoader.h">
       <Filter>D3D\Framework</Filter>
@@ -282,6 +294,9 @@
     </ClInclude>
     <ClInclude Include="Chapter9Scene.h">
       <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+      <Filter>D3D\Game\SkyBox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +354,12 @@
     <FxCompile Include="Shader\Chapter 9\VS.hlsl">
       <Filter>D3D\Shader\Chpater 9</Filter>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 9\SkyBoxPS.hlsl">
+      <Filter>D3D\Shader\Chpater 9</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 9\SkyBoxVS.hlsl">
+      <Filter>D3D\Shader\Chpater 9</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Chapter 1\Common.hlsli">
@@ -387,6 +408,9 @@
       <Filter>D3D\Shader\Chpater 9</Filter>
     </None>
     <None Include="Shader\Chapter 9\LightHelper.hlsli">
+      <Filter>D3D\Shader\Chpater 9</Filter>
+    </None>
+    <None Include="Shader\Chapter 9\SkyBox.hlsli">
       <Filter>D3D\Shader\Chpater 9</Filter>
     </None>
   </ItemGroup>

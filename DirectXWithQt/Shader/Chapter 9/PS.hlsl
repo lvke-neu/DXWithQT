@@ -22,7 +22,7 @@ float4 PS(VertexOut pIn) : SV_Target
 		diffuse,
 		specular);
 
-	//color = color * (ambient + diffuse)+ specular;
+	color = color * (ambient + diffuse)+ specular;
 
 	color.a = 1.0f;
 	return color;

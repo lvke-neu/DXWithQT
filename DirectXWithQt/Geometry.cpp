@@ -160,3 +160,86 @@ Mesh Geometry::buildPlaneMesh(float texU, float texV)
 
 	return planeMesh;
 }
+
+Mesh Geometry::buildSphereMesh(float radius, UINT levels, UINT slices)
+{
+
+	Mesh sphereMesh;
+
+	UINT vertexCount = 2 + (levels - 1) * (slices + 1);
+	UINT indexCount = 6 * (levels - 1) * slices;
+	sphereMesh.vertexBuffer.resize(vertexCount);
+	sphereMesh.indexBuffer.resize(indexCount);
+
+
+	DWORD vIndex = 0, iIndex = 0;
+
+	float phi = 0.0f, theta = 0.0f;
+	float per_phi = XM_PI / levels;
+	float per_theta = XM_2PI / slices;
+	float x, y, z;
+
+	sphereMesh.vertexBuffer[vIndex++] = VertexPosNormalTex({ XMFLOAT3(0.0f, radius, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) });
+
+
+
+	for (UINT i = 1; i < levels; ++i)
+	{
+		phi = per_phi * i;
+
+		for (UINT j = 0; j <= slices; ++j)
+		{
+			theta = per_theta * j;
+			x = radius * sinf(phi) * cosf(theta);
+			y = radius * cosf(phi);
+			z = radius * sinf(phi) * sinf(theta);
+
+			XMFLOAT3 pos = XMFLOAT3(x, y, z), normal;
+			XMStoreFloat3(&normal, XMVector3Normalize(XMLoadFloat3(&pos)));
+
+			sphereMesh.vertexBuffer[vIndex++] = VertexPosNormalTex({ pos, normal, XMFLOAT2(theta / XM_2PI, phi / XM_PI) });
+		}
+	}
+
+	sphereMesh.vertexBuffer[vIndex++] = VertexPosNormalTex({ XMFLOAT3(0.0f, -radius, 0.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) });
+
+
+	if (levels > 1)
+	{
+		for (UINT j = 1; j <= slices; ++j)
+		{
+			sphereMesh.indexBuffer[iIndex++] = 0;
+			sphereMesh.indexBuffer[iIndex++] = j % (slices + 1) + 1;
+			sphereMesh.indexBuffer[iIndex++] = j;
+		}
+	}
+
+
+	for (UINT i = 1; i < levels - 1; ++i)
+	{
+		for (UINT j = 1; j <= slices; ++j)
+		{
+			sphereMesh.indexBuffer[iIndex++] = (i - 1) * (slices + 1) + j;
+			sphereMesh.indexBuffer[iIndex++] = (i - 1) * (slices + 1) + j % (slices + 1) + 1;
+			sphereMesh.indexBuffer[iIndex++] = i * (slices + 1) + j % (slices + 1) + 1;
+
+			sphereMesh.indexBuffer[iIndex++] = i * (slices + 1) + j % (slices + 1) + 1;
+			sphereMesh.indexBuffer[iIndex++] = i * (slices + 1) + j;
+			sphereMesh.indexBuffer[iIndex++] = (i - 1) * (slices + 1) + j;
+		}
+	}
+
+
+	if (levels > 1)
+	{
+		for (UINT j = 1; j <= slices; ++j)
+		{
+			sphereMesh.indexBuffer[iIndex++] = (levels - 2) * (slices + 1) + j;
+			sphereMesh.indexBuffer[iIndex++] = (levels - 2) * (slices + 1) + j % (slices + 1) + 1;
+			sphereMesh.indexBuffer[iIndex++] = (levels - 1) * (slices + 1) + 1;
+		}
+	}
+
+
+	return sphereMesh;
+}

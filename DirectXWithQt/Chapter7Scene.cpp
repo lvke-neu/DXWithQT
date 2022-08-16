@@ -10,7 +10,7 @@ Chapter7Scene::Chapter7Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	m_perspectiveCamera.setPosition(0.7f, 11.0f, -69.f);
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
-
+	//m_pd3dImmediateContext->RSSetState(RenderStates::RSWireframe.Get());
 
 	srand(time(0));
 	for (UINT32 i = 0; i < RAND_TREE_NUM; i++)
@@ -227,4 +227,12 @@ void Chapter7Scene::setFogRange(float range)
 	m_pd3dImmediateContext->Map(m_pFogCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
 	memcpy_s(mappedData.pData, sizeof(Fog), &fog, sizeof(Fog));
 	m_pd3dImmediateContext->Unmap(m_pFogCB.Get(), 0);
+}
+
+void Chapter7Scene::setWireframe(bool b)
+{
+	if (b)
+		m_pd3dImmediateContext->RSSetState(RenderStates::RSWireframe.Get());
+	else
+		m_pd3dImmediateContext->RSSetState(nullptr);
 }

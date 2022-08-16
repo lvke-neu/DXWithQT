@@ -3,6 +3,7 @@
 #include "SceneInterface.h"
 #include "ModelObject.h"
 #include "ListeningEvent.h"
+#include "SkyBox.h"
 
 #define RAND_TREE_NUM 50
 class Chapter7Scene : public IScene, public ListeningEvent
@@ -28,7 +29,7 @@ public:
 	void set_enableFrustumCulling(bool b) { m_enableFrustumCulling = b; }
 	void setFogEnabled(bool b);
 	void setFogRange(float range);
-
+	void setWireframe(bool b);
 	void notifyAll();
 private:
 	ModelObject m_house;

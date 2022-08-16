@@ -10,11 +10,13 @@ Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
-	m_perspectiveCamera.setPosition(0.0f, 0.0f, 0.0f);
+	//m_perspectiveCamera.setPosition(0.0f, 0.0f, -10.0f);
 
 
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
 	m_pd3dImmediateContext->OMSetDepthStencilState(RenderStates::DSSLessEqual.Get(), 0);
+
+	//m_pd3dImmediateContext->RSSetState(RenderStates::RSWireframe.Get());
 }
 
 
@@ -36,6 +38,27 @@ void Chapter9Scene::initScene()
 		XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
 
+	
+	m_sphere = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_sphere.setMesh(Geometry::buildSphereMesh());
+	m_sphere.setShader(9);
+	m_sphere.setTexturePathDDS(L"Texture\\grass.dds");
+	m_sphere.setMaterial(material);
+	m_sphere.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(5.0f, 0.0f, 0.0f)
+	));
+
+	m_skyBox = SkyBox(m_pd3dDevice, m_pd3dImmediateContext);
+	m_skyBox.setMesh(Geometry::buildBoxMesh());
+	m_skyBox.setSkyBoxShader();
+	m_skyBox.setSkyBoxTexture(L"Texture\\daylight.jpg");
+	m_skyBox.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f)
+	));
 }
 
 
@@ -45,25 +68,21 @@ void Chapter9Scene::updateScene(float deltaTime)
 	if (KeyBoard::getInstance().isKeyPress('W'))
 	{
 		m_perspectiveCamera.moveZAxis(deltaTime * 20);
-		m_box1.moveZAxis(deltaTime * 20);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('S'))
 	{
 		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
-		m_box1.moveZAxis(-deltaTime * 20);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('A'))
 	{
 		m_perspectiveCamera.moveXAxis(-deltaTime * 20);
-		m_box1.moveXAxis(-deltaTime * 20);
 		notifyAll();
 	}
 	if (KeyBoard::getInstance().isKeyPress('D'))
 	{
 		m_perspectiveCamera.moveXAxis(deltaTime * 20);
-		m_box1.moveXAxis(deltaTime * 20);
 		notifyAll();
 	}
 
@@ -84,10 +103,16 @@ void Chapter9Scene::updateScene(float deltaTime)
 
 void Chapter9Scene::drawScene()
 {
-	
 	m_box1.draw();
+	m_sphere.draw();
 
 
+	XMMATRIX V = m_perspectiveCamera.getViewMatrix();
+	V.r[3] = g_XMIdentityR3;
+	m_perspectiveCamera.changeViewMatrixCB(V);
+	m_skyBox.draw();
+
+	m_perspectiveCamera.changeViewMatrixCB();
 }
 
 

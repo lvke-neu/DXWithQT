@@ -54,6 +54,7 @@ public:
 	void moveZAxis(float distance) { m_transform.moveZAxis(distance); changeViewMatrixCB(); }
 	void moveXAxis(float distance) { m_transform.moveXAxis(distance); changeViewMatrixCB(); }
 	void changeViewMatrixCB();
+	void changeViewMatrixCB(const XMMATRIX& view);
 
 public:
 	XMFLOAT3& getScale() { return m_transform.getScale(); }

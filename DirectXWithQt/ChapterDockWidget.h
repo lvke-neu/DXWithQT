@@ -33,7 +33,7 @@ public:
 	void initChpa6DockWidget();
 	void initChpa7DockWidget();
 	void initChpa8DockWidget();
-
+	void initChpa9DockWidget();
 
 	void callback(const std::string& msg);
 	void messaegeBox(const std::string& msg) 
