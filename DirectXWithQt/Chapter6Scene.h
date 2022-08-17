@@ -2,9 +2,9 @@
 
 #include "SceneInterface.h"
 #include "GameObject.h"
-#include "ListeningEvent.h"
 
-class Chapter6Scene : public IScene, public ListeningEvent
+
+class Chapter6Scene : public IScene
 {
 	enum Chpat6State
 	{

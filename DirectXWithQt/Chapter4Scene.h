@@ -2,9 +2,9 @@
 
 #include "SceneInterface.h"
 #include "GameObject.h"
-#include "ListeningEvent.h"
 
-class Chapter4Scene : public IScene, public ListeningEvent
+
+class Chapter4Scene : public IScene
 {
 	struct Reflection
 	{

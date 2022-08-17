@@ -70,6 +70,7 @@ public:
 	const wchar_t* getTexturePath();
 	void setTexturePathDDS(const wchar_t* texturePath);
 	void setTexturePathWIC(const wchar_t* texturePath);
+	void setSkyBoxTexture(const std::wstring& cubemapFilename, bool generateMips = false);
 
 	Material& getMaterial();
 	void setMaterial(Material material);

@@ -26,7 +26,7 @@ public slots:
     void changeChapter(QListWidgetItem* item);
 
 public:
-	void WorkThread(const std::string& chapt);
+	void setIntroduction(QListWidgetItem* item);
 private:
     Ui::MainWindow *ui;
 	D3d11RenderWidget *m_RenderWidget{ nullptr };

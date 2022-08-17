@@ -2,10 +2,10 @@
 
 #include "SceneInterface.h"
 #include "GameObject.h"
-#include "ListeningEvent.h"
-#include "SkyBox.h"
 
-class Chapter9Scene : public IScene, public ListeningEvent
+
+
+class Chapter9Scene : public IScene
 {
 
 	struct Fog
@@ -30,7 +30,7 @@ public:
 private:
 	GameObject m_box1;
 	GameObject m_sphere;
-	SkyBox m_skyBox;
+	GameObject m_skyBox;
 
 };
 

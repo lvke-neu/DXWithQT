@@ -45,6 +45,6 @@ public:
 private:
 	QMainWindow* m_parent{ nullptr };
 	D3d11RenderWidget* m_RenderWidget{ nullptr };
-	std::vector<QDockWidget*> m_cptDockWidget;
-
+	std::map<std::string, QDockWidget*>	m_cptDockWidgets;
+	std::string m_currentChapter;
 };

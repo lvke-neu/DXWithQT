@@ -2,11 +2,11 @@
 
 #include "SceneInterface.h"
 #include "ModelObject.h"
-#include "ListeningEvent.h"
-#include "SkyBox.h"
+
+
 
 #define RAND_TREE_NUM 50
-class Chapter7Scene : public IScene, public ListeningEvent
+class Chapter7Scene : public IScene
 {
 	struct Fog
 	{

@@ -2,9 +2,9 @@
 
 #include "SceneInterface.h"
 #include "GameObject.h"
-#include "ListeningEvent.h"
 
-class Chapter3Scene : public IScene, public ListeningEvent
+
+class Chapter3Scene : public IScene
 {
 	struct DynamicMap
 	{

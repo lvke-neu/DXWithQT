@@ -18,16 +18,18 @@ ChapterDockWidget::ChapterDockWidget(QMainWindow* parent, D3d11RenderWidget* wid
 	initChpa7DockWidget();
 	initChpa8DockWidget();
 	initChpa9DockWidget();
+
+
 }
 
 ChapterDockWidget::~ChapterDockWidget()
 {
-	for (auto x : m_cptDockWidget)
+	for (auto x : m_cptDockWidgets)
 	{
-		if (x)
+		if (x.second)
 		{
-			delete x;
-			x = nullptr;
+			delete x.second;
+			x.second = nullptr;
 		}
 	}
 }
@@ -35,154 +37,18 @@ ChapterDockWidget::~ChapterDockWidget()
 
 void ChapterDockWidget::generateDockWidget(std::string chapterType)
 {
-	if (chapterType == "Chapter 1")
+	m_currentChapter = chapterType;
+	for (auto iter = m_cptDockWidgets.begin(); iter != m_cptDockWidgets.end(); iter++)
 	{
-		m_cptDockWidget[0]->show();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->hide();
-	}
-	else if (chapterType == "Chapter 2")
-	{
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->show();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->hide();
-
-		Chapter2Scene* chapter2Scene = (Chapter2Scene*)m_RenderWidget->m_gameApp->getScene();
-		if(chapter2Scene)
-			chapter2Scene->registerListeningEvent(this);
-	}
-	else if (chapterType == "Chapter 3")
-	{
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->show();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->hide();
-
-		Chapter3Scene* chapter3Scene = (Chapter3Scene*)m_RenderWidget->m_gameApp->getScene();
-		if (chapter3Scene)
-			chapter3Scene->registerListeningEvent(this);
-
-	}
-	else if(chapterType == "Chapter 4")
-	{
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->show();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->hide();
-
-		Chapter4Scene* chapter4Scene = (Chapter4Scene*)m_RenderWidget->m_gameApp->getScene();
-		if (chapter4Scene)
-			chapter4Scene->registerListeningEvent(this);
-	}
-	else if (chapterType == "Chapter 5")
-	{
-		Chapter5Scene* chapter5Scene = (Chapter5Scene*)m_RenderWidget->m_gameApp->getScene();
-		if (chapter5Scene)
-			chapter5Scene->registerListeningEvent(this);
-
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->show();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->hide();
-	}
-	else if (chapterType == "Chapter 6")
-	{
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->hide();
-	}
-	else if (chapterType == "Chapter 7")
-	{
-		Chapter7Scene* chapter7Scene = (Chapter7Scene*)m_RenderWidget->m_gameApp->getScene();
-		if (chapter7Scene)
-			chapter7Scene->registerListeningEvent(this);
-
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->show();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->hide();
-	}
-	else if (chapterType == "Chapter 8")
-	{
-		Chapter8Scene* chapter8Scene = (Chapter8Scene*)m_RenderWidget->m_gameApp->getScene();
-		if (chapter8Scene)
-			chapter8Scene->registerListeningEvent(this);
-
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->show();
-		m_cptDockWidget[8]->hide();
-	}
-	else if (chapterType == "Chapter 9")
-	{
-		Chapter9Scene* chapter9Scene = (Chapter9Scene*)m_RenderWidget->m_gameApp->getScene();
-		if (chapter9Scene)
-			chapter9Scene->registerListeningEvent(this);
-
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->show();
-	}
-	else
-	{
-		m_cptDockWidget[0]->hide();
-		m_cptDockWidget[1]->hide();
-		m_cptDockWidget[2]->hide();
-		m_cptDockWidget[3]->hide();
-		m_cptDockWidget[4]->hide();
-		m_cptDockWidget[5]->hide();
-		m_cptDockWidget[6]->hide();
-		m_cptDockWidget[7]->hide();
-		m_cptDockWidget[8]->hide();
+		if (iter->first == chapterType)
+		{
+			IScene* scene = m_RenderWidget->m_gameApp->getScene();
+			if (scene)
+				scene->registerListeningEvent(this);
+			iter->second->show();
+		}
+		else
+			iter->second->hide(); 
 	}
 }
 
@@ -206,12 +72,13 @@ void ChapterDockWidget::initChpa1DockWidget()
 
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget);
 	dockWidget->hide();
-	m_cptDockWidget.push_back(dockWidget);
+	m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 1", dockWidget));
 
 }
 
 void ChapterDockWidget::initChpa2DockWidget()
 {
+
 	//************************************ Chapter 2 *****************************************
 
 	QDockWidget* dockWidget2 = new QDockWidget(m_parent);
@@ -387,12 +254,16 @@ void ChapterDockWidget::initChpa2DockWidget()
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget2);
 
 	dockWidget2->hide();
-	m_cptDockWidget.push_back(dockWidget2);
+	m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 2", dockWidget2));
 
 }
 
 void ChapterDockWidget::initChpa3DockWidget()
 {
+	Chapter3Scene* chapter3Scene = (Chapter3Scene*)m_RenderWidget->m_gameApp->getScene();
+	if (chapter3Scene)
+		chapter3Scene->registerListeningEvent(this);
+
 	//************************************ Chapter 3 *****************************************
 	QDockWidget* dockWidget3 = new QDockWidget(m_parent);
 	dockWidget3->setFixedWidth(115);
@@ -429,11 +300,14 @@ void ChapterDockWidget::initChpa3DockWidget()
 	dockWidget3->setObjectName("dockWidget3");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget3);
 	dockWidget3->hide();
-	m_cptDockWidget.push_back(dockWidget3);
+	m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 3", dockWidget3));
 }
 
 void ChapterDockWidget::initChpa4DockWidget()
 {
+	Chapter4Scene* chapter4Scene = (Chapter4Scene*)m_RenderWidget->m_gameApp->getScene();
+	if (chapter4Scene)
+		chapter4Scene->registerListeningEvent(this);
 	//************************************ Chapter 4 *****************************************
 	QDockWidget* dockWidget4 = new QDockWidget(m_parent);
 	dockWidget4->setFixedWidth(115);
@@ -494,11 +368,15 @@ void ChapterDockWidget::initChpa4DockWidget()
 	dockWidget4->setObjectName("dockWidget4");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget4);
 	dockWidget4->hide();
-	m_cptDockWidget.push_back(dockWidget4);
+	m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 4", dockWidget4));
 }
 
 void ChapterDockWidget::initChpa5DockWidget()
 {
+
+	Chapter5Scene* chapter5Scene = (Chapter5Scene*)m_RenderWidget->m_gameApp->getScene();
+	if (chapter5Scene)
+		chapter5Scene->registerListeningEvent(this);
 	//************************************ Chapter 5 *****************************************
 	QDockWidget* dockWidget5 = new QDockWidget(m_parent);
 	dockWidget5->setFixedWidth(115);
@@ -599,19 +477,22 @@ void ChapterDockWidget::initChpa5DockWidget()
 	dockWidget5->setObjectName("dockWidget5");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget5);
 	dockWidget5->hide();
-	m_cptDockWidget.push_back(dockWidget5);
+	m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 5", dockWidget5));
 }
 
 void ChapterDockWidget::initChpa6DockWidget()
 {
-	//************************************ Chapter 7 *****************************************
-	QDockWidget* dockWidget6 = new QDockWidget(m_parent);
-	dockWidget6->hide();
-	m_cptDockWidget.push_back(dockWidget6);
+	////************************************ Chapter 6 *****************************************
+	//QDockWidget* dockWidget6 = new QDockWidget(m_parent);
+	//dockWidget6->hide();
+	//m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 6", dockWidget6));
 }
 
 void ChapterDockWidget::initChpa7DockWidget()
 {
+	Chapter7Scene* chapter7Scene = (Chapter7Scene*)m_RenderWidget->m_gameApp->getScene();
+	if (chapter7Scene)
+		chapter7Scene->registerListeningEvent(this);
 	//************************************ Chapter 7 *****************************************
 	QDockWidget* dockWidget7 = new QDockWidget(m_parent);
 	dockWidget7->setFixedWidth(115);
@@ -694,11 +575,14 @@ void ChapterDockWidget::initChpa7DockWidget()
 	dockWidget7->setObjectName("dockWidget7");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget7);
 	dockWidget7->hide();
-	m_cptDockWidget.push_back(dockWidget7);
+	m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 7", dockWidget7));
 }
 
 void ChapterDockWidget::initChpa8DockWidget()
 {
+	Chapter8Scene* chapter8Scene = (Chapter8Scene*)m_RenderWidget->m_gameApp->getScene();
+	if (chapter8Scene)
+		chapter8Scene->registerListeningEvent(this);
 	//************************************ Chapter 8 *****************************************
 	QDockWidget* dockWidget8 = new QDockWidget(m_parent);
 	dockWidget8->setFixedWidth(115);
@@ -714,11 +598,14 @@ void ChapterDockWidget::initChpa8DockWidget()
 	dockWidget8->setObjectName("dockWidget8");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget8);
 	dockWidget8->hide();
-	m_cptDockWidget.push_back(dockWidget8);
+	m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 8", dockWidget8));
 }
 
 void ChapterDockWidget::initChpa9DockWidget()
 {
+	Chapter9Scene* chapter9Scene = (Chapter9Scene*)m_RenderWidget->m_gameApp->getScene();
+	if (chapter9Scene)
+		chapter9Scene->registerListeningEvent(this);
 	//************************************ Chapter 8 *****************************************
 	QDockWidget* dockWidget9 = new QDockWidget(m_parent);
 	dockWidget9->setFixedWidth(115);
@@ -734,7 +621,7 @@ void ChapterDockWidget::initChpa9DockWidget()
 	dockWidget9->setObjectName("dockWidget9");
 	m_parent->addDockWidget(Qt::RightDockWidgetArea, dockWidget9);
 	dockWidget9->hide();
-	m_cptDockWidget.push_back(dockWidget9);
+	m_cptDockWidgets.insert(std::pair<std::string, QDockWidget*>("Chapter 9", dockWidget9));
 }
 
 void ChapterDockWidget::chapter1_setColor()
@@ -798,59 +685,10 @@ void ChapterDockWidget::chapter5_changeDirLight()
 
 void ChapterDockWidget::callback(const std::string& msg)
 {
-	QDockWidget* dockWidget2 = m_parent->findChild<QDockWidget*>("dockWidget2");
-	if (dockWidget2)
+	QDockWidget* dockWidget = m_cptDockWidgets[m_currentChapter];
+	if (dockWidget)
 	{
-		QLabel* labelCamProperty = dockWidget2->findChild<QLabel*>("CameraProperty");
-		if(labelCamProperty)
-			labelCamProperty->setText(QString(msg.c_str()));
-	}
-		
-	QDockWidget* dockWidget3 = m_parent->findChild<QDockWidget*>("dockWidget3");
-	if (dockWidget3)
-	{
-		QLabel* labelCamProperty = dockWidget3->findChild<QLabel*>("CameraProperty");
-		if (labelCamProperty)
-			labelCamProperty->setText(QString(msg.c_str()));
-	}
-
-	QDockWidget* dockWidget4 = m_parent->findChild<QDockWidget*>("dockWidget4");
-	if (dockWidget4)
-	{
-		QLabel* labelCamProperty = dockWidget4->findChild<QLabel*>("CameraProperty");
-		if (labelCamProperty)
-			labelCamProperty->setText(QString(msg.c_str()));
-	}
-
-	QDockWidget* dockWidget5 = m_parent->findChild<QDockWidget*>("dockWidget5");
-	if (dockWidget5)
-	{
-		QLabel* labelCamProperty = dockWidget5->findChild<QLabel*>("CameraProperty");
-		if (labelCamProperty)
-			labelCamProperty->setText(QString(msg.c_str()));
-	}
-
-	QDockWidget* dockWidget7 = m_parent->findChild<QDockWidget*>("dockWidget7");
-	if (dockWidget7)
-	{
-		QLabel* labelCamProperty = dockWidget7->findChild<QLabel*>("CameraProperty");
-		if (labelCamProperty)
-			labelCamProperty->setText(QString(msg.c_str()));
-	}
-
-	QDockWidget* dockWidget8 = m_parent->findChild<QDockWidget*>("dockWidget8");
-	if (dockWidget8)
-	{
-		QLabel* labelCamProperty = dockWidget8->findChild<QLabel*>("CameraProperty");
-		if (labelCamProperty)
-			labelCamProperty->setText(QString(msg.c_str()));
-	}
-
-
-	QDockWidget* dockWidget9 = m_parent->findChild<QDockWidget*>("dockWidget9");
-	if (dockWidget9)
-	{
-		QLabel* labelCamProperty = dockWidget9->findChild<QLabel*>("CameraProperty");
+		QLabel* labelCamProperty = dockWidget->findChild<QLabel*>("CameraProperty");
 		if (labelCamProperty)
 			labelCamProperty->setText(QString(msg.c_str()));
 	}

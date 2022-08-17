@@ -146,13 +146,13 @@ void GameObject::setSkyBoxShader()
 
 	ComPtr<ID3DBlob> blob;
 
-	CreateShaderFromFile(L"Shader\\Chapter 9\\SkyBoxVS.cso", L"Shader\\Chapter 9\\SkyBoxVS.hlsl", "VS", "vs_5_0", blob.ReleaseAndGetAddressOf());
+	CreateShaderFromFile(L"Shader\\SkyBox\\SkyBoxVS.cso", L"Shader\\SkyBox\\SkyBoxVS.hlsl", "VS", "vs_5_0", blob.ReleaseAndGetAddressOf());
 	m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pVertexShader.GetAddressOf());
 
 	m_pd3dDevice->CreateInputLayout(VertexPosNormalTex::inputLayout, ARRAYSIZE(VertexPosNormalTex::inputLayout),
 		blob->GetBufferPointer(), blob->GetBufferSize(), m_pVertexLayout.GetAddressOf());
 
-	CreateShaderFromFile(L"Shader\\Chapter 9\\SkyBoxPS.cso", L"Shader\\Chapter 9\\SkyBoxPS.hlsl", "PS", "ps_5_0", blob.ReleaseAndGetAddressOf());
+	CreateShaderFromFile(L"Shader\\SkyBox\\SkyBoxPS.cso", L"Shader\\SkyBox\\SkyBoxPS.hlsl", "PS", "ps_5_0", blob.ReleaseAndGetAddressOf());
 	m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pPixelShader.GetAddressOf());
 }
 
@@ -177,6 +177,17 @@ void GameObject::setTexturePathWIC(const wchar_t* texturePath)
 
 	CreateWICTextureFromFile(m_pd3dDevice.Get(), m_texturePath, nullptr, m_pTexture.GetAddressOf());
 }
+
+void GameObject::setSkyBoxTexture(const std::wstring& cubemapFilename, bool generateMips)
+{
+	CreateWICTexture2DCubeFromFile(m_pd3dDevice.Get(),
+		m_pd3dImmediateContext.Get(),
+		cubemapFilename,
+		nullptr,
+		m_pTexture.GetAddressOf(),
+		generateMips);
+}
+
 
 Material& GameObject::getMaterial() 
 { 

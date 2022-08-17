@@ -2,9 +2,9 @@
 
 #include "SceneInterface.h"
 #include "GameObject.h"
-#include "ListeningEvent.h"
 
-class Chapter5Scene : public IScene, public ListeningEvent
+
+class Chapter5Scene : public IScene
 {
 	//是否开启阴影
 	struct EnableShadow

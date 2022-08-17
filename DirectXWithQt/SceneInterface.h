@@ -10,11 +10,12 @@ Description:
 #include <wrl/client.h>
 #include "Camera.h"
 #include "Light.h"
+#include "ListeningEvent.h"
 
 template <class T>
 using ComPtr = Microsoft::WRL::ComPtr<T>;
 
-class IScene
+class IScene : public ListeningEvent
 {
 public:
 	virtual ~IScene() = default;

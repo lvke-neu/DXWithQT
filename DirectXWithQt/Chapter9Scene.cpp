@@ -50,7 +50,7 @@ void Chapter9Scene::initScene()
 		XMFLOAT3(5.0f, 0.0f, 0.0f)
 	));
 
-	m_skyBox = SkyBox(m_pd3dDevice, m_pd3dImmediateContext);
+	m_skyBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_skyBox.setMesh(Geometry::buildBoxMesh());
 	m_skyBox.setSkyBoxShader();
 	m_skyBox.setSkyBoxTexture(L"Texture\\daylight.jpg");

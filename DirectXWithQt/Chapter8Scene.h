@@ -2,9 +2,9 @@
 
 #include "SceneInterface.h"
 #include "GameObject.h"
-#include "ListeningEvent.h"
 
-class Chapter8Scene : public IScene, public ListeningEvent
+
+class Chapter8Scene : public IScene
 {
 
 public:

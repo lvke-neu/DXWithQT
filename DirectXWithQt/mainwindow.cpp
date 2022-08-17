@@ -57,6 +57,7 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 {
 	m_RenderWidget->m_gameApp->setScene(item->text().toStdString());
 	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
+
 	if (item->text().toStdString() == "Chapter 2" || item->text().toStdString() == "Chapter 7")
 	{
 		m_RenderWidget->m_gameApp->setRenderTargetViewColor(0.752941251f, 0.752941251f, 0.752941251f, 1.000000000f);
@@ -66,6 +67,11 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 		m_RenderWidget->m_gameApp->setRenderTargetViewColor(0.0f, 0.0f, 0.0f, 1.000000000f);
 	}
 
+	setIntroduction(item);
+}
+
+void MainWindow::setIntroduction(QListWidgetItem* item)
+{
 	QLabel* introductionLabel = findChild<QLabel*>("introductionLabel");
 	if (introductionLabel)
 	{
@@ -106,7 +112,7 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 			introductionLabel->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型\n进行视锥体裁剪");
 			introductionLabel->setFixedWidth(400);
 		}
-		else if(item->text().toStdString() == "Chapter 8")
+		else if (item->text().toStdString() == "Chapter 8")
 		{
 			introductionLabel->setText(u8"鼠标点选");
 			introductionLabel->setFixedWidth(200);
@@ -123,4 +129,3 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 		}
 	}
 }
-
