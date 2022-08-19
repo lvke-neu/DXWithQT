@@ -23,9 +23,9 @@ Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 void Chapter9Scene::initScene()
 {
 	Material material;
-	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	material.ambient = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
 	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	material.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 250.0f);
+	material.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 5.0f);
 
 	m_box1 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box1.setMesh(Geometry::buildBoxMesh());
@@ -53,7 +53,7 @@ void Chapter9Scene::initScene()
 	m_skyBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_skyBox.setMesh(Geometry::buildBoxMesh());
 	m_skyBox.setSkyBoxShader();
-	m_skyBox.setSkyBoxTexture(L"Texture\\daylight.jpg");
+	m_skyBox.setSkyBoxTexture(L"Texture\\SkyBox\\daylight.jpg");
 	m_skyBox.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -64,26 +64,27 @@ void Chapter9Scene::initScene()
 
 void Chapter9Scene::updateScene(float deltaTime)
 {
+	bool isMove = false;
 
 	if (KeyBoard::getInstance().isKeyPress('W'))
 	{
 		m_perspectiveCamera.moveZAxis(deltaTime * 20);
-		notifyAll();
+		isMove = true;
 	}
 	if (KeyBoard::getInstance().isKeyPress('S'))
 	{
 		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
-		notifyAll();
+		isMove = true;
 	}
 	if (KeyBoard::getInstance().isKeyPress('A'))
 	{
 		m_perspectiveCamera.moveXAxis(-deltaTime * 20);
-		notifyAll();
+		isMove = true;
 	}
 	if (KeyBoard::getInstance().isKeyPress('D'))
 	{
 		m_perspectiveCamera.moveXAxis(deltaTime * 20);
-		notifyAll();
+		isMove = true;
 	}
 
 
@@ -94,25 +95,59 @@ void Chapter9Scene::updateScene(float deltaTime)
 		deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
 		deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
 		m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
-	
-		notifyAll();
-
+		isMove = true;
 	}
 
+	if (isMove)
+	{
+		notifyAll();
+	}
+
+	if (KeyBoard::getInstance().isKeyPress('1'))
+	{
+		m_skyBox.setSkyBoxTexture(L"Texture\\SkyBox\\daylight.jpg");
+	}
+	
+	if (KeyBoard::getInstance().isKeyPress('2'))
+	{
+		m_skyBox.setSkyBoxTexture(L"Texture\\SkyBox\\desertcube1024.dds");
+	}
+
+	if (KeyBoard::getInstance().isKeyPress('3'))
+	{
+		m_skyBox.setSkyBoxTexture(std::vector<std::wstring>
+		{
+			L"Texture\\SkyBox\\sunset_posX.bmp", L"Texture\\SkyBox\\sunset_negX.bmp",
+			L"Texture\\SkyBox\\sunset_posY.bmp", L"Texture\\SkyBox\\sunset_negY.bmp",
+			L"Texture\\SkyBox\\sunset_posZ.bmp", L"Texture\\SkyBox\\sunset_negZ.bmp", 
+		});
+	}
+
+	static float rotx = 0.0f;
+	rotx += deltaTime;
+	m_box1.setRotation(rotx, 0.0f, 0.0f);
+
+
+	static float posY = 0.0f;
+	static bool b = true;
+	if (b)
+		posY += deltaTime * 2;
+	else
+		posY -= deltaTime * 2;
+
+	if (posY > 2)
+		b = false;
+	if (posY < -2)
+		b = true;
+
+	m_sphere.setPosition(m_sphere.getPosition().x, posY, m_sphere.getPosition().z);
 }
 
 void Chapter9Scene::drawScene()
 {
 	m_box1.draw();
 	m_sphere.draw();
-
-
-	XMMATRIX V = m_perspectiveCamera.getViewMatrix();
-	V.r[3] = g_XMIdentityR3;
-	m_perspectiveCamera.changeViewMatrixCB(V);
-	m_skyBox.draw();
-
-	m_perspectiveCamera.changeViewMatrixCB();
+	m_skyBox.drawSkyBox(m_perspectiveCamera);
 }
 
 

@@ -12,7 +12,7 @@ GameObject类，设置/获取GO的属性
 #include "Transform.h"
 #include "Geometry.h"
 #include "Material.h"
-
+#include "Camera.h"
 
 template <class T>
 using ComPtr = Microsoft::WRL::ComPtr<T>;
@@ -71,6 +71,7 @@ public:
 	void setTexturePathDDS(const wchar_t* texturePath);
 	void setTexturePathWIC(const wchar_t* texturePath);
 	void setSkyBoxTexture(const std::wstring& cubemapFilename, bool generateMips = false);
+	void setSkyBoxTexture(const std::vector<std::wstring>& cubemapFilenames, bool generateMips = false);
 
 	Material& getMaterial();
 	void setMaterial(Material material);
@@ -82,6 +83,7 @@ public:
 	void draw();     
 	void draw(UINT IndexCount, UINT StartIndexLocation);
 	void draw2d();
+	void drawSkyBox(Camera& camera);
 
 	void moveZAxis(float distance) { m_transform.moveZAxis(distance); changeWorldMatrixCB(); }
 	void moveXAxis(float distance) { m_transform.moveXAxis(distance); changeWorldMatrixCB(); }

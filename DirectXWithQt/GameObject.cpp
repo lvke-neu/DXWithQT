@@ -1,8 +1,7 @@
 #include "GameObject.h"
 #include "d3dUtil.h"
-#include "DDSTextureLoader.h"
 #include "RenderStates.h"
-#include "WICTextureLoader.h"
+
 
 
 std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
@@ -180,14 +179,35 @@ void GameObject::setTexturePathWIC(const wchar_t* texturePath)
 
 void GameObject::setSkyBoxTexture(const std::wstring& cubemapFilename, bool generateMips)
 {
+	m_pTexture.Reset();
+
+	if (cubemapFilename.substr(cubemapFilename.size() - 3) == L"dds")
+	{
+		CreateDDSTextureFromFile(m_pd3dDevice.Get(),
+			generateMips ? m_pd3dImmediateContext.Get() : nullptr,
+			cubemapFilename.c_str(),
+			nullptr,
+			m_pTexture.GetAddressOf());
+	}
+	else
+	{
+		CreateWICTexture2DCubeFromFile(m_pd3dDevice.Get(),
+			m_pd3dImmediateContext.Get(),
+			cubemapFilename,
+			nullptr,
+			m_pTexture.GetAddressOf(),
+			generateMips);
+	}
+}
+void GameObject::setSkyBoxTexture(const std::vector<std::wstring>& cubemapFilenames, bool generateMips)
+{
 	CreateWICTexture2DCubeFromFile(m_pd3dDevice.Get(),
 		m_pd3dImmediateContext.Get(),
-		cubemapFilename,
+		cubemapFilenames,
 		nullptr,
 		m_pTexture.GetAddressOf(),
 		generateMips);
 }
-
 
 Material& GameObject::getMaterial() 
 { 
@@ -307,4 +327,13 @@ void GameObject::draw2d()
 	m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
 	m_pd3dImmediateContext->DrawIndexed(m_mesh.indexBuffer.size(), 0, 0);
+}
+
+void GameObject::drawSkyBox(Camera& camera)
+{
+	XMMATRIX V = camera.getViewMatrix();
+	V.r[3] = g_XMIdentityR3;
+	camera.changeViewMatrixCB(V);
+	draw();
+	camera.changeViewMatrixCB();
 }
