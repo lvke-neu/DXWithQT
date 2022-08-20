@@ -31,4 +31,5 @@ public:
 	static Mesh buildBoxMesh();
 	static Mesh buildPlaneMesh(float texU,float texV);
 	static Mesh buildSphereMesh(float radius = 1.0f, UINT levels = 20, UINT slices = 20);
+	static Mesh buildTerrainMesh(float width = 160.0f, float depth = 160.0f, UINT m = 50, UINT n = 50);
 };

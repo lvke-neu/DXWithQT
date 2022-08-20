@@ -10,7 +10,7 @@ Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
-	//m_perspectiveCamera.setPosition(0.0f, 0.0f, -10.0f);
+	m_perspectiveCamera.setPosition(0.0f, 15.0f, 0.0f);
 
 
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
@@ -42,12 +42,23 @@ void Chapter9Scene::initScene()
 	m_sphere = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_sphere.setMesh(Geometry::buildSphereMesh());
 	m_sphere.setShader(9);
-	m_sphere.setTexturePathDDS(L"Texture\\grass.dds");
+	m_sphere.setTexturePathDDS(L"Texture\\stone.dds");
 	m_sphere.setMaterial(material);
 	m_sphere.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
 		XMFLOAT3(5.0f, 0.0f, 0.0f)
+	));
+
+	m_terrain = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_terrain.setMesh(Geometry::buildTerrainMesh(160,160, 500,500));
+	m_terrain.setShader(9);
+	m_terrain.setTexturePathDDS(L"Texture\\grass.dds");
+	m_terrain.setMaterial(material);
+	m_terrain.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(5.0f, -10.0f, 0.0f)
 	));
 
 	m_skyBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
@@ -66,24 +77,26 @@ void Chapter9Scene::updateScene(float deltaTime)
 {
 	bool isMove = false;
 
+	UINT mulSpeed = 50;
+
 	if (KeyBoard::getInstance().isKeyPress('W'))
 	{
-		m_perspectiveCamera.moveZAxis(deltaTime * 20);
+		m_perspectiveCamera.moveZAxis(deltaTime * mulSpeed);
 		isMove = true;
 	}
 	if (KeyBoard::getInstance().isKeyPress('S'))
 	{
-		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
+		m_perspectiveCamera.moveZAxis(-deltaTime * mulSpeed);
 		isMove = true;
 	}
 	if (KeyBoard::getInstance().isKeyPress('A'))
 	{
-		m_perspectiveCamera.moveXAxis(-deltaTime * 20);
+		m_perspectiveCamera.moveXAxis(-deltaTime * mulSpeed);
 		isMove = true;
 	}
 	if (KeyBoard::getInstance().isKeyPress('D'))
 	{
-		m_perspectiveCamera.moveXAxis(deltaTime * 20);
+		m_perspectiveCamera.moveXAxis(deltaTime * mulSpeed);
 		isMove = true;
 	}
 
@@ -141,12 +154,38 @@ void Chapter9Scene::updateScene(float deltaTime)
 		b = true;
 
 	m_sphere.setPosition(m_sphere.getPosition().x, posY, m_sphere.getPosition().z);
+
+	static bool currentStateLow = 0;
+	static bool currentStatehigh = 0;
+	if (m_perspectiveCamera.getPosition().y < 10 )
+	{
+		if (currentStateLow == 0)
+		{
+			m_terrain.setMesh(Geometry::buildTerrainMesh(160, 160, 100, 100));
+			currentStateLow = 1;
+			currentStatehigh = 0;
+		}
+
+	}
+		
+	if (m_perspectiveCamera.getPosition().y > 10 )
+	{
+		if (currentStatehigh == 0)
+		{
+			m_terrain.setMesh(Geometry::buildTerrainMesh(160, 160, 25, 25));
+			currentStatehigh = 1;
+			currentStateLow = 0;
+		}
+
+	}
+
 }
 
 void Chapter9Scene::drawScene()
 {
 	m_box1.draw();
 	m_sphere.draw();
+	m_terrain.draw();
 	m_skyBox.drawSkyBox(m_perspectiveCamera);
 }
 

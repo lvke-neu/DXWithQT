@@ -87,6 +87,8 @@ Mesh& GameObject::getMesh()
 void GameObject::setMesh(Mesh mesh) 
 { 
 	m_mesh = mesh; 
+	m_pVertexBuffer.Reset();
+	m_pIndexBuffer.Reset();
 
 	// VertexBuffer
 	D3D11_BUFFER_DESC vbd;

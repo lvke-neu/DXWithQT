@@ -243,3 +243,51 @@ Mesh Geometry::buildSphereMesh(float radius, UINT levels, UINT slices)
 
 	return sphereMesh;
 }
+
+
+Mesh Geometry::buildTerrainMesh(float width, float depth, UINT m, UINT n)
+{
+	UINT vertexCount = m * n;
+	UINT faceCount = 2 * (m - 1) * (n - 1);
+
+	float halfWidth = 0.5f * width;
+	float halfDepth = 0.5f * depth;
+	float dx = width / (n - 1);
+	float dz = depth / (m - 1);
+	float du = 1.0f / (n - 1);
+	float dv = 1.0f / (m - 1);
+
+	Mesh terrainMesh;
+
+	terrainMesh.vertexBuffer.resize(vertexCount);
+	for (UINT i = 0; i < m; i++)
+	{
+		float z = halfDepth - i * dz;
+		for (UINT j = 0; j < n; j++)
+		{
+			float x = -halfWidth + j * dx;
+
+			float y = 0.3f * (z * sinf(0.1f * x) + x * cosf(0.1f * z));
+			terrainMesh.vertexBuffer[i * n + j].position = XMFLOAT3(x, y, z);
+			terrainMesh.vertexBuffer[i * n + j].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
+			terrainMesh.vertexBuffer[i * n + j].texcoord = XMFLOAT2(j * du, i * dv);
+		}
+	}
+
+	terrainMesh.indexBuffer.resize(faceCount * 3);
+	UINT k = 0;
+	for (UINT i = 0; i < m - 1; ++i)
+	{
+		for (UINT j = 0; j < n - 1; ++j)
+		{
+			terrainMesh.indexBuffer[k] = i * n + j;
+			terrainMesh.indexBuffer[k + 1] = i * n + j + 1;
+			terrainMesh.indexBuffer[k + 2] = (i + 1) * n + j;
+			terrainMesh.indexBuffer[k + 3] = (i + 1) * n + j;
+			terrainMesh.indexBuffer[k + 4] = i * n + j + 1;
+			terrainMesh.indexBuffer[k + 5] = (i + 1) * n + j + 1; k += 6;
+		}
+	}
+
+	return terrainMesh;
+}

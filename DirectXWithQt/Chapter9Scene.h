@@ -31,6 +31,7 @@ private:
 	GameObject m_box1;
 	GameObject m_sphere;
 	GameObject m_skyBox;
+	GameObject m_terrain;
 
 };
 
