@@ -46,14 +46,14 @@ void Chapter5Scene::initScene()
 {
 	m_wall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_wall.setMesh(Geometry::buildPlaneMesh(4.0f, 2.0f));
-	m_wall.setShader(5);
-	m_wall.setTexturePathDDS(L"Texture\\brick.dds");
+	m_wall.setShader(SceneShader::shaderPath[4]);
+	m_wall.setTexture(L"Texture\\brick.dds");
 	m_wall.setMaterial(m_generalMaterial);
 
 	m_floor = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_floor.setMesh(Geometry::buildPlaneMesh(5.0f, 5.0f));
-	m_floor.setShader(5);
-	m_floor.setTexturePathDDS(L"Texture\\floor.dds");
+	m_floor.setShader(SceneShader::shaderPath[4]);
+	m_floor.setTexture(L"Texture\\floor.dds");
 	m_floor.setMaterial(m_generalMaterial);
 	m_floor.setTransform(Transform(
 		XMFLOAT3(10.0f, 10.0f, 1.0f),
@@ -63,8 +63,8 @@ void Chapter5Scene::initScene()
 
 	m_box = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box.setMesh(Geometry::buildBoxMesh());
-	m_box.setShader(5);
-	m_box.setTexturePathDDS(L"Texture\\WoodCrate.dds");
+	m_box.setShader(SceneShader::shaderPath[4]);
+	m_box.setTexture(L"Texture\\WoodCrate.dds");
 	m_box.setMaterial(m_generalMaterial);
 	m_box.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -74,8 +74,8 @@ void Chapter5Scene::initScene()
 
 	m_box2 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box2.setMesh(Geometry::buildBoxMesh());
-	m_box2.setShader(5);
-	m_box2.setTexturePathDDS(L"Texture\\WoodCrate.dds");
+	m_box2.setShader(SceneShader::shaderPath[4]);
+	m_box2.setTexture(L"Texture\\WoodCrate.dds");
 	m_box2.setMaterial(m_generalMaterial);
 	m_box2.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),

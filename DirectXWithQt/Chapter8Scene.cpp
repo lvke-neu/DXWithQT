@@ -25,8 +25,8 @@ void Chapter8Scene::initScene()
 
 	m_box1 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box1.setMesh(Geometry::buildBoxMesh());
-	m_box1.setShader(8);
-	m_box1.setTexturePathDDS(L"Texture\\WoodCrate.dds");
+	m_box1.setShader(SceneShader::shaderPath[7]);
+	m_box1.setTexture(L"Texture\\WoodCrate.dds");
 	m_box1.setMaterial(material);
 	m_box1.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -36,8 +36,8 @@ void Chapter8Scene::initScene()
 
 	m_box2 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box2.setMesh(Geometry::buildBoxMesh());
-	m_box2.setShader(8);
-	m_box2.setTexturePathDDS(L"Texture\\brick.dds");
+	m_box2.setShader(SceneShader::shaderPath[7]);
+	m_box2.setTexture(L"Texture\\brick.dds");
 	m_box2.setMaterial(material);
 	m_box2.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -47,8 +47,8 @@ void Chapter8Scene::initScene()
 
 	m_rectangle = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_rectangle.setMesh(Geometry::builRectangleMesh());
-	m_rectangle.setShader(8);
-	m_rectangle.setTexturePathDDS(L"Texture\\flare.dds");
+	m_rectangle.setShader(SceneShader::shaderPath[7]);
+	m_rectangle.setTexture(L"Texture\\flare.dds");
 	m_rectangle.setMaterial(material);
 	m_rectangle.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),

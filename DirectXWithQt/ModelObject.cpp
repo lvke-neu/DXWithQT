@@ -13,7 +13,7 @@ ModelObject::ModelObject(const ObjReader& objReader, ComPtr<ID3D11Device> pd3dDe
 		GameObject go(pd3dDevice, pd3dImmediateContext);
 
 		go.setMesh(mesh);
-		go.setTexturePathWIC(objPart.texStrDiffuse.c_str());
+		go.setTexture(objPart.texStrDiffuse.c_str());
 		go.setMaterial(objPart.material);
 			
 		m_gameObjects.push_back(go);
@@ -23,7 +23,7 @@ ModelObject::ModelObject(const ObjReader& objReader, ComPtr<ID3D11Device> pd3dDe
 	
 }
 
-void ModelObject::setShader(const uint32_t& shader)
+void ModelObject::setShader(std::vector<std::wstring> shader)
 {
 	for (auto& go : m_gameObjects)
 		go.setShader(shader);

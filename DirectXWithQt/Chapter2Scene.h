@@ -17,7 +17,10 @@ class Chapter2Scene : public IScene
 	};
 public:
 	Chapter2Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
-	~Chapter2Scene() {};
+	~Chapter2Scene() 
+	{ 
+		m_pFogCB.Reset(); 
+	}
 public:
 	void initScene() override;
 	void updateScene(float deltaTime) override;

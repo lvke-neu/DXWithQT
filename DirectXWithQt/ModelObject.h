@@ -22,7 +22,7 @@ public:
 
 
 public:
-	void setShader(const uint32_t& shader);
+	void setShader(std::vector<std::wstring> shader);
 
 	Transform getTransform();
 	void setTransform(const Transform& transform);

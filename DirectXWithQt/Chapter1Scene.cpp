@@ -9,7 +9,7 @@ void Chapter1Scene::initScene()
 {
 	m_triangle = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_triangle.setMesh(Geometry::buildTriangleMesh());
-	m_triangle.setShader(1);
+	m_triangle.setShader(SceneShader::shaderPath[0]);
 
 	bindCB2PipeLine();
 }

@@ -28,7 +28,7 @@ class GameObject
 public:
 	GameObject() = default;
 	GameObject(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
-	virtual ~GameObject() = default;
+	virtual ~GameObject();
 
 public:
 	XMFLOAT3& getScale() { return m_transform.getScale(); }
@@ -60,40 +60,37 @@ public:
 	BoundingBox getBoundingBox() { return m_boundingBox; };
 	void setBoundingBox(BoundingBox boundingBox) { m_boundingBox = boundingBox; };
 public:
-	Mesh& getMesh();
+	Mesh getMesh();
 	void setMesh(Mesh mesh);
 
-	uint32_t& getShader();
-	void setShader(const uint32_t& shader);
-	void setSkyBoxShader();
+	std::vector<std::wstring> getShader();
+	void setShader(std::vector<std::wstring>);
 
-	const wchar_t* getTexturePath();
-	void setTexturePathDDS(const wchar_t* texturePath);
-	void setTexturePathWIC(const wchar_t* texturePath);
-	void setSkyBoxTexture(const std::wstring& cubemapFilename, bool generateMips = false);
-	void setSkyBoxTexture(const std::vector<std::wstring>& cubemapFilenames, bool generateMips = false);
+	std::wstring getTexture();
+	void setTexture(const std::wstring& texture);
 
-	Material& getMaterial();
+	Material getMaterial();
 	void setMaterial(Material material);
 
-	Transform& getTransform();
+	Transform getTransform();
 	void setTransform(Transform transform);
-
 
 	void draw();     
 	void draw(UINT IndexCount, UINT StartIndexLocation);
 	void draw2d();
-	void drawSkyBox(Camera& camera);
+
 
 	void moveZAxis(float distance) { m_transform.moveZAxis(distance); changeWorldMatrixCB(); }
 	void moveXAxis(float distance) { m_transform.moveXAxis(distance); changeWorldMatrixCB(); }
 	void changeWorldMatrixCB();
+
+	void setReflectTexture(const ComPtr<ID3D11ShaderResourceView>& pReflectTexture) { m_pReflectTexture = pReflectTexture; }
 protected:
 	ComPtr<ID3D11Device> m_pd3dDevice;
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext;
 protected:
 
-	ComPtr<ID3D11Buffer> m_pWorldMatrixCB;//常量buffer，存放世界矩阵，放在槽0
+	ComPtr<ID3D11Buffer> m_pWorldMatrixCB;
 
 	ComPtr<ID3D11Buffer> m_pVertexBuffer{ nullptr };
 	ComPtr<ID3D11Buffer> m_pIndexBuffer{ nullptr };
@@ -104,18 +101,19 @@ protected:
 
 	ComPtr<ID3D11ShaderResourceView> m_pTexture{ nullptr };
 	ComPtr<ID3D11ShaderResourceView> m_pTexture2{ nullptr };
+	ComPtr<ID3D11ShaderResourceView> m_pReflectTexture{ nullptr };
 
 	ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };
+
+
 protected:
 	Mesh m_mesh;
-	uint32_t m_shader = -1;
-	const wchar_t* m_texturePath = L"\0";
+	std::vector<std::wstring> m_shader;
+	std::wstring m_texture;
 	Material m_material{};
 	Transform m_transform{};
 	BoundingBox m_boundingBox;
-	
 
-public:
-	static std::vector<std::vector<const wchar_t*>> shaderPath;
-
+protected:
+	void processShader(std::wstring& vsCso, std::wstring& psCso, std::wstring vsHlsl, std::wstring psHlsl);
 };

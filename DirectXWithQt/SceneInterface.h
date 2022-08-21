@@ -11,6 +11,7 @@ Description:
 #include "Camera.h"
 #include "Light.h"
 #include "ListeningEvent.h"
+#include "SceneShader.h"
 
 template <class T>
 using ComPtr = Microsoft::WRL::ComPtr<T>;
@@ -18,7 +19,7 @@ using ComPtr = Microsoft::WRL::ComPtr<T>;
 class IScene : public ListeningEvent
 {
 public:
-	virtual ~IScene() = default;
+	virtual ~IScene();
 public:
 	virtual void initScene() = 0;
 	virtual void updateScene(float deltaTime) = 0;
@@ -38,5 +39,4 @@ protected:
 	Camera m_perspectiveCamera;
 
 	XMFLOAT3 m_dirLight_dir = XMFLOAT3(0.0f, 0.0f, 0.0f);
-
 };

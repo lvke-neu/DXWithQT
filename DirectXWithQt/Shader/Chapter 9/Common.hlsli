@@ -44,3 +44,9 @@ cbuffer LightCB : register(b4)
 {
 	DirectionLight g_directionLight;
 }
+
+cbuffer EnableReflectCB : register(b5)
+{
+	int  g_ReflectionEnabled;
+	float3 pad2;
+}

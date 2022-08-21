@@ -27,7 +27,10 @@ void IScene::initCameraAndLight(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11De
 	));
 }
 
-
+IScene::~IScene()
+{
+	m_pLightCB.Reset();
+}
 
 void IScene::onResize(float width, float height, const D3D11_VIEWPORT& viewPort)
 {

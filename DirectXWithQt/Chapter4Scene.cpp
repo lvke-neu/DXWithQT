@@ -34,8 +34,8 @@ void Chapter4Scene::initScene()
 
 	m_box = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box.setMesh(Geometry::buildBoxMesh());
-	m_box.setShader(4);
-	m_box.setTexturePathDDS(L"Texture\\WoodCrate.dds");
+	m_box.setShader(SceneShader::shaderPath[3]);
+	m_box.setTexture(L"Texture\\WoodCrate.dds");
 	m_box.setMaterial(material);
 	m_box.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -45,8 +45,8 @@ void Chapter4Scene::initScene()
 
 	m_firstPersonBox = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_firstPersonBox.setMesh(Geometry::buildBoxMesh());
-	m_firstPersonBox.setShader(4);
-	m_firstPersonBox.setTexturePathDDS(L"Texture\\WoodCrate.dds");
+	m_firstPersonBox.setShader(SceneShader::shaderPath[3]);
+	m_firstPersonBox.setTexture(L"Texture\\WoodCrate.dds");
 	m_firstPersonBox.setMaterial(material);
 	m_firstPersonBox.setTransform(Transform(
 		XMFLOAT3(0.5f, 0.5f, 0.5f),
@@ -56,21 +56,21 @@ void Chapter4Scene::initScene()
 
 	m_wall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_wall.setMesh(Geometry::buildPlaneMesh(4.0f, 2.0f));
-	m_wall.setShader(4);
-	m_wall.setTexturePathDDS(L"Texture\\brick.dds");
+	m_wall.setShader(SceneShader::shaderPath[3]);
+	m_wall.setTexture(L"Texture\\brick.dds");
 	m_wall.setMaterial(material);
 
 	
 	m_mirrorWall = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_mirrorWall.setMesh(Geometry::buildPlaneMesh(1.0f, 2.0f));
-	m_mirrorWall.setShader(4);
-	m_mirrorWall.setTexturePathDDS(L"Texture\\brick.dds");
+	m_mirrorWall.setShader(SceneShader::shaderPath[3]);
+	m_mirrorWall.setTexture(L"Texture\\brick.dds");
 	m_mirrorWall.setMaterial(material);
 
 	m_floor = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_floor.setMesh(Geometry::buildPlaneMesh(5.0f, 5.0f));
-	m_floor.setShader(4);
-	m_floor.setTexturePathDDS(L"Texture\\floor.dds");
+	m_floor.setShader(SceneShader::shaderPath[3]);
+	m_floor.setTexture(L"Texture\\floor.dds");
 	m_floor.setMaterial(material);
 	m_floor.setTransform(Transform(
 		XMFLOAT3(10.0f, 10.0f, 1.0f),
@@ -82,8 +82,8 @@ void Chapter4Scene::initScene()
 	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 0.3f);
 	m_mirror = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_mirror.setMesh(Geometry::buildPlaneMesh(1.0f, 1.0f));
-	m_mirror.setShader(4);
-	m_mirror.setTexturePathDDS(L"Texture\\ice.dds");
+	m_mirror.setShader(SceneShader::shaderPath[3]);
+	m_mirror.setTexture(L"Texture\\ice.dds");
 	m_mirror.setMaterial(material);
 	m_mirror.setTransform(Transform(
 		XMFLOAT3(4.0f, 5.0f, 1.0f),

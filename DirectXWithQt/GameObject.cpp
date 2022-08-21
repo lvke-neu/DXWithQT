@@ -4,63 +4,6 @@
 
 
 
-std::vector<std::vector<const wchar_t*>> GameObject::shaderPath =
-{
-	{
-		L"Shader\\Chapter 1\\VS.cso",
-		L"Shader\\Chapter 1\\VS.hlsl",
-		L"Shader\\Chapter 1\\PS.cso",
-		L"Shader\\Chapter 1\\PS.hlsl"
-	},
-	{
-		L"Shader\\Chapter 2\\VS.cso",
-		L"Shader\\Chapter 2\\VS.hlsl",
-		L"Shader\\Chapter 2\\PS.cso",
-		L"Shader\\Chapter 2\\PS.hlsl"
-	},
-	{
-		L"Shader\\Chapter 3\\VS.cso",
-		L"Shader\\Chapter 3\\VS.hlsl",
-		L"Shader\\Chapter 3\\PS.cso",
-		L"Shader\\Chapter 3\\PS.hlsl"
-	},
-	{
-		L"Shader\\Chapter 4\\VS.cso",
-		L"Shader\\Chapter 4\\VS.hlsl",
-		L"Shader\\Chapter 4\\PS.cso",
-		L"Shader\\Chapter 4\\PS.hlsl"
-	},
-	{
-		L"Shader\\Chapter 5\\VS.cso",
-		L"Shader\\Chapter 5\\VS.hlsl",
-		L"Shader\\Chapter 5\\PS.cso",
-		L"Shader\\Chapter 5\\PS.hlsl"
-	},
-	{
-		L"Shader\\Chapter 6\\VS.cso",
-		L"Shader\\Chapter 6\\VS.hlsl",
-		L"Shader\\Chapter 6\\PS.cso",
-		L"Shader\\Chapter 6\\PS.hlsl"
-	},
-	{
-		L"Shader\\Chapter 7\\VS.cso",
-		L"Shader\\Chapter 7\\VS.hlsl",
-		L"Shader\\Chapter 7\\PS.cso",
-		L"Shader\\Chapter 7\\PS.hlsl"
-	},
-	{
-		L"Shader\\Chapter 8\\VS.cso",
-		L"Shader\\Chapter 8\\VS.hlsl",
-		L"Shader\\Chapter 8\\PS.cso",
-		L"Shader\\Chapter 8\\PS.hlsl"
-	},
-	{
-		L"Shader\\Chapter 9\\VS.cso",
-		L"Shader\\Chapter 9\\VS.hlsl",
-		L"Shader\\Chapter 9\\PS.cso",
-		L"Shader\\Chapter 9\\PS.hlsl"
-	}
-};
 
 GameObject::GameObject(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) :
 	m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
@@ -78,17 +21,31 @@ GameObject::GameObject(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceConte
 	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pMaterialCB.GetAddressOf());
 }
 
+GameObject::~GameObject() 
+{
+	m_pWorldMatrixCB.Reset();
+	m_pVertexBuffer.Reset();
+	m_pIndexBuffer.Reset();
+	m_pVertexShader.Reset();
+	m_pPixelShader.Reset();
+	m_pVertexLayout.Reset();
+	m_pTexture.Reset();
+	m_pTexture2.Reset();
+	m_pMaterialCB.Reset();
+}
 
-Mesh& GameObject::getMesh() 
+Mesh GameObject::getMesh() 
 {
 	return m_mesh; 
 }
 
 void GameObject::setMesh(Mesh mesh) 
 { 
-	m_mesh = mesh; 
+
 	m_pVertexBuffer.Reset();
 	m_pIndexBuffer.Reset();
+
+	m_mesh = mesh; 
 
 	// VertexBuffer
 	D3D11_BUFFER_DESC vbd;
@@ -120,98 +77,62 @@ void GameObject::setMesh(Mesh mesh)
 	setBoundingBox(aabb);
 }
 
-uint32_t& GameObject::getShader() 
+std::vector<std::wstring> GameObject::getShader()
 { 
 	return m_shader; 
 }
 
-void GameObject::setShader(const uint32_t& shader) 
-{ 
+void GameObject::setShader(std::vector<std::wstring> shader)
+{
+	m_pVertexLayout.Reset();
+	m_pPixelShader.Reset();
+
 	m_shader = shader; 
 
 	ComPtr<ID3DBlob> blob;
 
-	CreateShaderFromFile(shaderPath[shader - 1][0], shaderPath[shader - 1][1], "VS", "vs_5_0", blob.ReleaseAndGetAddressOf());
+	std::wstring vsHlsl, vsCso, psHlsl, psCso;
+	vsHlsl = shader[0];
+	psHlsl = shader[1];
+	processShader(vsCso, psCso, vsHlsl, psHlsl);
+
+	CreateShaderFromFile(vsCso.c_str(), vsHlsl.c_str(), "VS", "vs_5_0", blob.ReleaseAndGetAddressOf());
 	m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pVertexShader.GetAddressOf());
 
 	m_pd3dDevice->CreateInputLayout(VertexPosNormalTex::inputLayout, ARRAYSIZE(VertexPosNormalTex::inputLayout),
 		blob->GetBufferPointer(), blob->GetBufferSize(), m_pVertexLayout.GetAddressOf());
 
-	CreateShaderFromFile(shaderPath[shader - 1][2], shaderPath[shader - 1][3], "PS", "ps_5_0", blob.ReleaseAndGetAddressOf());
+	CreateShaderFromFile(psCso.c_str(), psHlsl.c_str(), "PS", "ps_5_0", blob.ReleaseAndGetAddressOf());
 	m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pPixelShader.GetAddressOf());
 }
 
-void GameObject::setSkyBoxShader()
-{
-	m_shader = 250;
 
-	ComPtr<ID3DBlob> blob;
-
-	CreateShaderFromFile(L"Shader\\SkyBox\\SkyBoxVS.cso", L"Shader\\SkyBox\\SkyBoxVS.hlsl", "VS", "vs_5_0", blob.ReleaseAndGetAddressOf());
-	m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pVertexShader.GetAddressOf());
-
-	m_pd3dDevice->CreateInputLayout(VertexPosNormalTex::inputLayout, ARRAYSIZE(VertexPosNormalTex::inputLayout),
-		blob->GetBufferPointer(), blob->GetBufferSize(), m_pVertexLayout.GetAddressOf());
-
-	CreateShaderFromFile(L"Shader\\SkyBox\\SkyBoxPS.cso", L"Shader\\SkyBox\\SkyBoxPS.hlsl", "PS", "ps_5_0", blob.ReleaseAndGetAddressOf());
-	m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pPixelShader.GetAddressOf());
-}
-
-const wchar_t* GameObject::getTexturePath() 
+std::wstring GameObject::getTexture()
 { 
-	return m_texturePath;
+	return m_texture;
 }
 
-void GameObject::setTexturePathDDS(const wchar_t* texturePath) 
+void GameObject::setTexture(const std::wstring& texture)
 { 
-	m_texturePath = texturePath; 
-
-	CreateDDSTextureFromFile(m_pd3dDevice.Get(), m_texturePath, nullptr, m_pTexture.GetAddressOf());
-
-	
-	CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\flarealpha.dds", nullptr, m_pTexture2.GetAddressOf());
-}
-
-void GameObject::setTexturePathWIC(const wchar_t* texturePath)
-{
-	m_texturePath = texturePath;
-
-	CreateWICTextureFromFile(m_pd3dDevice.Get(), m_texturePath, nullptr, m_pTexture.GetAddressOf());
-}
-
-void GameObject::setSkyBoxTexture(const std::wstring& cubemapFilename, bool generateMips)
-{
 	m_pTexture.Reset();
+	m_pTexture2.Reset();
 
-	if (cubemapFilename.substr(cubemapFilename.size() - 3) == L"dds")
+	m_texture = texture; 
+
+	if (m_texture.substr(m_texture.size() - 3) == L"dds")
 	{
-		CreateDDSTextureFromFile(m_pd3dDevice.Get(),
-			generateMips ? m_pd3dImmediateContext.Get() : nullptr,
-			cubemapFilename.c_str(),
-			nullptr,
-			m_pTexture.GetAddressOf());
+		CreateDDSTextureFromFile(m_pd3dDevice.Get(), m_texture.c_str(), nullptr, m_pTexture.GetAddressOf());
+		CreateDDSTextureFromFile(m_pd3dDevice.Get(), L"Texture\\flarealpha.dds", nullptr, m_pTexture2.GetAddressOf());
 	}
 	else
 	{
-		CreateWICTexture2DCubeFromFile(m_pd3dDevice.Get(),
-			m_pd3dImmediateContext.Get(),
-			cubemapFilename,
-			nullptr,
-			m_pTexture.GetAddressOf(),
-			generateMips);
+		CreateWICTextureFromFile(m_pd3dDevice.Get(), m_texture.c_str(), nullptr, m_pTexture.GetAddressOf());
 	}
-}
-void GameObject::setSkyBoxTexture(const std::vector<std::wstring>& cubemapFilenames, bool generateMips)
-{
-	CreateWICTexture2DCubeFromFile(m_pd3dDevice.Get(),
-		m_pd3dImmediateContext.Get(),
-		cubemapFilenames,
-		nullptr,
-		m_pTexture.GetAddressOf(),
-		generateMips);
+
+
 }
 
-Material& GameObject::getMaterial() 
+Material GameObject::getMaterial() 
 { 
 	return m_material; 
 }
@@ -226,7 +147,7 @@ void GameObject::setMaterial(Material material)
 	m_pd3dImmediateContext->Unmap(m_pMaterialCB.Get(), 0);
 }
 
-Transform& GameObject::getTransform() 
+Transform GameObject::getTransform() 
 {
 	changeWorldMatrixCB();
 	return m_transform;
@@ -279,6 +200,8 @@ void GameObject::draw()
 	//设置贴图资源
 	m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
 	m_pd3dImmediateContext->PSSetShaderResources(2, 1, m_pTexture2.GetAddressOf());
+	m_pd3dImmediateContext->PSSetShaderResources(3, 1, m_pReflectTexture.GetAddressOf());
+
 	//设置采样方式
 	m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
@@ -331,11 +254,10 @@ void GameObject::draw2d()
 	m_pd3dImmediateContext->DrawIndexed(m_mesh.indexBuffer.size(), 0, 0);
 }
 
-void GameObject::drawSkyBox(Camera& camera)
+void GameObject::processShader(std::wstring& vsCso, std::wstring& psCso, std::wstring vsHlsl, std::wstring psHlsl)
 {
-	XMMATRIX V = camera.getViewMatrix();
-	V.r[3] = g_XMIdentityR3;
-	camera.changeViewMatrixCB(V);
-	draw();
-	camera.changeViewMatrixCB();
+	auto iter = vsHlsl.find(L"hlsl");
+	vsCso = vsHlsl.replace(iter, 4, L"cso");
+	iter = psHlsl.find(L"hlsl");
+	psCso = psHlsl.replace(iter, 4, L"cso");
 }

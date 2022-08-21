@@ -50,7 +50,7 @@ void Chapter6Scene::initScene()
 
 	m_2dPlane = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_2dPlane.setMesh(Geometry::buildPlaneMesh(1.0f, 1.0f));
-	m_2dPlane.setShader(6);
+	m_2dPlane.setShader(SceneShader::shaderPath[5]);
 
 }
 

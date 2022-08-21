@@ -119,7 +119,7 @@ void MainWindow::setIntroduction(QListWidgetItem* item)
 		}
 		else if (item->text().toStdString() == "Chapter 9")
 		{
-			introductionLabel->setText(u8"静态天空盒，按1白天、按2沙漠、按3日落");
+			introductionLabel->setText(u8"静态天空盒，按1白天、按2沙漠、按3日落\n按R开启球面反射、按F关闭球面反射");
 			introductionLabel->setFixedWidth(400);
 		}
 		else

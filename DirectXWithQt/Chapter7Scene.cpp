@@ -41,7 +41,7 @@ void Chapter7Scene::initScene()
 	ObjReader objReader1;
 	objReader1.ReadObj(L"Model\\house.obj");
 	m_house = ModelObject(objReader1, m_pd3dDevice, m_pd3dImmediateContext);
-	m_house.setShader(7);
+	m_house.setShader(SceneShader::shaderPath[6]);
 	m_house.setTransform(Transform(
 		XMFLOAT3(0.1f, 0.1f, 0.1f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -54,7 +54,7 @@ void Chapter7Scene::initScene()
 	for (UINT32 i = 0; i < RAND_TREE_NUM; i++)
 	{
 		ModelObject tree(objReader2, m_pd3dDevice, m_pd3dImmediateContext);
-		tree.setShader(7);
+		tree.setShader(SceneShader::shaderPath[6]);
 		tree.setTransform(Transform(
 			XMFLOAT3(0.1f, 0.1f, 0.1f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -70,8 +70,8 @@ void Chapter7Scene::initScene()
 
 	m_plane = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_plane.setMesh(Geometry::buildPlaneMesh(10.0f, 10.0f));
-	m_plane.setShader(7);
-	m_plane.setTexturePathDDS(L"Texture\\grass.dds");
+	m_plane.setShader(SceneShader::shaderPath[6]);
+	m_plane.setTexture(L"Texture\\grass.dds");
 	m_plane.setMaterial(material);
 	m_plane.setTransform(Transform(
 		XMFLOAT3(1000.0f, 1000.0f, 1000.0f),
@@ -82,8 +82,8 @@ void Chapter7Scene::initScene()
 
 	m_box1 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box1.setMesh(Geometry::buildBoxMesh());
-	m_box1.setShader(7);
-	m_box1.setTexturePathDDS(L"Texture\\WoodCrate.dds");
+	m_box1.setShader(SceneShader::shaderPath[6]);
+	m_box1.setTexture(L"Texture\\WoodCrate.dds");
 	m_box1.setMaterial(material);
 	m_box1.setTransform(Transform(
 		XMFLOAT3(5.0f, 5.0f, 5.0f),

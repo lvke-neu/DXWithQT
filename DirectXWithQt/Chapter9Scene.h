@@ -2,19 +2,16 @@
 
 #include "SceneInterface.h"
 #include "GameObject.h"
-
+#include "SkyBox.h"
 
 
 class Chapter9Scene : public IScene
 {
 
-	struct Fog
+	struct EnableReflect
 	{
-		XMFLOAT4 fogColor;
-		int fogEnabled;
-		float fogStart;
-		float fogRange;
-		float pad;
+		float g_ReflectionEnabled;
+		XMFLOAT3 pad;
 	};
 public:
 	Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
@@ -25,13 +22,15 @@ public:
 	void drawScene() override;
 	void setDirLight(XMFLOAT3 dir) override;
 public:
+	void setReflect(bool b);
 	void notifyAll();
 
 private:
 	GameObject m_box1;
 	GameObject m_sphere;
-	GameObject m_skyBox;
 	GameObject m_terrain;
-
+	SkyBox m_skyBox;
+private:
+	ComPtr<ID3D11Buffer> m_pEnableReflect;
 };
 

@@ -91,6 +91,9 @@
     <Filter Include="Qt\d3d11renderwidget">
       <UniqueIdentifier>{62e534aa-92d2-451e-af12-22feddfc24db}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\GameObject\SkyBox">
+      <UniqueIdentifier>{8e14f365-3a9b-485c-9a57-2a03d9e2b706}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -189,6 +192,12 @@
     </ClCompile>
     <ClCompile Include="d3d11renderwidget.cpp">
       <Filter>Qt\d3d11renderwidget</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneShader.cpp">
+      <Filter>D3D\Game\SceneManager\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyBox.cpp">
+      <Filter>D3D\Game\GameObject\SkyBox</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -292,6 +301,12 @@
     </ClInclude>
     <ClInclude Include="Chapter9Scene.h">
       <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneShader.h">
+      <Filter>D3D\Game\SceneManager\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyBox.h">
+      <Filter>D3D\Game\GameObject\SkyBox</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
