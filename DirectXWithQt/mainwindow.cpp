@@ -1,6 +1,8 @@
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
-#include <qlabel.h>
+#include <QLabel>
+#include "Reflection.h"
+
+#define CHAPTER_COUNT 2
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -19,7 +21,20 @@ MainWindow::MainWindow(QWidget *parent) :
 
 	connect(ui->listWidget, &QListWidget::itemClicked, this, &MainWindow::changeChapter);
 
-	m_ChapterDockWidget = new ChapterDockWidget(this, m_RenderWidget);
+
+	for (UINT i = 1; i <= CHAPTER_COUNT; i++)
+	{
+		m_chapterDockWidgets.insert
+		(
+			std::pair<std::string, IChapterDockWidget*>
+			(
+				"Chapter " + std::to_string(i), 
+				Reflection<IChapterDockWidget>::getInstance().createObject("Chapter" + std::to_string(i) + "DockWidget", this)
+			)
+		);
+
+	}
+	
 
 
 	QLabel* introductionLabel = new QLabel(this);
@@ -45,18 +60,26 @@ MainWindow::~MainWindow()
 		m_RenderWidget = nullptr;
 	}
 
-	if (m_ChapterDockWidget)
-	{
-		delete m_ChapterDockWidget;
-		m_ChapterDockWidget = nullptr;
-	}
+
 }
 
 
 void MainWindow::changeChapter(QListWidgetItem* item)
 {
+
+	auto iter_find = m_chapterDockWidgets.find(item->text().toStdString());
+	if (iter_find != m_chapterDockWidgets.end())
+	{
+		iter_find->second->init();
+		for (auto iter = m_chapterDockWidgets.begin(); iter != m_chapterDockWidgets.end() && iter != iter_find; iter++)
+		{
+			iter->second->hide();
+		}
+	}
+
 	m_RenderWidget->m_gameApp->setScene(item->text().toStdString());
-	m_ChapterDockWidget->generateDockWidget(item->text().toStdString());
+
+
 
 	if (item->text().toStdString() == "Chapter 2" || item->text().toStdString() == "Chapter 7")
 	{

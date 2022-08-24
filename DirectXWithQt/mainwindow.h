@@ -3,8 +3,9 @@
 
 #include <QMainWindow>
 #include <QListWidgetItem>
+#include "ui_mainwindow.h"
 #include "d3d11renderwidget.h"
-#include "ChapterDockWidget.h"
+#include "ChapterDockWidgetInterface.h"
 
 namespace Ui {
 class MainWindow;
@@ -12,13 +13,12 @@ class MainWindow;
 
 class MainWindow : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
+	//friend class IChapterDockWidget;
 public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
-
-
 
 
 
@@ -30,7 +30,7 @@ public:
 private:
     Ui::MainWindow *ui;
 	D3d11RenderWidget *m_RenderWidget{ nullptr };
-    ChapterDockWidget* m_ChapterDockWidget{ nullptr };
+	std::map<std::string, IChapterDockWidget*> m_chapterDockWidgets;
 };
 
 #endif // MAINWINDOW_H

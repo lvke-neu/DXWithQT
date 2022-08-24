@@ -94,6 +94,9 @@
     <Filter Include="D3D\Game\GameObject\SkyBox">
       <UniqueIdentifier>{8e14f365-3a9b-485c-9a57-2a03d9e2b706}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Qt\ChapterDockWidget\Interface">
+      <UniqueIdentifier>{f2ea78f9-a369-444d-a699-fb0939905125}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -102,9 +105,6 @@
     </ClCompile>
     <ClCompile Include="GameTimer.cpp">
       <Filter>D3D\Framework</Filter>
-    </ClCompile>
-    <ClCompile Include="ChapterDockWidget.cpp">
-      <Filter>Qt\ChapterDockWidget</Filter>
     </ClCompile>
     <ClCompile Include="gameApp.cpp">
       <Filter>D3D\Game\Runtime</Filter>
@@ -199,16 +199,25 @@
     <ClCompile Include="SkyBox.cpp">
       <Filter>D3D\Game\GameObject\SkyBox</Filter>
     </ClCompile>
+    <ClCompile Include="ChapterDockWidgetInterface.cpp">
+      <Filter>Qt\ChapterDockWidget\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter1DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter2DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="ChapterDockWidget.h">
-      <Filter>Qt\ChapterDockWidget</Filter>
-    </QtMoc>
     <QtMoc Include="mainwindow.h">
       <Filter>Qt\mainwindow</Filter>
     </QtMoc>
     <QtMoc Include="d3d11renderwidget.h">
       <Filter>Qt\d3d11renderwidget</Filter>
+    </QtMoc>
+    <QtMoc Include="ChapterDockWidgetInterface.h">
+      <Filter>Qt\ChapterDockWidget\Interface</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +316,15 @@
     </ClInclude>
     <ClInclude Include="SkyBox.h">
       <Filter>D3D\Game\GameObject\SkyBox</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter1DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Reflection.h">
+      <Filter>D3D\Game\GameObject\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter2DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

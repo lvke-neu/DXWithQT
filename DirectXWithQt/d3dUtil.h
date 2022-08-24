@@ -26,3 +26,10 @@ HRESULT CreateWICTexture2DCubeFromFile(
 	ID3D11Texture2D ** textureArray,
 	ID3D11ShaderResourceView ** textureCubeView,
 	bool generateMips);
+
+
+
+
+wchar_t* multiByteToWideChar(const std::string& pKey);
+
+char* wideCharToMultiByte(const wchar_t* pWCStrKey);

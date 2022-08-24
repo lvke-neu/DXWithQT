@@ -75,9 +75,6 @@ void Chapter2Scene::initScene()
 		XMFLOAT3(XM_PI/2, 0.0f, 0.0f),
 		XMFLOAT3(0.0f, -5.0f, 0.0f)
 	));
-
-
-
 }
 
 
