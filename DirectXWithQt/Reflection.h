@@ -23,18 +23,18 @@ public:
 	}
 
 	
-	T* createObject(const std::string& type, void* parameter)
+	T* createObject(const std::string& type, void** parameters)
 	{
 		auto it = m_classMap.find(type);
 		if (it != m_classMap.end())
 		{
-			return (T*)(m_classMap[type](parameter));
+			return (T*)(m_classMap[type](parameters));
 		}
 		return nullptr;
 	}
 
 
-	void registerClass(const std::string& type, std::function<void* (void*)> func)
+	void registerClass(const std::string& type, std::function<void* (void**)> func)
 	{
 		m_classMap[type] = func;
 	}
@@ -51,14 +51,14 @@ public:
 	}
 
 private:
-	std::map<std::string, std::function<void* (void*)>> m_classMap;
+	std::map<std::string, std::function<void* (void**)>> m_classMap;
 };
 
 template <typename T>
 class RegisterAction
 {
 public:
-	RegisterAction(std::string type, std::function<void* (void*)> func)
+	RegisterAction(std::string type, std::function<void* (void**)> func)
 	{
 		Reflection<T>::getInstance().registerClass(type, func);
 	};
@@ -66,4 +66,4 @@ public:
 
 
 #define REGISTER_CLASS(class_abstract, class_type, class_name) \
-static RegisterAction<class_abstract> _register##class_name(class_type, [](void* parameter){return new class_name(parameter);});
+static RegisterAction<class_abstract> _register##class_name(class_type, [](void** parameters){return new class_name(parameters);});

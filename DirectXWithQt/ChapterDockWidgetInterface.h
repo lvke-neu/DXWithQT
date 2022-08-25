@@ -10,26 +10,23 @@ Description:
 #include <QObject>
 #include <QMainWindow>
 #include <QDockWidget>
+#include "d3d11renderwidget.h"
+
 
 #define SAFE_RELEASE_SET_NULL(p) { if ((p)) { delete (p); (p) = nullptr; } }
-
 
 class IChapterDockWidget : public QObject
 {
 	Q_OBJECT
 public:
 	IChapterDockWidget() = default;
-	IChapterDockWidget(QMainWindow* parent);
+	IChapterDockWidget(void** parameters);
 	virtual ~IChapterDockWidget();
-
 	virtual void init() = 0;
+	void hide();
 
-	void hide()
-	{
-		m_dockWidget->hide();
-	}
 protected:
 	QMainWindow* m_parentWindow{ nullptr };
 	QDockWidget* m_dockWidget{ nullptr };
-
+	D3d11RenderWidget* m_renderWidget{ nullptr };
 };

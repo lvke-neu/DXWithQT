@@ -298,6 +298,7 @@ void Chapter2Scene::changeFloorTexture()
 
 void Chapter2Scene::setFogEnabled(bool b)
 {
+	m_enableFog = b;
 	Fog fog;
 	fog.fogColor = XMFLOAT4(0.75f, 0.75f, 0.75f, 1.0f);
 	fog.fogEnabled = b;
@@ -313,16 +314,19 @@ void Chapter2Scene::setFogEnabled(bool b)
 
 void Chapter2Scene::setFogRange(float range)
 {
-	Fog fog;
-	fog.fogColor = XMFLOAT4(0.75f, 0.75f, 0.75f, 1.0f);
-	fog.fogEnabled = true;
-	fog.fogStart = 15.0f;
-	fog.fogRange = range;
+	if (m_enableFog)
+	{
+		Fog fog;
+		fog.fogColor = XMFLOAT4(0.75f, 0.75f, 0.75f, 1.0f);
+		fog.fogEnabled = true;
+		fog.fogStart = 15.0f;
+		fog.fogRange = range;
 
-	D3D11_MAPPED_SUBRESOURCE mappedData;
-	m_pd3dImmediateContext->Map(m_pFogCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
-	memcpy_s(mappedData.pData, sizeof(Fog), &fog, sizeof(Fog));
-	m_pd3dImmediateContext->Unmap(m_pFogCB.Get(), 0);
+		D3D11_MAPPED_SUBRESOURCE mappedData;
+		m_pd3dImmediateContext->Map(m_pFogCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+		memcpy_s(mappedData.pData, sizeof(Fog), &fog, sizeof(Fog));
+		m_pd3dImmediateContext->Unmap(m_pFogCB.Get(), 0);
+	}
 }
 
 void Chapter2Scene::notifyAll()

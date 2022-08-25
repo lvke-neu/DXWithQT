@@ -44,6 +44,7 @@ private:
 	GameObject m_plane;
 private:
 	ComPtr<ID3D11Buffer> m_pFogCB;
+	bool m_enableFog = true;
 
 
 };

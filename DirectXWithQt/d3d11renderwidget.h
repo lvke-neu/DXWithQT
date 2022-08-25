@@ -12,13 +12,15 @@ DirectX渲染到的widget
 
 
 class MainWindow;
-class ChapterDockWidget;
+class Chapter1DockWidget;
+class Chapter2DockWidget;
 class D3d11RenderWidget : public QWidget
 {
 	Q_OBJECT
 
 		friend MainWindow;
-		friend ChapterDockWidget;
+		friend Chapter1DockWidget;
+		friend Chapter2DockWidget;
 public:
 	D3d11RenderWidget(QWidget *parent);
 	~D3d11RenderWidget();

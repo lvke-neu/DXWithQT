@@ -15,9 +15,6 @@ public:
 	virtual void drawScene() override;
 	void setDirLight(XMFLOAT3 dir) {};
 
-	void bindCB2PipeLine();
-	void onReize() {}
-
 public:
 	void setColor(float r, float g, float b, float a);
 
@@ -27,5 +24,6 @@ public:
 	
 private:
 	GameObject m_triangle;
+	ComPtr<ID3D11Buffer> m_psConstantBuffer;
 };
 
