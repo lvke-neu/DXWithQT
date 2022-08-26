@@ -16,7 +16,7 @@ Description:
 template <class T>
 using ComPtr = Microsoft::WRL::ComPtr<T>;
 
-class IScene : public ListeningEvent
+class IScene
 {
 public:
 	virtual ~IScene();

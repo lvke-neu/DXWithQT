@@ -14,6 +14,10 @@ public:
 	virtual ~Chapter1DockWidget();
 
 	virtual void init() override;
+	virtual void callBack(const std::string& msg)
+	{
+
+	}
 
 slots
 	void setColor();

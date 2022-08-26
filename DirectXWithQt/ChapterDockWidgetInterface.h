@@ -11,11 +11,11 @@ Description:
 #include <QMainWindow>
 #include <QDockWidget>
 #include "d3d11renderwidget.h"
-
+#include "ListeningEvent.h"
 
 #define SAFE_RELEASE_SET_NULL(p) { if ((p)) { delete (p); (p) = nullptr; } }
 
-class IChapterDockWidget : public QObject
+class IChapterDockWidget : public QObject, public ListeningEvent
 {
 	Q_OBJECT
 public:

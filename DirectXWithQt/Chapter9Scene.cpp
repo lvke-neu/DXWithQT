@@ -263,7 +263,7 @@ void Chapter9Scene::notifyAll()
 		std::to_string(pos.x) + ",\n" +
 		std::to_string(pos.y) + ",\n" +
 		std::to_string(pos.z);
-	ListeningEvent::notifyAll(msg);
+	ListeningEventManager::getInstance().notifyAll(msg);
 
 }
 

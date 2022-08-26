@@ -112,41 +112,41 @@ void Chapter8Scene::updateScene(float deltaTime)
 
 	if (ray_camera2pickPoint.hit(aabb1, dis))
 	{
-		ListeningEvent::notifyAll("Pick RightBox");
+		ListeningEventManager::getInstance().notifyAll("Pick RightBox");
 		if (Mouse::m_whichButton == LeftButton)
 		{
-			ListeningEvent::stopTimer();
-			ListeningEvent::messaegeBox("Pick RightBox");
-			ListeningEvent::startTimer();
+			ListeningEventManager::getInstance().stopTimer();
+			ListeningEventManager::getInstance().messaegeBox("Pick RightBox");
+			ListeningEventManager::getInstance().startTimer();
 			Mouse::m_whichButton = NoButton;
 
 		}
 	}
 	else if (ray_camera2pickPoint.hit(aabb2, dis))
 	{
-		ListeningEvent::notifyAll("Pick LeftBox");
+		ListeningEventManager::getInstance().notifyAll("Pick LeftBox");
 		if (Mouse::m_whichButton == LeftButton)
 		{
-			ListeningEvent::stopTimer();
-			ListeningEvent::messaegeBox("Pick LeftBox");
-			ListeningEvent::startTimer();
+			ListeningEventManager::getInstance().stopTimer();
+			ListeningEventManager::getInstance().messaegeBox("Pick LeftBox");
+			ListeningEventManager::getInstance().startTimer();
 			Mouse::m_whichButton = NoButton;
 		}
 	}
 	else if (ray_camera2pickPoint.hit(aabb3, dis))
 	{
-		ListeningEvent::notifyAll("Pick Rectangle");
+		ListeningEventManager::getInstance().notifyAll("Pick Rectangle");
 		if (Mouse::m_whichButton == LeftButton)
 		{
-			ListeningEvent::stopTimer();
-			ListeningEvent::messaegeBox("Pick Rectangle");
-			ListeningEvent::startTimer();
+			ListeningEventManager::getInstance().stopTimer();
+			ListeningEventManager::getInstance().messaegeBox("Pick Rectangle");
+			ListeningEventManager::getInstance().startTimer();
 			Mouse::m_whichButton = NoButton;
 		}
 	}
 	else
 	{
-		ListeningEvent::notifyAll("Pick Null");
+		ListeningEventManager::getInstance().notifyAll("Pick Null");
 	}
 	
 }
@@ -191,6 +191,6 @@ void Chapter8Scene::notifyAll()
 		std::to_string(pos.x) + ",\n" +
 		std::to_string(pos.y) + ",\n" +
 		std::to_string(pos.z);
-	ListeningEvent::notifyAll(msg);
+	ListeningEventManager::getInstance().notifyAll(msg);
 
 }

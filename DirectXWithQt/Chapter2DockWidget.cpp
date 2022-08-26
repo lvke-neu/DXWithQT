@@ -119,7 +119,7 @@ Chapter2DockWidget::Chapter2DockWidget(void** parameters) :
 			}
 		});
 
-
+	ListeningEventManager::getInstance().registerListeningEvent(this);
 }
 
 Chapter2DockWidget::~Chapter2DockWidget()
@@ -150,6 +150,8 @@ void Chapter2DockWidget::init()
 {
 	m_dockWidget->show();
 
+	m_labelCamProperty->setFixedHeight(200);
+
 	m_labelChangeTexture->move(0, 200);
 	m_buttonChangeBox1Texture->move(0, 230);
 	m_buttonChangeBox2Texture->move(0, 260);
@@ -175,4 +177,9 @@ void Chapter2DockWidget::init()
 	m_sliderFogRange->setSingleStep(1);
 	m_sliderFogRange->setValue(75);
 	
+}
+
+void Chapter2DockWidget::callBack(const std::string& msg)
+{
+	m_labelCamProperty->setText(msg.c_str());
 }

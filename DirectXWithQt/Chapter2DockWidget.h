@@ -12,7 +12,7 @@ public:
 	virtual ~Chapter2DockWidget();
 
 	virtual void init() override;
-
+	virtual void callBack(const std::string& msg) override;
 private:
 	QLabel* m_labelCamProperty{ nullptr };
 

@@ -17,7 +17,7 @@ public:
 
 public:
 	void setColor(float r, float g, float b, float a);
-
+	
 
 
 	XMFLOAT4 m_color{ 0.0f, 1.0f, 0.0f, 1.0f };

@@ -9,6 +9,7 @@ GameObject类，设置/获取GO的属性
 
 #include <DirectXCollision.h>
 #include <wrl/client.h>
+#include <string>
 #include "Transform.h"
 #include "Geometry.h"
 #include "Material.h"

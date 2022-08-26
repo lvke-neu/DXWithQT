@@ -1,29 +1,31 @@
 #include "ListeningEvent.h"
-//#include "ChapterDockWidget.h"
 
-void ListeningEvent::registerListeningEvent(ChapterDockWidget* chapterDockWidget)
+
+
+
+void ListeningEventManager::registerListeningEvent(ListeningEvent* listeningEvent)
 {
-	m_chapDockWidgets.push_back(chapterDockWidget);
+	m_listeningEvents.push_back(listeningEvent);
 }
 
-void ListeningEvent::notifyAll(const std::string& msg)
+void ListeningEventManager::notifyAll(const std::string& msg)
 {
-	//for (auto& chapDockWidget : m_chapDockWidgets)
-	//{
-	//	chapDockWidget->callback(msg);
-	//}
+	for (auto& listeningEvent : m_listeningEvents)
+	{
+		listeningEvent->callBack(msg);
+	}
 }
 
-void ListeningEvent::unregisterListeningEvent(ChapterDockWidget* chapterDockWidget)
+void ListeningEventManager::unregisterListeningEvent(ListeningEvent* listeningEvent)
 {
-	//for (auto it = m_chapDockWidgets.begin(); it != m_chapDockWidgets.end(); it++)
-	//{
-	//	if (*it == chapterDockWidget)
-	//		m_chapDockWidgets.erase(it); 
-	//}
+	for (auto it = m_listeningEvents.begin(); it != m_listeningEvents.end(); it++)
+	{
+		if (*it == listeningEvent)
+			m_listeningEvents.erase(it);
+	}
 }
 
-void ListeningEvent::messaegeBox(const std::string& msg)
+void ListeningEventManager::messaegeBox(const std::string& msg)
 {
 	//for (auto& chapDockWidget : m_chapDockWidgets)
 	//{
@@ -31,7 +33,7 @@ void ListeningEvent::messaegeBox(const std::string& msg)
 	//}
 }
 
-void ListeningEvent::stopTimer()
+void ListeningEventManager::stopTimer()
 {
 	//for (auto& chapDockWidget : m_chapDockWidgets)
 	//{
@@ -39,7 +41,7 @@ void ListeningEvent::stopTimer()
 	//}
 }
 
-void ListeningEvent::startTimer()
+void ListeningEventManager::startTimer()
 {
 	//for (auto& chapDockWidget : m_chapDockWidgets)
 	//{

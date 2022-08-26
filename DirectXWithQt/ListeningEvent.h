@@ -10,17 +10,31 @@ Description:
 #include <vector>
 #include <string>
 
-class ChapterDockWidget;
-
 class ListeningEvent
 {
 public:
-	void registerListeningEvent(ChapterDockWidget* chapterDockWidget);
-	void unregisterListeningEvent(ChapterDockWidget* chapterDockWidget);
+	virtual void callBack(const std::string& msg) = 0;
+};
+
+class ListeningEventManager
+{
+private:
+	ListeningEventManager() = default;
+
+public:
+	static ListeningEventManager& getInstance()
+	{
+		static ListeningEventManager instance;
+		return instance;
+	}
+public:
+	void registerListeningEvent(ListeningEvent* listeningEvent);
+	void unregisterListeningEvent(ListeningEvent* listeningEvent);
 	void notifyAll(const std::string& msg);
 	void messaegeBox(const std::string& msg);
 	void stopTimer();
 	void startTimer();
 private:
-	std::vector<ChapterDockWidget*> m_chapDockWidgets;
+	std::vector<ListeningEvent*> m_listeningEvents;
+	
 };
