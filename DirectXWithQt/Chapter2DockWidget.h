@@ -4,6 +4,7 @@
 #include <Qlabel>
 #include <QSlider>
 #include <QPushButton>
+
 class Chapter2DockWidget : public IChapterDockWidget
 {
 public:
@@ -11,8 +12,10 @@ public:
 	Chapter2DockWidget(void** parameters);
 	virtual ~Chapter2DockWidget();
 
+	/*override IScen*/
 	virtual void init() override;
-	virtual void callBack(const std::string& msg) override;
+	/*override Listening*/
+	virtual void onCameraMove(const std::string& msg) override;
 private:
 	QLabel* m_labelCamProperty{ nullptr };
 

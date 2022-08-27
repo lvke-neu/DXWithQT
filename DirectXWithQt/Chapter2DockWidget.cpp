@@ -119,7 +119,6 @@ Chapter2DockWidget::Chapter2DockWidget(void** parameters) :
 			}
 		});
 
-	ListeningEventManager::getInstance().registerListeningEvent(this);
 }
 
 Chapter2DockWidget::~Chapter2DockWidget()
@@ -150,6 +149,7 @@ void Chapter2DockWidget::init()
 {
 	m_dockWidget->show();
 
+	m_labelCamProperty->setText(u8"相机属性:");
 	m_labelCamProperty->setFixedHeight(200);
 
 	m_labelChangeTexture->move(0, 200);
@@ -179,7 +179,7 @@ void Chapter2DockWidget::init()
 	
 }
 
-void Chapter2DockWidget::callBack(const std::string& msg)
+void Chapter2DockWidget::onCameraMove(const std::string& msg)
 {
-	m_labelCamProperty->setText(msg.c_str());
+	m_labelCamProperty->setText( ("相机属性:\n"+ msg).c_str());
 }

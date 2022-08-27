@@ -14,7 +14,7 @@ public:
 	virtual ~Chapter1DockWidget();
 
 	virtual void init() override;
-	virtual void callBack(const std::string& msg)
+	virtual void onCameraMove(const std::string& msg)
 	{
 
 	}

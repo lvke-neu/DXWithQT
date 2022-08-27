@@ -1,7 +1,4 @@
 #include "Chapter8Scene.h"
-#include "KeyBoard.h"
-#include "Mouse.h"
-#include <string>
 #include "RenderStates.h"
 #include "Ray.h"
 
@@ -68,38 +65,7 @@ void Chapter8Scene::updateScene(float deltaTime)
 	m_box2.setRotation(0.0f, rot, 0.0f);
 	m_rectangle.setRotation(0.0f, rot, 0.0f);
 
-	if (KeyBoard::getInstance().isKeyPress('W'))
-	{
-		m_perspectiveCamera.moveZAxis(deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('S'))
-	{
-		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('A'))
-	{
-		m_perspectiveCamera.moveXAxis(-deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('D'))
-	{
-		m_perspectiveCamera.moveXAxis(deltaTime * 20);
-		notifyAll();
-	}
-
-
-	if (Mouse::m_whichButton == RightButton)
-	{
-		float deltaX;
-		float deltaY;
-		deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
-		deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
-		m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
-		notifyAll();
-
-	}
+	cameraControl(deltaTime);
 
 	Ray ray_camera2pickPoint = Ray::ScreenToRay(m_perspectiveCamera, Mouse::x, Mouse::y);
 
@@ -110,44 +76,44 @@ void Chapter8Scene::updateScene(float deltaTime)
 	m_rectangle.getBoundingBox().Transform(aabb3, m_rectangle.getTransform().getWorldMatrix());
 
 
-	if (ray_camera2pickPoint.hit(aabb1, dis))
-	{
-		ListeningEventManager::getInstance().notifyAll("Pick RightBox");
-		if (Mouse::m_whichButton == LeftButton)
-		{
-			ListeningEventManager::getInstance().stopTimer();
-			ListeningEventManager::getInstance().messaegeBox("Pick RightBox");
-			ListeningEventManager::getInstance().startTimer();
-			Mouse::m_whichButton = NoButton;
+	//if (ray_camera2pickPoint.hit(aabb1, dis))
+	//{
+	//	ListeningEventManager::getInstance().notifyAll("Pick RightBox");
+	//	if (Mouse::m_whichButton == LeftButton)
+	//	{
+	//		ListeningEventManager::getInstance().stopTimer();
+	//		ListeningEventManager::getInstance().messaegeBox("Pick RightBox");
+	//		ListeningEventManager::getInstance().startTimer();
+	//		Mouse::m_whichButton = NoButton;
 
-		}
-	}
-	else if (ray_camera2pickPoint.hit(aabb2, dis))
-	{
-		ListeningEventManager::getInstance().notifyAll("Pick LeftBox");
-		if (Mouse::m_whichButton == LeftButton)
-		{
-			ListeningEventManager::getInstance().stopTimer();
-			ListeningEventManager::getInstance().messaegeBox("Pick LeftBox");
-			ListeningEventManager::getInstance().startTimer();
-			Mouse::m_whichButton = NoButton;
-		}
-	}
-	else if (ray_camera2pickPoint.hit(aabb3, dis))
-	{
-		ListeningEventManager::getInstance().notifyAll("Pick Rectangle");
-		if (Mouse::m_whichButton == LeftButton)
-		{
-			ListeningEventManager::getInstance().stopTimer();
-			ListeningEventManager::getInstance().messaegeBox("Pick Rectangle");
-			ListeningEventManager::getInstance().startTimer();
-			Mouse::m_whichButton = NoButton;
-		}
-	}
-	else
-	{
-		ListeningEventManager::getInstance().notifyAll("Pick Null");
-	}
+	//	}
+	//}
+	//else if (ray_camera2pickPoint.hit(aabb2, dis))
+	//{
+	//	ListeningEventManager::getInstance().notifyAll("Pick LeftBox");
+	//	if (Mouse::m_whichButton == LeftButton)
+	//	{
+	//		ListeningEventManager::getInstance().stopTimer();
+	//		ListeningEventManager::getInstance().messaegeBox("Pick LeftBox");
+	//		ListeningEventManager::getInstance().startTimer();
+	//		Mouse::m_whichButton = NoButton;
+	//	}
+	//}
+	//else if (ray_camera2pickPoint.hit(aabb3, dis))
+	//{
+	//	ListeningEventManager::getInstance().notifyAll("Pick Rectangle");
+	//	if (Mouse::m_whichButton == LeftButton)
+	//	{
+	//		ListeningEventManager::getInstance().stopTimer();
+	//		ListeningEventManager::getInstance().messaegeBox("Pick Rectangle");
+	//		ListeningEventManager::getInstance().startTimer();
+	//		Mouse::m_whichButton = NoButton;
+	//	}
+	//}
+	//else
+	//{
+	//	ListeningEventManager::getInstance().notifyAll("Pick Null");
+	//}
 	
 }
 
@@ -178,19 +144,3 @@ void Chapter8Scene::setDirLight(XMFLOAT3 dir)
 	m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pLightCB.GetAddressOf());
 }
 
-void Chapter8Scene::notifyAll()
-{
-	XMFLOAT3 rot = m_perspectiveCamera.getRotation();
-	XMFLOAT3 pos = m_perspectiveCamera.getPosition();
-	std::string msg;
-	msg = "CameraRotation:\n" +
-		std::to_string(rot.x) + ",\n" +
-		std::to_string(rot.y) + ",\n" +
-		std::to_string(rot.z);
-	msg += "\nCameraPosition:\n" +
-		std::to_string(pos.x) + ",\n" +
-		std::to_string(pos.y) + ",\n" +
-		std::to_string(pos.z);
-	ListeningEventManager::getInstance().notifyAll(msg);
-
-}

@@ -35,7 +35,7 @@ public:
 	void setFogEnabled(bool b);
 	void setFogRange(float range);
 
-	void notifyAll();
+	
 
 private:
 	GameObject m_box1;

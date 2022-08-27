@@ -10,8 +10,10 @@ Description:
 #include <wrl/client.h>
 #include "Camera.h"
 #include "Light.h"
-#include "ListeningEvent.h"
+#include "EventManager.h"
 #include "SceneShader.h"
+#include "KeyBoard.h"
+#include "Mouse.h"
 
 template <class T>
 using ComPtr = Microsoft::WRL::ComPtr<T>;
@@ -26,6 +28,8 @@ public:
 	virtual void drawScene() = 0;
 	virtual void setDirLight(XMFLOAT3 dir) = 0;
 
+	void cameraControl(float deltaTime);
+	void notifyCameraMove();
 	void onResize(float width, float height, const D3D11_VIEWPORT& viewPort);
 public:
 	XMFLOAT3 get_dirLight_dir() { return m_dirLight_dir; }

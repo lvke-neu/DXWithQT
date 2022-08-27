@@ -26,8 +26,6 @@ public:
 public:
 	void setWaterTransparency(float transparency);
 
-
-	void notifyAll();
 private:
 	ComPtr<ID3D11Buffer> m_pDmCB;
 	ComPtr<ID3D11ShaderResourceView> m_pTextureArr[6];

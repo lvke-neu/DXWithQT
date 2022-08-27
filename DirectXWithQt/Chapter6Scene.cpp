@@ -1,10 +1,7 @@
 #include "Chapter6Scene.h"
-#include "KeyBoard.h"
-#include "Mouse.h"
-#include <string>
 #include "RenderStates.h"
 #include "WICTextureLoader.h"
-#include <thread>
+
 
 Chapter6Scene::Chapter6Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
@@ -12,16 +9,8 @@ Chapter6Scene::Chapter6Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	
 }
-void createFireAnimsSR(ComPtr<ID3D11Device> pd3dDevice, std::vector<ComPtr<ID3D11ShaderResourceView>>& pFireAnims)
-{
-
-}
-
-void createLightingAnimsSR(ComPtr<ID3D11Device> pd3dDevice, std::vector<ComPtr<ID3D11ShaderResourceView>>& pLightingAnims)
-{
 
 
-}
 void Chapter6Scene::initScene()
 {
 	m_pFireAnims.resize(120);

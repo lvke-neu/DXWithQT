@@ -1,7 +1,4 @@
 #include "Chapter5Scene.h"
-#include "KeyBoard.h"
-#include "Mouse.h"
-#include <string>
 #include "RenderStates.h"
 
 Chapter5Scene::Chapter5Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
@@ -89,37 +86,7 @@ void Chapter5Scene::initScene()
 
 void Chapter5Scene::updateScene(float deltaTime)
 {
-	if (KeyBoard::getInstance().isKeyPress('W'))
-	{
-		m_perspectiveCamera.moveZAxis(deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('S'))
-	{
-		m_perspectiveCamera.moveZAxis(-deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('A'))
-	{
-		m_perspectiveCamera.moveXAxis(-deltaTime * 20);
-		notifyAll();
-	}
-	if (KeyBoard::getInstance().isKeyPress('D'))
-	{
-		m_perspectiveCamera.moveXAxis(deltaTime * 20);
-		notifyAll();
-	}
-
-	if (Mouse::m_whichButton == RightButton)
-	{
-		float deltaX;
-		float deltaY;
-		deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
-		deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
-		m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
-		notifyAll();
-
-	}
+	cameraControl(deltaTime);
 
 	static float rotX = 0.0f;
 	rotX += deltaTime;
@@ -241,22 +208,5 @@ void Chapter5Scene::set_ShadowMatrix()
 		memcpy_s(mappedData.pData, sizeof(ShadowMatrix), &shadowMatrix, sizeof(ShadowMatrix));
 		m_pd3dImmediateContext->Unmap(m_pShadowMatrixCB.Get(), 0);
 	}
-
-}
-
-void Chapter5Scene::notifyAll()
-{
-	XMFLOAT3 rot = m_perspectiveCamera.getRotation();
-	XMFLOAT3 pos = m_perspectiveCamera.getPosition();
-	std::string msg;
-	msg = "CameraRotation:\n" +
-		std::to_string(rot.x) + ",\n" +
-		std::to_string(rot.y) + ",\n" +
-		std::to_string(rot.z);
-	msg += "\nCameraPosition:\n" +
-		std::to_string(pos.x) + ",\n" +
-		std::to_string(pos.y) + ",\n" +
-		std::to_string(pos.z);
-	ListeningEventManager::getInstance().notifyAll(msg);
 
 }

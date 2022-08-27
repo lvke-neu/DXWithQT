@@ -15,10 +15,6 @@ public:
 	void updateScene(float deltaTime) override;
 	void drawScene() override;
 	void setDirLight(XMFLOAT3 dir) override;
-public:
-
-	void notifyAll();
-
 private:
 	GameObject m_box1;
 	GameObject m_box2;

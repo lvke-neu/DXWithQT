@@ -2,7 +2,7 @@
 #include <QLabel>
 #include "Reflection.h"
 
-#define CHAPTER_COUNT 2
+#define CHAPTER_COUNT 9
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -75,10 +75,15 @@ void MainWindow::changeChapter(QListWidgetItem* item)
 	if (iter_find != m_chapterDockWidgets.end())
 	{
 		iter_find->second->init();
+		EventManager::getInstance().registerCameraMoveEvent(iter_find->second);
 		for (auto iter = m_chapterDockWidgets.begin(); iter != m_chapterDockWidgets.end(); iter++)
 		{
-			if(iter != iter_find)
+			if (iter != iter_find)
+			{
 				iter->second->hide();
+				EventManager::getInstance().unregisterCameraMoveEvent(iter->second);
+			}
+				
 		}
 	}
 

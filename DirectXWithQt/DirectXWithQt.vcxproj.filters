@@ -136,9 +136,6 @@
     <ClCompile Include="SceneInterface.cpp">
       <Filter>D3D\Game\SceneManager\Interface</Filter>
     </ClCompile>
-    <ClCompile Include="ListeningEvent.cpp">
-      <Filter>D3D\Game\Event\ListeningEvent</Filter>
-    </ClCompile>
     <ClCompile Include="WICTextureLoader.cpp">
       <Filter>D3D\Framework</Filter>
     </ClCompile>
@@ -208,6 +205,30 @@
     <ClCompile Include="Chapter2DockWidget.cpp">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClCompile>
+    <ClCompile Include="EventManager.cpp">
+      <Filter>D3D\Game\Event\ListeningEvent</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter3DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter4DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter5DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter6DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter7DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter8DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter9DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -262,9 +283,6 @@
     </ClInclude>
     <ClInclude Include="Light.h">
       <Filter>D3D\Game\GameObject\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="ListeningEvent.h">
-      <Filter>D3D\Game\Event\ListeningEvent</Filter>
     </ClInclude>
     <ClInclude Include="WICTextureLoader.h">
       <Filter>D3D\Framework</Filter>
@@ -324,6 +342,30 @@
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
     <ClInclude Include="Chapter2DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="EventManager.h">
+      <Filter>D3D\Game\Event\ListeningEvent</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter3DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter4DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter5DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter6DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter7DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter8DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter9DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
   </ItemGroup>

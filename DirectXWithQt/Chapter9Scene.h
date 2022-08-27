@@ -1,7 +1,6 @@
 #pragma once 
 
 #include "SceneInterface.h"
-#include "GameObject.h"
 #include "SkyBox.h"
 
 

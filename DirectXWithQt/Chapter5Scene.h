@@ -32,8 +32,6 @@ public:
 	void set_EnableShadow(bool b);
 	void set_ShadowMatrix();
 
-	void notifyAll();
-
 private:
 	//四面墙
 	GameObject m_wall;

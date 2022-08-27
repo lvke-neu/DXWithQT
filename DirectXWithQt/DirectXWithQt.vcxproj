@@ -113,6 +113,13 @@
     <ClCompile Include="Chapter1Scene.cpp" />
     <ClCompile Include="Chapter2DockWidget.cpp" />
     <ClCompile Include="Chapter2Scene.cpp" />
+    <ClCompile Include="Chapter9DockWidget.cpp" />
+    <ClCompile Include="Chapter8DockWidget.cpp" />
+    <ClCompile Include="Chapter7DockWidget.cpp" />
+    <ClCompile Include="Chapter6DockWidget.cpp" />
+    <ClCompile Include="Chapter5DockWidget.cpp" />
+    <ClCompile Include="Chapter4DockWidget.cpp" />
+    <ClCompile Include="Chapter3DockWidget.cpp" />
     <ClCompile Include="Chapter3Scene.cpp" />
     <ClCompile Include="Chapter4Scene.cpp" />
     <ClCompile Include="Chapter5Scene.cpp" />
@@ -131,7 +138,7 @@
     <ClCompile Include="GameTimer.cpp" />
     <ClCompile Include="Geometry.cpp" />
     <ClCompile Include="KeyBoard.cpp" />
-    <ClCompile Include="ListeningEvent.cpp" />
+    <ClCompile Include="EventManager.cpp" />
     <ClCompile Include="Material.h" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="mainwindow.cpp" />
@@ -161,6 +168,13 @@
     <ClInclude Include="Chapter1Scene.h" />
     <ClInclude Include="Chapter2DockWidget.h" />
     <ClInclude Include="Chapter2Scene.h" />
+    <ClInclude Include="Chapter9DockWidget.h" />
+    <ClInclude Include="Chapter8DockWidget.h" />
+    <ClInclude Include="Chapter7DockWidget.h" />
+    <ClInclude Include="Chapter6DockWidget.h" />
+    <ClInclude Include="Chapter5DockWidget.h" />
+    <ClInclude Include="Chapter4DockWidget.h" />
+    <ClInclude Include="Chapter3DockWidget.h" />
     <ClInclude Include="Chapter3Scene.h" />
     <ClInclude Include="Chapter4Scene.h" />
     <ClInclude Include="Chapter5Scene.h" />
@@ -175,7 +189,7 @@
     <ClInclude Include="Geometry.h" />
     <ClInclude Include="KeyBoard.h" />
     <ClInclude Include="Light.h" />
-    <ClInclude Include="ListeningEvent.h" />
+    <ClInclude Include="EventManager.h" />
     <ClInclude Include="ModelObject.h" />
     <ClInclude Include="Mouse.h" />
     <ClInclude Include="ObjReader.h" />

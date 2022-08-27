@@ -1,6 +1,4 @@
 #include "Chapter9Scene.h"
-#include "KeyBoard.h"
-#include "Mouse.h"
 #include <string>
 #include "RenderStates.h"
 
@@ -103,46 +101,8 @@ void Chapter9Scene::initScene()
 
 void Chapter9Scene::updateScene(float deltaTime)
 {
-	bool isMove = false;
 
-	UINT mulSpeed = 20;
-
-	if (KeyBoard::getInstance().isKeyPress('W'))
-	{
-		m_perspectiveCamera.moveZAxis(deltaTime * mulSpeed);
-		isMove = true;
-	}
-	if (KeyBoard::getInstance().isKeyPress('S'))
-	{
-		m_perspectiveCamera.moveZAxis(-deltaTime * mulSpeed);
-		isMove = true;
-	}
-	if (KeyBoard::getInstance().isKeyPress('A'))
-	{
-		m_perspectiveCamera.moveXAxis(-deltaTime * mulSpeed);
-		isMove = true;
-	}
-	if (KeyBoard::getInstance().isKeyPress('D'))
-	{
-		m_perspectiveCamera.moveXAxis(deltaTime * mulSpeed);
-		isMove = true;
-	}
-
-
-	if (Mouse::m_whichButton == RightButton)
-	{
-		float deltaX;
-		float deltaY;
-		deltaX = m_perspectiveCamera.getRotation().y + Mouse::m_delta.m_x * deltaTime * 10;
-		deltaY = m_perspectiveCamera.getRotation().x + Mouse::m_delta.m_y * deltaTime * 10;
-		m_perspectiveCamera.setRotation(deltaY, deltaX, 0.0f);
-		isMove = true;
-	}
-
-	if (isMove)
-	{
-		notifyAll();
-	}
+	cameraControl(deltaTime);
 
 	if (KeyBoard::getInstance().isKeyPress('1'))
 	{
@@ -249,23 +209,6 @@ void Chapter9Scene::setDirLight(XMFLOAT3 dir)
 	m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pLightCB.GetAddressOf());
 }
 
-
-void Chapter9Scene::notifyAll()
-{
-	XMFLOAT3 rot = m_perspectiveCamera.getRotation();
-	XMFLOAT3 pos = m_perspectiveCamera.getPosition();
-	std::string msg;
-	msg = "CameraRotation:\n" +
-		std::to_string(rot.x) + ",\n" +
-		std::to_string(rot.y) + ",\n" +
-		std::to_string(rot.z);
-	msg += "\nCameraPosition:\n" +
-		std::to_string(pos.x) + ",\n" +
-		std::to_string(pos.y) + ",\n" +
-		std::to_string(pos.z);
-	ListeningEventManager::getInstance().notifyAll(msg);
-
-}
 
 void Chapter9Scene::setReflect(bool b)
 {

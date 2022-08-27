@@ -5,7 +5,7 @@
 
 
 
-#define RAND_TREE_NUM 50
+#define RAND_TREE_NUM 1
 class Chapter7Scene : public IScene
 {
 	struct Fog
@@ -30,7 +30,6 @@ public:
 	void setFogEnabled(bool b);
 	void setFogRange(float range);
 	void setWireframe(bool b);
-	void notifyAll();
 private:
 	ModelObject m_house;
 	std::vector<ModelObject> m_trees;

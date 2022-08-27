@@ -14,13 +14,28 @@ DirectX渲染到的widget
 class MainWindow;
 class Chapter1DockWidget;
 class Chapter2DockWidget;
+class Chapter3DockWidget;
+class Chapter4DockWidget;
+class Chapter5DockWidget;
+class Chapter6DockWidget;
+class Chapter7DockWidget;
+class Chapter8DockWidget;
+class Chapter9DockWidget;
+
 class D3d11RenderWidget : public QWidget
 {
 	Q_OBJECT
 
-		friend MainWindow;
-		friend Chapter1DockWidget;
-		friend Chapter2DockWidget;
+	friend MainWindow;
+	friend Chapter1DockWidget;
+	friend Chapter2DockWidget;
+	friend Chapter3DockWidget;
+	friend Chapter4DockWidget;
+	friend Chapter5DockWidget;
+	friend Chapter6DockWidget;
+	friend Chapter7DockWidget;
+	friend Chapter8DockWidget;
+	friend Chapter9DockWidget;
 public:
 	D3d11RenderWidget(QWidget *parent);
 	~D3d11RenderWidget();

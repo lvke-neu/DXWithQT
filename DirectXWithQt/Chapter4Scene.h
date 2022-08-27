@@ -26,7 +26,7 @@ public:
 	void setMirrorTransparency(float transparency);
 	void setFirstPerson(bool b) { m_isFirstPerson = b; if(m_isFirstPerson)m_perspectiveCamera.setRotation(0.0f, 1.5f, 0.0f); }
 
-	void notifyAll();
+
 private:
 	ComPtr<ID3D11Buffer> m_pRelectionCB;
 private:
