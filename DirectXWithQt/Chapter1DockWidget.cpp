@@ -21,7 +21,6 @@ Chapter1DockWidget::~Chapter1DockWidget()
 	SAFE_RELEASE_SET_NULL(m_button);
 	SAFE_RELEASE_SET_NULL(m_qColorDialog);
 
-	IChapterDockWidget::~IChapterDockWidget();
 }
 
 void Chapter1DockWidget::init()

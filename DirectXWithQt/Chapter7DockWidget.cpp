@@ -80,7 +80,6 @@ Chapter7DockWidget::~Chapter7DockWidget()
 	SAFE_RELEASE_SET_NULL(m_buttonStartFog);
 	SAFE_RELEASE_SET_NULL(m_buttonCloseFog);
 
-	IChapterDockWidget::~IChapterDockWidget();
 }
 
 void Chapter7DockWidget::init()

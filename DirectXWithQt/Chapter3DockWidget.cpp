@@ -30,9 +30,6 @@ Chapter3DockWidget::~Chapter3DockWidget()
 	SAFE_RELEASE_SET_NULL(m_labelCamProperty);
 
 	SAFE_RELEASE_SET_NULL(m_labelTransparency);
-	
-
-	IChapterDockWidget::~IChapterDockWidget();
 }
 
 void Chapter3DockWidget::init()

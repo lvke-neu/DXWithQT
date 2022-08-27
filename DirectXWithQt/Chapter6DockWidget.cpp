@@ -12,7 +12,6 @@ Chapter6DockWidget::Chapter6DockWidget(void** parameters) :
 Chapter6DockWidget::~Chapter6DockWidget()
 {
 
-	IChapterDockWidget::~IChapterDockWidget();
 }
 
 void Chapter6DockWidget::init()

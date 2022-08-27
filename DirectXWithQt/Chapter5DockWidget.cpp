@@ -73,7 +73,6 @@ Chapter5DockWidget::~Chapter5DockWidget()
 
 	SAFE_RELEASE_SET_NULL(m_buttonReset);
 
-	IChapterDockWidget::~IChapterDockWidget();
 }
 
 void Chapter5DockWidget::init()

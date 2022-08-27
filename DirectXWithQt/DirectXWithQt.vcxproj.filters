@@ -362,10 +362,10 @@
     <ClInclude Include="Chapter7DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
-    <ClInclude Include="Chapter8DockWidget.h">
+    <ClInclude Include="Chapter9DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
-    <ClInclude Include="Chapter9DockWidget.h">
+    <ClInclude Include="Chapter8DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
   </ItemGroup>

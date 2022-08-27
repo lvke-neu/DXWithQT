@@ -18,9 +18,6 @@ Chapter9DockWidget::Chapter9DockWidget(void** parameters) :
 Chapter9DockWidget::~Chapter9DockWidget()
 {
 	SAFE_RELEASE_SET_NULL(m_labelCamProperty);
-
-
-	IChapterDockWidget::~IChapterDockWidget();
 }
 
 void Chapter9DockWidget::init()

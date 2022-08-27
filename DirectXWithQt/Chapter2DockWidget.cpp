@@ -142,7 +142,6 @@ Chapter2DockWidget::~Chapter2DockWidget()
 	SAFE_RELEASE_SET_NULL(m_buttonStartFog);
 	SAFE_RELEASE_SET_NULL(m_buttonCloseFog);
 
-	IChapterDockWidget::~IChapterDockWidget();
 }
 
 void Chapter2DockWidget::init()

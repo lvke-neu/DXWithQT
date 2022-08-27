@@ -2,8 +2,7 @@
 
 #include "ChapterDockWidgetInterface.h"
 #include <Qlabel>
-#include <QSlider>
-#include <QPushButton>
+
 
 class Chapter6DockWidget : public IChapterDockWidget
 {
@@ -14,10 +13,4 @@ public:
 
 	/*override IScen*/
 	virtual void init() override;
-	/*override Listening*/
-	void onCameraMove(const std::string& msg)
-	{
-
-	}
-
 };

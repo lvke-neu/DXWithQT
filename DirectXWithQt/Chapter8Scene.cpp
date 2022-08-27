@@ -6,7 +6,8 @@ Chapter8Scene::Chapter8Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 {
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
-	m_perspectiveCamera.setPosition(0, 0, -5.0f);
+	m_perspectiveCamera.setPosition(11.0f, 0.0f, 0.1f);
+	m_perspectiveCamera.setRotation(0.08f, -0.8f, 0.0f);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
 
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
@@ -26,7 +27,7 @@ void Chapter8Scene::initScene()
 	m_box1.setTexture(L"Texture\\WoodCrate.dds");
 	m_box1.setMaterial(material);
 	m_box1.setTransform(Transform(
-		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(2.0f, 2.0f, 2.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
 		XMFLOAT3(4.0f, 0.0f, 10.0f)
 		));
@@ -38,7 +39,7 @@ void Chapter8Scene::initScene()
 	m_box2.setMaterial(material);
 	m_box2.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
-		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(1.0f, 2.0f, 0.0f),
 		XMFLOAT3(-4.0f, 0.0f, 10.0f)
 	));
 
@@ -53,7 +54,6 @@ void Chapter8Scene::initScene()
 		XMFLOAT3(0.0f, -4.0f, 5.0f)
 	));
 
-
 }
 
 
@@ -61,8 +61,8 @@ void Chapter8Scene::updateScene(float deltaTime)
 {
 	static float rot = 0.0f;
 	rot += deltaTime;
-	m_box1.setRotation(rot, 0.0f, 0.0f);
-	m_box2.setRotation(0.0f, rot, 0.0f);
+	//m_box1.setRotation(rot, 0.0f, 0.0f);
+	//m_box2.setRotation(0.0f, rot, 0.0f);
 	m_rectangle.setRotation(0.0f, rot, 0.0f);
 
 	cameraControl(deltaTime);
@@ -76,44 +76,39 @@ void Chapter8Scene::updateScene(float deltaTime)
 	m_rectangle.getBoundingBox().Transform(aabb3, m_rectangle.getTransform().getWorldMatrix());
 
 
-	//if (ray_camera2pickPoint.hit(aabb1, dis))
-	//{
-	//	ListeningEventManager::getInstance().notifyAll("Pick RightBox");
-	//	if (Mouse::m_whichButton == LeftButton)
-	//	{
-	//		ListeningEventManager::getInstance().stopTimer();
-	//		ListeningEventManager::getInstance().messaegeBox("Pick RightBox");
-	//		ListeningEventManager::getInstance().startTimer();
-	//		Mouse::m_whichButton = NoButton;
-
-	//	}
-	//}
-	//else if (ray_camera2pickPoint.hit(aabb2, dis))
-	//{
-	//	ListeningEventManager::getInstance().notifyAll("Pick LeftBox");
-	//	if (Mouse::m_whichButton == LeftButton)
-	//	{
-	//		ListeningEventManager::getInstance().stopTimer();
-	//		ListeningEventManager::getInstance().messaegeBox("Pick LeftBox");
-	//		ListeningEventManager::getInstance().startTimer();
-	//		Mouse::m_whichButton = NoButton;
-	//	}
-	//}
-	//else if (ray_camera2pickPoint.hit(aabb3, dis))
-	//{
-	//	ListeningEventManager::getInstance().notifyAll("Pick Rectangle");
-	//	if (Mouse::m_whichButton == LeftButton)
-	//	{
-	//		ListeningEventManager::getInstance().stopTimer();
-	//		ListeningEventManager::getInstance().messaegeBox("Pick Rectangle");
-	//		ListeningEventManager::getInstance().startTimer();
-	//		Mouse::m_whichButton = NoButton;
-	//	}
-	//}
-	//else
-	//{
-	//	ListeningEventManager::getInstance().notifyAll("Pick Null");
-	//}
+	if (ray_camera2pickPoint.hit(aabb1, dis))
+	{
+		EventManager::getInstance().onMouseLocateGo("Box1");
+		if (Mouse::m_whichButton == LeftButton)
+		{
+			EventManager::getInstance().onPickGameObject(m_box1);
+		}
+	}
+	else if (ray_camera2pickPoint.hit(aabb2, dis))
+	{
+		EventManager::getInstance().onMouseLocateGo("Box2");
+		if (Mouse::m_whichButton == LeftButton)
+		{
+			EventManager::getInstance().onPickGameObject(m_box2);
+			
+		}
+	}
+	else if (ray_camera2pickPoint.hit(aabb3, dis))
+	{
+		//EventManager::getInstance().onPickGameObject(m_rectangle);
+		//if (Mouse::m_whichButton == LeftButton)
+		//{
+		//	ListeningEventManager::getInstance().stopTimer();
+		//	ListeningEventManager::getInstance().messaegeBox("Pick Rectangle");
+		//	ListeningEventManager::getInstance().startTimer();
+		//	Mouse::m_whichButton = NoButton;
+		//}
+	}
+	else
+	{
+		EventManager::getInstance().onMouseLocateGo("NULL");
+		//ListeningEventManager::getInstance().notifyAll("Pick Null");
+	}
 	
 }
 

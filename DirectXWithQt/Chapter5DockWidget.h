@@ -15,7 +15,7 @@ public:
 
 	/*override IScen*/
 	virtual void init() override;
-	/*override Listening*/
+	/*override CameraMoveEvent*/
 	virtual void onCameraMove(const std::string& msg) override;
 
 	void changeDirLight();

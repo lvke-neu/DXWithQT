@@ -14,11 +14,6 @@ public:
 	virtual ~Chapter1DockWidget();
 
 	virtual void init() override;
-	virtual void onCameraMove(const std::string& msg)
-	{
-
-	}
-
 slots
 	void setColor();
 	void confirmColor(const QColor& color);

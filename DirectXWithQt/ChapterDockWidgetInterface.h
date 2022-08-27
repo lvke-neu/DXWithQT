@@ -15,7 +15,7 @@ Description:
 
 #define SAFE_RELEASE_SET_NULL(p) { if ((p)) { delete (p); (p) = nullptr; } }
 
-class IChapterDockWidget : public QObject, public CameraMoveEvent
+class IChapterDockWidget : public QObject, public CameraMoveEvent, public PickEvent
 {
 	Q_OBJECT
 public:
@@ -23,6 +23,9 @@ public:
 	IChapterDockWidget(void** parameters);
 	virtual ~IChapterDockWidget();
 	virtual void init() = 0;
+	virtual void onCameraMove(const std::string& msg){}
+	virtual void onPickGameObject(GameObject& go) {};
+	virtual void onMouseLocateGo(const std::string& msg) {};
 	void hide();
 
 protected:

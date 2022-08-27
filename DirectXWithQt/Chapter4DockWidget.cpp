@@ -56,8 +56,6 @@ Chapter4DockWidget::~Chapter4DockWidget()
 	
 	SAFE_RELEASE_SET_NULL(m_labelTransparency);
 	SAFE_RELEASE_SET_NULL(m_sliderTransparency);
-
-	IChapterDockWidget::~IChapterDockWidget();
 }
 
 void Chapter4DockWidget::init()

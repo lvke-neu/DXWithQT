@@ -19,7 +19,14 @@ public:
 	virtual void onCameraMove(const std::string& msg) = 0;
 };
 
-
+/*选中某个GameObject事件*/
+class GameObject;
+class PickEvent
+{
+public:
+	virtual void onMouseLocateGo(const std::string& msg) = 0;
+	virtual void onPickGameObject(GameObject& go) = 0;
+};
 
 class EventManager
 {
@@ -36,10 +43,13 @@ public:
 	void registerCameraMoveEvent(CameraMoveEvent* listeningEvent);
 	void unregisterCameraMoveEvent(CameraMoveEvent* listeningEvent);
 	void onCameraMove(const std::string& msg);
-	void messaegeBox(const std::string& msg);
-	void stopTimer();
-	void startTimer();
+
+	void registerPickEveent(PickEvent* pickEveent);
+	void unregisterPickEveent(PickEvent* pickEveent);
+	void onMouseLocateGo(const std::string& msg);
+	void onPickGameObject(GameObject& go);
 private:
 	std::vector<CameraMoveEvent*> m_cameraMoveEvents;
+	std::vector<PickEvent*> m_pickEvents;
 	
 };

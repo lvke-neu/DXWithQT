@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QListWidgetItem>
+#include <QLabel>
 #include "ui_mainwindow.h"
 #include "d3d11renderwidget.h"
 #include "ChapterDockWidgetInterface.h"
@@ -30,6 +31,7 @@ public:
 private:
     Ui::MainWindow *ui;
 	D3d11RenderWidget *m_RenderWidget{ nullptr };
+	QLabel* m_labelIntroduction{ nullptr };
 	std::map<std::string, IChapterDockWidget*> m_chapterDockWidgets;
 };
 
