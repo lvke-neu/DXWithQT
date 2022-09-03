@@ -70,7 +70,15 @@ void GameApp::setScene(std::string type)
 		delete m_scene;
 		m_scene = nullptr;
 	}
-	m_scene = SceneFactory::createChpaterScene(type, m_pd3dDevice, m_pd3dImmediateContext);
+	if (type == "Chpater 9")
+	{
+		m_scene = SceneFactory::createChpaterScene(type, m_pd3dDevice, m_pd3dImmediateContext, m_pRenderTargetView, m_pDepthStencilView);
+	}
+	else
+	{
+		m_scene = SceneFactory::createChpaterScene(type, m_pd3dDevice, m_pd3dImmediateContext);
+	}
+	
 	if (m_scene)
 	{
 		m_scene->onResize(m_windowWidth, m_windowHeight, m_ScreenViewport);

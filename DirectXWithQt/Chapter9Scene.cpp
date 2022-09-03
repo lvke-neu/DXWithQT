@@ -1,20 +1,22 @@
 #include "Chapter9Scene.h"
 #include <string>
 #include "RenderStates.h"
+#include <DirectXColors.h>
 
-
-Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
+Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext,
+	ComPtr<ID3D11RenderTargetView> pRenderTargetView,
+	ComPtr<ID3D11DepthStencilView> pDepthStencilView):m_pRenderTargetView(pRenderTargetView), m_pDepthStencilView(pDepthStencilView)
 {
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
-	//m_perspectiveCamera.setPosition(0.0f, 15.0f, 0.0f);
+	
 
 
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
 	m_pd3dImmediateContext->OMSetDepthStencilState(RenderStates::DSSLessEqual.Get(), 0);
 
-	//m_pd3dImmediateContext->RSSetState(RenderStates::RSWireframe.Get());
+
 
 	D3D11_BUFFER_DESC cbd;
 	ZeroMemory(&cbd, sizeof(cbd));
@@ -48,13 +50,10 @@ void Chapter9Scene::initScene()
 		XMFLOAT3(0.0f, 0.0f, 0.0f)
 	));
 
-
-
 	Material material;
 	material.ambient = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
 	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	material.specular = XMFLOAT4(0.5f, 0.5f, 0.5f, 5.0f);
-
 
 	m_box1 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box1.setMesh(Geometry::buildBoxMesh());
@@ -64,13 +63,20 @@ void Chapter9Scene::initScene()
 	m_box1.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(0.0f, 0.0f, 0.0f)
+		XMFLOAT3(-5.0f, 0.0f, 0.0f)
 		));
 
+	m_terrain = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
+	m_terrain.setMesh(Geometry::buildTerrainMesh(160, 160, 500, 500));
+	m_terrain.setShader(SceneShader::shaderPath[8]);
+	m_terrain.setTexture(L"Texture\\grass.dds");
+	m_terrain.setMaterial(material);
+	m_terrain.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(5.0f, -10.0f, 0.0f)
+	));
 
-	material.ambient = XMFLOAT4(0.2f, 0.2f, 0.2f, 1.0f);
-	material.diffuse = XMFLOAT4(0.5f, 0.5f, 0.5f, 1.0f);
-	material.specular = XMFLOAT4(0.8f, 0.8f, 0.8f, 160.0f);
 	material.reflect = XMFLOAT4(0.8f, 0.8f, 0.8f, 1.0f);
 	m_sphere = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_sphere.setMesh(Geometry::buildSphereMesh());
@@ -81,27 +87,14 @@ void Chapter9Scene::initScene()
 	m_sphere.setTransform(Transform(
 		XMFLOAT3(1.0f, 1.0f, 1.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(5.0f, 0.0f, 0.0f)
+		XMFLOAT3(0.0f, 0.0f, 0.0f)
 	));
 
-
-
-	m_terrain = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
-	m_terrain.setMesh(Geometry::buildTerrainMesh(160,160, 500,500));
-	m_terrain.setShader(SceneShader::shaderPath[8]);
-	m_terrain.setTexture(L"Texture\\grass.dds");
-	m_terrain.setMaterial(material);
-	m_terrain.setTransform(Transform(
-		XMFLOAT3(1.0f, 1.0f, 1.0f),
-		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(5.0f, -10.0f, 0.0f)
-	));
 }
 
 
 void Chapter9Scene::updateScene(float deltaTime)
 {
-
 	cameraControl(deltaTime);
 
 	if (KeyBoard::getInstance().isKeyPress('1'))
@@ -153,7 +146,7 @@ void Chapter9Scene::updateScene(float deltaTime)
 	if (posY < -2)
 		b = true;
 
-	//m_sphere.setPosition(m_sphere.getPosition().x, posY, m_sphere.getPosition().z);
+
 
 	static bool currentStateLow = 0;
 	static bool currentStatehigh = 0;
@@ -183,10 +176,37 @@ void Chapter9Scene::updateScene(float deltaTime)
 
 void Chapter9Scene::drawScene()
 {
+
+
+	//m_skyBox.Cache();
+	//for (int i = 0; i < 6; ++i)
+	//{
+	//	m_skyBox.BeginCapture(XMFLOAT3(), static_cast<D3D11_TEXTURECUBE_FACE>(i));
+
+	//	m_box1.draw();
+
+	//	m_terrain.draw();
+
+	//	m_skyBox.draw(m_skyBox.m_camera);
+
+	//	
+	//}
+	//m_skyBox.Restore(m_perspectiveCamera);
+	//
+
+	//m_pd3dImmediateContext->ClearRenderTargetView(m_pRenderTargetView.Get(), reinterpret_cast<const float*>(&Colors::Black));
+	//m_pd3dImmediateContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+
+
 	m_box1.draw();
-	m_sphere.draw();
+
 	//m_terrain.draw();
+
+	
+	m_sphere.draw();
+
 	m_skyBox.draw(m_perspectiveCamera);
+
 }
 
 

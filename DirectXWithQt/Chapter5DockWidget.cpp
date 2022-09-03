@@ -33,7 +33,7 @@ Chapter5DockWidget::Chapter5DockWidget(void** parameters) :
 	connect(m_sliderDirLightZ, &QSlider::valueChanged, this,
 		[=]
 		{
-			m_lineEditDirLightY->setText(std::to_string(m_sliderDirLightZ->value() / 1000.0f).c_str());
+			m_lineEditDirLightZ->setText(std::to_string(m_sliderDirLightZ->value() / 1000.0f).c_str());
 			changeDirLight();
 		});
 

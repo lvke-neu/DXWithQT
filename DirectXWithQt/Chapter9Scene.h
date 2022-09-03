@@ -13,7 +13,10 @@ class Chapter9Scene : public IScene
 		XMFLOAT3 pad;
 	};
 public:
-	Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
+	Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext,
+		ComPtr<ID3D11RenderTargetView> pRenderTargetView,
+		ComPtr<ID3D11DepthStencilView> pDepthStencilView);
+
 	~Chapter9Scene() {};
 public:
 	void initScene() override;
@@ -22,7 +25,7 @@ public:
 	void setDirLight(XMFLOAT3 dir) override;
 public:
 	void setReflect(bool b);
-	void notifyAll();
+
 
 private:
 	GameObject m_box1;
@@ -31,5 +34,7 @@ private:
 	SkyBox m_skyBox;
 private:
 	ComPtr<ID3D11Buffer> m_pEnableReflect;
+	ComPtr<ID3D11RenderTargetView> m_pRenderTargetView;
+	ComPtr<ID3D11DepthStencilView> m_pDepthStencilView;
 };
 

@@ -31,6 +31,8 @@ public:
 	void moveZAxis(float distance);
 	void moveXAxis(float distance);
 
+	void lookTo(const XMFLOAT3& direction, const XMFLOAT3& up);
+	XMFLOAT3 GetEulerAnglesFromRotationMatrix(const DirectX::XMFLOAT4X4& rotationMatrix);
 public:
 	XMFLOAT3& getScale() { return m_scale; }
 	void setScale(XMFLOAT3 scale) { m_scale = scale; }

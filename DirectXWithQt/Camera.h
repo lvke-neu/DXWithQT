@@ -42,6 +42,19 @@ public:
 		cbd.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
 		cbd.ByteWidth = sizeof(ViewMatrix);
 		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pViewMatrixCB.GetAddressOf());
+
+
+
+
+		D3D11_BUFFER_DESC cbd2;
+		ZeroMemory(&cbd2, sizeof(cbd2));
+		cbd2.Usage = D3D11_USAGE_DYNAMIC;
+		cbd2.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
+		cbd2.CPUAccessFlags = D3D11_CPU_ACCESS_WRITE;
+		
+
+		cbd2.ByteWidth = sizeof(ProjMatrix);
+		m_pd3dDevice->CreateBuffer(&cbd2, nullptr, m_pProjMatrixCB.GetAddressOf());
 	}
 
 
@@ -55,6 +68,7 @@ public:
 	void moveXAxis(float distance) { m_transform.moveXAxis(distance); changeViewMatrixCB(); }
 	void changeViewMatrixCB();
 	void changeViewMatrixCB(const XMMATRIX& view);
+	void changeProjMatrixCB();
 
 public:
 	XMFLOAT3& getScale() { return m_transform.getScale(); }
@@ -82,7 +96,12 @@ public:
 		changeViewMatrixCB();
 	}
 
-
+	void lookTo(const XMFLOAT3 & pos, const XMFLOAT3 & to, const XMFLOAT3 & up)
+	{
+		m_transform.setPosition(pos);
+		m_transform.lookTo(to, up);
+		changeViewMatrixCB();
+	}
 
 	D3D11_VIEWPORT& getViewPort() { return m_ScreenViewport; }
 	void setViewPort(const D3D11_VIEWPORT& viewPort) { m_ScreenViewport = viewPort; }

@@ -267,7 +267,7 @@ Mesh Geometry::buildTerrainMesh(float width, float depth, UINT m, UINT n)
 		{
 			float x = -halfWidth + j * dx;
 
-			float y = 0.3f * (z * sinf(0.1f * x) + x * cosf(0.1f * z));
+			float y = 0.3f * (z * sinf(0.1f * x) + x * cosf(0.1f * z)) * 0.5;
 			terrainMesh.vertexBuffer[i * n + j].position = XMFLOAT3(x, y, z);
 			terrainMesh.vertexBuffer[i * n + j].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
 			terrainMesh.vertexBuffer[i * n + j].texcoord = XMFLOAT2(j * du, i * dv);

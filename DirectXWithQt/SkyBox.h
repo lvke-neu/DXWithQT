@@ -19,7 +19,30 @@ public:
 
 	/*
 		获取天空盒的贴图ShaderResourceView，给物体反射使用
+		(静态天空盒)
 	*/
 
 	ComPtr<ID3D11ShaderResourceView> getSkyBoxSRV();
+
+	/*
+	获取天空盒的贴图ShaderResourceView，给物体反射使用
+	(动态天空盒)
+	*/
+
+	ComPtr<ID3D11ShaderResourceView> getDynamicSkyBoxSRV();
+
+
+
+
+	ComPtr<ID3D11RenderTargetView>		m_pCacheRTV;		       
+	ComPtr<ID3D11DepthStencilView>		m_pCacheDSV;		       
+	Camera								m_camera;				   
+	ComPtr<ID3D11DepthStencilView>		m_pDynamicCubeMapDSV;		
+	ComPtr<ID3D11ShaderResourceView>	m_pDynamicCubeMapSRV;		
+	ComPtr<ID3D11RenderTargetView>		m_pDynamicCubeMapRTVs[6];	
+
+
+	void Cache();
+	void BeginCapture(const XMFLOAT3& pos, D3D11_TEXTURECUBE_FACE face, float nearZ = 1e-3f, float farZ = 1e3f);
+	void Restore(Camera& camera);
 };

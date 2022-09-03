@@ -15,7 +15,9 @@
 class SceneFactory
 {
 public:
-	static IScene* createChpaterScene(std::string type, ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
+	static IScene* createChpaterScene(std::string type, ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, 
+		ComPtr<ID3D11RenderTargetView> pRenderTargetView = nullptr,
+		ComPtr<ID3D11DepthStencilView> pDepthStencilView = nullptr)
 	{
 		if (type == "Chapter 1")
 			return new Chapter1Scene(pd3dDevice, pd3dImmediateContext);
@@ -34,7 +36,7 @@ public:
 		else if (type == "Chapter 8")
 			return new Chapter8Scene(pd3dDevice, pd3dImmediateContext);
 		else if (type == "Chapter 9")
-			return new Chapter9Scene(pd3dDevice, pd3dImmediateContext);
+			return new Chapter9Scene(pd3dDevice, pd3dImmediateContext, pRenderTargetView, pDepthStencilView);
 
 		return nullptr;
 	}

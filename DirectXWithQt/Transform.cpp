@@ -60,3 +60,29 @@ void Transform::moveXAxis(float distance)
 
 	XMStoreFloat3(&m_position, pos);
 }
+
+
+
+void Transform::lookTo(const XMFLOAT3& direction, const XMFLOAT3& up)
+{
+	XMMATRIX View = XMMatrixLookToLH(XMLoadFloat3(&m_position), XMLoadFloat3(&direction), XMLoadFloat3(&up));
+	XMMATRIX InvView = XMMatrixInverse(nullptr, View);
+	XMFLOAT4X4 rotMatrix;
+	XMStoreFloat4x4(&rotMatrix, InvView);
+	m_rotation = GetEulerAnglesFromRotationMatrix(rotMatrix);
+}
+
+XMFLOAT3 Transform::GetEulerAnglesFromRotationMatrix(const XMFLOAT4X4& rotationMatrix)
+{
+	float c = sqrtf(1.0f - rotationMatrix(2, 1) * rotationMatrix(2, 1));
+
+	if (isnan(c))
+		c = 0.0f;
+
+	XMFLOAT3 rotation;
+	rotation.z = atan2f(rotationMatrix(0, 1), rotationMatrix(1, 1));
+	rotation.x = atan2f(-rotationMatrix(2, 1), c);
+	rotation.y = atan2f(rotationMatrix(2, 0), rotationMatrix(2, 2));
+
+	return rotation;
+}
