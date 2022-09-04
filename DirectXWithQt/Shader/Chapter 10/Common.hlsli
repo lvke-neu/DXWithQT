@@ -16,6 +16,27 @@ struct VertexOut
 	float2 texcoord: TEXCOORD;
 };
 
+
+struct VertexIn2
+{
+	float3 posL : POSITION;
+	float3 normalL : NORMAL;
+	float4 tangentL : TANGENT;
+	float2 texcoord : TEXCOORD;
+};
+
+struct VertexOut2
+{
+	float4 posH : SV_POSITION;
+	float3 posW : POSITION;
+	float3 normalW: NORMAL;
+	float4 tangentW : TANGENT;
+	float2 texcoord: TEXCOORD;
+};
+
+
+
+
 cbuffer WorldMatrix : register(b0)
 {
 	matrix g_world;

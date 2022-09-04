@@ -63,12 +63,14 @@ public:
 public:
 	Mesh getMesh();
 	void setMesh(Mesh mesh);
+	void setMesh2(Mesh2 mesh2);
 
 	std::vector<std::wstring> getShader();
-	void setShader(std::vector<std::wstring>);
+	void setShader(std::vector<std::wstring>, D3D11_INPUT_ELEMENT_DESC* inputLayout= VertexPosNormalTex::inputLayout, UINT NumElements = 3);
 
 	std::wstring getTexture();
 	void setTexture(const std::wstring& texture);
+	void setNormalTexture(const std::wstring& texture);
 
 	Material getMaterial();
 	void setMaterial(Material material);
@@ -77,6 +79,7 @@ public:
 	void setTransform(Transform transform);
 
 	void draw();     
+	void draw2();
 	void draw(UINT IndexCount, UINT StartIndexLocation);
 	void draw2d();
 
@@ -86,6 +89,7 @@ public:
 	void changeWorldMatrixCB();
 
 	void setReflectTexture(const ComPtr<ID3D11ShaderResourceView>& pReflectTexture) { m_pReflectTexture = pReflectTexture; }
+
 protected:
 	ComPtr<ID3D11Device> m_pd3dDevice;
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext;
@@ -103,12 +107,15 @@ protected:
 	ComPtr<ID3D11ShaderResourceView> m_pTexture{ nullptr };
 	ComPtr<ID3D11ShaderResourceView> m_pTexture2{ nullptr };
 	ComPtr<ID3D11ShaderResourceView> m_pReflectTexture{ nullptr };
+	ComPtr<ID3D11ShaderResourceView> m_pNormalMapTexture{ nullptr };
+
 
 	ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };
 
 
 protected:
 	Mesh m_mesh;
+	Mesh2 m_mesh2;
 	std::vector<std::wstring> m_shader;
 	std::wstring m_texture;
 	Material m_material{};

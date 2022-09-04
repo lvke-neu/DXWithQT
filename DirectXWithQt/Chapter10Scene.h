@@ -21,5 +21,7 @@ public:
 private:
 	GameObject m_box1;
 	GameObject m_plane;
+
+	bool m_enableNormalMap = true;
 };
 

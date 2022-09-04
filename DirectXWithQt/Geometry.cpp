@@ -9,6 +9,16 @@ D3D11_INPUT_ELEMENT_DESC  VertexPosNormalTex::inputLayout[3] =
 	{ "TEXCOORD",0,DXGI_FORMAT_R32G32_FLOAT,0,24,D3D11_INPUT_PER_VERTEX_DATA,0 }
 };
 
+
+D3D11_INPUT_ELEMENT_DESC  VertexPosNormalTangentTex::inputLayout[4] =
+{
+	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "TANGENT", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 24, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 40, D3D11_INPUT_PER_VERTEX_DATA, 0 }
+};
+
+
 Mesh Geometry::buildTriangleMesh()
 {
 	Mesh triangleMesh;
@@ -290,4 +300,43 @@ Mesh Geometry::buildTerrainMesh(float width, float depth, UINT m, UINT n)
 	}
 
 	return terrainMesh;
+}
+
+
+
+Mesh2 Geometry2::buildPlaneMesh(float texU, float texV)
+{
+	Mesh2 planeMesh;
+
+	planeMesh.vertexBuffer.resize(4);
+
+	planeMesh.vertexBuffer[0].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);
+	planeMesh.vertexBuffer[1].position = XMFLOAT3(1.0f, 1.0f, 0.0f);
+	planeMesh.vertexBuffer[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);
+	planeMesh.vertexBuffer[3].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);
+
+	for (UINT i = 0; i < 4; ++i)
+	{
+		planeMesh.vertexBuffer[i].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
+	}
+
+	planeMesh.vertexBuffer[0].tangent =	XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+	planeMesh.vertexBuffer[1].tangent =	XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+	planeMesh.vertexBuffer[2].tangent =	XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+	planeMesh.vertexBuffer[3].tangent =	XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+
+	
+
+	planeMesh.vertexBuffer[0].texcoord = XMFLOAT2(0.0f, 0.0f);
+	planeMesh.vertexBuffer[1].texcoord = XMFLOAT2(texU, 0.0f);
+	planeMesh.vertexBuffer[2].texcoord = XMFLOAT2(texU, texV);
+	planeMesh.vertexBuffer[3].texcoord = XMFLOAT2(0.0f, texV);
+
+	planeMesh.indexBuffer =
+	{
+		0, 1, 3,
+		1, 2, 3
+	};
+
+	return planeMesh;
 }
