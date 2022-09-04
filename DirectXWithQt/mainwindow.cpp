@@ -1,7 +1,7 @@
 #include "mainwindow.h"
 #include "Reflection.h"
 
-#define CHAPTER_COUNT 9
+#define CHAPTER_COUNT 10
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -152,6 +152,11 @@ void MainWindow::setIntroduction(QListWidgetItem* item)
 		else if (item->text().toStdString() == "Chapter 9")
 		{
 			m_labelIntroduction->setText(u8"静态天空盒，按1白天、按2沙漠、按3日落\n按R开启球面反射、按F关闭球面反射");
+			m_labelIntroduction->setFixedWidth(400);
+		}
+		else if (item->text().toStdString() == "Chapter 10")
+		{
+			m_labelIntroduction->setText(u8"法线贴图");
 			m_labelIntroduction->setFixedWidth(400);
 		}
 		else

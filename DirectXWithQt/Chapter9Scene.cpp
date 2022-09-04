@@ -9,7 +9,7 @@ Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 {
 	
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
-	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
+	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.0f));
 	
 
 
@@ -200,9 +200,8 @@ void Chapter9Scene::drawScene()
 
 	m_box1.draw();
 
-	//m_terrain.draw();
+	m_terrain.draw();
 
-	
 	m_sphere.draw();
 
 	m_skyBox.draw(m_perspectiveCamera);

@@ -109,6 +109,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="Chapter10DockWidget.cpp" />
+    <ClCompile Include="Chapter10Scene.cpp" />
     <ClCompile Include="Chapter1DockWidget.cpp" />
     <ClCompile Include="Chapter1Scene.cpp" />
     <ClCompile Include="Chapter2DockWidget.cpp" />
@@ -164,6 +166,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="Chapter10DockWidget.h" />
+    <ClInclude Include="Chapter10Scene.h" />
     <ClInclude Include="Chapter1DockWidget.h" />
     <ClInclude Include="Chapter1Scene.h" />
     <ClInclude Include="Chapter2DockWidget.h" />
@@ -208,6 +212,26 @@
     <ClInclude Include="GameTimer.h" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="Shader\Chapter 10\PS.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">PS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Pixel</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shader/Chapter 10/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shader/Chapter 10/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 10\VS.hlsl">
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
+      <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Release|x64'">VS</EntryPointName>
+      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
+      <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Shader/Chapter 10/%(Filename).cso</ObjectFileOutput>
+      <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Shader/Chapter 10/%(Filename).cso</ObjectFileOutput>
+    </FxCompile>
     <FxCompile Include="Shader\Chapter 1\PS.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
@@ -411,6 +435,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="LightHelper.hlsli" />
+    <None Include="Shader\Chapter 10\Common.hlsli" />
+    <None Include="Shader\Chapter 10\LightHelper.hlsli" />
     <None Include="Shader\Chapter 1\Common.hlsli" />
     <None Include="Shader\Chapter 2\Common.hlsli" />
     <None Include="Shader\Chapter 3\Common.hlsli" />

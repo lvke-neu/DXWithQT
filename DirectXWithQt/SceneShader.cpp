@@ -38,5 +38,9 @@ std::vector<std::vector<std::wstring>> SceneShader::shaderPath =
 	{
 		L"Shader\\Chapter 9\\VS.hlsl",
 		L"Shader\\Chapter 9\\PS.hlsl"
+	},
+	{
+		L"Shader\\Chapter 10\\VS.hlsl",
+		L"Shader\\Chapter 10\\PS.hlsl"
 	}
 };

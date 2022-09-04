@@ -7,6 +7,7 @@
 #include "Chapter7Scene.h"
 #include "Chapter8Scene.h"
 #include "Chapter9Scene.h"
+#include "Chapter10Scene.h"
 #include <string>
 
 
@@ -37,6 +38,8 @@ public:
 			return new Chapter8Scene(pd3dDevice, pd3dImmediateContext);
 		else if (type == "Chapter 9")
 			return new Chapter9Scene(pd3dDevice, pd3dImmediateContext, pRenderTargetView, pDepthStencilView);
+		else if (type == "Chapter 10")
+			return new Chapter10Scene(pd3dDevice, pd3dImmediateContext);
 
 		return nullptr;
 	}

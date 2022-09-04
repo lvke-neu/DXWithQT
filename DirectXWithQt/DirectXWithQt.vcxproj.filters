@@ -97,6 +97,9 @@
     <Filter Include="Qt\ChapterDockWidget\Interface">
       <UniqueIdentifier>{f2ea78f9-a369-444d-a699-fb0939905125}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\Shader\Chpater 10">
+      <UniqueIdentifier>{05529bef-7aad-4097-a460-21b5a270562d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -227,6 +230,12 @@
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClCompile>
     <ClCompile Include="Chapter9DockWidget.cpp">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter10Scene.cpp">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Chapter10DockWidget.cpp">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClCompile>
   </ItemGroup>
@@ -368,6 +377,12 @@
     <ClInclude Include="Chapter8DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
+    <ClInclude Include="Chapter10Scene.h">
+      <Filter>D3D\Game\SceneManager\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Chapter10DockWidget.h">
+      <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\Chapter 1\VS.hlsl">
@@ -430,6 +445,12 @@
     <FxCompile Include="Shader\SkyBox\SkyBoxVS.hlsl">
       <Filter>D3D\Game\Shader\SkyBox</Filter>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 10\PS.hlsl">
+      <Filter>D3D\Game\Shader\Chpater 10</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\Chapter 10\VS.hlsl">
+      <Filter>D3D\Game\Shader\Chpater 10</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Chapter 1\Common.hlsli">
@@ -482,6 +503,12 @@
     </None>
     <None Include="Shader\SkyBox\SkyBox.hlsli">
       <Filter>D3D\Game\Shader\SkyBox</Filter>
+    </None>
+    <None Include="Shader\Chapter 10\Common.hlsli">
+      <Filter>D3D\Game\Shader\Chpater 10</Filter>
+    </None>
+    <None Include="Shader\Chapter 10\LightHelper.hlsli">
+      <Filter>D3D\Game\Shader\Chpater 10</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
