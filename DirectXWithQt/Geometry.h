@@ -2,6 +2,7 @@
 
 #include <DirectXMath.h>
 #include <vector>
+#include <map>
 #include <d3d11.h>
 using namespace DirectX;
 
@@ -11,7 +12,7 @@ struct VertexPosNormalTex
 	XMFLOAT3 position;
 	XMFLOAT3 normal;
 	XMFLOAT2 texcoord;
-
+	static void InsertData(std::vector<VertexPosNormalTex>& vertexBuffer, std::vector<unsigned long>& indexBuffer, const std::map);
 	static 	D3D11_INPUT_ELEMENT_DESC inputLayout[3];
 };
 
@@ -25,19 +26,15 @@ struct VertexPosNormalTangentTex
 	static 	D3D11_INPUT_ELEMENT_DESC inputLayout[4];
 };
 
+template <class VertexType>
 struct Mesh
 {
-	std::vector<VertexPosNormalTex> vertexBuffer{};
+	std::vector<VertexType> vertexBuffer{};
 	std::vector<unsigned long> indexBuffer{};
 	XMFLOAT3 vMin;
 	XMFLOAT3 vMax;
 };
 
-struct Mesh2
-{
-	std::vector<VertexPosNormalTangentTex> vertexBuffer{};
-	std::vector<unsigned long> indexBuffer{};
-};
 
 class Geometry
 {
