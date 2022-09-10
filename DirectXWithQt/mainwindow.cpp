@@ -156,7 +156,7 @@ void MainWindow::setIntroduction(QListWidgetItem* item)
 		}
 		else if (item->text().toStdString() == "Chapter 10")
 		{
-			m_labelIntroduction->setText(u8"法线贴图");
+			m_labelIntroduction->setText(u8"法线贴图，按c关闭法线贴图，按n开启法线贴图\n同时实现使用assimp库来读取模型文件");
 			m_labelIntroduction->setFixedWidth(400);
 		}
 		else
