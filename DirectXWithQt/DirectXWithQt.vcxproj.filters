@@ -238,6 +238,9 @@
     <ClCompile Include="Chapter10DockWidget.cpp">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClCompile>
+    <ClCompile Include="AssimpModelObject.cpp">
+      <Filter>D3D\Game\GameObject\Model</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -382,6 +385,9 @@
     </ClInclude>
     <ClInclude Include="Chapter10DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
+    </ClInclude>
+    <ClInclude Include="AssimpModelObject.h">
+      <Filter>D3D\Game\GameObject\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

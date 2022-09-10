@@ -1,7 +1,7 @@
 #pragma once 
 
 #include "SceneInterface.h"
-#include "GameObject.h"
+#include "AssimpModelObject.h"
 
 
 class Chapter10Scene : public IScene
