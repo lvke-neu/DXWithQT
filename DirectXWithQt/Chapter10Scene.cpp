@@ -5,7 +5,9 @@
 Chapter10Scene::Chapter10Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
+	m_perspectiveCamera.setPosition(6.4f, 7.3f, -24.0f);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
+
 
 	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
 
@@ -15,13 +17,32 @@ Chapter10Scene::Chapter10Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Dev
 void Chapter10Scene::initScene()
 {
 
-	m_house = AssimpModelObject("Model\\2nrtbod1out.obj", m_pd3dDevice, m_pd3dImmediateContext);
-	m_house.setShader(SceneShader::shaderPath[9]);
-	m_house.setTransform(Transform(
+	m_naruto = AssimpModelObject("Model\\2nrtbod1out.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_naruto.setShader(SceneShader::shaderPath[9]);
+	m_naruto.setTransform(Transform(
 		XMFLOAT3(0.1f, 0.1f, 0.1f),
 		XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
-		XMFLOAT3(4.0f, 2.0f, 0.0f)
+		XMFLOAT3(4.0f, -4.0f, 0.0f)
 	));
+
+	
+	m_madara = AssimpModelObject("Model\\Madara_Uchiha.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_madara.setShader(SceneShader::shaderPath[9]);
+	m_madara.setTransform(Transform(
+		XMFLOAT3(4.0f, 4.0f, 4.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(14.0f, -4.0f, 0.0f)
+	));
+
+	
+	m_superman = AssimpModelObject("Model\\1.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_superman.setShader(SceneShader::shaderPath[9]);
+	m_superman.setTransform(Transform(
+		XMFLOAT3(10.0f, 10.0f, 10.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(-837.0f, -372.0f, 0.0f)
+	));
+
 
 
 	Material material;
@@ -89,13 +110,22 @@ void Chapter10Scene::updateScene(float deltaTime)
 		m_plane.setShader(SceneShader::shaderPath[9]);
 	}
 
-	//static float rotX = 0.0f;
-	//rotX += deltaTime;
-	//m_house.setTransform(Transform(
-	//	XMFLOAT3(0.1f, 0.1f, 0.1f),
-	//	XMFLOAT3(XM_PI / 2, rotX, 0.0f),
-	//	XMFLOAT3(4.0f, 5.0f, 0.0f)
-	//));
+	static float rotY = 0.0f;
+	rotY += deltaTime;
+
+	m_naruto.setTransform(Transform(
+		XMFLOAT3(0.1f, 0.1f, 0.1f),
+		XMFLOAT3(XM_PI / 2, rotY, 0.0f),
+		XMFLOAT3(4.0f, -4.0f, 0.0f)
+	));
+
+	m_madara.setTransform(Transform(
+		XMFLOAT3(4.0f, 4.0f, 4.0f),
+		XMFLOAT3(0.0f, rotY, 0.0f),
+		XMFLOAT3(14.0f, -4.0f, 0.0f)
+	));
+
+
 }
 
 void Chapter10Scene::drawScene()
@@ -107,8 +137,9 @@ void Chapter10Scene::drawScene()
 	else
 		m_plane.draw();
 
-	m_house.draw();
-
+	m_naruto.draw();
+	m_madara.draw();
+	m_superman.draw();
 }
 
 

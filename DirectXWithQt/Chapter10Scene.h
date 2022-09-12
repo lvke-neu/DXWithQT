@@ -22,7 +22,9 @@ private:
 	GameObject m_box1;
 	GameObject m_plane;
 
-	AssimpModelObject m_house;
+	AssimpModelObject m_naruto;
+	AssimpModelObject m_madara;
+	AssimpModelObject m_superman;
 
 	bool m_enableNormalMap = true;
 };

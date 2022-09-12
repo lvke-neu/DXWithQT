@@ -64,7 +64,7 @@ void AssimpModelObject::loadModel(std::string const &path)
 {
 	
 	Assimp::Importer importer;
-
+	
 	importer.SetPropertyInteger(AI_CONFIG_PP_SBP_REMOVE, aiPrimitiveType_LINE | aiPrimitiveType_POINT);
 	const aiScene* scene = importer.ReadFile(path,
 		aiProcess_ConvertToLeftHanded |   
