@@ -45,20 +45,20 @@ void Chapter7Scene::initScene()
 		XMFLOAT3(-2.0f, -5.0f, 0.0f)
 	));
 
-	ObjReader objReader2;
-	objReader2.ReadObj(L"Model\\tree.obj");
+	//ObjReader objReader2;
+	//objReader2.ReadObj(L"Model\\tree.obj");
 
-	for (UINT32 i = 0; i < RAND_TREE_NUM; i++)
-	{
-		ModelObject tree(objReader2, m_pd3dDevice, m_pd3dImmediateContext);
-		tree.setShader(SceneShader::shaderPath[6]);
-		tree.setTransform(Transform(
-			XMFLOAT3(0.1f, 0.1f, 0.1f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f),
-			XMFLOAT3(m_randX[i], -5.0f, m_randZ[i])
-		));
-		m_trees.push_back(tree);
-	}
+	//for (UINT32 i = 0; i < RAND_TREE_NUM; i++)
+	//{
+	//	ModelObject tree(objReader2, m_pd3dDevice, m_pd3dImmediateContext);
+	//	tree.setShader(SceneShader::shaderPath[6]);
+	//	tree.setTransform(Transform(
+	//		XMFLOAT3(0.1f, 0.1f, 0.1f),
+	//		XMFLOAT3(0.0f, 0.0f, 0.0f),
+	//		XMFLOAT3(m_randX[i], -5.0f, m_randZ[i])
+	//	));
+	//	m_trees.push_back(tree);
+	//}
 
 	Material material;
 	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -107,23 +107,23 @@ void Chapter7Scene::drawScene()
 	m_house.draw();
 	
 
-	for (UINT16 i = 0; i < RAND_TREE_NUM; i++)
-	{
+	//for (UINT16 i = 0; i < RAND_TREE_NUM; i++)
+	//{
 
-		//Frustum Culling
-		if (m_enableFrustumCulling)
-		{
-			BoundingBox worldBoundingBox;
-			BoundingBox localBoundingBox = m_trees[i].getBoundingBox();
-			localBoundingBox.Transform(worldBoundingBox, m_trees[i].getTransform().getWorldMatrix());
-			if (!m_perspectiveCamera.isNeedFrustumCulling(worldBoundingBox))
-				m_trees[i].draw();
-		}
-		else
-		{
-			m_trees[i].draw();
-		}
-	}
+	//	//Frustum Culling
+	//	if (m_enableFrustumCulling)
+	//	{
+	//		BoundingBox worldBoundingBox;
+	//		BoundingBox localBoundingBox = m_trees[i].getBoundingBox();
+	//		localBoundingBox.Transform(worldBoundingBox, m_trees[i].getTransform().getWorldMatrix());
+	//		if (!m_perspectiveCamera.isNeedFrustumCulling(worldBoundingBox))
+	//			m_trees[i].draw();
+	//	}
+	//	else
+	//	{
+	//		m_trees[i].draw();
+	//	}
+	//}
 
 	m_box1.draw();
 	m_plane.draw();

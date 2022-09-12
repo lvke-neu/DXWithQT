@@ -22,6 +22,8 @@ private:
 	GameObject m_box1;
 	GameObject m_plane;
 
+	AssimpModelObject m_house;
+
 	bool m_enableNormalMap = true;
 };
 

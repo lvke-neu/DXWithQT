@@ -7,11 +7,23 @@ Chapter10Scene::Chapter10Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Dev
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
 
+	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
+
 }
 
 
 void Chapter10Scene::initScene()
 {
+
+	m_house = AssimpModelObject("Model\\2nrtbod1out.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_house.setShader(SceneShader::shaderPath[9]);
+	m_house.setTransform(Transform(
+		XMFLOAT3(0.1f, 0.1f, 0.1f),
+		XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
+		XMFLOAT3(4.0f, 2.0f, 0.0f)
+	));
+
+
 	Material material;
 	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
 	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -76,6 +88,14 @@ void Chapter10Scene::updateScene(float deltaTime)
 		m_plane.setMesh(Geometry::buildPlaneMesh(10.0f, 10.0f));
 		m_plane.setShader(SceneShader::shaderPath[9]);
 	}
+
+	//static float rotX = 0.0f;
+	//rotX += deltaTime;
+	//m_house.setTransform(Transform(
+	//	XMFLOAT3(0.1f, 0.1f, 0.1f),
+	//	XMFLOAT3(XM_PI / 2, rotX, 0.0f),
+	//	XMFLOAT3(4.0f, 5.0f, 0.0f)
+	//));
 }
 
 void Chapter10Scene::drawScene()
@@ -86,6 +106,8 @@ void Chapter10Scene::drawScene()
 		m_plane.draw2();
 	else
 		m_plane.draw();
+
+	m_house.draw();
 
 }
 
