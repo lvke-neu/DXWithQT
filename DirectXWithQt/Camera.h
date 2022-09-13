@@ -84,6 +84,13 @@ public:
 		m_transform.setRotation(XMFLOAT3(x, y, z));
 		changeViewMatrixCB();
 	}
+	void setRotation(const XMFLOAT3& rot)
+	{
+		m_transform.setRotation(rot);
+		changeViewMatrixCB();
+	}
+
+
 
 	XMFLOAT3& getPosition() { return m_transform.getPosition(); }
 	void setPosition(float x, float y, float z)
@@ -95,6 +102,9 @@ public:
 		m_transform.setPosition(pos);
 		changeViewMatrixCB();
 	}
+
+
+
 
 	void lookTo(const XMFLOAT3 & pos, const XMFLOAT3 & to, const XMFLOAT3 & up)
 	{

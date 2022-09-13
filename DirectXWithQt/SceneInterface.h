@@ -31,6 +31,7 @@ public:
 	void cameraControl(float deltaTime);
 	void notifyCameraMove();
 	void onResize(float width, float height, const D3D11_VIEWPORT& viewPort);
+	Camera& getPerspectiveCamera() { return m_perspectiveCamera; }
 public:
 	XMFLOAT3 get_dirLight_dir() { return m_dirLight_dir; }
 protected:

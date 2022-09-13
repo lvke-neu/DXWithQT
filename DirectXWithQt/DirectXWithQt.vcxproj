@@ -72,7 +72,7 @@
     </Link>
     <ClCompile>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>..\thirdparty\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\thirdparty\assimp\include;..\thirdparty\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -82,7 +82,7 @@
     </Link>
     <ClCompile>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>..\thirdparty\assimp\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\thirdparty\assimp\include;..\thirdparty\rapidjson\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
@@ -156,6 +156,7 @@
     <ClCompile Include="RenderStates.cpp" />
     <ClCompile Include="SceneInterface.cpp" />
     <ClCompile Include="SceneShader.cpp" />
+    <ClCompile Include="Service.cpp" />
     <ClCompile Include="SkyBox.cpp" />
     <ClCompile Include="Transform.cpp" />
     <ClCompile Include="WICTextureLoader.cpp" />
@@ -208,6 +209,7 @@
     <ClInclude Include="SceneFactory.h" />
     <ClInclude Include="SceneInterface.h" />
     <ClInclude Include="SceneShader.h" />
+    <ClInclude Include="Service.h" />
     <ClInclude Include="SkyBox.h" />
     <ClInclude Include="Transform.h" />
     <ClInclude Include="WICTextureLoader.h" />

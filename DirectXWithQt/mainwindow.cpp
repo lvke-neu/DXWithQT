@@ -1,5 +1,7 @@
 #include "mainwindow.h"
 #include "Reflection.h"
+#include "Service.h"
+#include "rapidjson/document.h"
 
 #define CHAPTER_COUNT 10
 
@@ -9,7 +11,21 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 	
+	connect(ui->jsonService, &QAction::triggered, this, [=]()
+		{
+			std::string jsonStr("{\"funcName\": \"setCameraProperty\" }");
 
+			rapidjson::Document document;
+			if (!document.Parse(jsonStr.c_str()).HasParseError())
+			{
+				if (document.HasMember("funcName"))
+				{
+					const rapidjson::Value& funcName = document["funcName"];
+					if(m_RenderWidget->m_gameApp->getScene())
+						Service::getInstance().runFunc(funcName.GetString(), m_RenderWidget->m_gameApp->getScene()->getPerspectiveCamera(), XMFLOAT3(0, 0, 0), XMFLOAT3(0,0,0));
+				}
+			}
+		});
 
 	m_RenderWidget = new D3d11RenderWidget(this);
 	setCentralWidget(m_RenderWidget);
@@ -141,7 +157,7 @@ void MainWindow::setIntroduction(QListWidgetItem* item)
 		}
 		else if (item->text().toStdString() == "Chapter 7")
 		{
-			m_labelIntroduction->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型\n进行视锥体裁剪");
+			m_labelIntroduction->setText(u8"基于X-jun的ObjReader进行修改，读取模型文件生成模型，进行视锥体裁剪\n已经不再使用objreader读取模型，改用assimp库加载");
 			m_labelIntroduction->setFixedWidth(400);
 		}
 		else if (item->text().toStdString() == "Chapter 8")

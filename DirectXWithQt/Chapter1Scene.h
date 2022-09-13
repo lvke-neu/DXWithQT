@@ -8,6 +8,11 @@ class Chapter1Scene : public IScene
 {
 public:
 	Chapter1Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
+	~Chapter1Scene()
+	{
+		m_pd3dImmediateContext->GSSetShader(nullptr, nullptr, 0);
+		m_pd3dImmediateContext->RSSetState(nullptr);
+	}
 public:
 	//override IScene
 	virtual void initScene() override;

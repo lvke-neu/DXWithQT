@@ -100,6 +100,9 @@
     <Filter Include="D3D\Game\Shader\Chpater 10">
       <UniqueIdentifier>{05529bef-7aad-4097-a460-21b5a270562d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\Service">
+      <UniqueIdentifier>{176797c8-f276-4d98-850f-89fde72587f1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -240,6 +243,9 @@
     </ClCompile>
     <ClCompile Include="AssimpModelObject.cpp">
       <Filter>D3D\Game\GameObject\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp">
+      <Filter>D3D\Game\Service</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +394,9 @@
     </ClInclude>
     <ClInclude Include="AssimpModelObject.h">
       <Filter>D3D\Game\GameObject\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>D3D\Game\Service</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

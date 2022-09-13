@@ -35,15 +35,15 @@ Chapter7Scene::Chapter7Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 void Chapter7Scene::initScene()
 {
 
-	ObjReader objReader1;
-	objReader1.ReadObj(L"Model\\House\\house.obj");
-	m_house = ModelObject(objReader1, m_pd3dDevice, m_pd3dImmediateContext);
-	m_house.setShader(SceneShader::shaderPath[6]);
-	m_house.setTransform(Transform(
-		XMFLOAT3(0.1f, 0.1f, 0.1f),
-		XMFLOAT3(0.0f, 0.0f, 0.0f),
-		XMFLOAT3(-2.0f, -5.0f, 0.0f)
-	));
+	//ObjReader objReader1;
+	//objReader1.ReadObj(L"Model\\House\\house.obj");
+	//m_house = ModelObject(objReader1, m_pd3dDevice, m_pd3dImmediateContext);
+	//m_house.setShader(SceneShader::shaderPath[6]);
+	//m_house.setTransform(Transform(
+	//	XMFLOAT3(0.1f, 0.1f, 0.1f),
+	//	XMFLOAT3(0.0f, 0.0f, 0.0f),
+	//	XMFLOAT3(-2.0f, -5.0f, 0.0f)
+	//));
 
 	//ObjReader objReader2;
 	//objReader2.ReadObj(L"Model\\tree.obj");
@@ -104,7 +104,7 @@ void Chapter7Scene::updateScene(float deltaTime)
 
 void Chapter7Scene::drawScene()
 {
-	m_house.draw();
+	//m_house.draw();
 	
 
 	//for (UINT16 i = 0; i < RAND_TREE_NUM; i++)

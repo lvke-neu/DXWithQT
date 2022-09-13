@@ -24,7 +24,7 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="action"/>
+   <addaction name="jsonService"/>
    <addaction name="separator"/>
    <addaction name="action_2"/>
   </widget>
@@ -91,9 +91,12 @@
     </layout>
    </widget>
   </widget>
-  <action name="action">
+  <action name="jsonService">
+   <property name="enabled">
+    <bool>true</bool>
+   </property>
    <property name="text">
-    <string>切换视角</string>
+    <string>Json服务</string>
    </property>
   </action>
   <action name="action_2">
