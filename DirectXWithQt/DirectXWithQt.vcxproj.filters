@@ -463,6 +463,9 @@
     <FxCompile Include="Shader\Chapter 10\NormalMapVS.hlsl">
       <Filter>D3D\Game\Shader\Chpater 10</Filter>
     </FxCompile>
+    <FxCompile Include="Shader\Chapter 1\GS.hlsl">
+      <Filter>D3D\Game\Shader\Chapter 1</Filter>
+    </FxCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Shader\Chapter 1\Common.hlsli">

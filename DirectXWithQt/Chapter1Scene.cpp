@@ -1,4 +1,6 @@
 #include "Chapter1Scene.h"
+#include "RenderStates.h"
+#include "d3dUtil.h"
 
 Chapter1Scene::Chapter1Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
@@ -13,6 +15,14 @@ Chapter1Scene::Chapter1Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_psConstantBuffer.GetAddressOf());
 
 	m_pd3dImmediateContext->PSSetConstantBuffers(0, 1, m_psConstantBuffer.GetAddressOf());
+	m_pd3dImmediateContext->RSSetState(RenderStates::RSWireframe.Get());
+
+
+	ComPtr<ID3DBlob> blob;
+	CreateShaderFromFile(L"Shader\\Chapter 1\\GS.cso", L"Shader\\Chapter 1\\GS.hlsl", "GS", "gs_5_0", blob.ReleaseAndGetAddressOf());
+	m_pd3dDevice->CreateGeometryShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pGeometryShader.GetAddressOf());
+
+	m_pd3dImmediateContext->GSSetShader(m_pGeometryShader.Get(), nullptr, 0);
 }
 
 void Chapter1Scene::initScene()
@@ -33,6 +43,7 @@ void Chapter1Scene::updateScene(float deltaTime)
 
 void Chapter1Scene::drawScene()
 {
+	
 	m_triangle.draw();
 }
 

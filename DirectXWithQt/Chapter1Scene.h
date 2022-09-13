@@ -25,5 +25,6 @@ public:
 private:
 	GameObject m_triangle;
 	ComPtr<ID3D11Buffer> m_psConstantBuffer;
+	ComPtr<ID3D11GeometryShader> m_pGeometryShader{ nullptr };
 };
 
