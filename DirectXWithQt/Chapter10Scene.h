@@ -25,6 +25,8 @@ private:
 	AssimpModelObject m_naruto;
 	AssimpModelObject m_madara;
 	AssimpModelObject m_superman;
+	AssimpModelObject m_house;
+	AssimpModelObject m_tree;
 
 	bool m_enableNormalMap = true;
 };

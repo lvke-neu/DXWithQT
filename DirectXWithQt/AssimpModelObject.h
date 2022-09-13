@@ -44,6 +44,7 @@ private:
 	BoundingBox m_boundingBox;
 	Transform m_transform;
 
+
 	ComPtr<ID3D11Device> m_pd3dDevice;
 	ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext;
 };

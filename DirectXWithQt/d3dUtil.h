@@ -33,3 +33,5 @@ HRESULT CreateWICTexture2DCubeFromFile(
 wchar_t* multiByteToWideChar(const std::string& pKey);
 
 char* wideCharToMultiByte(const wchar_t* pWCStrKey);
+
+void SplitString(const std::string& s, std::vector<std::string>& v, const std::string& c);

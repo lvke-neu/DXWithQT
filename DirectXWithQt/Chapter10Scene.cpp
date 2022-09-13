@@ -17,7 +17,7 @@ Chapter10Scene::Chapter10Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Dev
 void Chapter10Scene::initScene()
 {
 
-	m_naruto = AssimpModelObject("Model\\2nrtbod1out.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_naruto = AssimpModelObject("Model\\2nrtbod1out\\2nrtbod1out.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_naruto.setShader(SceneShader::shaderPath[9]);
 	m_naruto.setTransform(Transform(
 		XMFLOAT3(0.1f, 0.1f, 0.1f),
@@ -26,7 +26,7 @@ void Chapter10Scene::initScene()
 	));
 
 	
-	m_madara = AssimpModelObject("Model\\Madara_Uchiha.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_madara = AssimpModelObject("Model\\Madara_Uchiha\\Madara_Uchiha.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_madara.setShader(SceneShader::shaderPath[9]);
 	m_madara.setTransform(Transform(
 		XMFLOAT3(4.0f, 4.0f, 4.0f),
@@ -35,7 +35,7 @@ void Chapter10Scene::initScene()
 	));
 
 	
-	m_superman = AssimpModelObject("Model\\1.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_superman = AssimpModelObject("Model\\Superman\\1.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_superman.setShader(SceneShader::shaderPath[9]);
 	m_superman.setTransform(Transform(
 		XMFLOAT3(10.0f, 10.0f, 10.0f),
@@ -43,7 +43,21 @@ void Chapter10Scene::initScene()
 		XMFLOAT3(-837.0f, -372.0f, 0.0f)
 	));
 
+	m_house = AssimpModelObject("Model\\House\\house.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_house.setShader(SceneShader::shaderPath[9]);
+	m_house.setTransform(Transform(
+		XMFLOAT3(0.1f, 0.1f, 0.1f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(0.0f, -5.0f, 50.0f)
+	));
 
+	m_tree = AssimpModelObject("Model\\Tree\\tree.obj", m_pd3dDevice, m_pd3dImmediateContext);
+	m_tree.setShader(SceneShader::shaderPath[9]);
+	m_tree.setTransform(Transform(
+		XMFLOAT3(0.1f, 0.1f, 0.1f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(10.0f, -5.0f, 20.0f)
+	));
 
 	Material material;
 	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -140,6 +154,8 @@ void Chapter10Scene::drawScene()
 	m_naruto.draw();
 	m_madara.draw();
 	m_superman.draw();
+	m_house.draw();
+	m_tree.draw();
 }
 
 

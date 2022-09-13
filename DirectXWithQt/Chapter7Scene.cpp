@@ -36,7 +36,7 @@ void Chapter7Scene::initScene()
 {
 
 	ObjReader objReader1;
-	objReader1.ReadObj(L"Model\\house.obj");
+	objReader1.ReadObj(L"Model\\House\\house.obj");
 	m_house = ModelObject(objReader1, m_pd3dDevice, m_pd3dImmediateContext);
 	m_house.setShader(SceneShader::shaderPath[6]);
 	m_house.setTransform(Transform(
