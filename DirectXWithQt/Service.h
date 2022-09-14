@@ -5,6 +5,9 @@
 class Service
 {
 
+public:
+	void call(const std::string& jsonContent, GameApp* gameApp);
+
 
 
 private:
@@ -19,9 +22,4 @@ public:
 		static Service instance;
 		return instance;
 	}
-
-
-
-public:
-	void call(const std::string& jsonContent, GameApp* gameApp);
 };

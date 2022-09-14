@@ -114,6 +114,7 @@
   <ItemGroup>
     <ClCompile Include="AssimpModelObject.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Chapter10DockWidget.cpp" />
     <ClCompile Include="Chapter10Scene.cpp" />
     <ClCompile Include="Chapter1DockWidget.cpp" />
@@ -173,6 +174,7 @@
   <ItemGroup>
     <ClInclude Include="AssimpModelObject.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Chapter10DockWidget.h" />
     <ClInclude Include="Chapter10Scene.h" />
     <ClInclude Include="Chapter1DockWidget.h" />
@@ -193,6 +195,7 @@
     <ClInclude Include="Chapter7Scene.h" />
     <ClInclude Include="Chapter8Scene.h" />
     <ClInclude Include="Chapter9Scene.h" />
+    <ClInclude Include="PluginInterface.h" />
     <ClInclude Include="Reflection.h" />
     <ClInclude Include="DDSTextureLoader.h" />
     <ClInclude Include="DXTrace.h" />

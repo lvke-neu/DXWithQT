@@ -247,6 +247,9 @@
     <ClCompile Include="Service.cpp">
       <Filter>D3D\Game\Service</Filter>
     </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>D3D\Game\Service</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -396,6 +399,12 @@
       <Filter>D3D\Game\GameObject\Model</Filter>
     </ClInclude>
     <ClInclude Include="Service.h">
+      <Filter>D3D\Game\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="PluginInterface.h">
+      <Filter>D3D\Game\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
       <Filter>D3D\Game\Service</Filter>
     </ClInclude>
   </ItemGroup>
