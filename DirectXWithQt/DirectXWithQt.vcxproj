@@ -114,6 +114,7 @@
   <ItemGroup>
     <ClCompile Include="AssimpModelObject.cpp" />
     <ClCompile Include="Camera.cpp" />
+    <ClCompile Include="CameraFly.cpp" />
     <ClCompile Include="CameraManager.cpp" />
     <ClCompile Include="Chapter10DockWidget.cpp" />
     <ClCompile Include="Chapter10Scene.cpp" />
@@ -174,6 +175,7 @@
   <ItemGroup>
     <ClInclude Include="AssimpModelObject.h" />
     <ClInclude Include="Camera.h" />
+    <ClInclude Include="CameraFly.h" />
     <ClInclude Include="CameraManager.h" />
     <ClInclude Include="Chapter10DockWidget.h" />
     <ClInclude Include="Chapter10Scene.h" />

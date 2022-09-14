@@ -259,6 +259,9 @@
     <ClCompile Include="CameraManager.cpp">
       <Filter>D3D\Game\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="CameraFly.cpp">
+      <Filter>D3D\Game\Manager</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="mainwindow.h">
@@ -415,6 +418,9 @@
     </ClInclude>
     <ClInclude Include="ManagerInterface.h">
       <Filter>D3D\Game\Manager\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraFly.h">
+      <Filter>D3D\Game\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

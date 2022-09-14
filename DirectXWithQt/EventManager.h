@@ -28,6 +28,14 @@ public:
 	virtual void onPickGameObject(GameObject& go) = 0;
 };
 
+/*帧移动事件*/
+class FrameMoveEvent
+{
+public:
+	virtual void onFrameMove(float deltaTime) = 0;
+};
+
+
 class EventManager
 {
 private:
@@ -48,8 +56,12 @@ public:
 	void unregisterPickEveent(PickEvent* pickEveent);
 	void onMouseLocateGo(const std::string& msg);
 	void onPickGameObject(GameObject& go);
+
+	void registerFrameMoveEvent(FrameMoveEvent* frameMoveEvent);
+	void unregisterFrameMoveEvent(FrameMoveEvent* frameMoveEvent);
+	void onFrameMove(float deltaTime);
 private:
 	std::vector<CameraMoveEvent*> m_cameraMoveEvents;
 	std::vector<PickEvent*> m_pickEvents;
-	
+	std::vector<FrameMoveEvent*> m_frameMoveEvents;
 };

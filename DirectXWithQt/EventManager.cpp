@@ -58,3 +58,28 @@ void EventManager::onPickGameObject(GameObject& go)
 		pickEvent->onPickGameObject(go);
 	}
 }
+
+
+void EventManager::registerFrameMoveEvent(FrameMoveEvent* frameMoveEvent)
+{
+	m_frameMoveEvents.push_back(frameMoveEvent);
+}
+
+void EventManager::unregisterFrameMoveEvent(FrameMoveEvent* frameMoveEvent)
+{
+	for (auto it = m_frameMoveEvents.begin(); it != m_frameMoveEvents.end(); it++)
+	{
+		if (*it == frameMoveEvent)
+		{
+			it = m_frameMoveEvents.erase(it);
+		}
+	}
+}
+
+void EventManager::onFrameMove(float deltaTime)
+{
+	for (auto& cameraMoveEvent : m_frameMoveEvents)
+	{
+		cameraMoveEvent->onFrameMove(deltaTime);
+	}
+}
