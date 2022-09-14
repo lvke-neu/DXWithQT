@@ -1,0 +1,5 @@
+{
+    "funcName":["setCameraPosition","setCameraRotation"],
+    "parameter":[[0,0,0],[0,0,0]],
+    "serviceId": "CameraManager"
+}
