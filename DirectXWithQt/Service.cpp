@@ -43,6 +43,11 @@ void Service::call(const std::string& jsonContent, GameApp* gameApp)
 			}
 		}
 
+		//if (pManager)
+		//{
+		//	delete pManager;
+		//	pManager = nullptr;
+		//}
 
 	}
 

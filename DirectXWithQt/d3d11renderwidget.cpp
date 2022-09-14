@@ -43,7 +43,7 @@ void D3d11RenderWidget::paintEvent(QPaintEvent *event)
 	m_gameApp->UpdateScene(m_Timer.DeltaTime());
 	m_gameApp->DrawScene();
 	
-	EventManager::getInstance().onFrameMove(m_Timer.DeltaTime());
+	
 
 	update();
 }

@@ -1,7 +1,7 @@
 #include "CameraManager.h"
 #include "Reflection.h"
 #include"rapidjson/document.h"
-#include "CameraFly.h"
+
 
 REGISTER_CLASS(IManager, "CameraManager", CameraManager)
 
@@ -13,7 +13,14 @@ CameraManager::CameraManager(void** parameter)
 	m_functions["setCameraFly"] = std::bind(&CameraManager::setCameraFly, this, std::placeholders::_1);
 	
 }
-
+CameraManager::~CameraManager()
+{
+	if (m_pCameraFly)
+	{
+		delete m_pCameraFly;
+		m_pCameraFly = nullptr;
+	}
+}
 
 void CameraManager::runFunction(const std::string functionName, void** parameter)
 {
@@ -63,7 +70,7 @@ void* CameraManager::setCameraFly(void** parameter)
 {
 	GameApp* gameApp = (GameApp*)parameter[0];
 
-	CameraFly* cameraFly = new CameraFly(&gameApp->getScene()->getPerspectiveCamera(), gameApp);
+	m_pCameraFly = new CameraFly(&gameApp->getScene()->getPerspectiveCamera(), gameApp);
 	
 
 	return nullptr;

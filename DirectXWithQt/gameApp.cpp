@@ -38,6 +38,7 @@ void GameApp::UpdateScene(float deltaTime)
 	if (m_scene)
 	{
 		m_scene->updateScene(deltaTime);
+		EventManager::getInstance().onFrameMove(deltaTime);
 	}
 
 	

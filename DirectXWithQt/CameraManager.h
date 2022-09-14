@@ -10,17 +10,20 @@ Description:
 
 #include "Camera.h"
 #include "ManagerInterface.h"
+#include "CameraFly.h"
 
 class CameraManager : public IManager
 {
 public:
 
 	CameraManager(void** parameter);
-	~CameraManager() {}
+	virtual ~CameraManager();
 public:
 	void* setCameraPosition(void** parameter);
 	void* setCameraRotation(void** parameter);
 	void* setCameraFly(void** parameter);
 
 	void runFunction(const std::string functionName, void** parameter) override;
+private:
+	CameraFly* m_pCameraFly{ nullptr };
 };

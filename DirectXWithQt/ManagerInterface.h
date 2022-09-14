@@ -16,6 +16,7 @@ class IManager
 {
 public:
 	virtual void runFunction(const std::string functionName, void** parameter) = 0;
+	virtual ~IManager() {};
 protected:
 	std::map<std::string, std::function<void(void**)>> m_functions;
 }; 
