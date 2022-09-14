@@ -10,21 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 	
-	connect(ui->jsonService, &QAction::triggered, this, [=]()
+	connect(ui->jsonService, &QAction::triggered, this, 
+		[=]()
 		{
-			//std::string jsonStr("{\"funcName\": \"setCameraProperty\" }");
-
-			//rapidjson::Document document;
-			//if (!document.Parse(jsonStr.c_str()).HasParseError())
-			//{
-			//	if (document.HasMember("funcName"))
-			//	{
-			//		const rapidjson::Value& funcName = document["funcName"];
-			//		if(m_RenderWidget->m_gameApp->getScene())
-			//			Service::getInstance().runFunc(funcName.GetString(), m_RenderWidget->m_gameApp->getScene()->getPerspectiveCamera(), XMFLOAT3(0, 0, 0), XMFLOAT3(0,0,0));
-			//	}
-			//}
-
 
 			QDialog* qDialog = new QDialog(this);
 			qDialog->setAttribute(Qt::WA_DeleteOnClose);
@@ -37,7 +25,7 @@ MainWindow::MainWindow(QWidget *parent) :
 			jsonContentTextEdit->setFixedHeight(270);
 
 			QPushButton* button_confirm = new QPushButton("确定", qDialog);
-			button_confirm->move(180, 280);
+			button_confirm->move(180, 270);
 
 			connect(button_confirm, &QPushButton::clicked, this,
 				[=]()
@@ -47,9 +35,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
 
 			qDialog->show();
-
-
-			
 
 		});
 

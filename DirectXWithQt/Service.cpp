@@ -1,20 +1,49 @@
 #include "Service.h"
+#include "Reflection.h"
 #include "CameraManager.h"
+#include"rapidjson/document.h"
 
 void Service::call(const std::string& jsonContent, GameApp* gameApp)
 {
-
-
-
-	if (gameApp && gameApp->getScene())
+	rapidjson::Document document;
+	if (!document.Parse(jsonContent.c_str()).HasParseError())
 	{
-		XMFLOAT3 pos_rot(0, 0, 0);
+		std::string managerName;
+		std::string functionName;
+		rapidjson::Value funcParameter;
 
-		void* parameter[2];
-		parameter[0] = &gameApp->getScene()->getPerspectiveCamera();
-		parameter[1] = &pos_rot;
+		if (document.HasMember("serviceId"))
+		{
+			managerName = document["serviceId"].GetString();
+		}
 
-		CameraManager::getInstance().runFunction("setCameraPosition", parameter);
-		CameraManager::getInstance().runFunction("setCameraRotation", parameter);
+		if (document.HasMember("functionName"))
+		{
+			functionName = document["functionName"].GetString();
+		}
+
+		if (document.HasMember("funcParameter"))
+		{
+			funcParameter = document["funcParameter"];
+		}
+
+		IManager* pManager = Reflection<IManager>::getInstance().createObject(managerName, nullptr);
+		if (pManager)
+		{
+			if (gameApp && gameApp->getScene())
+			{
+				XMFLOAT3 pos_rot(0, 0, 0);
+
+				void* parameter[2];
+
+				parameter[0] = gameApp;
+				parameter[1] = &funcParameter;
+
+				pManager->runFunction(functionName, parameter);
+			}
+		}
+
+
 	}
+
 }

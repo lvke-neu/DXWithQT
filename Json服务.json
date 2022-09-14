@@ -1,5 +1,22 @@
+
 {
-    "funcName":["setCameraPosition","setCameraRotation"],
-    "parameter":[[0,0,0],[0,0,0]],
+    "functionName":"setCameraPosition",
+    "funcParameter":
+    {
+        "x":0,
+        "y":0,
+        "z":0
+    },
+    "serviceId": "CameraManager"
+}
+
+{
+    "functionName":"setCameraRotation",
+    "funcParameter":
+    {
+        "x":0,
+        "y":0,
+        "z":0
+    },
     "serviceId": "CameraManager"
 }

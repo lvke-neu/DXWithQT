@@ -103,6 +103,15 @@
     <Filter Include="D3D\Game\Service">
       <UniqueIdentifier>{176797c8-f276-4d98-850f-89fde72587f1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\Reflection">
+      <UniqueIdentifier>{da51a4d6-ee76-4f20-9290-6b07f06f6347}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\Manager">
+      <UniqueIdentifier>{6bea2355-6475-4620-8394-165ee3073aa9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\Manager\Interface">
+      <UniqueIdentifier>{5ed7439e-868e-4224-95e8-570033133695}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -248,7 +257,7 @@
       <Filter>D3D\Game\Service</Filter>
     </ClCompile>
     <ClCompile Include="CameraManager.cpp">
-      <Filter>D3D\Game\Service</Filter>
+      <Filter>D3D\Game\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -359,9 +368,6 @@
     <ClInclude Include="Chapter1DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
-    <ClInclude Include="Reflection.h">
-      <Filter>D3D\Game\GameObject\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Chapter2DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
@@ -401,11 +407,14 @@
     <ClInclude Include="Service.h">
       <Filter>D3D\Game\Service</Filter>
     </ClInclude>
-    <ClInclude Include="PluginInterface.h">
-      <Filter>D3D\Game\Service</Filter>
+    <ClInclude Include="Reflection.h">
+      <Filter>D3D\Game\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="CameraManager.h">
-      <Filter>D3D\Game\Service</Filter>
+      <Filter>D3D\Game\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="ManagerInterface.h">
+      <Filter>D3D\Game\Manager\Interface</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

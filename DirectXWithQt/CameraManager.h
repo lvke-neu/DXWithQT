@@ -1,34 +1,25 @@
+/************************************************************************
+Author: lvke
+Date:2022/09/14 21:47
+Description:
+相机管理类，设置相机属性（相机飞行、线框模式等等）
+************************************************************************/
+
 #pragma once
 
-#include <map>
-#include <string>
-#include <functional>
+
 #include "Camera.h"
-#include "PluginInterface.h"
+#include "ManagerInterface.h"
 
-class CameraManager :IPlugin
+class CameraManager : public IManager
 {
+public:
 
+	CameraManager(void** parameter);
+	~CameraManager() {}
 public:
 	void* setCameraPosition(void** parameter);
 	void* setCameraRotation(void** parameter);
 
-	void runFunction(const std::string& funcName, void** parameter);
-
-private:
-	std::map<std::string, std::function<void(void**)>> m_functions;
-
-
-private:
-	CameraManager();
-	~CameraManager() {}
-	CameraManager(const CameraManager& cameraManager) {}
-	CameraManager& operator = (const CameraManager& cameraManager) {}
-
-public:
-	static CameraManager& getInstance()
-	{
-		static CameraManager instance;
-		return instance;
-	}
+	void runFunction(const std::string functionName, void** parameter) override;
 };
