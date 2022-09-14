@@ -10,13 +10,13 @@ class CameraManager :IPlugin
 {
 
 public:
-	void setCameraPosition(Camera& camera, const XMFLOAT3& pos);
-	void setCameraRotation(Camera& camera, const XMFLOAT3& rot);
+	void* setCameraPosition(void** parameter);
+	void* setCameraRotation(void** parameter);
 
-	void runFunction(const std::string& funcName, Camera& camera, const XMFLOAT3& pos);
+	void runFunction(const std::string& funcName, void** parameter);
 
 private:
-	std::map<std::string, std::function<void(Camera& camera, const XMFLOAT3& pos)>> m_functions;
+	std::map<std::string, std::function<void(void**)>> m_functions;
 
 
 private:

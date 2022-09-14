@@ -3,22 +3,26 @@
 
 CameraManager::CameraManager()
 {
-	m_functions["setCameraPosition"] = std::bind(&CameraManager::setCameraPosition, this, std::placeholders::_1, std::placeholders::_2);
-	m_functions["setCameraRotation"] = std::bind(&CameraManager::setCameraRotation, this, std::placeholders::_1, std::placeholders::_2);
+	m_functions["setCameraPosition"] = std::bind(&CameraManager::setCameraPosition, this, std::placeholders::_1);
+	m_functions["setCameraRotation"] = std::bind(&CameraManager::setCameraRotation, this, std::placeholders::_1);
 }
 
 
-void CameraManager::runFunction(const std::string& funcName, Camera& camera, const XMFLOAT3& pos)
+void CameraManager::runFunction(const std::string& funcName, void** parameter)
 {
-	m_functions[funcName](camera, pos);
+	m_functions[funcName](parameter);
 }
 
-void CameraManager::setCameraPosition(Camera& camera, const XMFLOAT3& pos)
+void* CameraManager::setCameraPosition(void** parameter)
 {
-	camera.setPosition(pos);
+	((Camera*)parameter[0])->setPosition(*(XMFLOAT3*)parameter[1]);
+
+	return nullptr;
 }
 
-void CameraManager::setCameraRotation(Camera& camera, const XMFLOAT3& rot)
+void* CameraManager::setCameraRotation(void** parameter)
 {
-	camera.setRotation(rot);
+	((Camera*)parameter[0])->setRotation(*(XMFLOAT3*)parameter[1]);
+
+	return nullptr;
 }
