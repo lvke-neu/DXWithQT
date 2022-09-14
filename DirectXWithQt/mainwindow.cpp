@@ -1,7 +1,6 @@
 #include "mainwindow.h"
 #include "Reflection.h"
-#include "Service.h"
-#include "rapidjson/document.h"
+
 
 #define CHAPTER_COUNT 10
 
@@ -13,18 +12,45 @@ MainWindow::MainWindow(QWidget *parent) :
 	
 	connect(ui->jsonService, &QAction::triggered, this, [=]()
 		{
-			std::string jsonStr("{\"funcName\": \"setCameraProperty\" }");
+			//std::string jsonStr("{\"funcName\": \"setCameraProperty\" }");
 
-			rapidjson::Document document;
-			if (!document.Parse(jsonStr.c_str()).HasParseError())
-			{
-				if (document.HasMember("funcName"))
+			//rapidjson::Document document;
+			//if (!document.Parse(jsonStr.c_str()).HasParseError())
+			//{
+			//	if (document.HasMember("funcName"))
+			//	{
+			//		const rapidjson::Value& funcName = document["funcName"];
+			//		if(m_RenderWidget->m_gameApp->getScene())
+			//			Service::getInstance().runFunc(funcName.GetString(), m_RenderWidget->m_gameApp->getScene()->getPerspectiveCamera(), XMFLOAT3(0, 0, 0), XMFLOAT3(0,0,0));
+			//	}
+			//}
+
+
+			QDialog* qDialog = new QDialog(this);
+			qDialog->setAttribute(Qt::WA_DeleteOnClose);
+			qDialog->setWindowTitle(tr("Json服务"));
+			qDialog->setFixedWidth(400);
+			qDialog->setFixedHeight(300);
+
+			QTextEdit* jsonContentTextEdit = new QTextEdit(qDialog);
+			jsonContentTextEdit->setFixedWidth(400);
+			jsonContentTextEdit->setFixedHeight(270);
+
+			QPushButton* button_confirm = new QPushButton("确定", qDialog);
+			button_confirm->move(180, 280);
+
+			connect(button_confirm, &QPushButton::clicked, this,
+				[=]()
 				{
-					const rapidjson::Value& funcName = document["funcName"];
-					if(m_RenderWidget->m_gameApp->getScene())
-						Service::getInstance().runFunc(funcName.GetString(), m_RenderWidget->m_gameApp->getScene()->getPerspectiveCamera(), XMFLOAT3(0, 0, 0), XMFLOAT3(0,0,0));
-				}
-			}
+					Service::getInstance().call(jsonContentTextEdit->toPlainText().toStdString(), m_RenderWidget->m_gameApp);
+				});
+
+
+			qDialog->show();
+
+
+			
+
 		});
 
 	m_RenderWidget = new D3d11RenderWidget(this);
