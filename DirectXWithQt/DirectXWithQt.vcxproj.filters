@@ -22,14 +22,8 @@
     <Filter Include="D3D\Game\GameObject">
       <UniqueIdentifier>{e058aae6-d4d2-438c-ad40-3f6238b02db9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="D3D\Game\SceneManager">
-      <UniqueIdentifier>{d5d48298-b692-4969-8cb5-5c37c67b2a13}</UniqueIdentifier>
-    </Filter>
     <Filter Include="D3D\Game\GameObject\Common">
       <UniqueIdentifier>{8898218b-fc07-4c58-a34c-d1915bffb841}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="D3D\Game\SceneManager\Interface">
-      <UniqueIdentifier>{74d613d0-56b9-4c95-8549-91f059b9b744}</UniqueIdentifier>
     </Filter>
     <Filter Include="D3D\Game\GameObject\Model">
       <UniqueIdentifier>{6c528bb3-13c0-4702-932b-ecb5ff14b7e5}</UniqueIdentifier>
@@ -39,9 +33,6 @@
     </Filter>
     <Filter Include="D3D\Game\Collision">
       <UniqueIdentifier>{1f627aae-0e65-4674-b6e5-bc4d6792bb49}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="D3D\Game\SceneManager\Scene">
-      <UniqueIdentifier>{234483c9-3cae-40ba-80e6-557fb45d1fef}</UniqueIdentifier>
     </Filter>
     <Filter Include="D3D\Game\Event">
       <UniqueIdentifier>{b02f8c59-b4b6-4996-994d-30f3503e06fb}</UniqueIdentifier>
@@ -118,6 +109,15 @@
     <Filter Include="D3D\Game\Manager\EffectManager">
       <UniqueIdentifier>{8cfd05f9-0dd5-4e5a-8bec-fbba5ec6c7ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\Scene">
+      <UniqueIdentifier>{d5d48298-b692-4969-8cb5-5c37c67b2a13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\Scene\Interface">
+      <UniqueIdentifier>{74d613d0-56b9-4c95-8549-91f059b9b744}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\Scene\Scene">
+      <UniqueIdentifier>{234483c9-3cae-40ba-80e6-557fb45d1fef}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -155,7 +155,7 @@
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClCompile>
     <ClCompile Include="SceneInterface.cpp">
-      <Filter>D3D\Game\SceneManager\Interface</Filter>
+      <Filter>D3D\Game\Scene\Interface</Filter>
     </ClCompile>
     <ClCompile Include="WICTextureLoader.cpp">
       <Filter>D3D\Framework</Filter>
@@ -176,31 +176,31 @@
       <Filter>D3D\Game\Collision</Filter>
     </ClCompile>
     <ClCompile Include="Chapter1Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter2Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter3Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter4Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter5Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter6Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter7Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter8Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter9Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="d3dUtil.cpp">
       <Filter>D3D\Framework</Filter>
@@ -212,7 +212,7 @@
       <Filter>Qt\d3d11renderwidget</Filter>
     </ClCompile>
     <ClCompile Include="SceneShader.cpp">
-      <Filter>D3D\Game\SceneManager\Interface</Filter>
+      <Filter>D3D\Game\Scene\Interface</Filter>
     </ClCompile>
     <ClCompile Include="SkyBox.cpp">
       <Filter>D3D\Game\GameObject\SkyBox</Filter>
@@ -251,7 +251,7 @@
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClCompile>
     <ClCompile Include="Chapter10Scene.cpp">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Chapter10DockWidget.cpp">
       <Filter>Qt\ChapterDockWidget</Filter>
@@ -303,10 +303,10 @@
       <Filter>D3D\Game\GameObject\Common</Filter>
     </ClInclude>
     <ClInclude Include="SceneInterface.h">
-      <Filter>D3D\Game\SceneManager\Interface</Filter>
+      <Filter>D3D\Game\Scene\Interface</Filter>
     </ClInclude>
     <ClInclude Include="SceneFactory.h">
-      <Filter>D3D\Game\SceneManager\Interface</Filter>
+      <Filter>D3D\Game\Scene\Interface</Filter>
     </ClInclude>
     <ClInclude Include="DDSTextureLoader.h">
       <Filter>D3D\Framework</Filter>
@@ -345,34 +345,34 @@
       <Filter>D3D\Game\Collision</Filter>
     </ClInclude>
     <ClInclude Include="Chapter1Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter2Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter3Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter4Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter5Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter6Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter7Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter8Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter9Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="SceneShader.h">
-      <Filter>D3D\Game\SceneManager\Interface</Filter>
+      <Filter>D3D\Game\Scene\Interface</Filter>
     </ClInclude>
     <ClInclude Include="SkyBox.h">
       <Filter>D3D\Game\GameObject\SkyBox</Filter>
@@ -408,7 +408,7 @@
       <Filter>Qt\ChapterDockWidget</Filter>
     </ClInclude>
     <ClInclude Include="Chapter10Scene.h">
-      <Filter>D3D\Game\SceneManager\Scene</Filter>
+      <Filter>D3D\Game\Scene\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Chapter10DockWidget.h">
       <Filter>Qt\ChapterDockWidget</Filter>
