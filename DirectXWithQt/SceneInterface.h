@@ -14,6 +14,7 @@ Description:
 #include "SceneShader.h"
 #include "KeyBoard.h"
 #include "Mouse.h"
+#include "GameObject.h"
 
 template <class T>
 using ComPtr = Microsoft::WRL::ComPtr<T>;
@@ -32,6 +33,10 @@ public:
 	void notifyCameraMove();
 	void onResize(float width, float height, const D3D11_VIEWPORT& viewPort);
 	Camera& getPerspectiveCamera() { return m_perspectiveCamera; }
+
+	ComPtr<ID3D11Device> getD3dDevice() { return m_pd3dDevice; }
+	ComPtr<ID3D11DeviceContext> getD3dImmediateContext() { return m_pd3dImmediateContext; }
+	void addEffect(GameObject go) { m_effects.push_back(go); }
 public:
 	XMFLOAT3 get_dirLight_dir() { return m_dirLight_dir; }
 protected:
@@ -44,4 +49,6 @@ protected:
 	Camera m_perspectiveCamera;
 
 	XMFLOAT3 m_dirLight_dir = XMFLOAT3(0.0f, 0.0f, 0.0f);
+
+	std::vector<GameObject> m_effects;
 };

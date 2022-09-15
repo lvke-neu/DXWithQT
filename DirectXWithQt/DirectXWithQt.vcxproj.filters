@@ -112,6 +112,12 @@
     <Filter Include="D3D\Game\Manager\Interface">
       <UniqueIdentifier>{5ed7439e-868e-4224-95e8-570033133695}</UniqueIdentifier>
     </Filter>
+    <Filter Include="D3D\Game\Manager\CameraManager">
+      <UniqueIdentifier>{098c63db-cd7e-4e90-a999-f9f5b815973c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="D3D\Game\Manager\EffectManager">
+      <UniqueIdentifier>{8cfd05f9-0dd5-4e5a-8bec-fbba5ec6c7ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -256,11 +262,14 @@
     <ClCompile Include="Service.cpp">
       <Filter>D3D\Game\Service</Filter>
     </ClCompile>
-    <ClCompile Include="CameraManager.cpp">
-      <Filter>D3D\Game\Manager</Filter>
-    </ClCompile>
     <ClCompile Include="CameraFly.cpp">
-      <Filter>D3D\Game\Manager</Filter>
+      <Filter>D3D\Game\Manager\CameraManager</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraManager.cpp">
+      <Filter>D3D\Game\Manager\CameraManager</Filter>
+    </ClCompile>
+    <ClCompile Include="EffectManager.cpp">
+      <Filter>D3D\Game\Manager\EffectManager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -413,14 +422,17 @@
     <ClInclude Include="Reflection.h">
       <Filter>D3D\Game\Reflection</Filter>
     </ClInclude>
-    <ClInclude Include="CameraManager.h">
-      <Filter>D3D\Game\Manager</Filter>
-    </ClInclude>
     <ClInclude Include="ManagerInterface.h">
       <Filter>D3D\Game\Manager\Interface</Filter>
     </ClInclude>
     <ClInclude Include="CameraFly.h">
-      <Filter>D3D\Game\Manager</Filter>
+      <Filter>D3D\Game\Manager\CameraManager</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraManager.h">
+      <Filter>D3D\Game\Manager\CameraManager</Filter>
+    </ClInclude>
+    <ClInclude Include="EffectManager.h">
+      <Filter>D3D\Game\Manager\EffectManager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

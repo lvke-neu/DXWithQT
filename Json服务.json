@@ -1,4 +1,4 @@
-
+CameraManager
 {
     "functionName":"setCameraPosition",
     "funcParameter":
@@ -30,4 +30,62 @@
         "z":0
     },
     "serviceId": "CameraManager"
+}
+
+
+EffectManager
+
+
+{
+    "functionName":"setBoxEffect",
+    "funcParameter":
+    {
+        "scale":
+        {
+            "x":1.0,
+            "y":1.0,
+            "z":1.0
+        },
+        "rotation":
+        {
+            "x":0.0,
+            "y":0.0,
+            "z":0.0
+        },
+        "position":
+        {
+            "x":0.0,
+            "y":0.0,
+            "z":0.0
+        },
+        "texture":"Texture\\WoodCrate.dds"
+    },
+    "serviceId": "EffectManager"
+}
+
+{
+    "functionName":"setSphereEffect",
+    "funcParameter":
+    {
+        "scale":
+        {
+            "x":1.0,
+            "y":1.0,
+            "z":1.0
+        },
+        "rotation":
+        {
+            "x":0.0,
+            "y":0.0,
+            "z":0.0
+        },
+        "position":
+        {
+            "x":0.0,
+            "y":0.0,
+            "z":0.0
+        },
+        "texture":"Texture\\stone.dds"
+    },
+    "serviceId": "EffectManager"
 }

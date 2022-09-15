@@ -103,13 +103,18 @@ void Chapter2Scene::updateScene(float deltaTime)
 void Chapter2Scene::drawScene()
 {
 	
-	m_box1.draw();
+	//m_box1.draw();
 
-	m_box2.draw();
+	//m_box2.draw();
 
-	m_box3.draw();
+	//m_box3.draw();
 
 	m_plane.draw();
+
+	for (auto& x : m_effects)
+	{
+		x.draw();
+	}
 }
 
 
