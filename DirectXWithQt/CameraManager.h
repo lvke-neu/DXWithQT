@@ -22,6 +22,7 @@ public:
 	void* setCameraPosition(void** parameter);
 	void* setCameraRotation(void** parameter);
 	void* setCameraFly(void** parameter);
+	void* setWireframe(void** parameter);
 
 	void runFunction(const std::string functionName, void** parameter) override;
 private:

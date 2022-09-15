@@ -22,6 +22,8 @@ public:
 
 
 public:
+	void setMaterial(const Material& material);
+	
 	void setShader(std::vector<std::wstring> shader);
 
 	Transform getTransform();

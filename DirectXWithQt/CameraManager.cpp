@@ -1,7 +1,7 @@
 #include "CameraManager.h"
 #include "Reflection.h"
 #include"rapidjson/document.h"
-
+#include "RenderStates.h"
 
 REGISTER_CLASS(IManager, "CameraManager", CameraManager)
 
@@ -11,7 +11,7 @@ CameraManager::CameraManager(void** parameter)
 	m_functions["setCameraPosition"] = std::bind(&CameraManager::setCameraPosition, this, std::placeholders::_1);
 	m_functions["setCameraRotation"] = std::bind(&CameraManager::setCameraRotation, this, std::placeholders::_1);
 	m_functions["setCameraFly"] = std::bind(&CameraManager::setCameraFly, this, std::placeholders::_1);
-	
+	m_functions["setWireframe"] = std::bind(&CameraManager::setWireframe, this, std::placeholders::_1);
 }
 CameraManager::~CameraManager()
 {
@@ -72,6 +72,18 @@ void* CameraManager::setCameraFly(void** parameter)
 
 	m_pCameraFly = new CameraFly(&gameApp->getScene()->getPerspectiveCamera(), gameApp);
 	
+
+	return nullptr;
+}
+
+void* CameraManager::setWireframe(void** parameter)
+{
+	GameApp* gameApp = (GameApp*)parameter[0];
+
+	rapidjson::Value* funcParameter = (rapidjson::Value*)parameter[1];
+	bool b = (*funcParameter)["isWireframe"].GetBool();
+	
+	gameApp->getScene()->getD3dImmediateContext()->RSSetState(b?RenderStates::RSWireframe.Get(): nullptr);
 
 	return nullptr;
 }

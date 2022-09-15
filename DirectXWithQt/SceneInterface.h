@@ -15,6 +15,7 @@ Description:
 #include "KeyBoard.h"
 #include "Mouse.h"
 #include "GameObject.h"
+#include "AssimpModelObject.h"
 
 template <class T>
 using ComPtr = Microsoft::WRL::ComPtr<T>;
@@ -37,7 +38,14 @@ public:
 		{
 			x.draw();
 		}
+		for (auto& x : m_models)
+		{
+			x.draw();
+		}
 	}
+
+
+
 	void cameraControl(float deltaTime);
 	void notifyCameraMove();
 	void onResize(float width, float height, const D3D11_VIEWPORT& viewPort);
@@ -45,8 +53,11 @@ public:
 
 	ComPtr<ID3D11Device> getD3dDevice() { return m_pd3dDevice; }
 	ComPtr<ID3D11DeviceContext> getD3dImmediateContext() { return m_pd3dImmediateContext; }
+
 	void addEffect(GameObject go) { m_effects.push_back(go); }
-	void clearAllEffects() { std::vector<GameObject> tmp; m_effects.swap(tmp); }
+	void addModel(AssimpModelObject amo) { m_models.push_back(amo); }
+	void clearAllEffects() { std::vector<GameObject> tmp1; m_effects.swap(tmp1); std::vector<AssimpModelObject> tmp2; m_models.swap(tmp2);}
+
 public:
 	XMFLOAT3 get_dirLight_dir() { return m_dirLight_dir; }
 protected:
@@ -60,5 +71,8 @@ protected:
 
 	XMFLOAT3 m_dirLight_dir = XMFLOAT3(0.0f, 0.0f, 0.0f);
 
+
 	std::vector<GameObject> m_effects;
+	std::vector<AssimpModelObject> m_models;
+	
 };

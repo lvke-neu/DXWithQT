@@ -109,7 +109,11 @@ Mesh AssimpModelObject::processMesh(aiMesh* mesh, const aiScene* scene)
 	return destMesh;
 }
 
-
+void AssimpModelObject::setMaterial(const Material& material)
+{
+	for (auto& go : m_gameObjects)
+		go.setMaterial(material);
+}
 
 void AssimpModelObject::setShader(std::vector<std::wstring> shader)
 {

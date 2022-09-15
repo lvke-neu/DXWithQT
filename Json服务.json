@@ -34,6 +34,14 @@ CameraManager
     "serviceId": "CameraManager"
 }
 
+{
+    "functionName":"setWireframe",
+    "funcParameter":
+    {
+        "isWireframe":true
+    },
+    "serviceId": "CameraManager"
+}
 
 EffectManager
 {
@@ -91,6 +99,33 @@ EffectManager
             "z":0.0
         },
         "texture":"Texture\\stone.dds"
+    },
+    "serviceId": "EffectManager"
+}
+
+{
+    "functionName":"setModelEffect",
+    "funcParameter":
+    {
+        "scale":
+        {
+            "x":0.1,
+            "y":0.1,
+            "z":0.1
+        },
+        "rotation":
+        {
+            "x":0.0,
+            "y":0.0,
+            "z":0.0
+        },
+        "position":
+        {
+            "x":0.0,
+            "y":0.0,
+            "z":0.0
+        },
+        "modelPath":"Model\\Tree\\tree.obj"
     },
     "serviceId": "EffectManager"
 }
