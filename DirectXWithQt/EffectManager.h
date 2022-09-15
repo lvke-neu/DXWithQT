@@ -26,6 +26,7 @@ public:
 
 	void* setBoxEffect(void** parameter);
 	void* setSphereEffect(void** parameter);
+	void* clearAllEffects(void** parameter);
 
 	void runFunction(const std::string functionName, void** parameter) override;
 

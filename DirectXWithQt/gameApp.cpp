@@ -52,6 +52,7 @@ void GameApp::DrawScene()
 	if (m_scene)
 	{
 		m_scene->drawScene();
+		m_scene->drawEffect();
 	}
 	m_pSwapChain->Present(0, 0);
 

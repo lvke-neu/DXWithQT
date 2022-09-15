@@ -29,6 +29,15 @@ public:
 	virtual void drawScene() = 0;
 	virtual void setDirLight(XMFLOAT3 dir) = 0;
 
+
+
+	void drawEffect()
+	{
+		for (auto& x : m_effects)
+		{
+			x.draw();
+		}
+	}
 	void cameraControl(float deltaTime);
 	void notifyCameraMove();
 	void onResize(float width, float height, const D3D11_VIEWPORT& viewPort);
@@ -37,6 +46,7 @@ public:
 	ComPtr<ID3D11Device> getD3dDevice() { return m_pd3dDevice; }
 	ComPtr<ID3D11DeviceContext> getD3dImmediateContext() { return m_pd3dImmediateContext; }
 	void addEffect(GameObject go) { m_effects.push_back(go); }
+	void clearAllEffects() { std::vector<GameObject> tmp; m_effects.swap(tmp); }
 public:
 	XMFLOAT3 get_dirLight_dir() { return m_dirLight_dir; }
 protected:

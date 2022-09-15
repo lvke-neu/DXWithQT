@@ -10,6 +10,7 @@ EffectManager::EffectManager(void** parameter)
 {
 	m_functions["setBoxEffect"] = std::bind(&EffectManager::setBoxEffect, this, std::placeholders::_1);
 	m_functions["setSphereEffect"] = std::bind(&EffectManager::setSphereEffect, this, std::placeholders::_1);
+	m_functions["clearAllEffects"] = std::bind(&EffectManager::clearAllEffects, this, std::placeholders::_1);
 }
 EffectManager::~EffectManager()
 {
@@ -35,6 +36,13 @@ void* EffectManager::setSphereEffect(void** parameter)
 	return nullptr;
 }
 
+void* EffectManager::clearAllEffects(void** parameter)
+{
+	GameApp* gameApp = (GameApp*)parameter[0];
+	gameApp->getScene()->clearAllEffects();
+
+	return nullptr;
+}
 
 void EffectManager::buildBasicPrimitiveEffect(void** parameter, BasicPrimitive type)
 {

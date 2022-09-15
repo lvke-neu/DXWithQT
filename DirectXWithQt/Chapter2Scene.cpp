@@ -111,10 +111,7 @@ void Chapter2Scene::drawScene()
 
 	m_plane.draw();
 
-	for (auto& x : m_effects)
-	{
-		x.draw();
-	}
+
 }
 
 
