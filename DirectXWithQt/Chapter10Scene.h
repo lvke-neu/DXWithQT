@@ -2,7 +2,7 @@
 
 #include "SceneInterface.h"
 #include "AssimpModelObject.h"
-
+#include "SkyBox.h"
 
 class Chapter10Scene : public IScene
 {
@@ -27,6 +27,8 @@ private:
 	AssimpModelObject m_superman;
 	AssimpModelObject m_house;
 	AssimpModelObject m_tree;
+
+	SkyBox m_skyBox;
 
 	bool m_enableNormalMap = true;
 };

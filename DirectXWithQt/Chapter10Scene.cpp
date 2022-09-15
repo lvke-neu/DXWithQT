@@ -1,24 +1,40 @@
 #include "Chapter10Scene.h"
-#include "RenderStates.h"
 
+#define PLANE_LENGTH_WIDHT 10
 
 Chapter10Scene::Chapter10Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 {
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	m_perspectiveCamera.setPosition(6.4f, 7.3f, -24.0f);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.5f));
-
-
-	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
-
 }
 
 
 void Chapter10Scene::initScene()
 {
+	m_skyBox = SkyBox(m_pd3dDevice, m_pd3dImmediateContext);
+	m_skyBox.setMesh(Geometry::buildBoxMesh());
+	m_skyBox.setShader(std::vector<std::wstring>(
+		{
+			L"Shader\\SkyBox\\SkyBoxVS.hlsl",
+			L"Shader\\SkyBox\\SkyBoxPS.hlsl"
+		}
+	));
+	m_skyBox.setTexture(L"Texture\\SkyBox\\daylight.jpg");
+	m_skyBox.setTransform(Transform(
+		XMFLOAT3(1.0f, 1.0f, 1.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f),
+		XMFLOAT3(0.0f, 0.0f, 0.0f)
+	));
+
+	Material material;
+	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
+	material.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 250.0f);
 
 	m_naruto = AssimpModelObject("Model\\2nrtbod1out\\2nrtbod1out.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_naruto.setShader(SceneShader::shaderPath[9]);
+	m_naruto.setMaterial(material);
 	m_naruto.setTransform(Transform(
 		XMFLOAT3(0.1f, 0.1f, 0.1f),
 		XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
@@ -28,6 +44,7 @@ void Chapter10Scene::initScene()
 	
 	m_madara = AssimpModelObject("Model\\Madara_Uchiha\\Madara_Uchiha.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_madara.setShader(SceneShader::shaderPath[9]);
+	m_madara.setMaterial(material);
 	m_madara.setTransform(Transform(
 		XMFLOAT3(4.0f, 4.0f, 4.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -37,6 +54,7 @@ void Chapter10Scene::initScene()
 	
 	m_superman = AssimpModelObject("Model\\Superman\\1.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_superman.setShader(SceneShader::shaderPath[9]);
+	m_superman.setMaterial(material);
 	m_superman.setTransform(Transform(
 		XMFLOAT3(10.0f, 10.0f, 10.0f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -45,6 +63,7 @@ void Chapter10Scene::initScene()
 
 	m_house = AssimpModelObject("Model\\House\\house.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_house.setShader(SceneShader::shaderPath[9]);
+	m_house.setMaterial(material);
 	m_house.setTransform(Transform(
 		XMFLOAT3(0.1f, 0.1f, 0.1f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -53,16 +72,14 @@ void Chapter10Scene::initScene()
 
 	m_tree = AssimpModelObject("Model\\Tree\\tree.obj", m_pd3dDevice, m_pd3dImmediateContext);
 	m_tree.setShader(SceneShader::shaderPath[9]);
+	m_tree.setMaterial(material);
 	m_tree.setTransform(Transform(
 		XMFLOAT3(0.1f, 0.1f, 0.1f),
 		XMFLOAT3(0.0f, 0.0f, 0.0f),
 		XMFLOAT3(10.0f, -5.0f, 20.0f)
 	));
 
-	Material material;
-	material.ambient = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	material.diffuse = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f);
-	material.specular = XMFLOAT4(1.0f, 1.0f, 1.0f, 250.0f);
+
 
 	m_box1 = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
 	m_box1.setMesh(Geometry::buildBoxMesh());
@@ -82,7 +99,7 @@ void Chapter10Scene::initScene()
 		L"Shader\\Chapter 10\\NormalMapPS.hlsl"
 	};
 	m_plane = GameObject(m_pd3dDevice, m_pd3dImmediateContext);
-	m_plane.setMesh2(Geometry2::buildPlaneMesh(10.0f, 10.0f));
+	m_plane.setMesh2(Geometry2::buildPlaneMesh(PLANE_LENGTH_WIDHT, PLANE_LENGTH_WIDHT));
 	m_plane.setShader(normalMapShader, VertexPosNormalTangentTex::inputLayout, 4);
 	m_plane.setTexture(L"Texture\\stones.dds");
 	m_plane.setNormalTexture(L"Texture\\stones_nmap.dds");
@@ -112,7 +129,7 @@ void Chapter10Scene::updateScene(float deltaTime)
 			L"Shader\\Chapter 10\\NormalMapPS.hlsl"
 		};
 
-		m_plane.setMesh2(Geometry2::buildPlaneMesh(10.0f, 10.0f));
+		m_plane.setMesh2(Geometry2::buildPlaneMesh(PLANE_LENGTH_WIDHT, PLANE_LENGTH_WIDHT));
 		m_plane.setShader(normalMapShader, VertexPosNormalTangentTex::inputLayout, 4);
 		m_plane.setNormalTexture(L"Texture\\stones_nmap.dds");
 	}
@@ -120,7 +137,7 @@ void Chapter10Scene::updateScene(float deltaTime)
 	if (KeyBoard::getInstance().isKeyPress('C') && m_enableNormalMap)
 	{
 		m_enableNormalMap = false;
-		m_plane.setMesh(Geometry::buildPlaneMesh(10.0f, 10.0f));
+		m_plane.setMesh(Geometry::buildPlaneMesh(PLANE_LENGTH_WIDHT, PLANE_LENGTH_WIDHT));
 		m_plane.setShader(SceneShader::shaderPath[9]);
 	}
 
@@ -153,9 +170,11 @@ void Chapter10Scene::drawScene()
 
 	m_naruto.draw();
 	m_madara.draw();
-	m_superman.draw();
+	//m_superman.draw();
 	m_house.draw();
 	m_tree.draw();
+
+	m_skyBox.draw(m_perspectiveCamera);
 }
 
 

@@ -1,6 +1,6 @@
 #include "Chapter9Scene.h"
 #include <string>
-#include "RenderStates.h"
+
 #include <DirectXColors.h>
 
 Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext,
@@ -11,10 +11,6 @@ Chapter9Scene::Chapter9Scene(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11Devic
 	initCameraAndLight(pd3dDevice, pd3dImmediateContext);
 	setDirLight(XMFLOAT3(0.0f, -0.5f, 0.0f));
 	
-
-
-	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
-	m_pd3dImmediateContext->OMSetDepthStencilState(RenderStates::DSSLessEqual.Get(), 0);
 
 
 

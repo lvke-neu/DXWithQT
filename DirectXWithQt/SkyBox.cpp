@@ -1,7 +1,7 @@
 #include "SkyBox.h"
 #include "d3dUtil.h"
 #include <DirectXColors.h>
-
+#include "RenderStates.h"
 
 SkyBox::SkyBox(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext):
 	GameObject(pd3dDevice, pd3dImmediateContext)
@@ -97,6 +97,11 @@ SkyBox::SkyBox(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3d
 	viewPort.MaxDepth = 1.0f;
 
 	m_camera.setViewPort(viewPort);
+
+
+
+	m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
+	m_pd3dImmediateContext->OMSetDepthStencilState(RenderStates::DSSLessEqual.Get(), 0);
 
 }
 

@@ -9,20 +9,20 @@ float4 PS(VertexOut pIn) : SV_Target
 	clip(color.a - 0.05f);
 
 
-	//pIn.normalW = normalize(pIn.normalW);
+	pIn.normalW = normalize(pIn.normalW);
 
-	//float3 toEyeW = normalize(g_eyePosW - pIn.posW);
-	//float distToEye = distance(g_eyePosW, pIn.posW);
+	float3 toEyeW = normalize(g_eyePosW - pIn.posW);
+	float distToEye = distance(g_eyePosW, pIn.posW);
 
-	//float4 ambient, diffuse, specular;
-	//ambient = diffuse = specular = float4(0.0f, 0.0f, 0.0f, 0.0f);
+	float4 ambient, diffuse, specular;
+	ambient = diffuse = specular = float4(0.0f, 0.0f, 0.0f, 0.0f);
 
-	//ComputeDirectionLight(g_material, g_directionLight, pIn.normalW, toEyeW,
-	//	ambient,
-	//	diffuse,
-	//	specular);
+	ComputeDirectionLight(g_material, g_directionLight, pIn.normalW, toEyeW,
+		ambient,
+		diffuse,
+		specular);
 
-	//color = color * (ambient + diffuse)+ specular;
+	color = color * (ambient + diffuse)+ specular;
 
 	//return float4(1, 0, 0, 1);
 
