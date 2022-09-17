@@ -57,7 +57,7 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
-    <IntDir>$(Platform)\</IntDir>
+    <IntDir>tmp\$(Configuration)\</IntDir>
     <OutDir>bin\</OutDir>
     <IncludePath>$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(IncludePath)</IncludePath>
     <TargetName>$(ProjectName)_d</TargetName>
@@ -65,7 +65,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutDir>bin\</OutDir>
     <IncludePath>$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(IncludePath)</IncludePath>
-    <IntDir>$(Platform)\</IntDir>
+    <IntDir>tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
@@ -83,6 +83,9 @@
       <Command>
       </Command>
     </PostBuildEvent>
+    <BuildLog>
+      <Path>$(IntDir)$(MSBuildProjectName)_d.log</Path>
+    </BuildLog>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>
@@ -99,6 +102,9 @@
     <PostBuildEvent>
       <Command>rmdir /Q /S x64</Command>
     </PostBuildEvent>
+    <BuildLog>
+      <Path>$(IntDir)$(MSBuildProjectName).log</Path>
+    </BuildLog>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
