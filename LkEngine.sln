@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Engine", "Engine", "{E874E0C9-031F-44E7-A191-2B0F542054C1}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LkEngineEditor", "Engine\LkEngineEditor\LkEngineEditor.vcxproj", "{322C9F25-3B15-47D8-AB21-62F994063F71}"
+	ProjectSection(ProjectDependencies) = postProject
+		{69E006B0-A841-40C4-B034-43B3F90AFB81} = {69E006B0-A841-40C4-B034-43B3F90AFB81}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "LkEngineRuntime", "Engine\LkEngineRuntime\LkEngineRuntime.vcxproj", "{69E006B0-A841-40C4-B034-43B3F90AFB81}"
 EndProject
