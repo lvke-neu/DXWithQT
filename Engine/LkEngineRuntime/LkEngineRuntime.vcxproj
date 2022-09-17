@@ -135,6 +135,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Core\core.h" />
+    <ClInclude Include="Core\SingletonInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Core.cpp" />
