@@ -135,13 +135,13 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="mainwindow.cpp" />
+    <ClCompile Include="LkEngineEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="mainwindow.h" />
+    <QtMoc Include="LkEngineEditor.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="mainwindow.ui" />
+    <QtUic Include="LkEngineEditor.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="Resource.qrc" />

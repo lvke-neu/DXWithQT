@@ -4,7 +4,7 @@
     <ClCompile Include="main.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="mainwindow.cpp">
+    <ClCompile Include="LkEngineEditor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -20,18 +20,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="mainwindow.h">
-      <Filter>头文件</Filter>
-    </QtMoc>
+    <QtRcc Include="Resource.qrc">
+      <Filter>资源文件</Filter>
+    </QtRcc>
   </ItemGroup>
   <ItemGroup>
-    <QtUic Include="mainwindow.ui">
+    <QtUic Include="LkEngineEditor.ui">
       <Filter>资源文件</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="Resource.qrc">
-      <Filter>资源文件</Filter>
-    </QtRcc>
+    <QtMoc Include="LkEngineEditor.h">
+      <Filter>头文件</Filter>
+    </QtMoc>
   </ItemGroup>
 </Project>
