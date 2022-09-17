@@ -1,5 +1,5 @@
 #include "LkEngineEditor.h"
-
+#include "../LkEngineRuntime/Core/Utility.h"
 
 
 namespace LkEngine
@@ -15,7 +15,7 @@ namespace LkEngine
 
 	LkEngineEditor::~LkEngineEditor()
 	{
-
+		SAFE_DELETE_SET_NULL(ui);
 	}
 
 }

@@ -9,6 +9,8 @@ int main(int argc, char *argv[])
 
     QApplication app(argc, argv);
 
+
+
 	LkEngine::LkEngineEditor::getInstance().show();
 
 

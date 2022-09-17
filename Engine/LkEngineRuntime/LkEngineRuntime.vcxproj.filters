@@ -5,18 +5,27 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="Core\base">
+      <UniqueIdentifier>{89abef87-6e44-4f8f-8771-eb252b1a2b12}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Log">
+      <UniqueIdentifier>{3d62d17f-d522-465e-ac00-068c3a83be17}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\core.h">
-      <Filter>Core</Filter>
-    </ClInclude>
     <ClInclude Include="Core\SingletonInterface.h">
-      <Filter>Core</Filter>
+      <Filter>Core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Utility.h">
+      <Filter>Core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Log\LogSystem.h">
+      <Filter>Core\Log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Core\Core.cpp">
-      <Filter>Core</Filter>
+    <ClCompile Include="Log\LogSystem.cpp">
+      <Filter>Core\Log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
