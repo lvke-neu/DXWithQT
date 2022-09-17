@@ -3,7 +3,7 @@
 
 
 #include "ui_LkEngineEditor.h"
-#include "../LkEngineRuntime/Core/SingletonInterface.h"
+
 
 namespace Ui {
 class LkEngineEditor;
@@ -11,7 +11,7 @@ class LkEngineEditor;
 
 namespace LkEngine
 {
-	class LkEngineEditor : public QMainWindow, public ISingleton<LkEngineEditor>
+	class LkEngineEditor : public QMainWindow
 	{
 		Q_OBJECT
 
