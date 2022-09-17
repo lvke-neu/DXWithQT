@@ -1,27 +1,37 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Qt">
-      <UniqueIdentifier>{23a1595d-3733-4a96-80d5-96abfa2d2a23}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Qt\mainwindow">
-      <UniqueIdentifier>{d7044512-b67a-4487-b626-7b57dd880df5}</UniqueIdentifier>
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
+    <ClCompile Include="main.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
     <ClCompile Include="mainwindow.cpp">
-      <Filter>Qt\mainwindow</Filter>
+      <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <Filter Include="头文件">
+      <UniqueIdentifier>{119ed6fb-a145-4b04-9641-d5eb9196c77d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="源文件">
+      <UniqueIdentifier>{aada01ad-9d28-4dab-9339-2248e1b777dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="资源文件">
+      <UniqueIdentifier>{8c5b9e0d-6812-4697-aa50-ce90fad8b7c3}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
     <QtMoc Include="mainwindow.h">
-      <Filter>Qt\mainwindow</Filter>
+      <Filter>头文件</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="mainwindow.ui">
-      <Filter>Qt\mainwindow</Filter>
+      <Filter>资源文件</Filter>
     </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Resource.qrc">
+      <Filter>资源文件</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

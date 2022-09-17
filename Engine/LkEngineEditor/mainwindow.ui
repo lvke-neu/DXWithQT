@@ -24,21 +24,21 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="jsonService"/>
+   <addaction name="openSolution"/>
    <addaction name="separator"/>
-   <addaction name="action_2"/>
+   <addaction name="closeSolution"/>
   </widget>
-  <action name="jsonService">
+  <action name="openSolution">
    <property name="enabled">
     <bool>true</bool>
    </property>
    <property name="text">
-    <string>Json服务</string>
+    <string>打开解决方案</string>
    </property>
   </action>
-  <action name="action_2">
+  <action name="closeSolution">
    <property name="text">
-    <string>保存</string>
+    <string>保存解决方案</string>
    </property>
   </action>
  </widget>
