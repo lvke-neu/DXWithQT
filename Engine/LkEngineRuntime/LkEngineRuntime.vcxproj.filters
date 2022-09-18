@@ -8,24 +8,24 @@
     <Filter Include="Core\base">
       <UniqueIdentifier>{89abef87-6e44-4f8f-8771-eb252b1a2b12}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Log">
+    <Filter Include="Core\log">
       <UniqueIdentifier>{3d62d17f-d522-465e-ac00-068c3a83be17}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\SingletonInterface.h">
+    <ClInclude Include="Core\base\SingletonInterface.h">
       <Filter>Core\base</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Utility.h">
+    <ClInclude Include="Core\base\Utility.h">
       <Filter>Core\base</Filter>
     </ClInclude>
-    <ClInclude Include="Log\LogSystem.h">
-      <Filter>Core\Log</Filter>
+    <ClInclude Include="Core\log\LogManager.h">
+      <Filter>Core\log</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Log\LogSystem.cpp">
-      <Filter>Core\Log</Filter>
+    <ClCompile Include="Core\log\LogManager.cpp">
+      <Filter>Core\log</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

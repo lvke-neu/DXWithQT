@@ -134,12 +134,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Core\SingletonInterface.h" />
-    <ClInclude Include="Core\Utility.h" />
-    <ClInclude Include="Log\LogSystem.h" />
+    <ClInclude Include="Core\base\SingletonInterface.h" />
+    <ClInclude Include="Core\base\Utility.h" />
+    <ClInclude Include="Core\log\LogManager.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Log\LogSystem.cpp" />
+    <ClCompile Include="Core\log\LogManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
