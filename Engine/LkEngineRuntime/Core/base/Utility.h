@@ -24,7 +24,7 @@ using namespace LkEngine;
 
 
 
-void RelativePath2AbsolutePath(std::string inVsShaderPath, std::string inPsShaderPath, std::string& outVsShaderPath, std::string& outPsShaderPath);
+void RelativePath2AbsolutePath(const std::string& relativeShaderPath, std::string& absoluteShaderPath);
 
 wchar_t* multiByteToWideChar(const std::string& pKey);
 

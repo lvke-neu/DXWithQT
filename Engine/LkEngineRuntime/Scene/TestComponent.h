@@ -4,8 +4,8 @@
 #include <d3d11.h>
 
 using namespace DirectX;
-template <class T>
-using ComPtr = Microsoft::WRL::ComPtr<T>;
+
+using namespace Microsoft::WRL;
 
 class TestComponent
 {

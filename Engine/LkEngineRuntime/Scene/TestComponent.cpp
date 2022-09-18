@@ -1,6 +1,7 @@
 #include "TestComponent.h"
 #include <d3dcompiler.h>
 #include "../Core/base/Utility.h"
+#include "../Asset/AssetManager.h"
 
 const D3D11_INPUT_ELEMENT_DESC TestComponent::VertexPosColor::inputLayout[2] = {
 	{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
@@ -13,26 +14,19 @@ void TestComponent::initialize(Microsoft::WRL::ComPtr<ID3D11Device> pd3dDevice, 
 {
 	m_pd3dDevice = pd3dDevice;
 	m_pd3dImmediateContext = pd3dImmediateContext;
+
 	ComPtr<ID3DBlob> blob;
 
 	std::string inVsShaderPath("builtin\\Shader\\Triangle_VS.cso");
 	std::string inPsShaderPath("builtin\\Shader\\Triangle_PS.cso");
 
-	std::string outVsShaderPath;
-	std::string outPsShaderPath;
-
-	RelativePath2AbsolutePath(inVsShaderPath, inPsShaderPath, outVsShaderPath, outPsShaderPath);
-
-
-	D3DReadFileToBlob(multiByteToWideChar(outVsShaderPath), blob.ReleaseAndGetAddressOf());
-
-	m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pVertexShader.GetAddressOf());
+	m_pVertexShader = AssetManager::getInstance().loadVsShaderAsset(inVsShaderPath, blob);
 	m_pd3dDevice->CreateInputLayout(VertexPosColor::inputLayout, ARRAYSIZE(VertexPosColor::inputLayout),
 		blob->GetBufferPointer(), blob->GetBufferSize(), m_pVertexLayout.GetAddressOf());
-	
-	D3DReadFileToBlob(multiByteToWideChar(outPsShaderPath), blob.ReleaseAndGetAddressOf());
+	m_pPixelShader = AssetManager::getInstance().loadPsShaderAsset(inPsShaderPath);
 
-	m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, m_pPixelShader.GetAddressOf());
+	//blob.Reset();
+
 	VertexPosColor vertices[] =
 	{
 		{ XMFLOAT3(0.0f, 0.5f, 0.5f), XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f) },

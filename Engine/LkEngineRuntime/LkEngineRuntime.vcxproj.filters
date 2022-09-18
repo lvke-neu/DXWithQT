@@ -23,6 +23,15 @@
     <Filter Include="Scene\HLSL">
       <UniqueIdentifier>{83c04448-9b7f-4db4-8c6d-8f82f69085c1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Component">
+      <UniqueIdentifier>{db4b97a8-a1f9-43de-9bd3-b73514c0750e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component\Common">
+      <UniqueIdentifier>{69544583-85b3-48d3-ad6f-ebebdf01f43b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component\Interface">
+      <UniqueIdentifier>{a56f7a45-c1c7-4af2-8d27-b872248f6f2f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -49,6 +58,27 @@
     <ClInclude Include="Scene\TestComponent.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Component\Common\Light.h">
+      <Filter>Scene\Component\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\Common\Material.h">
+      <Filter>Scene\Component\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\Common\Transform.h">
+      <Filter>Scene\Component\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\Interface\ComponentInterface.h">
+      <Filter>Scene\Component\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\base\ManagerInterface.h">
+      <Filter>Core\base</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\DDSTextureLoader.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Asset\WICTextureLoader.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -71,6 +101,18 @@
     </ClCompile>
     <ClCompile Include="Core\base\Utility.cpp">
       <Filter>Core\base</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\Common\Transform.cpp">
+      <Filter>Scene\Component\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\Interface\ComponentInterface.cpp">
+      <Filter>Scene\Component\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\DDSTextureLoader.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Asset\WICTextureLoader.cpp">
+      <Filter>Asset</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

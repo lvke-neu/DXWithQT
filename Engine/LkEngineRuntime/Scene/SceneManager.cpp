@@ -1,14 +1,12 @@
 #include "SceneManager.h"
-
+#include "../Core/base/Utility.h"
 
 namespace LkEngine
 {
-	void SceneManager::initialize(Microsoft::WRL::ComPtr<ID3D11Device> pd3dDevice, Microsoft::WRL::ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
+	void SceneManager::init()
 	{
-		m_pd3dDevice = pd3dDevice;
-		m_pd3dImmediateContext = pd3dImmediateContext;
-
-		testComponent.initialize(m_pd3dDevice, pd3dImmediateContext);
+		testComponent.initialize(m_pd3dDevice, m_pd3dImmediateContext);
+		LOG_INFO("SceneManager initialization is complete");
 	}
 
 	void SceneManager::updateScene(float deltaTime)

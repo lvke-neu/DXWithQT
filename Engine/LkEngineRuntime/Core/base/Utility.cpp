@@ -1,6 +1,6 @@
 #include "Utility.h"
 
-void RelativePath2AbsolutePath(std::string inVsShaderPath, std::string inPsShaderPath, std::string& outVsShaderPath, std::string& outPsShaderPath)
+void RelativePath2AbsolutePath(const std::string& relativeShaderPath, std::string& absoluteShaderPath)
 {
 	char exePath[MAX_PATH];
 	GetModuleFileName(NULL, (LPSTR)exePath, sizeof(exePath));
@@ -9,8 +9,7 @@ void RelativePath2AbsolutePath(std::string inVsShaderPath, std::string inPsShade
 	size_t n = exeDirectory.rfind("LkEngineEditor");
 	exeDirectory = exeDirectory.erase(n, exeDirectory.size() - n);
 
-	outVsShaderPath = exeDirectory + inVsShaderPath;
-	outPsShaderPath = exeDirectory + inPsShaderPath;
+	absoluteShaderPath = exeDirectory + relativeShaderPath;
 }
 
 

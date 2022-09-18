@@ -152,22 +152,33 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Asset\AssetManager.h" />
+    <ClInclude Include="Asset\DDSTextureLoader.h" />
+    <ClInclude Include="Asset\WICTextureLoader.h" />
+    <ClInclude Include="Core\base\ManagerInterface.h" />
     <ClInclude Include="Core\base\SingletonInterface.h" />
     <ClInclude Include="Core\base\Utility.h" />
     <ClInclude Include="Core\engine\Engine.h" />
     <ClInclude Include="Core\engine\GameTimer.h" />
     <ClInclude Include="Core\log\LogManager.h" />
+    <ClInclude Include="Scene\Component\Common\Light.h" />
+    <ClInclude Include="Scene\Component\Common\Material.h" />
+    <ClInclude Include="Scene\Component\Common\Transform.h" />
+    <ClInclude Include="Scene\Component\Interface\ComponentInterface.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TestComponent.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Asset\AssetManager.cpp" />
+    <ClCompile Include="Asset\DDSTextureLoader.cpp" />
+    <ClCompile Include="Asset\WICTextureLoader.cpp" />
     <ClCompile Include="Core\base\Utility.cpp" />
     <ClCompile Include="Core\engine\Engine.cpp" />
     <ClCompile Include="Core\engine\GameTimer.cpp">
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</WholeProgramOptimization>
     </ClCompile>
     <ClCompile Include="Core\log\LogManager.cpp" />
+    <ClCompile Include="Scene\Component\Common\Transform.cpp" />
+    <ClCompile Include="Scene\Component\Interface\ComponentInterface.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TestComponent.cpp" />
   </ItemGroup>

@@ -1,6 +1,6 @@
 #include "Engine.h"
 #include "../../Scene/SceneManager.h"
-#include "../base/Utility.h"
+#include "../../Asset/AssetManager.h"
 
 namespace LkEngine
 {
@@ -77,8 +77,10 @@ namespace LkEngine
 
 		onResize(m_windowWidth, m_windowHeight);
 
+		AssetManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
 		SceneManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
-		LOG_INFO("SceneManager initialization is complete");
+		
+
 	}
 
 	void Engine::updateScene(float deltaTime)
