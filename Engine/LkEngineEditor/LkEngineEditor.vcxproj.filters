@@ -7,6 +7,9 @@
     <ClCompile Include="LkEngineEditor.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="RenderWindow.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="头文件">
@@ -31,6 +34,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LkEngineEditor.h">
+      <Filter>头文件</Filter>
+    </QtMoc>
+    <QtMoc Include="RenderWindow.h">
       <Filter>头文件</Filter>
     </QtMoc>
   </ItemGroup>

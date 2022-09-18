@@ -11,6 +11,9 @@
     <Filter Include="Core\log">
       <UniqueIdentifier>{3d62d17f-d522-465e-ac00-068c3a83be17}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\engine">
+      <UniqueIdentifier>{9f0b1980-2829-44a0-b95d-6995f3f50fbd}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -22,10 +25,22 @@
     <ClInclude Include="Core\log\LogManager.h">
       <Filter>Core\log</Filter>
     </ClInclude>
+    <ClInclude Include="Core\engine\Engine.h">
+      <Filter>Core\engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\engine\GameTimer.h">
+      <Filter>Core\engine</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
       <Filter>Core\log</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\engine\Engine.cpp">
+      <Filter>Core\engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\engine\GameTimer.cpp">
+      <Filter>Core\engine</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

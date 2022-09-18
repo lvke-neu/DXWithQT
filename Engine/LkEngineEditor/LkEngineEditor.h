@@ -3,7 +3,7 @@
 
 
 #include "ui_LkEngineEditor.h"
-
+#include "RenderWindow.h"
 
 namespace Ui {
 class LkEngineEditor;
@@ -23,7 +23,7 @@ namespace LkEngine
 
 	private:
 		Ui::LkEngineEditor *ui;
-
+		RenderWindow* m_renderWindow{ nullptr };
 
 	};
 }

@@ -152,9 +152,13 @@
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h" />
     <ClInclude Include="Core\base\Utility.h" />
+    <ClInclude Include="Core\engine\Engine.h" />
+    <ClInclude Include="Core\engine\GameTimer.h" />
     <ClInclude Include="Core\log\LogManager.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="Core\engine\Engine.cpp" />
+    <ClCompile Include="Core\engine\GameTimer.cpp" />
     <ClCompile Include="Core\log\LogManager.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

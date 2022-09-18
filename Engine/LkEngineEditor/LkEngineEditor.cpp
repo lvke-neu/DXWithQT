@@ -1,5 +1,5 @@
 #include "LkEngineEditor.h"
-
+#include "../LkEngineRuntime/Core/base/Utility.h"
 
 
 namespace LkEngine
@@ -11,11 +11,13 @@ namespace LkEngine
 		ui->setupUi(this);
 		setWindowIcon(QIcon("EngineLogo/logo.png"));
 
+		m_renderWindow = new RenderWindow(this);
+		setCentralWidget(m_renderWindow);
 	}
 
 	LkEngineEditor::~LkEngineEditor()
 	{
-
+		SAFE_DELETE_SET_NULL(ui);
 	}
 
 }
