@@ -1,5 +1,6 @@
 #include "Engine.h"
-
+#include "../../Scene/SceneManager.h"
+#include "../base/Utility.h"
 
 namespace LkEngine
 {
@@ -75,16 +76,27 @@ namespace LkEngine
 		dxgiFactory1->MakeWindowAssociation(m_hInstance, DXGI_MWA_NO_ALT_ENTER | DXGI_MWA_NO_WINDOW_CHANGES);
 
 		onResize(m_windowWidth, m_windowHeight);
+
+		SceneManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
+		LOG_INFO("SceneManager initialization is complete");
 	}
 
 	void Engine::updateScene(float deltaTime)
 	{
-
+		SceneManager::getInstance().updateScene(deltaTime);
 	}
 
 	void Engine::drawScene()
 	{
+		static float black[4] = { 0.0f, 0.0f, 0.0f, 1.0f };	// RGBA = (0,0,0,255)
+		m_pd3dImmediateContext->ClearRenderTargetView(m_pRenderTargetView.Get(), black);
+		m_pd3dImmediateContext->ClearDepthStencilView(m_pDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
+		SceneManager::getInstance().drawScene();
+
+
+		m_pSwapChain->Present(0, 0);
+		
 	}
 
 	void Engine::onResize(UINT windowWidth, UINT windowHeight)

@@ -14,6 +14,15 @@
     <Filter Include="Core\engine">
       <UniqueIdentifier>{9f0b1980-2829-44a0-b95d-6995f3f50fbd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Asset">
+      <UniqueIdentifier>{c103a0b7-0f85-40bd-8e19-67b5c02ada16}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{e06d1fa5-ab9c-46d0-b91d-6854fa65f171}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\HLSL">
+      <UniqueIdentifier>{83c04448-9b7f-4db4-8c6d-8f82f69085c1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -31,6 +40,15 @@
     <ClInclude Include="Core\engine\GameTimer.h">
       <Filter>Core\engine</Filter>
     </ClInclude>
+    <ClInclude Include="Asset\AssetManager.h">
+      <Filter>Asset</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\TestComponent.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -42,5 +60,30 @@
     <ClCompile Include="Core\engine\GameTimer.cpp">
       <Filter>Core\engine</Filter>
     </ClCompile>
+    <ClCompile Include="Asset\AssetManager.cpp">
+      <Filter>Asset</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\TestComponent.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\base\Utility.cpp">
+      <Filter>Core\base</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scene\HLSL\Triangle.hlsli">
+      <Filter>Scene\HLSL</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Scene\HLSL\Triangle_PS.hlsl">
+      <Filter>Scene\HLSL</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\HLSL\Triangle_VS.hlsl">
+      <Filter>Scene\HLSL</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>
