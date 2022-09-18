@@ -70,19 +70,6 @@ namespace LkEngine
 		m_pd3dImmediateContext->Unmap(m_pMaterialCB.Get(), 0);
 	}
 
-	void IComponent::onTransformChanged()
-	{
-		WorldMatrix worldMatrix;
-		worldMatrix.g_world = XMMatrixTranspose(m_transform.getWorldMatrix());
-		worldMatrix.g_worldInvTranspose = XMMatrixTranspose(InverseTranspose(m_transform.getWorldMatrix()));
-
-
-		D3D11_MAPPED_SUBRESOURCE mappedData;
-		m_pd3dImmediateContext->Map(m_pWorldMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
-		memcpy_s(mappedData.pData, sizeof(WorldMatrix), &worldMatrix, sizeof(WorldMatrix));
-		m_pd3dImmediateContext->Unmap(m_pWorldMatrixCB.Get(), 0);
-	}
-
 	XMMATRIX XM_CALLCONV InverseTranspose(DirectX::FXMMATRIX M)
 	{
 		using namespace DirectX;
