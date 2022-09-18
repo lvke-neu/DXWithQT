@@ -9,7 +9,7 @@ namespace LkEngine
 		ui(new Ui::LkEngineEditor)
 	{
 		ui->setupUi(this);
-		setWindowIcon(QIcon("EngineLogo/logo.png"));
+		setWindowIcon(QIcon(":/builtin/EngineLogo/logo.png"));
 
 		m_renderWindow = new RenderWindow(this);
 		setCentralWidget(m_renderWindow);

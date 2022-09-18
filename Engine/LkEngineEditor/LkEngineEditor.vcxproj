@@ -146,10 +146,10 @@
     <QtUic Include="LkEngineEditor.ui" />
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="Resource.qrc" />
+    <QtMoc Include="RenderWindow.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="RenderWindow.h" />
+    <QtRcc Include="..\..\bin\Resource.qrc" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

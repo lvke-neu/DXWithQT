@@ -23,11 +23,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <QtRcc Include="Resource.qrc">
-      <Filter>资源文件</Filter>
-    </QtRcc>
-  </ItemGroup>
-  <ItemGroup>
     <QtUic Include="LkEngineEditor.ui">
       <Filter>资源文件</Filter>
     </QtUic>
@@ -39,5 +34,10 @@
     <QtMoc Include="RenderWindow.h">
       <Filter>头文件</Filter>
     </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\..\bin\Resource.qrc">
+      <Filter>资源文件</Filter>
+    </QtRcc>
   </ItemGroup>
 </Project>

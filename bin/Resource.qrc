@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>builtin/EngineLogo/logo.png</file>
+    </qresource>
+</RCC>
