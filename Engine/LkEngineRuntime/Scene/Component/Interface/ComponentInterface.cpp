@@ -17,6 +17,8 @@ namespace LkEngine
 
 		cbd.ByteWidth = sizeof(Material);
 		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pMaterialCB.GetAddressOf());
+
+		
 	}
 
 	IComponent::~IComponent()
@@ -37,6 +39,8 @@ namespace LkEngine
 		ComPtr<ID3DBlob> blob;
 
 		m_pVertexShader = AssetManager::getInstance().loadVsShaderAsset(vsShader, blob);
+
+		createVertexLayout(blob);
 
 		//blob.Reset();
 

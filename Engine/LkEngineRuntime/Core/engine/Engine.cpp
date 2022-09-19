@@ -1,5 +1,7 @@
 #include "Engine.h"
+
 #include "../../Scene/SceneManager.h"
+#include "../../Scene/Component/Camera/CameraManager.h"
 #include "../../Asset/AssetManager.h"
 
 namespace LkEngine
@@ -75,12 +77,13 @@ namespace LkEngine
 
 		dxgiFactory1->MakeWindowAssociation(m_hInstance, DXGI_MWA_NO_ALT_ENTER | DXGI_MWA_NO_WINDOW_CHANGES);
 
-		onResize(m_windowWidth, m_windowHeight);
 
 		AssetManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
+		CameraManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
 		SceneManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
-		
 
+
+		onResize(m_windowWidth, m_windowHeight);
 	}
 
 	void Engine::updateScene(float deltaTime)
@@ -155,6 +158,8 @@ namespace LkEngine
 		m_ScreenViewport.MaxDepth = 1.0f;
 
 		m_pd3dImmediateContext->RSSetViewports(1, &m_ScreenViewport);
+
+		CameraManager::getInstance().setFrustum(XM_PI / 3, static_cast<float>(windowWidth) / windowHeight, 0.5f, 1000.0f);
 	}
 }
 

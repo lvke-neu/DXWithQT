@@ -20,9 +20,6 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{e06d1fa5-ab9c-46d0-b91d-6854fa65f171}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\HLSL">
-      <UniqueIdentifier>{83c04448-9b7f-4db4-8c6d-8f82f69085c1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene\Component">
       <UniqueIdentifier>{db4b97a8-a1f9-43de-9bd3-b73514c0750e}</UniqueIdentifier>
     </Filter>
@@ -31,6 +28,15 @@
     </Filter>
     <Filter Include="Scene\Component\Interface">
       <UniqueIdentifier>{a56f7a45-c1c7-4af2-8d27-b872248f6f2f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component\Camera">
+      <UniqueIdentifier>{e10592d6-8937-4045-bcea-3a74c3a790d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Shader">
+      <UniqueIdentifier>{83c04448-9b7f-4db4-8c6d-8f82f69085c1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Shader\BoxComponent">
+      <UniqueIdentifier>{4d09b761-23d2-414a-a207-adeea9913ec1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +85,18 @@
     <ClInclude Include="Asset\WICTextureLoader.h">
       <Filter>Asset</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Component\Camera\CameraManager.h">
+      <Filter>Scene\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\BoxComponent.h">
+      <Filter>Scene\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\Common\VertexType.h">
+      <Filter>Scene\Component\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\Common\RenderStates.h">
+      <Filter>Scene\Component\Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -114,18 +132,42 @@
     <ClCompile Include="Asset\WICTextureLoader.cpp">
       <Filter>Asset</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Component\Camera\CameraManager.cpp">
+      <Filter>Scene\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\BoxComponent.cpp">
+      <Filter>Scene\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\Common\VertexType.cpp">
+      <Filter>Scene\Component\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\Common\RenderStates.cpp">
+      <Filter>Scene\Component\Common</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scene\HLSL\Triangle.hlsli">
-      <Filter>Scene\HLSL</Filter>
+    <None Include="Scene\Shader\CommonShader.hlsli">
+      <Filter>Scene\Shader</Filter>
+    </None>
+    <None Include="Scene\Shader\Triangle.hlsli">
+      <Filter>Scene\Shader</Filter>
+    </None>
+    <None Include="Scene\Shader\BoxComponent\BoxCommonShader.hlsli">
+      <Filter>Scene\Shader\BoxComponent</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Scene\HLSL\Triangle_PS.hlsl">
-      <Filter>Scene\HLSL</Filter>
+    <FxCompile Include="Scene\Shader\Triangle_PS.hlsl">
+      <Filter>Scene\Shader</Filter>
     </FxCompile>
-    <FxCompile Include="Scene\HLSL\Triangle_VS.hlsl">
-      <Filter>Scene\HLSL</Filter>
+    <FxCompile Include="Scene\Shader\Triangle_VS.hlsl">
+      <Filter>Scene\Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentPS.hlsl">
+      <Filter>Scene\Shader\BoxComponent</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentVS.hlsl">
+      <Filter>Scene\Shader\BoxComponent</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

@@ -10,8 +10,9 @@ SceneManager
 #include "../Core/base/SingletonInterface.h"
 #include "../Core/base/ManagerInterface.h"
 
+#include "Component/Interface/ComponentInterface.h"
 
-#include "TestComponent.h"
+
 
 namespace LkEngine
 {
@@ -22,7 +23,9 @@ namespace LkEngine
 		void updateScene(float deltaTime);
 		void drawScene();
 
+	public:
+		virtual ~SceneManager();
 	private:
-		TestComponent testComponent;
+		IComponent* pBoxComponent{ nullptr };
 	};
 }

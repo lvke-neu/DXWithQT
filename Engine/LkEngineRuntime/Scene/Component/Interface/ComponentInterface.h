@@ -14,11 +14,9 @@ The Interface of Component
 #include "../Common/Transform.h"
 
 /*
- constbuffer rule:
-	slot 0:WorldMatrix
-	slot 1:ViewMatrix
-	slot 2: ProjMatrix
-	slot 3：MaterialCB
+ commonshader constbuffer rule:
+	slot 0:ViewMatrix
+	slot 1: ProjMatrix
 
 */
 
@@ -37,6 +35,9 @@ namespace LkEngine
 	public:
 		IComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 		virtual ~IComponent();
+		virtual void buildMesh() = 0;
+		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) = 0;
+		virtual void bindPipeState() = 0;
 		virtual void draw() = 0;
 	public:
 		std::string getVsShader() { return m_vsShader; }
