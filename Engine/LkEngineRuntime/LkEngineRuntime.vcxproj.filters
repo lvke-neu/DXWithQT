@@ -61,9 +61,6 @@
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\TestComponent.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Component\Common\Light.h">
       <Filter>Scene\Component\Common</Filter>
     </ClInclude>
@@ -114,9 +111,6 @@
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\TestComponent.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Core\base\Utility.cpp">
       <Filter>Core\base</Filter>
     </ClCompile>
@@ -149,20 +143,11 @@
     <None Include="Scene\Shader\CommonShader.hlsli">
       <Filter>Scene\Shader</Filter>
     </None>
-    <None Include="Scene\Shader\Triangle.hlsli">
-      <Filter>Scene\Shader</Filter>
-    </None>
     <None Include="Scene\Shader\BoxComponent\BoxCommonShader.hlsli">
       <Filter>Scene\Shader\BoxComponent</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Scene\Shader\Triangle_PS.hlsl">
-      <Filter>Scene\Shader</Filter>
-    </FxCompile>
-    <FxCompile Include="Scene\Shader\Triangle_VS.hlsl">
-      <Filter>Scene\Shader</Filter>
-    </FxCompile>
     <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentPS.hlsl">
       <Filter>Scene\Shader\BoxComponent</Filter>
     </FxCompile>
