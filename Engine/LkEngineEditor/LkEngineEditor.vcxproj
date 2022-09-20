@@ -59,12 +59,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <IntDir>tmp\$(Configuration)\</IntDir>
     <OutDir>..\..\bin\</OutDir>
-    <IncludePath>$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(IncludePath)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(Qt_INCLUDEPATH_);</IncludePath>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutDir>..\..\bin\</OutDir>
-    <IncludePath>$(QTDIR)\include;$(QTDIR)\include\QtWidgets;$(IncludePath)</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(Qt_INCLUDEPATH_);</IncludePath>
     <IntDir>tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
