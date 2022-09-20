@@ -16,37 +16,40 @@ namespace LkEngine
 			XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
 
-		pBoxComponent = new BoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		pBoxComponent->setVsShader("builtin\\Shader\\BoxComponentVS.cso");
-		pBoxComponent->setPsShader("builtin\\Shader\\BoxComponentPS.cso");
-		pBoxComponent->setTexture("builtin\\Texture\\WoodCrate.dds");
-		pBoxComponent->setTransform(Transform(
+		m_pBoxComponent = new BoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_pBoxComponent->setVsShader("builtin\\Shader\\BoxComponentVS.cso");
+		m_pBoxComponent->setPsShader("builtin\\Shader\\BoxComponentPS.cso");
+		m_pBoxComponent->setTexture("builtin\\Texture\\WoodCrate.dds");
+		m_pBoxComponent->setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
 			XMFLOAT3(0.0f, 0.0f, 20.0f)
 		));
-		pBoxComponent->bindPipeState();
+		m_pBoxComponent->bindPipeState();
 
 		//m_pd3dImmediateContext->RSSetState(RenderStates::RSWireframe.Get());
+
+		m_cameracontroller = new Cameracontroller;
 
 		LOG_INFO("SceneManager initialization is complete");
 	}
 	SceneManager::~SceneManager()
 	{
-		SAFE_DELETE_SET_NULL(pBoxComponent);
+		SAFE_DELETE_SET_NULL(m_pBoxComponent);
+		SAFE_DELETE_SET_NULL(m_cameracontroller);
 	}
 
 	void SceneManager::updateScene(float deltaTime)
 	{
 		static float rot = 0.0f;
 		rot += deltaTime;
-		pBoxComponent->setRotation(rot, 0.0f, 0.0f);
+		//pBoxComponent->setRotation(rot, 0.0f, 0.0f);
 		//CameraManager::getInstance().setRotation(0.0f, rot, 0.0f);
 	}
 
 	void SceneManager::drawScene()
 	{
-		pBoxComponent->draw();
+		m_pBoxComponent->draw();
 	}
 }
 

@@ -9,6 +9,7 @@ The render window
 
 #include <QWidget>
 
+#include "../LkEngineRuntime/Core/engine/Engine.h"
 #include "../LkEngineRuntime/Core/engine/GameTimer.h"
 
 
@@ -37,6 +38,7 @@ namespace LkEngine
 		virtual void mouseMoveEvent(QMouseEvent *event) override;
 		virtual void wheelEvent(QWheelEvent *event) override;
 
+		void QMouseEvent2MouseState(QMouseEvent* event, MouseState& ms);
 		void CalculateFrameStats();
 
 	private:

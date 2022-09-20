@@ -38,6 +38,9 @@
     <Filter Include="Scene\Shader\BoxComponent">
       <UniqueIdentifier>{4d09b761-23d2-414a-a207-adeea9913ec1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Event">
+      <UniqueIdentifier>{5a5f3b09-fc58-48f8-8795-28a084ecad85}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -94,6 +97,15 @@
     <ClInclude Include="Scene\Component\Common\RenderStates.h">
       <Filter>Scene\Component\Common</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Event\InputEventManager.h">
+      <Filter>Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\Camera\Cameracontroller.h">
+      <Filter>Scene\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Event\FrameMoveEventManager.h">
+      <Filter>Core\Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -137,6 +149,15 @@
     </ClCompile>
     <ClCompile Include="Scene\Component\Common\RenderStates.cpp">
       <Filter>Scene\Component\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Event\InputEventManager.cpp">
+      <Filter>Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\Camera\Cameracontroller.cpp">
+      <Filter>Scene\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Event\FrameMoveEventManager.cpp">
+      <Filter>Core\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

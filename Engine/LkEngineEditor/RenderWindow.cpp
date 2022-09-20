@@ -1,5 +1,6 @@
+#include <qevent.h>
+
 #include "RenderWindow.h"
-#include "../LkEngineRuntime/Core/engine/Engine.h"
 #include "../LkEngineRuntime/Core/base/Utility.h"
 
 namespace LkEngine
@@ -27,7 +28,6 @@ namespace LkEngine
 
 	}
 
-
 	void RenderWindow::paintEvent(QPaintEvent *event)
 	{
 		m_Timer.Tick();
@@ -45,40 +45,56 @@ namespace LkEngine
 		LOG_INFO("Render Window On Resize: Width = " + std::to_string(m_parent->width()) + ", Height = " + std::to_string(m_parent->height()));
 	}
 
-
 	void RenderWindow::keyPressEvent(QKeyEvent *event)
 	{
-
+		Engine::getInstance().onKeyPress((Keys)event->key());
 	}
 
 	void RenderWindow::keyReleaseEvent(QKeyEvent *event)
 	{
-
-
+		Engine::getInstance().onKeyRelease((Keys)event->key());
 	}
-
 
 	void RenderWindow::mousePressEvent(QMouseEvent *event)
 	{
+		MouseState ms;
 
+		QMouseEvent2MouseState(event, ms);
+
+		Engine::getInstance().onMousePress(ms);
 	}
-
-
 
 	void RenderWindow::mouseMoveEvent(QMouseEvent *event)
 	{
+		MouseState ms;
 
+		QMouseEvent2MouseState(event, ms);
+
+		Engine::getInstance().onMouseMove(ms);
 
 	}
 
 	void RenderWindow::mouseReleaseEvent(QMouseEvent *event)
 	{
+		MouseState ms;
 
+		QMouseEvent2MouseState(event, ms);
+
+		Engine::getInstance().onMouseRelease(ms);
 	}
 
 	void RenderWindow::wheelEvent(QWheelEvent *event)
 	{
 
+	}
+
+
+	void RenderWindow::QMouseEvent2MouseState(QMouseEvent* event, MouseState& ms)
+	{
+		QPoint screenPoint = event->screenPos().toPoint();
+		ms.mousePos.x = screenPoint.x();
+		ms.mousePos.y = screenPoint.y();
+		ms.mouseType = (MouseType)event->button();
 	}
 
 	void RenderWindow::CalculateFrameStats()

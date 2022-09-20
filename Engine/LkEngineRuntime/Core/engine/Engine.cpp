@@ -89,6 +89,7 @@ namespace LkEngine
 	void Engine::updateScene(float deltaTime)
 	{
 		SceneManager::getInstance().updateScene(deltaTime);
+		FrameMoveEventManager::getInstance().onFrameMove(deltaTime);
 	}
 
 	void Engine::drawScene()

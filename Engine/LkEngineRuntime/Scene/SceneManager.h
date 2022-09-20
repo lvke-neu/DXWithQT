@@ -9,9 +9,8 @@ SceneManager
 
 #include "../Core/base/SingletonInterface.h"
 #include "../Core/base/ManagerInterface.h"
-
 #include "Component/Interface/ComponentInterface.h"
-
+#include "Component/Camera/Cameracontroller.h"
 
 
 namespace LkEngine
@@ -26,6 +25,7 @@ namespace LkEngine
 	public:
 		virtual ~SceneManager();
 	private:
-		IComponent* pBoxComponent{ nullptr };
+		IComponent* m_pBoxComponent{ nullptr };
+		Cameracontroller* m_cameracontroller{ nullptr };
 	};
 }

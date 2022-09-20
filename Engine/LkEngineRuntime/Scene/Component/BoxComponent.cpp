@@ -6,6 +6,8 @@ namespace LkEngine
 {
 	void BoxComponent::buildMesh()
 	{
+		
+
 		m_pVertexBuffer.Reset();
 		m_pIndexBuffer.Reset();
 

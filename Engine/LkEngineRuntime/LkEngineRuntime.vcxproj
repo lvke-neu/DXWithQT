@@ -159,8 +159,11 @@
     <ClInclude Include="Core\base\Utility.h" />
     <ClInclude Include="Core\engine\Engine.h" />
     <ClInclude Include="Core\engine\GameTimer.h" />
+    <ClInclude Include="Core\Event\FrameMoveEventManager.h" />
+    <ClInclude Include="Core\Event\InputEventManager.h" />
     <ClInclude Include="Core\log\LogManager.h" />
     <ClInclude Include="Scene\Component\BoxComponent.h" />
+    <ClInclude Include="Scene\Component\Camera\Cameracontroller.h" />
     <ClInclude Include="Scene\Component\Camera\CameraManager.h" />
     <ClInclude Include="Scene\Component\Common\Light.h" />
     <ClInclude Include="Scene\Component\Common\Material.h" />
@@ -179,8 +182,11 @@
     <ClCompile Include="Core\engine\GameTimer.cpp">
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</WholeProgramOptimization>
     </ClCompile>
+    <ClCompile Include="Core\Event\FrameMoveEventManager.cpp" />
+    <ClCompile Include="Core\Event\InputEventManager.cpp" />
     <ClCompile Include="Core\log\LogManager.cpp" />
     <ClCompile Include="Scene\Component\BoxComponent.cpp" />
+    <ClCompile Include="Scene\Component\Camera\Cameracontroller.cpp" />
     <ClCompile Include="Scene\Component\Camera\CameraManager.cpp" />
     <ClCompile Include="Scene\Component\Common\RenderStates.cpp" />
     <ClCompile Include="Scene\Component\Common\Transform.cpp" />
