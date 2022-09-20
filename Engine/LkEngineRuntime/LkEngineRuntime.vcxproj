@@ -197,12 +197,12 @@
     <ClCompile Include="Scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Scene\Shader\BoxComponent\BoxCommonShader.hlsli" />
+    <None Include="Scene\Shader\BasicPrimitive\BasicPrimitive.hlsli" />
     <None Include="Scene\Shader\CommonShader.hlsli" />
     <None Include="Scene\Shader\SkyBoxComponent\SkyBoxCommonShader.hlsli" />
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentPS.hlsl">
+    <FxCompile Include="Scene\Shader\BasicPrimitive\BasicPrimitivePS.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PS</EntryPointName>
       <DisableOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DisableOptimizations>
       <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EnableDebuggingInformation>
@@ -214,7 +214,7 @@
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$(OutDir)builtin\Shader\%(Filename).cso</ObjectFileOutput>
       <ObjectFileOutput Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$(OutDir)builtin\Shader\%(Filename).cso</ObjectFileOutput>
     </FxCompile>
-    <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentVS.hlsl">
+    <FxCompile Include="Scene\Shader\BasicPrimitive\BasicPrimitiveVS.hlsl">
       <EntryPointName Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">VS</EntryPointName>
       <DisableOptimizations Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</DisableOptimizations>
       <EnableDebuggingInformation Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</EnableDebuggingInformation>

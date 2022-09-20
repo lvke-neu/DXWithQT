@@ -16,8 +16,8 @@ namespace LkEngine
 		));
 
 		m_pBoxComponent = new BoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		m_pBoxComponent->setVsShader("builtin\\Shader\\BoxComponentVS.cso");
-		m_pBoxComponent->setPsShader("builtin\\Shader\\BoxComponentPS.cso");
+		m_pBoxComponent->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		m_pBoxComponent->setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
 		m_pBoxComponent->setTexture("builtin\\Texture\\WoodCrate.dds");
 		m_pBoxComponent->setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -38,8 +38,6 @@ namespace LkEngine
 
 
 		m_cameracontroller = new Cameracontroller;
-
-		
 
 		LOG_INFO("SceneManager initialization is complete");
 	}

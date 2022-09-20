@@ -35,14 +35,14 @@
     <Filter Include="Scene\Shader">
       <UniqueIdentifier>{83c04448-9b7f-4db4-8c6d-8f82f69085c1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Shader\BoxComponent">
-      <UniqueIdentifier>{4d09b761-23d2-414a-a207-adeea9913ec1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Event">
       <UniqueIdentifier>{5a5f3b09-fc58-48f8-8795-28a084ecad85}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scene\Shader\SkyBoxComponent">
       <UniqueIdentifier>{a4f4077e-7f7a-4e8c-a5c8-415d6f646073}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Shader\BasicPrimitive">
+      <UniqueIdentifier>{4d09b761-23d2-414a-a207-adeea9913ec1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -173,25 +173,25 @@
     <None Include="Scene\Shader\CommonShader.hlsli">
       <Filter>Scene\Shader</Filter>
     </None>
-    <None Include="Scene\Shader\BoxComponent\BoxCommonShader.hlsli">
-      <Filter>Scene\Shader\BoxComponent</Filter>
-    </None>
     <None Include="Scene\Shader\SkyBoxComponent\SkyBoxCommonShader.hlsli">
       <Filter>Scene\Shader\SkyBoxComponent</Filter>
     </None>
+    <None Include="Scene\Shader\BasicPrimitive\BasicPrimitive.hlsli">
+      <Filter>Scene\Shader\BasicPrimitive</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentPS.hlsl">
-      <Filter>Scene\Shader\BoxComponent</Filter>
-    </FxCompile>
-    <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentVS.hlsl">
-      <Filter>Scene\Shader\BoxComponent</Filter>
-    </FxCompile>
     <FxCompile Include="Scene\Shader\SkyBoxComponent\SkyBoxComponentPS.hlsl">
       <Filter>Scene\Shader\SkyBoxComponent</Filter>
     </FxCompile>
     <FxCompile Include="Scene\Shader\SkyBoxComponent\SkyBoxComponentVS.hlsl">
       <Filter>Scene\Shader\SkyBoxComponent</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\BasicPrimitive\BasicPrimitivePS.hlsl">
+      <Filter>Scene\Shader\BasicPrimitive</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\BasicPrimitive\BasicPrimitiveVS.hlsl">
+      <Filter>Scene\Shader\BasicPrimitive</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
