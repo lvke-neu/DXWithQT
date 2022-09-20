@@ -38,13 +38,23 @@ namespace LkEngine
 
 	void Cameracontroller::onFrameMove(float deltaTime)
 	{
-		if (m_isKeyDown[Keys::W])
+		if (m_isKeyDown[Keys::Key_W])
 			CameraManager::getInstance().moveZAxis(deltaTime * 20);
-		if (m_isKeyDown[Keys::S])
+		if (m_isKeyDown[Keys::Key_S])
 			CameraManager::getInstance().moveZAxis(-deltaTime * 20);
-		if (m_isKeyDown[Keys::A])
+		if (m_isKeyDown[Keys::Key_A])
 			CameraManager::getInstance().moveXAxis(-deltaTime * 20);
-		if (m_isKeyDown[Keys::D])
+		if (m_isKeyDown[Keys::Key_D])
 			CameraManager::getInstance().moveXAxis(deltaTime * 20);
+
+		if (m_isKeyDown[Keys::Key_Up])
+			CameraManager::getInstance().rotXAxis(-deltaTime);
+		if (m_isKeyDown[Keys::Key_Down])
+			CameraManager::getInstance().rotXAxis(deltaTime);
+		if (m_isKeyDown[Keys::Key_Left])
+			CameraManager::getInstance().rotYAxis(-deltaTime);
+		if (m_isKeyDown[Keys::Key_Right])
+			CameraManager::getInstance().rotYAxis(deltaTime);
+
 	}
 }

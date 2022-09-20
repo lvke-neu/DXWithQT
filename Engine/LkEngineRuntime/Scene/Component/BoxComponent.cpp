@@ -133,6 +133,7 @@ namespace LkEngine
 
 	void BoxComponent::draw()
 	{
+		bindPipeState();
 		m_pd3dImmediateContext->DrawIndexed(m_indexCount, 0, 0);
 	}
 }

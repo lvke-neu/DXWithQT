@@ -63,7 +63,15 @@ namespace LkEngine
 		XMStoreFloat3(&m_position, pos);
 	}
 
+	void Transform::rotXAxis(float angle)
+	{
+		m_rotation.x += angle;
+	}
 
+	void Transform::rotYAxis(float angle)
+	{
+		m_rotation.y += angle;
+	}
 
 	void Transform::lookTo(const XMFLOAT3& direction, const XMFLOAT3& up)
 	{

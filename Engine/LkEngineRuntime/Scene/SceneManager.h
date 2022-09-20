@@ -11,7 +11,8 @@ SceneManager
 #include "../Core/base/ManagerInterface.h"
 #include "Component/Interface/ComponentInterface.h"
 #include "Component/Camera/Cameracontroller.h"
-
+#include "Component/BoxComponent.h"
+#include "Component/SkyBoxComponent.h"
 
 namespace LkEngine
 {
@@ -25,7 +26,10 @@ namespace LkEngine
 	public:
 		virtual ~SceneManager();
 	private:
-		IComponent* m_pBoxComponent{ nullptr };
+		BoxComponent* m_pBoxComponent{ nullptr };
+		SkyBoxComponent* m_skyBoxComponent{ nullptr };
+
 		Cameracontroller* m_cameracontroller{ nullptr };
+
 	};
 }

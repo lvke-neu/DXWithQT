@@ -68,4 +68,16 @@ namespace LkEngine
 		memcpy_s(mappedData.pData, sizeof(ProjMatrix), &projMatrix, sizeof(ProjMatrix));
 		m_pd3dImmediateContext->Unmap(m_pProjMatrixCB.Get(), 0);
 	}
+
+	void CameraManager::changeViewMatrixCB(const XMMATRIX& view)
+	{
+		ViewMatrix viewMatrix;
+		viewMatrix.g_view = XMMatrixTranspose(view);
+		viewMatrix.g_eyePoW = XMFLOAT3(m_transform.getPosition());
+
+		D3D11_MAPPED_SUBRESOURCE mappedData;
+		m_pd3dImmediateContext->Map(m_pViewMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+		memcpy_s(mappedData.pData, sizeof(ViewMatrix), &viewMatrix, sizeof(ViewMatrix));
+		m_pd3dImmediateContext->Unmap(m_pViewMatrixCB.Get(), 0);
+	}
 }

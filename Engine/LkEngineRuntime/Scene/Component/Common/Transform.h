@@ -18,6 +18,8 @@ namespace LkEngine
 		void move(const XMFLOAT3& direction, float distance);
 		void moveZAxis(float distance);
 		void moveXAxis(float distance);
+		void rotXAxis(float angle);
+		void rotYAxis(float angle);
 
 		void lookTo(const XMFLOAT3& direction, const XMFLOAT3& up);
 		XMFLOAT3 GetEulerAnglesFromRotationMatrix(const DirectX::XMFLOAT4X4& rotationMatrix);

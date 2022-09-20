@@ -40,6 +40,7 @@ namespace LkEngine
 	public:
 		void onViewMatrixChanged();
 		void onProjMatrixChanged();
+		void changeViewMatrixCB(const XMMATRIX& view);
 	public:
 		Transform getTransform() { return m_transform; }
 		void setTransform(const Transform& transform) { m_transform = transform; onViewMatrixChanged(); }
@@ -68,6 +69,8 @@ namespace LkEngine
 	public:
 		void moveZAxis(float distance) { m_transform.moveZAxis(distance); onViewMatrixChanged(); }
 		void moveXAxis(float distance) { m_transform.moveXAxis(distance); onViewMatrixChanged(); }
+		void rotXAxis(float angle) { m_transform.rotXAxis(angle); onViewMatrixChanged(); }
+		void rotYAxis(float angel) { m_transform.rotYAxis(angel); onViewMatrixChanged(); }
 	private:
 		ComPtr<ID3D11Buffer> m_pViewMatrixCB;
 		ComPtr<ID3D11Buffer> m_pProjMatrixCB;

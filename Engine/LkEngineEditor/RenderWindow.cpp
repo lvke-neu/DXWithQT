@@ -15,7 +15,7 @@ namespace LkEngine
 		setFocusPolicy(Qt::StrongFocus);
 		setMouseTracking(true);
 
-		Engine::getInstance().initialize((HWND)winId(), m_parent->width(), m_parent->height());
+		Engine::getInstance().initialize((HWND)winId(), width(), height());
 		LOG_INFO("Engine initialization is complete");
 		
 
@@ -41,7 +41,7 @@ namespace LkEngine
 
 	void RenderWindow::resizeEvent(QResizeEvent *event)
 	{
-		Engine::getInstance().onResize(m_parent->width(), m_parent->height());
+		Engine::getInstance().onResize(width(), height());
 		LOG_INFO("Render Window On Resize: Width = " + std::to_string(m_parent->width()) + ", Height = " + std::to_string(m_parent->height()));
 	}
 

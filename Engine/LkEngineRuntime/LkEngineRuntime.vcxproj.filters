@@ -41,6 +41,9 @@
     <Filter Include="Core\Event">
       <UniqueIdentifier>{5a5f3b09-fc58-48f8-8795-28a084ecad85}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Shader\SkyBoxComponent">
+      <UniqueIdentifier>{a4f4077e-7f7a-4e8c-a5c8-415d6f646073}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -106,6 +109,9 @@
     <ClInclude Include="Core\Event\FrameMoveEventManager.h">
       <Filter>Core\Event</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Component\SkyBoxComponent.h">
+      <Filter>Scene\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -159,6 +165,9 @@
     <ClCompile Include="Core\Event\FrameMoveEventManager.cpp">
       <Filter>Core\Event</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Component\SkyBoxComponent.cpp">
+      <Filter>Scene\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scene\Shader\CommonShader.hlsli">
@@ -167,6 +176,9 @@
     <None Include="Scene\Shader\BoxComponent\BoxCommonShader.hlsli">
       <Filter>Scene\Shader\BoxComponent</Filter>
     </None>
+    <None Include="Scene\Shader\SkyBoxComponent\SkyBoxCommonShader.hlsli">
+      <Filter>Scene\Shader\SkyBoxComponent</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentPS.hlsl">
@@ -174,6 +186,12 @@
     </FxCompile>
     <FxCompile Include="Scene\Shader\BoxComponent\BoxComponentVS.hlsl">
       <Filter>Scene\Shader\BoxComponent</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\SkyBoxComponent\SkyBoxComponentPS.hlsl">
+      <Filter>Scene\Shader\SkyBoxComponent</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\SkyBoxComponent\SkyBoxComponentVS.hlsl">
+      <Filter>Scene\Shader\SkyBoxComponent</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

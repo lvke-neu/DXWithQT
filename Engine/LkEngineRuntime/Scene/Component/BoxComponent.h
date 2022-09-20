@@ -13,7 +13,7 @@ namespace LkEngine
 {
 
 
-	class BoxComponent :public IComponent
+	class BoxComponent : public IComponent
 	{
 	public:
 		BoxComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) :IComponent(pd3dDevice, pd3dImmediateContext) { buildMesh(); }
