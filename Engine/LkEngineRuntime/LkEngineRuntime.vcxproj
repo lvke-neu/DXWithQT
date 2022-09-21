@@ -171,6 +171,7 @@
     <ClInclude Include="Scene\Component\Common\Transform.h" />
     <ClInclude Include="Scene\Component\Common\VertexType.h" />
     <ClInclude Include="Scene\Component\Interface\ComponentInterface.h" />
+    <ClInclude Include="Scene\Component\PlaneComponent.h" />
     <ClInclude Include="Scene\Component\SkyBoxComponent.h" />
     <ClInclude Include="Scene\SceneManager.h" />
   </ItemGroup>
@@ -193,6 +194,7 @@
     <ClCompile Include="Scene\Component\Common\Transform.cpp" />
     <ClCompile Include="Scene\Component\Common\VertexType.cpp" />
     <ClCompile Include="Scene\Component\Interface\ComponentInterface.cpp" />
+    <ClCompile Include="Scene\Component\PlaneComponent.cpp" />
     <ClCompile Include="Scene\Component\SkyBoxComponent.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
   </ItemGroup>

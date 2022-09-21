@@ -112,6 +112,9 @@
     <ClInclude Include="Scene\Component\SkyBoxComponent.h">
       <Filter>Scene\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Component\PlaneComponent.h">
+      <Filter>Scene\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -166,6 +169,9 @@
       <Filter>Core\Event</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Component\SkyBoxComponent.cpp">
+      <Filter>Scene\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\PlaneComponent.cpp">
       <Filter>Scene\Component</Filter>
     </ClCompile>
   </ItemGroup>
