@@ -24,28 +24,39 @@ namespace LkEngine
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
 			XMFLOAT3(0.0f, 0.0f, 20.0f)
 		));
+
+		m_pBoxComponent2 = new BoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_pBoxComponent2->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		m_pBoxComponent2->setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		m_pBoxComponent2->setTexture("builtin\\Texture\\WoodCrate.dds");
+		m_pBoxComponent2->setTransform(Transform(
+			XMFLOAT3(1.0f, 1.0f, 1.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(2.0f, 0.0f, 20.0f)
+		));
 		
 
-		m_skyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		m_skyBoxComponent->setVsShader("builtin\\Shader\\SkyBoxComponentVS.cso");
-		m_skyBoxComponent->setPsShader("builtin\\Shader\\SkyBoxComponentPS.cso");
-		m_skyBoxComponent->setTexture("builtin\\Texture\\SkyBox\\daylight.jpg");
-		m_skyBoxComponent->setTransform(Transform(
+		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_pSkyBoxComponent->setVsShader("builtin\\Shader\\SkyBoxComponentVS.cso");
+		m_pSkyBoxComponent->setPsShader("builtin\\Shader\\SkyBoxComponentPS.cso");
+		m_pSkyBoxComponent->setTexture("builtin\\Texture\\SkyBox\\daylight.jpg");
+		m_pSkyBoxComponent->setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
 
 
-		m_cameracontroller = new Cameracontroller;
+		m_pCameracontroller = new Cameracontroller;
 
 		LOG_INFO("SceneManager initialization is complete");
 	}
 	SceneManager::~SceneManager()
 	{
 		SAFE_DELETE_SET_NULL(m_pBoxComponent);
-		SAFE_DELETE_SET_NULL(m_skyBoxComponent);
-		SAFE_DELETE_SET_NULL(m_cameracontroller);
+		SAFE_DELETE_SET_NULL(m_pBoxComponent2);
+		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
+		SAFE_DELETE_SET_NULL(m_pCameracontroller);
 	}
 
 	void SceneManager::updateScene(float deltaTime)
@@ -59,8 +70,8 @@ namespace LkEngine
 	void SceneManager::drawScene()
 	{
 		m_pBoxComponent->draw();
-
-		m_skyBoxComponent->draw();
+		m_pBoxComponent2->draw();
+		m_pSkyBoxComponent->draw();
 	}
 }
 

@@ -27,9 +27,10 @@ namespace LkEngine
 		virtual ~SceneManager();
 	private:
 		BoxComponent* m_pBoxComponent{ nullptr };
-		SkyBoxComponent* m_skyBoxComponent{ nullptr };
+		BoxComponent* m_pBoxComponent2{ nullptr };
+		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };
 
-		Cameracontroller* m_cameracontroller{ nullptr };
+		Cameracontroller* m_pCameracontroller{ nullptr };
 
 	};
 }
