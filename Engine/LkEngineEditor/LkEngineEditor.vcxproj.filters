@@ -10,6 +10,15 @@
     <ClCompile Include="RenderWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CustomToolBox\Form.cpp">
+      <Filter>CustomToolBox\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomToolBox\ToolBox.cpp">
+      <Filter>CustomToolBox\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomToolBox\ToolPage.cpp">
+      <Filter>CustomToolBox\源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="头文件">
@@ -21,10 +30,31 @@
     <Filter Include="资源文件">
       <UniqueIdentifier>{8c5b9e0d-6812-4697-aa50-ce90fad8b7c3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="CustomToolBox">
+      <UniqueIdentifier>{b8448711-b242-445b-8cb9-6036872547e9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CustomToolBox\头文件">
+      <UniqueIdentifier>{d273f087-b7a0-4fee-98fb-cd3fe7e49ac8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CustomToolBox\源文件">
+      <UniqueIdentifier>{ac56b2f4-1587-4769-ad85-d0e68bbd8784}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="CustomToolBox\资源文件">
+      <UniqueIdentifier>{24a5a9da-a0ec-4942-9da3-ee67cdead88c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="LkEngineEditor.ui">
       <Filter>资源文件</Filter>
+    </QtUic>
+    <QtUic Include="CustomToolBox\Form.ui">
+      <Filter>CustomToolBox\资源文件</Filter>
+    </QtUic>
+    <QtUic Include="CustomToolBox\ToolBox.ui">
+      <Filter>CustomToolBox\资源文件</Filter>
+    </QtUic>
+    <QtUic Include="CustomToolBox\ToolPage.ui">
+      <Filter>CustomToolBox\资源文件</Filter>
     </QtUic>
   </ItemGroup>
   <ItemGroup>
@@ -34,10 +64,25 @@
     <QtMoc Include="RenderWindow.h">
       <Filter>头文件</Filter>
     </QtMoc>
+    <QtMoc Include="CustomToolBox\Form.h">
+      <Filter>CustomToolBox\头文件</Filter>
+    </QtMoc>
+    <QtMoc Include="CustomToolBox\ToolBox.h">
+      <Filter>CustomToolBox\头文件</Filter>
+    </QtMoc>
+    <QtMoc Include="CustomToolBox\ToolPage.h">
+      <Filter>CustomToolBox\头文件</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="..\..\bin\Resource.qrc">
       <Filter>资源文件</Filter>
+    </QtRcc>
+    <QtRcc Include="CustomToolBox\img.qrc">
+      <Filter>CustomToolBox\资源文件</Filter>
+    </QtRcc>
+    <QtRcc Include="CustomToolBox\qss.qrc">
+      <Filter>CustomToolBox\资源文件</Filter>
     </QtRcc>
   </ItemGroup>
 </Project>

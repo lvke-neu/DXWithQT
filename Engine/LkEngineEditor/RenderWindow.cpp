@@ -1,5 +1,6 @@
 #include <qevent.h>
 
+
 #include "RenderWindow.h"
 #include "../LkEngineRuntime/Core/base/Utility.h"
 
@@ -14,6 +15,9 @@ namespace LkEngine
 		setAttribute(Qt::WA_NativeWindow, true);
 		setFocusPolicy(Qt::StrongFocus);
 		setMouseTracking(true);
+
+
+	
 
 		Engine::getInstance().initialize((HWND)winId(), width(), height());
 		LOG_INFO("Engine initialization is complete");

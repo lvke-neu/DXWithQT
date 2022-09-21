@@ -69,8 +69,8 @@ namespace LkEngine
 		if (m_whichMousePress == RightButton)
 		{
 			XMFLOAT3 rot = CameraManager::getInstance().getRotation();
-			rot.y -= m_mouseDeltaX * deltaTime * 2;
-			rot.x -= m_mouseDeltaY * deltaTime * 2;
+			rot.y -= m_mouseDeltaX * deltaTime * 4;
+			rot.x -= m_mouseDeltaY * deltaTime * 4;
 			CameraManager::getInstance().setRotation(rot);
 		}
 	}
