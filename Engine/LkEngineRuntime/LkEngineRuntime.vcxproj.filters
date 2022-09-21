@@ -103,17 +103,14 @@
     <ClInclude Include="Core\Event\InputEventManager.h">
       <Filter>Core\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Component\Camera\Cameracontroller.h">
-      <Filter>Scene\Component\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Event\FrameMoveEventManager.h">
       <Filter>Core\Event</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Component\SkyBoxComponent.h">
       <Filter>Scene\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Component\PlaneComponent.h">
-      <Filter>Scene\Component</Filter>
+    <ClInclude Include="Scene\Component\Camera\CameraController.h">
+      <Filter>Scene\Component\Camera</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -162,17 +159,14 @@
     <ClCompile Include="Core\Event\InputEventManager.cpp">
       <Filter>Core\Event</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Component\Camera\Cameracontroller.cpp">
-      <Filter>Scene\Component\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Event\FrameMoveEventManager.cpp">
       <Filter>Core\Event</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Component\SkyBoxComponent.cpp">
       <Filter>Scene\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Component\PlaneComponent.cpp">
-      <Filter>Scene\Component</Filter>
+    <ClCompile Include="Scene\Component\Camera\CameraController.cpp">
+      <Filter>Scene\Component\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

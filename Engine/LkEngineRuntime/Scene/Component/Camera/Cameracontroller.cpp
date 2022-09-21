@@ -1,42 +1,52 @@
-#include "Cameracontroller.h"
+#include "CameraController.h"
 #include "CameraManager.h"
 
 namespace LkEngine
 {
 
-	void Cameracontroller::onKeyPress(const Keys& key)
+	void CameraController::onKeyPress(const Keys& key)
 	{
 		if(!m_isKeyDown[key])
 			m_isKeyDown[key] = true;
 	}
 
-	void Cameracontroller::onKeyRelease(const Keys& key)
+	void CameraController::onKeyRelease(const Keys& key)
 	{
 		if (m_isKeyDown[key])
 			m_isKeyDown[key] = false;
 	}
 
-	void Cameracontroller::onMousePress(const MouseState& mouseState)
+	void CameraController::onMousePress(const MouseState& mouseState)
+	{
+		m_whichMousePress = mouseState.mouseType;
+		m_oldMousePos = mouseState.mousePos;
+	}
+
+
+	void CameraController::onMouseRelease(const MouseState& mouseState)
+	{
+		if (m_whichMousePress == RightButton)
+		{
+			m_whichMousePress = NoButton;
+		}
+	}
+
+	void CameraController::onMouseMove(const MouseState& mouseState) 
+	{
+		if (m_whichMousePress == RightButton)
+		{
+			m_mouseDeltaX = float(m_oldMousePos.x - mouseState.mousePos.x);
+			m_mouseDeltaY = float(m_oldMousePos.y - mouseState.mousePos.y);
+			m_oldMousePos = mouseState.mousePos;
+		}
+	}
+
+	void CameraController::onMouseWheelEvent(const MouseState& mouseState) 
 	{
 
 	}
 
-	void Cameracontroller::onMouseRelease(const MouseState& mouseState)
-	{
-
-	}
-
-	void Cameracontroller::onMouseMove(const MouseState& mouseState) 
-	{
-
-	}
-
-	void Cameracontroller::onMouseWheelEvent(const MouseState& mouseState) 
-	{
-
-	}
-
-	void Cameracontroller::onFrameMove(float deltaTime)
+	void CameraController::onFrameMove(float deltaTime)
 	{
 		if (m_isKeyDown[Keys::Key_W])
 			CameraManager::getInstance().moveZAxis(deltaTime * 20);
@@ -56,5 +66,12 @@ namespace LkEngine
 		if (m_isKeyDown[Keys::Key_Right])
 			CameraManager::getInstance().rotYAxis(deltaTime);
 
+		if (m_whichMousePress == RightButton)
+		{
+			XMFLOAT3 rot = CameraManager::getInstance().getRotation();
+			rot.y -= m_mouseDeltaX * deltaTime * 2;
+			rot.x -= m_mouseDeltaY * deltaTime * 2;
+			CameraManager::getInstance().setRotation(rot);
+		}
 	}
 }

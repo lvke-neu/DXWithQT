@@ -10,10 +10,10 @@ SceneManager
 #include "../Core/base/SingletonInterface.h"
 #include "../Core/base/ManagerInterface.h"
 #include "Component/Interface/ComponentInterface.h"
-#include "Component/Camera/Cameracontroller.h"
+#include "Component/Camera/CameraController.h"
 #include "Component/BoxComponent.h"
 #include "Component/SkyBoxComponent.h"
-#include "Component/PlaneComponent.h"
+//#include "Component/PlaneComponent.h"
 
 namespace LkEngine
 {
@@ -29,11 +29,11 @@ namespace LkEngine
 	private:
 		BoxComponent* m_pBoxComponent{ nullptr };
 		BoxComponent* m_pBoxComponent2{ nullptr };
-		PlaneComponent* m_pPlaneComponent{ nullptr };
+		//PlaneComponent* m_pPlaneComponent{ nullptr };
 
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };
 		
-		Cameracontroller* m_pCameracontroller{ nullptr };
+		CameraController* m_pCameraController{ nullptr };
 
 	};
 }

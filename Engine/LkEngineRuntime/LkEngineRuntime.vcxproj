@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{69E006B0-A841-40C4-B034-43B3F90AFB81}</ProjectGuid>
     <RootNamespace>LkEngineRuntime</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,13 +41,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -163,7 +163,7 @@
     <ClInclude Include="Core\Event\InputEventManager.h" />
     <ClInclude Include="Core\log\LogManager.h" />
     <ClInclude Include="Scene\Component\BoxComponent.h" />
-    <ClInclude Include="Scene\Component\Camera\Cameracontroller.h" />
+    <ClInclude Include="Scene\Component\Camera\CameraController.h" />
     <ClInclude Include="Scene\Component\Camera\CameraManager.h" />
     <ClInclude Include="Scene\Component\Common\Light.h" />
     <ClInclude Include="Scene\Component\Common\Material.h" />
@@ -171,7 +171,6 @@
     <ClInclude Include="Scene\Component\Common\Transform.h" />
     <ClInclude Include="Scene\Component\Common\VertexType.h" />
     <ClInclude Include="Scene\Component\Interface\ComponentInterface.h" />
-    <ClInclude Include="Scene\Component\PlaneComponent.h" />
     <ClInclude Include="Scene\Component\SkyBoxComponent.h" />
     <ClInclude Include="Scene\SceneManager.h" />
   </ItemGroup>
@@ -188,13 +187,12 @@
     <ClCompile Include="Core\Event\InputEventManager.cpp" />
     <ClCompile Include="Core\log\LogManager.cpp" />
     <ClCompile Include="Scene\Component\BoxComponent.cpp" />
-    <ClCompile Include="Scene\Component\Camera\Cameracontroller.cpp" />
+    <ClCompile Include="Scene\Component\Camera\CameraController.cpp" />
     <ClCompile Include="Scene\Component\Camera\CameraManager.cpp" />
     <ClCompile Include="Scene\Component\Common\RenderStates.cpp" />
     <ClCompile Include="Scene\Component\Common\Transform.cpp" />
     <ClCompile Include="Scene\Component\Common\VertexType.cpp" />
     <ClCompile Include="Scene\Component\Interface\ComponentInterface.cpp" />
-    <ClCompile Include="Scene\Component\PlaneComponent.cpp" />
     <ClCompile Include="Scene\Component\SkyBoxComponent.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
   </ItemGroup>

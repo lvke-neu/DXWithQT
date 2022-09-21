@@ -72,6 +72,8 @@ namespace LkEngine
 
 		Engine::getInstance().onMouseMove(ms);
 
+		repaint();
+
 	}
 
 	void RenderWindow::mouseReleaseEvent(QMouseEvent *event)

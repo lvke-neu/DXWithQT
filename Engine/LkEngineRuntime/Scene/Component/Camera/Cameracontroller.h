@@ -12,10 +12,10 @@ Camera controller
 
 namespace LkEngine
 {
-	class Cameracontroller : public InputEvent, public FrameMoveEvent
+	class CameraController : public InputEvent, public FrameMoveEvent
 	{
 	public:
-		Cameracontroller()
+		CameraController()
 		{
 			for (uint16_t i = 0; i <= 254; i++)
 			{
@@ -24,7 +24,7 @@ namespace LkEngine
 			InputEventManager::getInstance().registerInputEvent(this);
 			FrameMoveEventManager::getInstance().registerFrameMoveEvent(this);
 		}
-		~Cameracontroller()
+		~CameraController()
 		{
 			InputEventManager::getInstance().unRegisterInputEvent(this);
 			FrameMoveEventManager::getInstance().unRegisterFrameMoveEvent(this);
@@ -41,6 +41,11 @@ namespace LkEngine
 	
 	private:
 		std::map<Keys, bool> m_isKeyDown;
+
+		MouseType m_whichMousePress = NoButton;
+		MousePos m_oldMousePos;
+		float m_mouseDeltaX = 0.0f;
+		float m_mouseDeltaY = 0.0f;
 	};
 }
 
