@@ -26,6 +26,11 @@ namespace LkEngine
 
 	public:
 		virtual ~SceneManager();
+
+	public:
+		std::string getSkyBoxTexture();
+		void setSkyBoxTexture(const std::string& skyBoxTexture);
+		void setWireFrame(bool b);
 	private:
 		BoxComponent* m_pBoxComponent{ nullptr };
 		BoxComponent* m_pBoxComponent2{ nullptr };

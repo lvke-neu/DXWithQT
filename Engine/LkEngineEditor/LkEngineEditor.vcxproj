@@ -13,19 +13,19 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{322C9F25-3B15-47D8-AB21-62F994063F71}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0</WindowsTargetPlatformVersion>
-    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.17763.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.17763.0</WindowsTargetPlatformVersion>
     <QtMsBuild Condition="'$(QtMsBuild)'=='' OR !Exists('$(QtMsBuild)\qt.targets')">$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
@@ -35,12 +35,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
-    <QtInstall>msvc2015_64</QtInstall>
+    <QtInstall>5.12.0_msvc2015_64</QtInstall>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
     <QtModules>core;gui;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
-    <QtInstall>msvc2015_64</QtInstall>
+    <QtInstall>5.12.0_msvc2015_64</QtInstall>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
     <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
@@ -59,12 +59,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <IntDir>tmp\$(Configuration)\</IntDir>
     <OutDir>..\..\bin\</OutDir>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(Qt_INCLUDEPATH_);C:\Qt\Qt5.12.0\5.12.0\msvc2015_64\include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(Qt_INCLUDEPATH_);</IncludePath>
     <TargetName>$(ProjectName)_d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutDir>..\..\bin\</OutDir>
-    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(Qt_INCLUDEPATH_);C:\Qt\Qt5.12.0\5.12.0\msvc2015_64\include</IncludePath>
+    <IncludePath>$(VC_IncludePath);$(WindowsSDK_IncludePath);$(Qt_INCLUDEPATH_);</IncludePath>
     <IntDir>tmp\$(Configuration)\</IntDir>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -133,7 +133,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CustomToolBox\CameraForm.cpp" />
     <ClCompile Include="CustomToolBox\Form.cpp" />
+    <ClCompile Include="CustomToolBox\SkyBoxForm.cpp" />
     <ClCompile Include="CustomToolBox\ToolBox.cpp" />
     <ClCompile Include="CustomToolBox\ToolPage.cpp" />
     <ClCompile Include="main.cpp">
@@ -146,7 +148,9 @@
     <QtMoc Include="LkEngineEditor.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="CustomToolBox\CameraForm.ui" />
     <QtUic Include="CustomToolBox\Form.ui" />
+    <QtUic Include="CustomToolBox\SkyBoxForm.ui" />
     <QtUic Include="CustomToolBox\ToolBox.ui" />
     <QtUic Include="CustomToolBox\ToolPage.ui" />
     <QtUic Include="LkEngineEditor.ui" />
@@ -167,6 +171,12 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CustomToolBox\ToolPage.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="CustomToolBox\SkyBoxForm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="CustomToolBox\CameraForm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

@@ -19,6 +19,12 @@
     <ClCompile Include="CustomToolBox\ToolPage.cpp">
       <Filter>CustomToolBox\源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CustomToolBox\SkyBoxForm.cpp">
+      <Filter>CustomToolBox\源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomToolBox\CameraForm.cpp">
+      <Filter>CustomToolBox\源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="头文件">
@@ -56,6 +62,12 @@
     <QtUic Include="CustomToolBox\ToolPage.ui">
       <Filter>CustomToolBox\资源文件</Filter>
     </QtUic>
+    <QtUic Include="CustomToolBox\SkyBoxForm.ui">
+      <Filter>CustomToolBox\资源文件</Filter>
+    </QtUic>
+    <QtUic Include="CustomToolBox\CameraForm.ui">
+      <Filter>CustomToolBox\资源文件</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LkEngineEditor.h">
@@ -71,6 +83,12 @@
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
     <QtMoc Include="CustomToolBox\ToolPage.h">
+      <Filter>CustomToolBox\头文件</Filter>
+    </QtMoc>
+    <QtMoc Include="CustomToolBox\SkyBoxForm.h">
+      <Filter>CustomToolBox\头文件</Filter>
+    </QtMoc>
+    <QtMoc Include="CustomToolBox\CameraForm.h">
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
   </ItemGroup>

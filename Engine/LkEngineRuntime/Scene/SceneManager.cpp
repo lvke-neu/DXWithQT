@@ -87,5 +87,20 @@ namespace LkEngine
 
 		m_pSkyBoxComponent->draw();
 	}
+
+	std::string SceneManager::getSkyBoxTexture()
+	{
+		return m_pSkyBoxComponent->getTexture();
+	}
+
+	void SceneManager::setSkyBoxTexture(const std::string& skyBoxTexture)
+	{
+		m_pSkyBoxComponent->setTexture(skyBoxTexture);
+	}
+
+	void SceneManager::setWireFrame(bool b)
+	{
+		m_pd3dImmediateContext->RSSetState(b ? RenderStates::RSWireframe.Get() : RenderStates::RSNoCull.Get());
+	}
 }
 

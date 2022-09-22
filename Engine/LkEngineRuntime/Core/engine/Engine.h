@@ -12,6 +12,7 @@ The Engine is responsible for initializing D3D and building the process of TICK
 #include "../base/SingletonInterface.h"
 #include "../Event/InputEventManager.h"
 #include "../Event/FrameMoveEventManager.h"
+#include "../../Scene/SceneManager.h"
 
 namespace LkEngine
 {
@@ -33,6 +34,10 @@ namespace LkEngine
 		void onMouseRelease(const MouseState& mouseState) { InputEventManager::getInstance().onMouseRelease(mouseState); }
 		void onMouseMove(const MouseState& mouseState) { InputEventManager::getInstance().onMouseMove(mouseState); }
 		void onMouseWheelEvent(const MouseState& mouseState) { InputEventManager::getInstance().onMouseWheelEvent(mouseState); }
+	public:
+		std::string getSkyBoxTexture() { return SceneManager::getInstance().getSkyBoxTexture(); }
+		void setSkyBoxTexture(const std::string& skyBoxTexture) { SceneManager::getInstance().setSkyBoxTexture(skyBoxTexture); }
+		void setWireFrame(bool b) { SceneManager::getInstance().setWireFrame(b); }
 	private:
 		HWND m_hInstance;
 		UINT m_windowWidth;

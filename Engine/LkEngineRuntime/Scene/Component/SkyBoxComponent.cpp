@@ -11,10 +11,13 @@ namespace LkEngine
 	}
 	void SkyBoxComponent::setTexture(const std::string& texture)
 	{
-		m_texture = texture;
-		m_pTexture.Reset();
+		if (m_texture != texture)
+		{
+			m_texture = texture;
+			m_pTexture.Reset();
 
-		m_pTexture = AssetManager::getInstance().loadSkyBoxTextureAsset(texture);
+			m_pTexture = AssetManager::getInstance().loadSkyBoxTextureAsset(texture);
+		}
 	}
 
 	void SkyBoxComponent::draw()

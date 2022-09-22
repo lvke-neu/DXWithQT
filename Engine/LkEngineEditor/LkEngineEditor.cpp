@@ -5,6 +5,9 @@
 
 #include "CustomToolBox/ToolBox.h"
 #include "CustomToolBox/Form.h"
+#include "CustomToolBox/SkyBoxForm.h"
+#include "CustomToolBox/CameraForm.h"
+
 namespace LkEngine
 {
 	LkEngineEditor::LkEngineEditor(QWidget *parent) :
@@ -17,9 +20,10 @@ namespace LkEngine
 		m_renderWindow = new RenderWindow(this);
 		
 		ToolBox* toolBox = new ToolBox(m_renderWindow);
+		toolBox->addWidget(QString("SkyBox"), new SkyBoxForm());
 		toolBox->addWidget(QString("Light"), new Form());
 		toolBox->addWidget(QString("Fog"), new Form());
-		toolBox->addWidget(QString("Camera"), new Form());
+		toolBox->addWidget(QString("Camera"), new CameraForm());
 		toolBox->addWidget(QString("Component"), new Form());
 
 		
