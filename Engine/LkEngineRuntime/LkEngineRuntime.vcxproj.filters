@@ -112,6 +112,9 @@
     <ClInclude Include="Scene\Component\Camera\CameraController.h">
       <Filter>Scene\Component\Camera</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Component\PlaneComponent.h">
+      <Filter>Scene\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -167,6 +170,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Component\Camera\CameraController.cpp">
       <Filter>Scene\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\PlaneComponent.cpp">
+      <Filter>Scene\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

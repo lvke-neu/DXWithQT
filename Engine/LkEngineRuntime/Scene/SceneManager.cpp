@@ -35,15 +35,15 @@ namespace LkEngine
 			XMFLOAT3(3.0f, 0.0f, 20.0f)
 		));
 		
-		//m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		//m_pPlaneComponent->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
-		//m_pPlaneComponent->setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
-		//m_pPlaneComponent->setTexture("builtin\\Texture\\grass.dds");
-		//m_pPlaneComponent->setTransform(Transform(
-		//	XMFLOAT3(50.0f, 50.0f, 1.0f),
-		//	XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
-		//	XMFLOAT3(0.0f, -5.0f, 5.0f)
-		//));
+		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_pPlaneComponent->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		m_pPlaneComponent->setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		m_pPlaneComponent->setTexture("builtin\\Texture\\floor.dds");
+		m_pPlaneComponent->setTransform(Transform(
+			XMFLOAT3(20.0f, 20.0f, 1.0f),
+			XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, -5.0f, 5.0f)
+		));
 
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pSkyBoxComponent->setVsShader("builtin\\Shader\\SkyBoxComponentVS.cso");
@@ -64,7 +64,7 @@ namespace LkEngine
 	{
 		SAFE_DELETE_SET_NULL(m_pBoxComponent);
 		SAFE_DELETE_SET_NULL(m_pBoxComponent2);
-		//SAFE_DELETE_SET_NULL(m_pPlaneComponent);
+		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		
 		SAFE_DELETE_SET_NULL(m_pCameraController);
@@ -83,7 +83,7 @@ namespace LkEngine
 	{
 		m_pBoxComponent->draw();
 		m_pBoxComponent2->draw();
-		//m_pPlaneComponent->draw();
+		m_pPlaneComponent->draw();
 
 		m_pSkyBoxComponent->draw();
 	}
