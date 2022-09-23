@@ -13,6 +13,8 @@ class SkyBoxForm : public QWidget
 public:
 	explicit SkyBoxForm(QWidget *parent = nullptr);
 	~SkyBoxForm();
+
+	
 public slots:
 	void setSkyBoxTexture(QString skyBoxTexture);
 private:

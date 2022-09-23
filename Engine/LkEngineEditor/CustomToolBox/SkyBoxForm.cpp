@@ -23,3 +23,4 @@ void SkyBoxForm::setSkyBoxTexture(QString skyBoxTexture)
 	Engine::getInstance().setSkyBoxTexture(("builtin\\Texture\\SkyBox\\" + skyBoxTexture.toStdString()).c_str());
 	LOG_INFO(skyBoxTexture.toStdString())
 }
+

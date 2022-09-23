@@ -2,6 +2,7 @@
 
 #include <QWidget>
 
+
 namespace Ui {
 class CameraForm;
 }
@@ -13,6 +14,8 @@ class CameraForm : public QWidget
 public:
 	explicit CameraForm(QWidget *parent = nullptr);
 	~CameraForm();
+	virtual void paintEvent(QPaintEvent* event) override;
+
 public slots:
 	void setWireFrame(bool b);
 private:

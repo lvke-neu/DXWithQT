@@ -38,6 +38,9 @@ namespace LkEngine
 		std::string getSkyBoxTexture() { return SceneManager::getInstance().getSkyBoxTexture(); }
 		void setSkyBoxTexture(const std::string& skyBoxTexture) { SceneManager::getInstance().setSkyBoxTexture(skyBoxTexture); }
 		void setWireFrame(bool b) { SceneManager::getInstance().setWireFrame(b); }
+		XMFLOAT3 getCameraPos() {return CameraManager::getInstance().getPosition(); }
+		XMFLOAT3 getCameraRot() { return CameraManager::getInstance().getRotation(); }
+		XMFLOAT3 getCameraScale() { return CameraManager::getInstance().getScale(); }
 	private:
 		HWND m_hInstance;
 		UINT m_windowWidth;
