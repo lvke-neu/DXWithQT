@@ -1,5 +1,6 @@
 #pragma once 
 #include <DirectXMath.h>
+#include <string>
 
 namespace LkEngine
 {
@@ -23,12 +24,13 @@ namespace LkEngine
 
 		void lookTo(const XMFLOAT3& direction, const XMFLOAT3& up);
 		XMFLOAT3 GetEulerAnglesFromRotationMatrix(const DirectX::XMFLOAT4X4& rotationMatrix);
+		std::string to_string();
 	public:
-		XMFLOAT3 getScale() { return m_scale; }
+		XMFLOAT3 getScale() const { return m_scale; }
 		void setScale(XMFLOAT3 scale) { m_scale = scale; }
-		XMFLOAT3 getRotation() { return m_rotation; }
+		XMFLOAT3 getRotation() const { return m_rotation; }
 		void setRotation(XMFLOAT3 rotation) { m_rotation = rotation; }
-		XMFLOAT3 getPosition() { return m_position; }
+		XMFLOAT3 getPosition() const { return m_position; }
 		void setPosition(XMFLOAT3 position) { m_position = position; }
 	private:
 		XMFLOAT3 m_scale;

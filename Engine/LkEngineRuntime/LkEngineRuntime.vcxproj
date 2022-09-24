@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{69E006B0-A841-40C4-B034-43B3F90AFB81}</ProjectGuid>
     <RootNamespace>LkEngineRuntime</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -41,13 +41,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -159,6 +159,7 @@
     <ClInclude Include="Core\base\Utility.h" />
     <ClInclude Include="Core\engine\Engine.h" />
     <ClInclude Include="Core\engine\GameTimer.h" />
+    <ClInclude Include="Core\Event\CameraChangedManager.h" />
     <ClInclude Include="Core\Event\FrameMoveEventManager.h" />
     <ClInclude Include="Core\Event\InputEventManager.h" />
     <ClInclude Include="Core\log\LogManager.h" />
@@ -184,6 +185,7 @@
     <ClCompile Include="Core\engine\GameTimer.cpp">
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</WholeProgramOptimization>
     </ClCompile>
+    <ClCompile Include="Core\Event\CameraChangedManager.cpp" />
     <ClCompile Include="Core\Event\FrameMoveEventManager.cpp" />
     <ClCompile Include="Core\Event\InputEventManager.cpp" />
     <ClCompile Include="Core\log\LogManager.cpp" />

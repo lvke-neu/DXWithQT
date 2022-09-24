@@ -13,6 +13,7 @@ Description:
 #include "../Common/Transform.h"
 #include "../../../Core/base/ManagerInterface.h"
 #include "../../../Core/base/SingletonInterface.h"
+#include "../../../Core/Event/CameraChangedManager.h"
 
 namespace LkEngine
 {
@@ -57,6 +58,13 @@ namespace LkEngine
 		void setPosition(float x, float y, float z) { setPosition(XMFLOAT3(x, y, z)); }
 		void setPosition(const XMFLOAT3& pos) { m_transform.setPosition(pos); onViewMatrixChanged(); }
 
+		void getFrustum(float& FovAngleY, float& AspectRatio, float& NearZ, float& FarZ)
+		{
+			FovAngleY =  m_fovAngleY ;
+			AspectRatio =  m_aspectRatio ;
+			NearZ = m_nearZ;
+			FarZ = m_farZ;
+		}
 		void setFrustum(float FovAngleY, float AspectRatio, float NearZ, float FarZ)
 		{
 			m_fovAngleY = FovAngleY;
@@ -65,6 +73,8 @@ namespace LkEngine
 			m_farZ = FarZ;
 
 			onProjMatrixChanged();
+
+			CameraChangedManager::getInstance().onCameraFrustumChanged();
 		}
 	public:
 		void moveZAxis(float distance) { m_transform.moveZAxis(distance); onViewMatrixChanged(); }

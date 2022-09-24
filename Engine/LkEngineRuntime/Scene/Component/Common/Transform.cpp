@@ -97,4 +97,11 @@ namespace LkEngine
 		return rotation;
 	}
 
+	std::string Transform::to_string()
+	{
+		
+		return std::string("\nscale:" + std::to_string(m_scale.x) + "," + std::to_string(m_scale.y) + "," + std::to_string(m_scale.z) + "\n" + 
+			"rotation:" + std::to_string(m_rotation.x) + "," + std::to_string(m_rotation.y) + "," + std::to_string(m_rotation.z) + "22" + "\n" +
+			"position:" + std::to_string(m_position.x) + "," + std::to_string(m_position.y) + "," + std::to_string(m_position.z) + "22");
+	}
 }

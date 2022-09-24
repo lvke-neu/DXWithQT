@@ -28,9 +28,10 @@ private slots:
 private:
     Ui::ToolPage *ui;
 
-    bool m_bIsExpanded;
+   
     QLabel *m_pLabel;
-
+public:
+	static bool m_bIsExpanded;
 };
 
 #endif // TOOLPAGE_H

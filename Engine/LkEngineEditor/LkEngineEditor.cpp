@@ -21,8 +21,6 @@ namespace LkEngine
 		
 		ToolBox* toolBox = new ToolBox(m_renderWindow);
 		toolBox->addWidget(QString("SkyBox"), new SkyBoxForm());
-		toolBox->addWidget(QString("Light"), new Form());
-		toolBox->addWidget(QString("Fog"), new Form());
 		toolBox->addWidget(QString("Camera"), new CameraForm());
 		toolBox->addWidget(QString("Component"), new Form());
 

@@ -6,8 +6,9 @@
 #include "RenderWindow.h"
 
 namespace Ui {
-class LkEngineEditor;
+	class LkEngineEditor;
 }
+
 
 namespace LkEngine
 {

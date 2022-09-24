@@ -22,7 +22,8 @@ ToolBox::ToolBox(QWidget *parent) :
     vBoxLayout->addStretch(1);
 
     ui->scrollArea->setWidget(widget);
-
+	
+	setFixedWidth(230);
 }
 
 ToolBox::~ToolBox()

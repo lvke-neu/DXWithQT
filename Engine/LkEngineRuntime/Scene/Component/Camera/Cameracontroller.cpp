@@ -1,5 +1,6 @@
 #include "CameraController.h"
 #include "CameraManager.h"
+#include "../../../Core/Event/CameraChangedManager.h"
 
 namespace LkEngine
 {
@@ -48,23 +49,39 @@ namespace LkEngine
 
 	void CameraController::onFrameMove(float deltaTime)
 	{
+		bool bMove = false;
 		if (m_isKeyDown[Keys::Key_W])
+		{
 			CameraManager::getInstance().moveZAxis(deltaTime * 20);
+			bMove = true;
+		}
+			
 		if (m_isKeyDown[Keys::Key_S])
+		{
 			CameraManager::getInstance().moveZAxis(-deltaTime * 20);
+			bMove = true;
+		}
+			
 		if (m_isKeyDown[Keys::Key_A])
+		{
 			CameraManager::getInstance().moveXAxis(-deltaTime * 20);
+			bMove = true;
+		}
+			
 		if (m_isKeyDown[Keys::Key_D])
+		{
 			CameraManager::getInstance().moveXAxis(deltaTime * 20);
+			bMove = true;
+		}
 
-		if (m_isKeyDown[Keys::Key_Up])
-			CameraManager::getInstance().rotXAxis(-deltaTime);
-		if (m_isKeyDown[Keys::Key_Down])
-			CameraManager::getInstance().rotXAxis(deltaTime);
-		if (m_isKeyDown[Keys::Key_Left])
-			CameraManager::getInstance().rotYAxis(-deltaTime);
-		if (m_isKeyDown[Keys::Key_Right])
-			CameraManager::getInstance().rotYAxis(deltaTime);
+		//if (m_isKeyDown[Keys::Key_Up])
+		//	CameraManager::getInstance().rotXAxis(-deltaTime);
+		//if (m_isKeyDown[Keys::Key_Down])
+		//	CameraManager::getInstance().rotXAxis(deltaTime);
+		//if (m_isKeyDown[Keys::Key_Left])
+		//	CameraManager::getInstance().rotYAxis(-deltaTime);
+		//if (m_isKeyDown[Keys::Key_Right])
+		//	CameraManager::getInstance().rotYAxis(deltaTime);
 
 		if (m_whichMousePress == RightButton)
 		{
@@ -72,6 +89,11 @@ namespace LkEngine
 			rot.y -= m_mouseDeltaX *  0.01f;
 			rot.x -= m_mouseDeltaY *  0.01f;
 			CameraManager::getInstance().setRotation(rot);
+			bMove = true;
 		}
+
+		if (bMove)
+			CameraChangedManager::getInstance().onCameraMove();
+			
 	}
 }

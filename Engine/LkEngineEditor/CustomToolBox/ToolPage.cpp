@@ -8,10 +8,11 @@
 #include <QLabel>
 #include <QFile>
 
+bool ToolPage::m_bIsExpanded = true;
+
 ToolPage::ToolPage(QWidget *parent) :
     QWidget(parent),
     ui(new Ui::ToolPage),
-    m_bIsExpanded(true),
     m_pLabel(nullptr)
 {
     ui->setupUi(this);

@@ -115,6 +115,9 @@
     <ClInclude Include="Scene\Component\PlaneComponent.h">
       <Filter>Scene\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Event\CameraChangedManager.h">
+      <Filter>Core\Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -173,6 +176,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Component\PlaneComponent.cpp">
       <Filter>Scene\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Event\CameraChangedManager.cpp">
+      <Filter>Core\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
