@@ -155,6 +155,7 @@
     <ClInclude Include="Asset\DDSTextureLoader.h" />
     <ClInclude Include="Asset\WICTextureLoader.h" />
     <ClInclude Include="Core\base\ManagerInterface.h" />
+    <ClInclude Include="Core\base\Reflection.h" />
     <ClInclude Include="Core\base\SingletonInterface.h" />
     <ClInclude Include="Core\base\Utility.h" />
     <ClInclude Include="Core\engine\Engine.h" />

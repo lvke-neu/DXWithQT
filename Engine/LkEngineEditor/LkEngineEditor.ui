@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>LK-Engine</string>
+   <string>LK-Engine 版本0.001</string>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="widget" native="true">
@@ -38,6 +38,10 @@
    <addaction name="openSolution"/>
    <addaction name="separator"/>
    <addaction name="closeSolution"/>
+   <addaction name="separator"/>
+   <addaction name="openSceneCfg"/>
+   <addaction name="separator"/>
+   <addaction name="closeSceneCfg"/>
   </widget>
   <action name="openSolution">
    <property name="enabled">
@@ -50,6 +54,16 @@
   <action name="closeSolution">
    <property name="text">
     <string>保存解决方案</string>
+   </property>
+  </action>
+  <action name="openSceneCfg">
+   <property name="text">
+    <string>打开基础场景配置</string>
+   </property>
+  </action>
+  <action name="closeSceneCfg">
+   <property name="text">
+    <string>关闭基础场景配置</string>
    </property>
   </action>
  </widget>

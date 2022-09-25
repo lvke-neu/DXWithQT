@@ -4,6 +4,7 @@
 
 #include "ui_LkEngineEditor.h"
 #include "RenderWindow.h"
+#include "CustomToolBox/ToolBox.h"
 
 namespace Ui {
 	class LkEngineEditor;
@@ -20,12 +21,14 @@ namespace LkEngine
 	public:
 		explicit LkEngineEditor(QWidget *parent = nullptr);
 		~LkEngineEditor();
-
+	public slots:
+		void openSceneCfg();
+		void closeSceneCfg();
 
 	private:
 		Ui::LkEngineEditor *ui;
 		RenderWindow* m_renderWindow{ nullptr };
-
+		ToolBox* m_sceneCfgToolBox{ nullptr };
 	};
 }
 

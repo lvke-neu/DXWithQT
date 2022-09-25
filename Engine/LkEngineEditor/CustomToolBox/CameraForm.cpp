@@ -101,7 +101,7 @@ void CameraForm::setCameraTransform()
 	LkEngine::Transform transform(scale, rot, pos);
 	Engine::getInstance().setCameraTransform(transform);
 
-	LOG_INFO(transform.to_string())
+	//LOG_INFO(transform.to_string())
 
 }
 

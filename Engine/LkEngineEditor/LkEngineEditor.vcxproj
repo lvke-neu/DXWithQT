@@ -134,6 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CustomToolBox\CameraForm.cpp" />
+    <ClCompile Include="CustomToolBox\ComponentFrom.cpp" />
     <ClCompile Include="CustomToolBox\Form.cpp" />
     <ClCompile Include="CustomToolBox\SkyBoxForm.cpp" />
     <ClCompile Include="CustomToolBox\ToolBox.cpp" />
@@ -149,6 +150,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="CustomToolBox\CameraForm.ui" />
+    <QtUic Include="CustomToolBox\ComponentFrom.ui" />
     <QtUic Include="CustomToolBox\Form.ui" />
     <QtUic Include="CustomToolBox\SkyBoxForm.ui" />
     <QtUic Include="CustomToolBox\ToolBox.ui" />
@@ -177,6 +179,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CustomToolBox\CameraForm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="CustomToolBox\ComponentFrom.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

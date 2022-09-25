@@ -31,13 +31,15 @@ namespace LkEngine
 		std::string getSkyBoxTexture();
 		void setSkyBoxTexture(const std::string& skyBoxTexture);
 		void setWireFrame(bool b);
-	private:
-		BoxComponent* m_pBoxComponent{ nullptr };
-		BoxComponent* m_pBoxComponent2{ nullptr };
-		PlaneComponent* m_pPlaneComponent{ nullptr };
 
+
+	private:
+
+		std::vector<IComponent*> m_componets;
+
+
+		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };
-		
 		CameraController* m_pCameraController{ nullptr };
 
 	};

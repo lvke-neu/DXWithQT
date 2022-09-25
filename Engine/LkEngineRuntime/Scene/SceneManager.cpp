@@ -15,25 +15,25 @@ namespace LkEngine
 			XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
 
-		m_pBoxComponent = new BoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		m_pBoxComponent->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
-		m_pBoxComponent->setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
-		m_pBoxComponent->setTexture("builtin\\Texture\\WoodCrate.dds");
-		m_pBoxComponent->setTransform(Transform(
-			XMFLOAT3(1.0f, 1.0f, 1.0f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f),
-			XMFLOAT3(0.0f, 0.0f, 20.0f)
-		));
+		//m_pBoxComponent = new BoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		//m_pBoxComponent->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		//m_pBoxComponent->setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		//m_pBoxComponent->setTexture("builtin\\Texture\\WoodCrate.dds");
+		//m_pBoxComponent->setTransform(Transform(
+		//	XMFLOAT3(1.0f, 1.0f, 1.0f),
+		//	XMFLOAT3(0.0f, 0.0f, 0.0f),
+		//	XMFLOAT3(0.0f, 0.0f, 20.0f)
+		//));
 
-		m_pBoxComponent2 = new BoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		m_pBoxComponent2->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
-		m_pBoxComponent2->setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
-		m_pBoxComponent2->setTexture("builtin\\Texture\\WoodCrate.dds");
-		m_pBoxComponent2->setTransform(Transform(
-			XMFLOAT3(1.0f, 1.0f, 1.0f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f),
-			XMFLOAT3(3.0f, 0.0f, 20.0f)
-		));
+		//m_pBoxComponent2 = new BoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		//m_pBoxComponent2->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		//m_pBoxComponent2->setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		//m_pBoxComponent2->setTexture("builtin\\Texture\\WoodCrate.dds");
+		//m_pBoxComponent2->setTransform(Transform(
+		//	XMFLOAT3(1.0f, 1.0f, 1.0f),
+		//	XMFLOAT3(0.0f, 0.0f, 0.0f),
+		//	XMFLOAT3(3.0f, 0.0f, 20.0f)
+		//));
 		
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pPlaneComponent->setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
@@ -62,8 +62,8 @@ namespace LkEngine
 	}
 	SceneManager::~SceneManager()
 	{
-		SAFE_DELETE_SET_NULL(m_pBoxComponent);
-		SAFE_DELETE_SET_NULL(m_pBoxComponent2);
+		//SAFE_DELETE_SET_NULL(m_pBoxComponent);
+		//SAFE_DELETE_SET_NULL(m_pBoxComponent2);
 		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		
@@ -75,14 +75,14 @@ namespace LkEngine
 	{
 		static float rot = 0.0f;
 		rot += deltaTime;
-		m_pBoxComponent->setRotation(rot, 0.0f, 0.0f);
+		//m_pBoxComponent->setRotation(rot, 0.0f, 0.0f);
 		//CameraManager::getInstance().setRotation(0.0f, rot, 0.0f);
 	}
 
 	void SceneManager::drawScene()
 	{
-		m_pBoxComponent->draw();
-		m_pBoxComponent2->draw();
+		//m_pBoxComponent->draw();
+		//m_pBoxComponent2->draw();
 		m_pPlaneComponent->draw();
 
 		m_pSkyBoxComponent->draw();

@@ -33,6 +33,7 @@ namespace LkEngine
 			XMMATRIX g_worldInvTranspose;
 		};
 	public:
+		
 		IComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 		virtual ~IComponent();
 		virtual void buildMesh() = 0;

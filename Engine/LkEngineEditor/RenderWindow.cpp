@@ -116,7 +116,7 @@ namespace LkEngine
 			float fps = (float)frameCnt; // fps = frameCnt / 1
 			float mspf = 1000.0f / fps;
 
-			std::string str = "LK-Engine  FPS:" + std::to_string(fps);
+			std::string str = "LK-Engine 版本0.001  FPS:" + std::to_string(fps);
 			m_parent->setWindowTitle(QString(str.c_str()));
 
 
