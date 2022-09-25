@@ -9,7 +9,15 @@ namespace LkEngine
 
 	Engine::Engine()
 	{
+		for (uint16_t i = 0; i <= 2; i++)
+		{
+			m_bIsMousePress[(MouseType)i] = false;
+		}
 
+		for (uint16_t i = 0; i <= 254; i++)
+		{
+			m_isKeyDown[(Keys)i] = false;
+		}
 	}
 
 	Engine::~Engine()
@@ -161,6 +169,7 @@ namespace LkEngine
 		m_pd3dImmediateContext->RSSetViewports(1, &m_ScreenViewport);
 
 		CameraManager::getInstance().setFrustum(XM_PI / 3, static_cast<float>(windowWidth) / windowHeight, 0.5f, 1000.0f);
+		CameraManager::getInstance().setViewport(m_ScreenViewport);
 	}
 }
 

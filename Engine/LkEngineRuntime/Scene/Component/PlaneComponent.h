@@ -16,7 +16,7 @@ namespace LkEngine
 	class PlaneComponent : public IComponent
 	{
 	public:
-		PlaneComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) :IComponent(pd3dDevice, pd3dImmediateContext) { buildMesh(); }
+		PlaneComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 	public:
 		virtual void buildMesh() override;
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) override;

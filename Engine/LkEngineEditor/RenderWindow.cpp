@@ -97,7 +97,7 @@ namespace LkEngine
 
 	void RenderWindow::QMouseEvent2MouseState(QMouseEvent* event, MouseState& ms)
 	{
-		QPoint screenPoint = event->screenPos().toPoint();
+		QPoint screenPoint = event->pos();
 		ms.mousePos.x = screenPoint.x();
 		ms.mousePos.y = screenPoint.y();
 		ms.mouseType = (MouseType)event->button();

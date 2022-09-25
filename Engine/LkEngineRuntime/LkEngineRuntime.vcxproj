@@ -158,6 +158,7 @@
     <ClInclude Include="Core\base\Reflection.h" />
     <ClInclude Include="Core\base\SingletonInterface.h" />
     <ClInclude Include="Core\base\Utility.h" />
+    <ClInclude Include="Core\collision\Ray.h" />
     <ClInclude Include="Core\engine\Engine.h" />
     <ClInclude Include="Core\engine\GameTimer.h" />
     <ClInclude Include="Core\Event\CameraChangedManager.h" />
@@ -182,6 +183,7 @@
     <ClCompile Include="Asset\DDSTextureLoader.cpp" />
     <ClCompile Include="Asset\WICTextureLoader.cpp" />
     <ClCompile Include="Core\base\Utility.cpp" />
+    <ClCompile Include="Core\collision\Ray.cpp" />
     <ClCompile Include="Core\engine\Engine.cpp" />
     <ClCompile Include="Core\engine\GameTimer.cpp">
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</WholeProgramOptimization>

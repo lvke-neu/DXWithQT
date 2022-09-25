@@ -4,6 +4,19 @@
 
 namespace LkEngine
 {
+	PlaneComponent::PlaneComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) :IComponent(pd3dDevice, pd3dImmediateContext) 
+	{ 
+		buildMesh(); 
+		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		setTexture("builtin\\Texture\\floor.dds");
+		setTransform(Transform(
+			XMFLOAT3(20.0f, 20.0f, 1.0f),
+			XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, -5.0f, 5.0f)
+		));
+	}
+
 	void PlaneComponent::buildMesh()
 	{
 		m_pVertexBuffer.Reset();

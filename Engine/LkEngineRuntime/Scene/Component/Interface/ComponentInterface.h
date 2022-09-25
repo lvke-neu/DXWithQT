@@ -12,6 +12,7 @@ The Interface of Component
 #include <string>
 #include "../Common/Material.h"
 #include "../Common/Transform.h"
+#include <DirectXCollision.h>
 
 /*
  commonshader constbuffer rule:
@@ -33,7 +34,7 @@ namespace LkEngine
 			XMMATRIX g_worldInvTranspose;
 		};
 	public:
-		
+		IComponent(void** parameter);
 		IComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 		virtual ~IComponent();
 		virtual void buildMesh() = 0;
@@ -67,6 +68,15 @@ namespace LkEngine
 		XMFLOAT3 getPosition() { return m_transform.getPosition(); }
 		void setPosition(float x, float y, float z){setPosition(XMFLOAT3(x, y, z));}
 		void setPosition(const XMFLOAT3& pos) { m_transform.setPosition(pos); onTransformChanged();}
+
+		BoundingBox getBoundingBox() { return m_boundingBox; };
+		void setBoundingBox(BoundingBox boundingBox) { m_boundingBox = boundingBox; };
+
+		std::string getComponetType() { return m_componetType; }
+		std::string getUuId() { return m_uuid; }
+	protected:
+		void setComponetType(const std::string componetType) { m_componetType = componetType; }
+		void setUuId(const std::string uuid) { m_uuid = uuid; }
 	public:
 		void onTransformChanged();
 	protected:
@@ -87,5 +97,9 @@ namespace LkEngine
 		std::string m_texture;
 		Material m_material;
 		Transform m_transform;
+		BoundingBox m_boundingBox;
+
+		std::string m_uuid;
+		std::string m_componetType;
 	};
 }

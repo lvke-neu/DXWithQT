@@ -28,20 +28,27 @@ namespace LkEngine
 		void drawScene();
 		void onResize(UINT windowWidth, UINT windowHeight);
 	public:
-		void onKeyPress(const Keys& key) { InputEventManager::getInstance().onKeyPress(key); }
-		void onKeyRelease(const Keys& key){ InputEventManager::getInstance().onKeyRelease(key); }
-		void onMousePress(const MouseState& mouseState) { InputEventManager::getInstance().onMousePress(mouseState); }
-		void onMouseRelease(const MouseState& mouseState) { InputEventManager::getInstance().onMouseRelease(mouseState); }
-		void onMouseMove(const MouseState& mouseState) { InputEventManager::getInstance().onMouseMove(mouseState); }
+		void onKeyPress(const Keys& key) { InputEventManager::getInstance().onKeyPress(key); if (!m_isKeyDown[key]) m_isKeyDown[key] = true;}
+		void onKeyRelease(const Keys& key){ InputEventManager::getInstance().onKeyRelease(key); if (m_isKeyDown[key])m_isKeyDown[key] = false;}
+		void onMousePress(const MouseState& mouseState) { InputEventManager::getInstance().onMousePress(mouseState); m_bIsMousePress[mouseState.mouseType] = true; }
+		void onMouseRelease(const MouseState& mouseState) { InputEventManager::getInstance().onMouseRelease(mouseState); m_bIsMousePress[mouseState.mouseType] = false;}
+		void onMouseMove(const MouseState& mouseState) { InputEventManager::getInstance().onMouseMove(mouseState); m_mousePos = mouseState.mousePos;}
 		void onMouseWheelEvent(const MouseState& mouseState) { InputEventManager::getInstance().onMouseWheelEvent(mouseState); }
 	public:
 		std::string getSkyBoxTexture() { return SceneManager::getInstance().getSkyBoxTexture(); }
 		void setSkyBoxTexture(const std::string& skyBoxTexture) { SceneManager::getInstance().setSkyBoxTexture(skyBoxTexture); }
 		void setWireFrame(bool b) { SceneManager::getInstance().setWireFrame(b); }
+		void addComponent(const std::string& componentType) { SceneManager::getInstance().addComponent(componentType); }
+		
 		Transform getCameraTransform() { return CameraManager::getInstance().getTransform(); }
 		void setCameraTransform(const Transform& transform) { CameraManager::getInstance().setTransform(transform); }
 		void getCameraFrustum(float& FovAngleY, float& AspectRatio, float& NearZ, float& FarZ) { CameraManager::getInstance().getFrustum(FovAngleY, AspectRatio, NearZ, FarZ); }
 		void setCameraFrustum(float FovAngleY, float AspectRatio, float NearZ, float FarZ) { CameraManager::getInstance().setFrustum(FovAngleY, AspectRatio, NearZ, FarZ); }
+		
+		MousePos getCursorPos() { return m_mousePos; }
+		bool isMousePress(MouseType mt) { return m_bIsMousePress[mt]; }
+		void setMousePress(MouseType mt, bool b) { m_bIsMousePress[mt] = b; }
+		bool isKeyPress(Keys key) { return m_isKeyDown[key]; }
 	private:
 		HWND m_hInstance;
 		UINT m_windowWidth;
@@ -58,5 +65,9 @@ namespace LkEngine
 		ComPtr<ID3D11DepthStencilView> m_pDepthStencilView { nullptr };
 
 		D3D11_VIEWPORT m_ScreenViewport;
+
+		MousePos m_mousePos;
+		std::map<MouseType, bool> m_bIsMousePress;
+		std::map<Keys, bool> m_isKeyDown;
 	};
 }

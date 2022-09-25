@@ -31,12 +31,14 @@ namespace LkEngine
 		std::string getSkyBoxTexture();
 		void setSkyBoxTexture(const std::string& skyBoxTexture);
 		void setWireFrame(bool b);
-
-
+		void addComponent(const std::string& componentType);
+	private:
+		void processPick();
+		void modifyPickedComponetProperty(float deltaTime);
 	private:
 
-		std::vector<IComponent*> m_componets;
-
+		std::map<std::string, IComponent*> m_componets;
+		std::string m_currentPick{""};
 
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };

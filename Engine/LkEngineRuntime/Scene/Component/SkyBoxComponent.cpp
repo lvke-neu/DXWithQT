@@ -8,6 +8,15 @@ namespace LkEngine
 	{
 		m_pd3dImmediateContext->RSSetState(RenderStates::RSNoCull.Get());
 		m_pd3dImmediateContext->OMSetDepthStencilState(RenderStates::DSSLessEqual.Get(), 0);
+
+		setVsShader("builtin\\Shader\\SkyBoxComponentVS.cso");
+		setPsShader("builtin\\Shader\\SkyBoxComponentPS.cso");
+		setTexture("builtin\\Texture\\SkyBox\\daylight.jpg");
+		setTransform(Transform(
+			XMFLOAT3(1.0f, 1.0f, 1.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f)
+		));
 	}
 	void SkyBoxComponent::setTexture(const std::string& texture)
 	{

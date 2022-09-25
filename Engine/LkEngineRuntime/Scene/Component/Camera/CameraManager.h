@@ -76,6 +76,9 @@ namespace LkEngine
 
 			CameraChangedManager::getInstance().onCameraFrustumChanged();
 		}
+
+		void setViewport(const D3D11_VIEWPORT& viewport) { m_ScreenViewport = viewport; }
+		D3D11_VIEWPORT getViewport() { return m_ScreenViewport; }
 	public:
 		void moveZAxis(float distance) { m_transform.moveZAxis(distance); onViewMatrixChanged(); }
 		void moveXAxis(float distance) { m_transform.moveXAxis(distance); onViewMatrixChanged(); }
@@ -86,10 +89,13 @@ namespace LkEngine
 		ComPtr<ID3D11Buffer> m_pProjMatrixCB;
 	private:
 		Transform m_transform;
+
 		float m_fovAngleY;
 		float m_aspectRatio;
 		float m_nearZ;
 		float m_farZ;
+
+		D3D11_VIEWPORT m_ScreenViewport;
 
 	};
 }

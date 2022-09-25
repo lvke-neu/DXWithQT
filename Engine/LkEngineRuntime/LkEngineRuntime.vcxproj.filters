@@ -44,6 +44,9 @@
     <Filter Include="Scene\Shader\BasicPrimitive">
       <UniqueIdentifier>{4d09b761-23d2-414a-a207-adeea9913ec1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\collision">
+      <UniqueIdentifier>{1ea4aab8-a8a2-4e47-872a-d6d63788cc7a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -121,6 +124,9 @@
     <ClInclude Include="Core\base\Reflection.h">
       <Filter>Core\base</Filter>
     </ClInclude>
+    <ClInclude Include="Core\collision\Ray.h">
+      <Filter>Core\collision</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -182,6 +188,9 @@
     </ClCompile>
     <ClCompile Include="Core\Event\CameraChangedManager.cpp">
       <Filter>Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\collision\Ray.cpp">
+      <Filter>Core\collision</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

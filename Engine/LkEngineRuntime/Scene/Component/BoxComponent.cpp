@@ -1,13 +1,47 @@
 #include "BoxComponent.h"
 #include "Common/VertexType.h"
 #include "Common/RenderStates.h"
+#include "../../Core/base/Reflection.h"
+
 
 namespace LkEngine
 {
+	REGISTER_CLASS(IComponent, "BoxComponent", BoxComponent);
+
+	BoxComponent::BoxComponent(void** parameter) : IComponent(parameter)
+	{ 
+		setComponetType("BoxComponent");
+
+		buildMesh(); 
+
+		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		setTexture("builtin\\Texture\\WoodCrate.dds");
+		setTransform(Transform(
+			XMFLOAT3(1.0f, 1.0f, 1.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f)
+		));
+	}
+
+	BoxComponent::BoxComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) : IComponent(pd3dDevice, pd3dImmediateContext) 
+	{
+		setComponetType("BoxComponent");
+
+		buildMesh();
+		
+		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		setTexture("builtin\\Texture\\WoodCrate.dds");
+		setTransform(Transform(
+			XMFLOAT3(1.0f, 1.0f, 1.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f)
+		));
+	}
+
 	void BoxComponent::buildMesh()
 	{
-		
-
 		m_pVertexBuffer.Reset();
 		m_pIndexBuffer.Reset();
 
@@ -99,6 +133,14 @@ namespace LkEngine
 		ibd.CPUAccessFlags = 0;
 		InitData.pSysMem = indices;
 		m_pd3dDevice->CreateBuffer(&ibd, &InitData, m_pIndexBuffer.GetAddressOf());
+
+
+		//BoundingBox
+		XMFLOAT3 vMin(-1.0f, -1.0f, -1.0f);
+		XMFLOAT3 vMax(1.0f, 1.0f, 1.0f);
+		BoundingBox aabb;
+		BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&vMin), XMLoadFloat3(&vMax));
+		setBoundingBox(aabb);
 	}
 
 	void BoxComponent::createVertexLayout(const ComPtr<ID3DBlob>& blob)
