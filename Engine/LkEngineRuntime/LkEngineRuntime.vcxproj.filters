@@ -130,6 +130,9 @@
     <ClInclude Include="Core\Event\PickEventManager.h">
       <Filter>Core\Event</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Component\SphereComponent.h">
+      <Filter>Scene\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -198,6 +201,9 @@
     <ClCompile Include="Core\Event\PickEventManager.cpp">
       <Filter>Core\Event</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Component\SphereComponent.cpp">
+      <Filter>Scene\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scene\Shader\CommonShader.hlsli">
@@ -209,6 +215,7 @@
     <None Include="Scene\Shader\BasicPrimitive\BasicPrimitive.hlsli">
       <Filter>Scene\Shader\BasicPrimitive</Filter>
     </None>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Scene\Shader\SkyBoxComponent\SkyBoxComponentPS.hlsl">

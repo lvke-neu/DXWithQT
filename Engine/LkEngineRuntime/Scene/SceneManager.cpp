@@ -7,6 +7,7 @@
 #include "../Core/engine/Engine.h"
 #include "../Core/Event/PickEventManager.h"
 
+#include "Component/SphereComponent.h"
 
 namespace LkEngine
 {
@@ -23,7 +24,10 @@ namespace LkEngine
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
-		//m_componets.insert({ m_pPlaneComponent->getUuId(), m_pPlaneComponent,  });
+	
+		REGISTER_CLASS(IComponent, "BoxComponent", BoxComponent);
+		REGISTER_CLASS(IComponent, "SphereComponent", SphereComponent);
+
 		LOG_INFO("SceneManager initialization is complete");
 	}
 	SceneManager::~SceneManager()
@@ -72,11 +76,14 @@ namespace LkEngine
 		void* parameter[2];
 		parameter[0] = m_pd3dDevice.Get();
 		parameter[1] = m_pd3dImmediateContext.Get();
-		IComponent* ic = Reflection<IComponent>::getInstance().createObject("BoxComponent", parameter);
+		IComponent* ic = Reflection<IComponent>::getInstance().createObject(componentType, parameter);
 
-		m_componets.insert({ ic->getUuId(), ic });
-
-		LOG_INFO("addComponent-" + componentType);
+		if (ic)
+		{
+			m_componets.insert({ ic->getUuId(), ic });
+			LOG_INFO("addComponent-" + componentType + "-" + ic->getUuId());
+		}
+		
 	}
 
 	void SceneManager::processPick()
@@ -122,6 +129,7 @@ namespace LkEngine
 		auto iter = m_componets.find(uuid);
 		if (iter != m_componets.end())
 		{
+			LOG_INFO("deleteComponent-" + iter->second->getComponetType() + "-" + iter->second->getUuId());
 			SAFE_DELETE_SET_NULL(iter->second);
 			m_componets.erase(iter);
 		}

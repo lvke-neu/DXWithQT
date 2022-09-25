@@ -11,9 +11,9 @@ SceneManager
 #include "../Core/base/ManagerInterface.h"
 #include "Component/Interface/ComponentInterface.h"
 #include "Component/Camera/CameraController.h"
-#include "Component/BoxComponent.h"
 #include "Component/SkyBoxComponent.h"
 #include "Component/PlaneComponent.h"
+
 
 namespace LkEngine
 {

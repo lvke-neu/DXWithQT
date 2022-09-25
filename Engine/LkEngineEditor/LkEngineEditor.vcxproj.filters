@@ -25,10 +25,10 @@
     <ClCompile Include="CustomToolBox\CameraForm.cpp">
       <Filter>CustomToolBox\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CustomToolBox\ComponentFrom.cpp">
+    <ClCompile Include="CustomToolBox\PickInfoForm.cpp">
       <Filter>CustomToolBox\源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CustomToolBox\PickInfoForm.cpp">
+    <ClCompile Include="CustomToolBox\ComponentForm.cpp">
       <Filter>CustomToolBox\源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -74,10 +74,10 @@
     <QtUic Include="CustomToolBox\CameraForm.ui">
       <Filter>CustomToolBox\资源文件</Filter>
     </QtUic>
-    <QtUic Include="CustomToolBox\ComponentFrom.ui">
+    <QtUic Include="CustomToolBox\PickInfoForm.ui">
       <Filter>CustomToolBox\资源文件</Filter>
     </QtUic>
-    <QtUic Include="CustomToolBox\PickInfoForm.ui">
+    <QtUic Include="CustomToolBox\ComponentForm.ui">
       <Filter>CustomToolBox\资源文件</Filter>
     </QtUic>
   </ItemGroup>
@@ -103,10 +103,10 @@
     <QtMoc Include="CustomToolBox\CameraForm.h">
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
-    <QtMoc Include="CustomToolBox\ComponentFrom.h">
+    <QtMoc Include="CustomToolBox\PickInfoForm.h">
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
-    <QtMoc Include="CustomToolBox\PickInfoForm.h">
+    <QtMoc Include="CustomToolBox\ComponentForm.h">
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
   </ItemGroup>

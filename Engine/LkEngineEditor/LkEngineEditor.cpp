@@ -5,7 +5,7 @@
 #include "CustomToolBox/Form.h"
 #include "CustomToolBox/SkyBoxForm.h"
 #include "CustomToolBox/CameraForm.h"
-#include "CustomToolBox/ComponentFrom.h"
+#include "CustomToolBox/ComponentForm.h"
 #include "CustomToolBox/PickInfoForm.h"
 
 namespace LkEngine
@@ -23,7 +23,7 @@ namespace LkEngine
 		m_sceneCfgToolBox = new ToolBox(m_renderWindow);
 		m_sceneCfgToolBox->addWidget(QString("SkyBox"), new SkyBoxForm());
 		m_sceneCfgToolBox->addWidget(QString("Camera"), new CameraForm());
-		m_sceneCfgToolBox->addWidget(QString("Component"), new ComponentFrom());
+		m_sceneCfgToolBox->addWidget(QString("Component"), new ComponentForm());
 		m_sceneCfgToolBox->addWidget(QString("PickInfo"), new PickInfoForm());
 		m_sceneCfgToolBox->hide();
 

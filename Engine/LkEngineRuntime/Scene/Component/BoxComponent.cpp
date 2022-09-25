@@ -4,10 +4,9 @@
 #include "../../Core/base/Reflection.h"
 
 
-namespace LkEngine
-{
-	REGISTER_CLASS(IComponent, "BoxComponent", BoxComponent);
 
+namespace LkEngine
+{	
 	BoxComponent::BoxComponent(void** parameter) : IComponent(parameter)
 	{ 
 		setComponetType("BoxComponent");

@@ -85,6 +85,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/</AdditionalIncludeDirectories>
+      <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -98,6 +99,7 @@
     <Lib>
       <AdditionalLibraryDirectories>
       </AdditionalLibraryDirectories>
+      <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
@@ -177,6 +179,7 @@
     <ClInclude Include="Scene\Component\Interface\ComponentInterface.h" />
     <ClInclude Include="Scene\Component\PlaneComponent.h" />
     <ClInclude Include="Scene\Component\SkyBoxComponent.h" />
+    <ClInclude Include="Scene\Component\SphereComponent.h" />
     <ClInclude Include="Scene\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
@@ -203,9 +206,11 @@
     <ClCompile Include="Scene\Component\Interface\ComponentInterface.cpp" />
     <ClCompile Include="Scene\Component\PlaneComponent.cpp" />
     <ClCompile Include="Scene\Component\SkyBoxComponent.cpp" />
+    <ClCompile Include="Scene\Component\SphereComponent.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="cpp.hint" />
     <None Include="Scene\Shader\BasicPrimitive\BasicPrimitive.hlsli" />
     <None Include="Scene\Shader\CommonShader.hlsli" />
     <None Include="Scene\Shader\SkyBoxComponent\SkyBoxCommonShader.hlsli" />

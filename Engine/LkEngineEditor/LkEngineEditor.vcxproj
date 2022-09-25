@@ -134,7 +134,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="CustomToolBox\CameraForm.cpp" />
-    <ClCompile Include="CustomToolBox\ComponentFrom.cpp" />
+    <ClCompile Include="CustomToolBox\ComponentForm.cpp" />
     <ClCompile Include="CustomToolBox\Form.cpp" />
     <ClCompile Include="CustomToolBox\PickInfoForm.cpp" />
     <ClCompile Include="CustomToolBox\SkyBoxForm.cpp" />
@@ -151,7 +151,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="CustomToolBox\CameraForm.ui" />
-    <QtUic Include="CustomToolBox\ComponentFrom.ui" />
+    <QtUic Include="CustomToolBox\ComponentForm.ui" />
     <QtUic Include="CustomToolBox\Form.ui" />
     <QtUic Include="CustomToolBox\PickInfoForm.ui" />
     <QtUic Include="CustomToolBox\SkyBoxForm.ui" />
@@ -183,7 +183,7 @@
     <QtMoc Include="CustomToolBox\CameraForm.h" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="CustomToolBox\ComponentFrom.h" />
+    <QtMoc Include="CustomToolBox\ComponentForm.h" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CustomToolBox\PickInfoForm.h" />
