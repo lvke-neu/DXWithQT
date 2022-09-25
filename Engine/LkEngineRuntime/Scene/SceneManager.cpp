@@ -5,6 +5,8 @@
 #include "../Core/base/Reflection.h"
 #include "../Core/collision/Ray.h"
 #include "../Core/engine/Engine.h"
+#include "../Core/Event/PickEventManager.h"
+
 
 namespace LkEngine
 {
@@ -21,7 +23,7 @@ namespace LkEngine
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
-
+		//m_componets.insert({ m_pPlaneComponent->getUuId(), m_pPlaneComponent,  });
 		LOG_INFO("SceneManager initialization is complete");
 	}
 	SceneManager::~SceneManager()
@@ -39,7 +41,6 @@ namespace LkEngine
 		static float rot = 0.0f;
 		rot += deltaTime;
 		processPick();
-		modifyPickedComponetProperty(deltaTime);
 	}
 
 	void SceneManager::drawScene()
@@ -82,6 +83,7 @@ namespace LkEngine
 	{
 		if (Engine::getInstance().isMousePress(LeftButton))
 		{
+			bool bIsAllNotHit = true;
 			Ray ray_camera2pickPoint = Ray::ScreenToRay(Engine::getInstance().getCursorPos().x, Engine::getInstance().getCursorPos().y);
 			for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
 			{
@@ -95,39 +97,34 @@ namespace LkEngine
 					LOG_INFO("hit: type = " + iter->second->getComponetType() + ", uuid = " + m_currentPick);
 					
 					Engine::getInstance().setMousePress(LeftButton, false);
+					bIsAllNotHit = false;
+
+					PickEventManager::getInstance().onPickComponent(iter->second);
+					break;
 				}
 				else
 				{
 					m_currentPick = "";
-					LOG_INFO("hit: null");
-					Engine::getInstance().setMousePress(LeftButton, false);
 				}
-
 			}
+			if (bIsAllNotHit)
+			{
+				Engine::getInstance().setMousePress(LeftButton, false);
+				LOG_INFO("hit null");
+			}
+				
+
 		}
 	}
-
-	void SceneManager::modifyPickedComponetProperty(float deltaTime)
+	
+	void SceneManager::deleteComponent(const std::string& uuid)
 	{
-		if (Engine::getInstance().isKeyPress(Keys::Key_Up))
+		auto iter = m_componets.find(uuid);
+		if (iter != m_componets.end())
 		{
-			XMFLOAT3 pos = m_componets[m_currentPick]->getPosition();
-			pos.y += deltaTime * 10;
-			m_componets[m_currentPick]->setPosition(pos);
+			SAFE_DELETE_SET_NULL(iter->second);
+			m_componets.erase(iter);
 		}
-		if (Engine::getInstance().isKeyPress(Keys::Key_Down))
-		{
-			XMFLOAT3 pos = m_componets[m_currentPick]->getPosition();
-			pos.y -= deltaTime * 10;
-			m_componets[m_currentPick]->setPosition(pos);
-		}
-		//if (Engine::getInstance().isKeyPress(Keys::Key_Up))
-		//{
-		//	XMFLOAT3 pos = m_componets[m_currentPick]->getPosition();
-		//	pos.y += deltaTime * 10;
-		//	m_componets[m_currentPick]->setPosition(pos);
-		//}
-
 			
 	}
 }

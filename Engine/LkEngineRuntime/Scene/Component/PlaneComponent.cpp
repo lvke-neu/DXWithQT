@@ -68,6 +68,13 @@ namespace LkEngine
 		ibd.CPUAccessFlags = 0;
 		InitData.pSysMem = indices;
 		m_pd3dDevice->CreateBuffer(&ibd, &InitData, m_pIndexBuffer.GetAddressOf());
+
+		//BoundingBox
+		XMFLOAT3 vMin(-1.0f, 1.0f, 0.5f);
+		XMFLOAT3 vMax(-1.0f, -1.0f, -0.5f);
+		BoundingBox aabb;
+		BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&vMin), XMLoadFloat3(&vMax));
+		setBoundingBox(aabb);
 	}
 
 	void PlaneComponent::createVertexLayout(const ComPtr<ID3DBlob>& blob)

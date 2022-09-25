@@ -23,7 +23,8 @@ namespace LkEngine
 		RelativePath2AbsolutePath(relativeVsShaderPath, absoluteShaderPath);
 
 		D3DReadFileToBlob(multiByteToWideChar(absoluteShaderPath), blob.ReleaseAndGetAddressOf());
-		m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, pVertexShader.GetAddressOf());
+		if(blob)
+			m_pd3dDevice->CreateVertexShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, pVertexShader.GetAddressOf());
 
 		//blob.Reset();
 
@@ -40,7 +41,8 @@ namespace LkEngine
 		RelativePath2AbsolutePath(relativePsShaderPath, absoluteShaderPath);
 
 		D3DReadFileToBlob(multiByteToWideChar(absoluteShaderPath), blob.ReleaseAndGetAddressOf());
-		m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, pPixelShader.GetAddressOf());
+		if (blob)
+			m_pd3dDevice->CreatePixelShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, pPixelShader.GetAddressOf());
 
 		//blob.Reset();
 

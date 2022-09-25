@@ -23,7 +23,8 @@ ToolBox::ToolBox(QWidget *parent) :
 
     ui->scrollArea->setWidget(widget);
 	
-	setFixedWidth(230);
+	setFixedWidth(300);
+	setFixedHeight(600);
 }
 
 ToolBox::~ToolBox()

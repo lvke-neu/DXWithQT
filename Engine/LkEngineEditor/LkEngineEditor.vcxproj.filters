@@ -28,6 +28,9 @@
     <ClCompile Include="CustomToolBox\ComponentFrom.cpp">
       <Filter>CustomToolBox\源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CustomToolBox\PickInfoForm.cpp">
+      <Filter>CustomToolBox\源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="头文件">
@@ -74,6 +77,9 @@
     <QtUic Include="CustomToolBox\ComponentFrom.ui">
       <Filter>CustomToolBox\资源文件</Filter>
     </QtUic>
+    <QtUic Include="CustomToolBox\PickInfoForm.ui">
+      <Filter>CustomToolBox\资源文件</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LkEngineEditor.h">
@@ -98,6 +104,9 @@
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
     <QtMoc Include="CustomToolBox\ComponentFrom.h">
+      <Filter>CustomToolBox\头文件</Filter>
+    </QtMoc>
+    <QtMoc Include="CustomToolBox\PickInfoForm.h">
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
   </ItemGroup>

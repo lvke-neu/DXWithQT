@@ -15,6 +15,8 @@ namespace LkEngine
 			if (*it == frameMoveEvent)
 			{
 				it = m_frameMoveEvents.erase(it);
+				if (it == m_frameMoveEvents.end())
+					break;
 			}
 		}
 	}

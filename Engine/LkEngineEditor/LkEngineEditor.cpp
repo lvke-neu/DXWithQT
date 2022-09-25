@@ -1,13 +1,13 @@
 #include "LkEngineEditor.h"
 #include "../LkEngineRuntime/Core/base/Utility.h"
-
 #include <qdockwidget.h>
-
 
 #include "CustomToolBox/Form.h"
 #include "CustomToolBox/SkyBoxForm.h"
 #include "CustomToolBox/CameraForm.h"
 #include "CustomToolBox/ComponentFrom.h"
+#include "CustomToolBox/PickInfoForm.h"
+
 namespace LkEngine
 {
 	LkEngineEditor::LkEngineEditor(QWidget *parent) :
@@ -24,8 +24,10 @@ namespace LkEngine
 		m_sceneCfgToolBox->addWidget(QString("SkyBox"), new SkyBoxForm());
 		m_sceneCfgToolBox->addWidget(QString("Camera"), new CameraForm());
 		m_sceneCfgToolBox->addWidget(QString("Component"), new ComponentFrom());
+		m_sceneCfgToolBox->addWidget(QString("PickInfo"), new PickInfoForm());
 		m_sceneCfgToolBox->hide();
-		
+
+
 		connect(ui->openSceneCfg, SIGNAL(triggered()),this, SLOT(openSceneCfg()));
 		connect(ui->closeSceneCfg, SIGNAL(triggered()), this, SLOT(closeSceneCfg()));
 
@@ -49,6 +51,7 @@ namespace LkEngine
 	{
 		m_sceneCfgToolBox->hide();
 	}
+
 
 }
 

@@ -16,6 +16,8 @@ namespace LkEngine
 			if (*it == inputEvent)
 			{
 				it = m_inputEvents.erase(it);
+				if (it == m_inputEvents.end())
+					break;
 			}
 		}
 	}

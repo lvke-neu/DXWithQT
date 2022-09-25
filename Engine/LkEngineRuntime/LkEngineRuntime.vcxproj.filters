@@ -127,6 +127,9 @@
     <ClInclude Include="Core\collision\Ray.h">
       <Filter>Core\collision</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Event\PickEventManager.h">
+      <Filter>Core\Event</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -191,6 +194,9 @@
     </ClCompile>
     <ClCompile Include="Core\collision\Ray.cpp">
       <Filter>Core\collision</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Event\PickEventManager.cpp">
+      <Filter>Core\Event</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

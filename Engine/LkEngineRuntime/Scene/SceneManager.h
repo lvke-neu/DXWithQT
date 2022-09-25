@@ -32,9 +32,10 @@ namespace LkEngine
 		void setSkyBoxTexture(const std::string& skyBoxTexture);
 		void setWireFrame(bool b);
 		void addComponent(const std::string& componentType);
+		void deleteComponent(const std::string& uuid);
 	private:
 		void processPick();
-		void modifyPickedComponetProperty(float deltaTime);
+
 	private:
 
 		std::map<std::string, IComponent*> m_componets;

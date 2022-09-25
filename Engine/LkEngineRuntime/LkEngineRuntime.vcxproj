@@ -164,6 +164,7 @@
     <ClInclude Include="Core\Event\CameraChangedManager.h" />
     <ClInclude Include="Core\Event\FrameMoveEventManager.h" />
     <ClInclude Include="Core\Event\InputEventManager.h" />
+    <ClInclude Include="Core\Event\PickEventManager.h" />
     <ClInclude Include="Core\log\LogManager.h" />
     <ClInclude Include="Scene\Component\BoxComponent.h" />
     <ClInclude Include="Scene\Component\Camera\CameraController.h" />
@@ -191,6 +192,7 @@
     <ClCompile Include="Core\Event\CameraChangedManager.cpp" />
     <ClCompile Include="Core\Event\FrameMoveEventManager.cpp" />
     <ClCompile Include="Core\Event\InputEventManager.cpp" />
+    <ClCompile Include="Core\Event\PickEventManager.cpp" />
     <ClCompile Include="Core\log\LogManager.cpp" />
     <ClCompile Include="Scene\Component\BoxComponent.cpp" />
     <ClCompile Include="Scene\Component\Camera\CameraController.cpp" />

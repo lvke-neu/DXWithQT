@@ -39,7 +39,8 @@ namespace LkEngine
 		void setSkyBoxTexture(const std::string& skyBoxTexture) { SceneManager::getInstance().setSkyBoxTexture(skyBoxTexture); }
 		void setWireFrame(bool b) { SceneManager::getInstance().setWireFrame(b); }
 		void addComponent(const std::string& componentType) { SceneManager::getInstance().addComponent(componentType); }
-		
+		void deleteComponent(const std::string& uuid) { SceneManager::getInstance().deleteComponent(uuid); }
+
 		Transform getCameraTransform() { return CameraManager::getInstance().getTransform(); }
 		void setCameraTransform(const Transform& transform) { CameraManager::getInstance().setTransform(transform); }
 		void getCameraFrustum(float& FovAngleY, float& AspectRatio, float& NearZ, float& FarZ) { CameraManager::getInstance().getFrustum(FovAngleY, AspectRatio, NearZ, FarZ); }
