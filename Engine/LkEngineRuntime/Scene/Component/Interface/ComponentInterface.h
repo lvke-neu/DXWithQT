@@ -48,6 +48,9 @@ namespace LkEngine
 		std::string getPsShader() { return m_psShader; }
 		void setPsShader(const std::string& psShader);
 
+		std::string getGsShader() { return m_gsShader; }
+		void setGsShader(const std::string& gsShader);
+
 		std::string getTexture(){ return m_texture; }
 		void setTexture(const std::string& texture); 
 
@@ -85,6 +88,7 @@ namespace LkEngine
 
 		ComPtr<ID3D11VertexShader> m_pVertexShader{ nullptr };
 		ComPtr<ID3D11PixelShader> m_pPixelShader{ nullptr };
+		ComPtr<ID3D11GeometryShader> m_pGeometryShader{ nullptr };
 		ComPtr<ID3D11InputLayout> m_pVertexLayout{ nullptr };
 
 		ComPtr<ID3D11ShaderResourceView> m_pTexture{ nullptr };
@@ -93,6 +97,7 @@ namespace LkEngine
 		ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };
 	protected:
 		std::string m_vsShader;
+		std::string m_gsShader;
 		std::string m_psShader;
 		std::string m_texture;
 		Material m_material;

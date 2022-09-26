@@ -21,6 +21,7 @@ namespace LkEngine
 		virtual void init() override;
 
 		ComPtr<ID3D11VertexShader> loadVsShaderAsset(const std::string& relativeVsShaderPath, ComPtr<ID3DBlob>& blob);
+		ComPtr<ID3D11GeometryShader>  loadGsShaderAsset(const std::string& relativePsShaderPath);
 		ComPtr<ID3D11PixelShader>  loadPsShaderAsset(const std::string& relativePsShaderPath);
 		ComPtr<ID3D11ShaderResourceView> loadTextureAsset(const std::string& relativeTexturePath);
 

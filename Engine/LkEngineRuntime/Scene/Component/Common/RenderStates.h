@@ -24,6 +24,8 @@ namespace LkEngine
 		static ComPtr<ID3D11DepthStencilState> DSSWriteStencil;
 		static ComPtr<ID3D11DepthStencilState> DSSDrawWithStencil;
 		static ComPtr<ID3D11DepthStencilState> DSSLessEqual;
+		static ComPtr<ID3D11DepthStencilState> DSSNoDepthTest;
+
 
 	public:
 		static void Init(ComPtr<ID3D11Device> pd3dDevice);

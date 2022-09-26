@@ -28,9 +28,11 @@ namespace LkEngine
 
 
 		m_pd3dImmediateContext->VSSetConstantBuffers(0, 1, m_pViewMatrixCB.GetAddressOf());
+		m_pd3dImmediateContext->GSSetConstantBuffers(0, 1, m_pViewMatrixCB.GetAddressOf());
 		m_pd3dImmediateContext->PSSetConstantBuffers(0, 1, m_pViewMatrixCB.GetAddressOf());
 
 		m_pd3dImmediateContext->VSSetConstantBuffers(1, 1, m_pProjMatrixCB.GetAddressOf());
+		m_pd3dImmediateContext->GSSetConstantBuffers(1, 1, m_pProjMatrixCB.GetAddressOf());
 		m_pd3dImmediateContext->PSSetConstantBuffers(1, 1, m_pProjMatrixCB.GetAddressOf());
 			
 		LOG_INFO("CameraManager initialization is complete");
@@ -62,6 +64,7 @@ namespace LkEngine
 	{
 		ProjMatrix projMatrix;
 		projMatrix.g_proj = XMMatrixTranspose(getProjMatrix());
+		projMatrix.g_viewportSize = XMFLOAT4(m_ScreenViewport.Width, m_ScreenViewport.Height, 1.0f / m_ScreenViewport.Width, 1.0f / m_ScreenViewport.Height);
 
 		D3D11_MAPPED_SUBRESOURCE mappedData;
 		m_pd3dImmediateContext->Map(m_pProjMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);

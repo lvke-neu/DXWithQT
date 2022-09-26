@@ -47,6 +47,9 @@
     <Filter Include="Core\collision">
       <UniqueIdentifier>{1ea4aab8-a8a2-4e47-872a-d6d63788cc7a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Shader\ScreenPixelFixedImage">
+      <UniqueIdentifier>{27e20ab6-4262-466f-a3e6-70d78d269901}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -133,6 +136,9 @@
     <ClInclude Include="Scene\Component\SphereComponent.h">
       <Filter>Scene\Component</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Component\ScreenPixelFixedImageComponent.h">
+      <Filter>Scene\Component</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -204,6 +210,9 @@
     <ClCompile Include="Scene\Component\SphereComponent.cpp">
       <Filter>Scene\Component</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Component\ScreenPixelFixedImageComponent.cpp">
+      <Filter>Scene\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scene\Shader\CommonShader.hlsli">
@@ -216,6 +225,9 @@
       <Filter>Scene\Shader\BasicPrimitive</Filter>
     </None>
     <None Include="cpp.hint" />
+    <None Include="Scene\Shader\ScreenPixelFixedImage\ScreenPixelFixedImage.hlsli">
+      <Filter>Scene\Shader\ScreenPixelFixedImage</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Scene\Shader\SkyBoxComponent\SkyBoxComponentPS.hlsl">
@@ -229,6 +241,15 @@
     </FxCompile>
     <FxCompile Include="Scene\Shader\BasicPrimitive\BasicPrimitiveVS.hlsl">
       <Filter>Scene\Shader\BasicPrimitive</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ScreenPixelFixedImage\ScreenPixelFixedImageGS.hlsl">
+      <Filter>Scene\Shader\ScreenPixelFixedImage</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ScreenPixelFixedImage\ScreenPixelFixedImageVS.hlsl">
+      <Filter>Scene\Shader\ScreenPixelFixedImage</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ScreenPixelFixedImage\ScreenPixelFixedImagePS.hlsl">
+      <Filter>Scene\Shader\ScreenPixelFixedImage</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

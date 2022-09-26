@@ -16,6 +16,7 @@ namespace LkEngine
 	ComPtr<ID3D11DepthStencilState> RenderStates::DSSWriteStencil = nullptr;
 	ComPtr<ID3D11DepthStencilState> RenderStates::DSSDrawWithStencil = nullptr;
 	ComPtr<ID3D11DepthStencilState> RenderStates::DSSLessEqual = nullptr;
+	ComPtr<ID3D11DepthStencilState> RenderStates::DSSNoDepthTest = nullptr;
 
 	void RenderStates::Init(ComPtr<ID3D11Device> pd3dDevice)
 	{
@@ -155,5 +156,10 @@ namespace LkEngine
 		dsDesc222.StencilEnable = false;
 
 		pd3dDevice->CreateDepthStencilState(&dsDesc222, DSSLessEqual.GetAddressOf());
+		
+		D3D11_DEPTH_STENCIL_DESC dsDesc333;
+		dsDesc333.DepthEnable = false;
+		dsDesc333.StencilEnable = false;
+		pd3dDevice->CreateDepthStencilState(&dsDesc333, DSSNoDepthTest.GetAddressOf());
 	}
 }

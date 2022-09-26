@@ -165,6 +165,7 @@ namespace LkEngine
 
 		m_pd3dImmediateContext->IASetInputLayout(m_pVertexLayout.Get());
 		m_pd3dImmediateContext->VSSetShader(m_pVertexShader.Get(), nullptr, 0);
+		m_pd3dImmediateContext->GSSetShader(m_pGeometryShader.Get(), nullptr, 0);
 		m_pd3dImmediateContext->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
 
 

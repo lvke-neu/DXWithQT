@@ -11,6 +11,7 @@ cbuffer ViewMatrix : register(b0)
 cbuffer ProjMatrix : register(b1)
 {
 	matrix g_proj;
+	float4 g_viewportSize;
 }
 
 

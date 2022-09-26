@@ -25,6 +25,8 @@ namespace LkEngine
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
 	
+		m_screenPixelFixedImageComponent = new ScreenPixelFixedImageComponent(m_pd3dDevice, m_pd3dImmediateContext);
+
 		REGISTER_CLASS(IComponent, "BoxComponent", BoxComponent);
 		REGISTER_CLASS(IComponent, "SphereComponent", SphereComponent);
 
@@ -48,11 +50,13 @@ namespace LkEngine
 	}
 
 	void SceneManager::drawScene()
-	{
+	{		
 		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
 			iter->second->draw();
 
 		m_pPlaneComponent->draw();
+		m_screenPixelFixedImageComponent->draw();
+
 		m_pSkyBoxComponent->draw();
 	}
 

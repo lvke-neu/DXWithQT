@@ -32,6 +32,23 @@ namespace LkEngine
 
 	}
 
+	ComPtr<ID3D11GeometryShader>  AssetManager::loadGsShaderAsset(const std::string& relativePsShaderPath)
+	{
+		ComPtr<ID3D11GeometryShader> pGeometryShader;
+		ComPtr<ID3DBlob> blob;
+		std::string absoluteShaderPath;
+
+		RelativePath2AbsolutePath(relativePsShaderPath, absoluteShaderPath);
+
+		D3DReadFileToBlob(multiByteToWideChar(absoluteShaderPath), blob.ReleaseAndGetAddressOf());
+		if (blob)
+			m_pd3dDevice->CreateGeometryShader(blob->GetBufferPointer(), blob->GetBufferSize(), nullptr, pGeometryShader.GetAddressOf());
+
+		//blob.Reset();
+
+		return pGeometryShader;
+	}
+
 	ComPtr<ID3D11PixelShader> AssetManager::loadPsShaderAsset(const std::string& relativePsShaderPath)
 	{
 		ComPtr<ID3D11PixelShader> pPixelShader;

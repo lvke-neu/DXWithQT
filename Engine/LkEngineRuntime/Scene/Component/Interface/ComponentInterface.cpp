@@ -34,7 +34,7 @@ namespace LkEngine
 		m_uuid = guidStr;
 	}
 
-	IComponent::IComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext):
+	IComponent::IComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) :
 		m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
 	{
 		D3D11_BUFFER_DESC cbd;
@@ -62,7 +62,7 @@ namespace LkEngine
 			guid.Data4[6], guid.Data4[7]);
 		m_uuid = guidStr;
 
-		
+
 	}
 
 	IComponent::~IComponent()
@@ -76,19 +76,27 @@ namespace LkEngine
 	}
 
 	void IComponent::setVsShader(const std::string& vsShader)
-	{ 
+	{
 		m_vsShader = vsShader;
 		m_pVertexShader.Reset();
 
 		ComPtr<ID3DBlob> blob;
 
 		m_pVertexShader = AssetManager::getInstance().loadVsShaderAsset(vsShader, blob);
-		if(m_pVertexShader)
+		if (m_pVertexShader)
 			createVertexLayout(blob);
 
 		//blob.Reset();
 
 
+	}
+
+	void IComponent::setGsShader(const std::string& gsShader)
+	{
+		m_gsShader = gsShader;
+		m_pGeometryShader.Reset();
+
+		m_pGeometryShader = AssetManager::getInstance().loadGsShaderAsset(gsShader);
 	}
 
 	void IComponent::setPsShader(const std::string& psShader)

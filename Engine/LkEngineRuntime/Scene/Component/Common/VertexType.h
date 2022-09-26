@@ -14,4 +14,10 @@ namespace LkEngine
 		XMFLOAT2 texcoord;
 		static D3D11_INPUT_ELEMENT_DESC inputLayout[3];
 	};
+
+	struct VertexPos
+	{
+		XMFLOAT3 position;
+		static D3D11_INPUT_ELEMENT_DESC inputLayout[1];
+	};
 }

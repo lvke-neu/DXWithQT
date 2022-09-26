@@ -19,7 +19,7 @@ namespace LkEngine
 
 	
 
-		Engine::getInstance().initialize((HWND)winId(), width(), height());
+		Engine::getInstance().initialize((HWND)winId(), m_parent->width(), m_parent->height());
 		LOG_INFO("Engine initialization is complete");
 		
 
