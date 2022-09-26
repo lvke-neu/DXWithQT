@@ -16,7 +16,7 @@ namespace LkEngine
 		setVsShader("builtin\\Shader\\ScreenPixelFixedImageVS.cso");
 		setGsShader("builtin\\Shader\\ScreenPixelFixedImageGS.cso");
 		setPsShader("builtin\\Shader\\ScreenPixelFixedImagePS.cso");
-		setTexture("builtin\\Texture\\stone.dds");
+		setTexture("builtin\\Texture\\monitoring.png");
 		setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -33,7 +33,7 @@ namespace LkEngine
 		setVsShader("builtin\\Shader\\ScreenPixelFixedImageVS.cso");
 		setGsShader("builtin\\Shader\\ScreenPixelFixedImageGS.cso");
 		setPsShader("builtin\\Shader\\ScreenPixelFixedImagePS.cso");
-		setTexture("builtin\\Texture\\WarriorEye.jpg");
+		setTexture("builtin\\Texture\\monitoring.png");
 		setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f),

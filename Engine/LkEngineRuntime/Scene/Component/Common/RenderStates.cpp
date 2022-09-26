@@ -157,9 +157,8 @@ namespace LkEngine
 
 		pd3dDevice->CreateDepthStencilState(&dsDesc222, DSSLessEqual.GetAddressOf());
 		
-		D3D11_DEPTH_STENCIL_DESC dsDesc333;
-		dsDesc333.DepthEnable = false;
-		dsDesc333.StencilEnable = false;
-		pd3dDevice->CreateDepthStencilState(&dsDesc333, DSSNoDepthTest.GetAddressOf());
+	
+		dsDesc222.DepthEnable = false;
+		pd3dDevice->CreateDepthStencilState(&dsDesc222, DSSNoDepthTest.GetAddressOf());
 	}
 }

@@ -36,7 +36,8 @@ namespace LkEngine
 	{
 		for (auto iter = m_componets.begin(); iter!=m_componets.end(); iter++)
 			SAFE_DELETE_SET_NULL(iter->second);
-
+		
+		SAFE_DELETE_SET_NULL(m_screenPixelFixedImageComponent);
 		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		SAFE_DELETE_SET_NULL(m_pCameraController);
@@ -56,6 +57,7 @@ namespace LkEngine
 
 		m_pPlaneComponent->draw();
 		m_screenPixelFixedImageComponent->draw();
+
 
 		m_pSkyBoxComponent->draw();
 	}
