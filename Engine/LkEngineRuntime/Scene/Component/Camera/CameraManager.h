@@ -32,6 +32,7 @@ namespace LkEngine
 		struct ProjMatrix
 		{
 			XMMATRIX g_proj;
+			XMMATRIX g_invProj;
 			XMFLOAT4 g_viewportSize;
 		};
 	public:

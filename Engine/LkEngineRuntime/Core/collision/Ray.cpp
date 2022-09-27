@@ -64,7 +64,8 @@ namespace LkEngine
 
 
 		XMFLOAT3 direction;
-		XMStoreFloat3(&direction, XMVector3Normalize(Target - XMLoadFloat3(&CameraManager::getInstance().getPosition())));
+		XMFLOAT3 camPos = CameraManager::getInstance().getPosition();
+		XMStoreFloat3(&direction, XMVector3Normalize(Target - XMLoadFloat3(&camPos)));
 		return Ray(CameraManager::getInstance().getPosition(), direction);
 	}
 }

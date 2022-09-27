@@ -64,6 +64,7 @@ namespace LkEngine
 	{
 		ProjMatrix projMatrix;
 		projMatrix.g_proj = XMMatrixTranspose(getProjMatrix());
+		projMatrix.g_invProj = XMMatrixTranspose(XMMatrixInverse(nullptr, getProjMatrix()));
 		projMatrix.g_viewportSize = XMFLOAT4(m_ScreenViewport.Width, m_ScreenViewport.Height, 1.0f / m_ScreenViewport.Width, 1.0f / m_ScreenViewport.Height);
 
 		D3D11_MAPPED_SUBRESOURCE mappedData;

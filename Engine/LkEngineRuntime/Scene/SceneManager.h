@@ -44,7 +44,7 @@ namespace LkEngine
 		MousePos m_oldMousePos;
 
 		ScreenPixelFixedImageComponent* m_screenPixelFixedImageComponent{nullptr};
-
+		ScreenPixelFixedImageComponent* m_FlatPixelFixedImageComponent{ nullptr };
 
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };

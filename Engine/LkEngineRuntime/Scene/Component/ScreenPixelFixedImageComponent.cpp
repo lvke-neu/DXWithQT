@@ -16,7 +16,7 @@ namespace LkEngine
 		setVsShader("builtin\\Shader\\ScreenPixelFixedImageVS.cso");
 		setGsShader("builtin\\Shader\\ScreenPixelFixedImageGS.cso");
 		setPsShader("builtin\\Shader\\ScreenPixelFixedImagePS.cso");
-		setTexture("builtin\\Texture\\monitoring.png");
+		setTexture("builtin\\Texture\\stone.dds");
 		setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -33,7 +33,7 @@ namespace LkEngine
 		setVsShader("builtin\\Shader\\ScreenPixelFixedImageVS.cso");
 		setGsShader("builtin\\Shader\\ScreenPixelFixedImageGS.cso");
 		setPsShader("builtin\\Shader\\ScreenPixelFixedImagePS.cso");
-		setTexture("builtin\\Texture\\monitoring.png");
+		setTexture("builtin\\Texture\\stone.dds");
 		setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
@@ -90,8 +90,10 @@ namespace LkEngine
 		m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
 		m_pd3dImmediateContext->VSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());
+		m_pd3dImmediateContext->GSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());
 		m_pd3dImmediateContext->PSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());
 		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
+		m_pd3dImmediateContext->GSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
 		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());	
 	}
 

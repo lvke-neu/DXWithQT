@@ -50,6 +50,9 @@
     <Filter Include="Scene\Shader\ScreenPixelFixedImage">
       <UniqueIdentifier>{27e20ab6-4262-466f-a3e6-70d78d269901}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Shader\FlatPixelFixedImage">
+      <UniqueIdentifier>{bbdad7a1-fc54-4ddc-b826-a25b5641eea3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -228,6 +231,9 @@
     <None Include="Scene\Shader\ScreenPixelFixedImage\ScreenPixelFixedImage.hlsli">
       <Filter>Scene\Shader\ScreenPixelFixedImage</Filter>
     </None>
+    <None Include="Scene\Shader\FlatPixelFixedImage\FlatPixelFixedImage.hlsli">
+      <Filter>Scene\Shader\FlatPixelFixedImage</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Scene\Shader\SkyBoxComponent\SkyBoxComponentPS.hlsl">
@@ -250,6 +256,15 @@
     </FxCompile>
     <FxCompile Include="Scene\Shader\ScreenPixelFixedImage\ScreenPixelFixedImagePS.hlsl">
       <Filter>Scene\Shader\ScreenPixelFixedImage</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\FlatPixelFixedImage\FlatPixelFixedImageGS.hlsl">
+      <Filter>Scene\Shader\FlatPixelFixedImage</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\FlatPixelFixedImage\FlatPixelFixedImagePS.hlsl">
+      <Filter>Scene\Shader\FlatPixelFixedImage</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\FlatPixelFixedImage\FlatPixelFixedImageVS.hlsl">
+      <Filter>Scene\Shader\FlatPixelFixedImage</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

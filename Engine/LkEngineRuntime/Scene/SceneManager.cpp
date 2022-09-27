@@ -26,6 +26,11 @@ namespace LkEngine
 		m_pCameraController = new CameraController;
 	
 		m_screenPixelFixedImageComponent = new ScreenPixelFixedImageComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_FlatPixelFixedImageComponent = new ScreenPixelFixedImageComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_FlatPixelFixedImageComponent->setPosition(XMFLOAT3(-4.0f, -4.0f, 0.0f));
+		m_FlatPixelFixedImageComponent->setVsShader("builtin\\Shader\\FlatPixelFixedImageVS.cso");
+		m_FlatPixelFixedImageComponent->setGsShader("builtin\\Shader\\FlatPixelFixedImageGS.cso");
+		m_FlatPixelFixedImageComponent->setPsShader("builtin\\Shader\\FlatPixelFixedImagePS.cso");
 
 		REGISTER_CLASS(IComponent, "BoxComponent", BoxComponent);
 		REGISTER_CLASS(IComponent, "SphereComponent", SphereComponent);
@@ -38,6 +43,7 @@ namespace LkEngine
 			SAFE_DELETE_SET_NULL(iter->second);
 		
 		SAFE_DELETE_SET_NULL(m_screenPixelFixedImageComponent);
+		SAFE_DELETE_SET_NULL(m_FlatPixelFixedImageComponent);
 		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		SAFE_DELETE_SET_NULL(m_pCameraController);
@@ -57,7 +63,7 @@ namespace LkEngine
 
 		m_pPlaneComponent->draw();
 		m_screenPixelFixedImageComponent->draw();
-
+		m_FlatPixelFixedImageComponent->draw();
 
 		m_pSkyBoxComponent->draw();
 	}
