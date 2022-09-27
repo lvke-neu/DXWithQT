@@ -5,6 +5,7 @@
 #include "ui_LkEngineEditor.h"
 #include "RenderWindow.h"
 #include "CustomToolBox/ToolBox.h"
+#include "../LkEngineRuntime/Core/Event/PickEventManager.h"
 
 namespace Ui {
 	class LkEngineEditor;
@@ -13,7 +14,7 @@ namespace Ui {
 
 namespace LkEngine
 {
-	class LkEngineEditor : public QMainWindow
+	class LkEngineEditor : public QMainWindow, public AddComponentEvent, public DeleteComponentEvent
 	{
 		Q_OBJECT
 
@@ -24,7 +25,9 @@ namespace LkEngine
 	public slots:
 		void openSceneCfg();
 		void closeSceneCfg();
-
+		virtual void onAddComponent(IComponent* component) override;
+		virtual void onDeleteComponent(IComponent* component) override;
+		
 	private:
 		Ui::LkEngineEditor *ui;
 		RenderWindow* m_renderWindow{ nullptr };

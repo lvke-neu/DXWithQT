@@ -7,6 +7,8 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QFile>
+#include "PickInfoForm.h"
+#include "../../LkEngineRuntime/Core/engine/Engine.h"
 
 bool ToolPage::m_bIsExpanded = true;
 
@@ -45,12 +47,25 @@ ToolPage::~ToolPage()
 
 void ToolPage::addWidget(const QString &title, QWidget *widget)
 {
+	if(title != "SkyBox" && title !="Camera" && title != "Add Component")
+		m_PickInfoForm = (PickInfoForm*)widget;
+
     ui->pushButtonFold->setText(title);
     ui->verticalLayoutContent->addWidget(widget);
 }
 
 void ToolPage::expand()
 {
+
+	if (m_PickInfoForm)
+	{
+		LkEngine::Transform transform = m_PickInfoForm->getComponentTransform();
+		transform.setPosition(DirectX::XMFLOAT3(transform.getPosition().x, transform.getPosition().y + 10, transform.getPosition().z));
+		transform.setRotation(DirectX::XMFLOAT3(1.5f, 0.0f, 0.0f));
+
+		LkEngine::Engine::getInstance().setCameraTransform(transform);
+	}
+
     ui->widgetContent->show();
     m_bIsExpanded = true;
 

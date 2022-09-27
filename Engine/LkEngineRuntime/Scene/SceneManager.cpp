@@ -8,6 +8,7 @@
 #include "../Core/Event/PickEventManager.h"
 
 #include "Component/SphereComponent.h"
+#include "Component/SpatialImageComponent.h"
 
 namespace LkEngine
 {
@@ -25,16 +26,12 @@ namespace LkEngine
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
 	
-		m_screenPixelFixedImageComponent = new SpatialImageComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		m_flatPixelFixedImageComponent = new SpatialImageComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		m_flatPixelFixedImageComponent->setPosition(XMFLOAT3(-4.0f, -4.0f, 0.0f));
-		m_flatPixelFixedImageComponent->setTexture("builtin\\Texture\\flare.dds");
-		m_flatPixelFixedImageComponent->setVsShader("builtin\\Shader\\FlatPixelFixedImageVS.cso");
-		m_flatPixelFixedImageComponent->setGsShader("builtin\\Shader\\FlatPixelFixedImageGS.cso");
-		m_flatPixelFixedImageComponent->setPsShader("builtin\\Shader\\FlatPixelFixedImagePS.cso");
+
 
 		REGISTER_CLASS(IComponent, "BoxComponent", BoxComponent);
 		REGISTER_CLASS(IComponent, "SphereComponent", SphereComponent);
+		REGISTER_CLASS(IComponent, "SpatialImageComponent", SpatialImageComponent);
+
 
 		LOG_INFO("SceneManager initialization is complete");
 	}
@@ -42,9 +39,7 @@ namespace LkEngine
 	{
 		for (auto iter = m_componets.begin(); iter!=m_componets.end(); iter++)
 			SAFE_DELETE_SET_NULL(iter->second);
-		
-		SAFE_DELETE_SET_NULL(m_screenPixelFixedImageComponent);
-		SAFE_DELETE_SET_NULL(m_flatPixelFixedImageComponent);
+
 		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		SAFE_DELETE_SET_NULL(m_pCameraController);
@@ -54,17 +49,16 @@ namespace LkEngine
 	{
 		static float rot = 0.0f;
 		rot += deltaTime;
-		processPick();
+		//processPick();
 	}
 
 	void SceneManager::drawScene()
 	{		
-		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
-			iter->second->draw();
 
 		m_pPlaneComponent->draw();
-		m_screenPixelFixedImageComponent->draw();
-		m_flatPixelFixedImageComponent->draw();
+
+		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
+			iter->second->draw();
 
 		m_pSkyBoxComponent->draw();
 	}
@@ -94,6 +88,7 @@ namespace LkEngine
 		if (ic)
 		{
 			m_componets.insert({ ic->getUuId(), ic });
+			PickEventManager::getInstance().onAddComponent(ic);
 			LOG_INFO("addComponent-" + componentType + "-" + ic->getUuId());
 		}
 		
@@ -142,6 +137,7 @@ namespace LkEngine
 		auto iter = m_componets.find(uuid);
 		if (iter != m_componets.end())
 		{
+			PickEventManager::getInstance().onDeleteComponent(iter->second);
 			LOG_INFO("deleteComponent-" + iter->second->getComponetType() + "-" + iter->second->getUuId());
 			SAFE_DELETE_SET_NULL(iter->second);
 			m_componets.erase(iter);

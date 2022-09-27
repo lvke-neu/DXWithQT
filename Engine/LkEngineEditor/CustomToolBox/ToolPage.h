@@ -9,6 +9,7 @@ class ToolPage;
 
 class QFormLayout;
 class QLabel;
+class PickInfoForm;
 class ToolPage : public QWidget
 {
     Q_OBJECT
@@ -30,6 +31,7 @@ private:
 
    
     QLabel *m_pLabel;
+	PickInfoForm* m_PickInfoForm{nullptr};
 public:
 	static bool m_bIsExpanded;
 };

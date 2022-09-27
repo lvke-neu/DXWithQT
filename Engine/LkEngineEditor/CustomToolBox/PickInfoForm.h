@@ -1,7 +1,7 @@
 #pragma once
 
 #include <QWidget>
-#include "../../LkEngineRuntime/Core/Event/PickEventManager.h"
+#include "../../LkEngineRuntime/Scene/Component/Interface/ComponentInterface.h"
 
 
 namespace Ui {
@@ -10,21 +10,21 @@ namespace Ui {
 
 
 
-class PickInfoForm : public QWidget, public LkEngine::PickEvent
+class PickInfoForm : public QWidget
 {
 	Q_OBJECT
 
 public:
-	explicit PickInfoForm(QWidget *parent = nullptr);
+	explicit PickInfoForm(LkEngine::IComponent* pComponent, QWidget *parent = nullptr);
 	~PickInfoForm();
-	virtual void onPickComponent(LkEngine::IComponent* component) override;
+
 public slots:
 	void setComponentPorperty();
+	LkEngine::Transform  getComponentTransform() { if (m_pComponent) return m_pComponent->getTransform(); return LkEngine::Transform(); }
 
 private:
-	LkEngine::IComponent* m_pickedComponent{ nullptr };
-private:
 	Ui::PickInfoForm *ui;
+	LkEngine::IComponent* m_pComponent{ nullptr };
 };
 
 

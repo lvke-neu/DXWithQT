@@ -32,10 +32,23 @@ ToolBox::~ToolBox()
     delete ui;
 }
 
-void ToolBox::addWidget(const QString &title, QWidget *widget)
+void ToolBox::addWidget(const std::string &title, QWidget *widget)
 {
     ToolPage *page = new ToolPage(this);
-    page->addWidget(title, widget);
+    page->addWidget(title.c_str(), widget);
 
     m_pContentVBoxLayout->addWidget(page);
+
+	m_pWidget[title] = page;
+}
+
+void ToolBox::deleteWidget(const std::string &title)
+{
+	auto iter = m_pWidget.find(title);
+	if (iter->second)
+	{
+		delete iter->second;
+		iter->second = nullptr;
+	}
+	m_pWidget.erase(iter);
 }

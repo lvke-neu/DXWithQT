@@ -28,8 +28,10 @@ namespace LkEngine
 	public:
 		XMFLOAT3 getScale() const { return m_scale; }
 		void setScale(XMFLOAT3 scale) { m_scale = scale; }
+
 		XMFLOAT3 getRotation() const { return m_rotation; }
 		void setRotation(XMFLOAT3 rotation) { m_rotation = rotation; }
+
 		XMFLOAT3 getPosition() const { return m_position; }
 		void setPosition(XMFLOAT3 position) { m_position = position; }
 	private:
