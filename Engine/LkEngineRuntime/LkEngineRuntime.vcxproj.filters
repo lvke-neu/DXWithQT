@@ -139,7 +139,7 @@
     <ClInclude Include="Scene\Component\SphereComponent.h">
       <Filter>Scene\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Component\ScreenPixelFixedImageComponent.h">
+    <ClInclude Include="Scene\Component\SpatialImageComponent.h">
       <Filter>Scene\Component</Filter>
     </ClInclude>
   </ItemGroup>
@@ -213,7 +213,7 @@
     <ClCompile Include="Scene\Component\SphereComponent.cpp">
       <Filter>Scene\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Component\ScreenPixelFixedImageComponent.cpp">
+    <ClCompile Include="Scene\Component\SpatialImageComponent.cpp">
       <Filter>Scene\Component</Filter>
     </ClCompile>
   </ItemGroup>

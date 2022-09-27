@@ -14,7 +14,7 @@ SceneManager
 #include "Component/SkyBoxComponent.h"
 #include "Component/PlaneComponent.h"
 
-#include "Component/ScreenPixelFixedImageComponent.h"
+#include "Component/SpatialImageComponent.h"
 
 namespace LkEngine
 {
@@ -43,8 +43,8 @@ namespace LkEngine
 		std::string m_currentPick{""};
 		MousePos m_oldMousePos;
 
-		ScreenPixelFixedImageComponent* m_screenPixelFixedImageComponent{nullptr};
-		ScreenPixelFixedImageComponent* m_FlatPixelFixedImageComponent{ nullptr };
+		SpatialImageComponent* m_screenPixelFixedImageComponent{nullptr};
+		SpatialImageComponent* m_flatPixelFixedImageComponent{ nullptr };
 
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };

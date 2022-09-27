@@ -4,11 +4,11 @@
 
 namespace LkEngine
 {
-	class ScreenPixelFixedImageComponent : public IComponent
+	class SpatialImageComponent : public IComponent
 	{
 	public:
-		ScreenPixelFixedImageComponent(void** parameter);
-		ScreenPixelFixedImageComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
+		SpatialImageComponent(void** parameter);
+		SpatialImageComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 	public:
 		virtual void buildMesh() override;
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) override;

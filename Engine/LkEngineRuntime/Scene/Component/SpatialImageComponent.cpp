@@ -1,4 +1,4 @@
-#include "ScreenPixelFixedImageComponent.h"
+#include "SpatialImageComponent.h"
 #include "Common/VertexType.h"
 #include "Common/RenderStates.h"
 #include "../../Core/base/Reflection.h"
@@ -7,9 +7,9 @@
 
 namespace LkEngine
 {
-	ScreenPixelFixedImageComponent::ScreenPixelFixedImageComponent(void** parameter) : IComponent(parameter)
+	SpatialImageComponent::SpatialImageComponent(void** parameter) : IComponent(parameter)
 	{
-		setComponetType("ScreenPixelFixedImageComponent");
+		setComponetType("SpatialImageComponent");
 
 		buildMesh();
 
@@ -24,9 +24,9 @@ namespace LkEngine
 		));
 	}
 
-	ScreenPixelFixedImageComponent::ScreenPixelFixedImageComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) : IComponent(pd3dDevice, pd3dImmediateContext)
+	SpatialImageComponent::SpatialImageComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) : IComponent(pd3dDevice, pd3dImmediateContext)
 	{
-		setComponetType("ScreenPixelFixedImageComponent");
+		setComponetType("SpatialImageComponent");
 
 		buildMesh();
 
@@ -41,7 +41,7 @@ namespace LkEngine
 		));
 	}
 
-	void ScreenPixelFixedImageComponent::buildMesh()
+	void SpatialImageComponent::buildMesh()
 	{
 		m_pVertexBuffer.Reset();
 		m_pIndexBuffer.Reset();
@@ -65,12 +65,12 @@ namespace LkEngine
 
 	}
 
-	void ScreenPixelFixedImageComponent::createVertexLayout(const ComPtr<ID3DBlob>& blob)
+	void SpatialImageComponent::createVertexLayout(const ComPtr<ID3DBlob>& blob)
 	{
 		m_pd3dDevice->CreateInputLayout(VertexPos::inputLayout, 1, blob->GetBufferPointer(), blob->GetBufferSize(), m_pVertexLayout.GetAddressOf());
 	}
 
-	void ScreenPixelFixedImageComponent::bindPipeState()
+	void SpatialImageComponent::bindPipeState()
 	{
 		UINT stride = sizeof(VertexPos);
 		UINT offset = 0;
@@ -97,7 +97,7 @@ namespace LkEngine
 		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());	
 	}
 
-	void ScreenPixelFixedImageComponent::draw()
+	void SpatialImageComponent::draw()
 	{
 		m_pd3dImmediateContext->OMSetDepthStencilState(RenderStates::DSSNoDepthTest.Get(), 0);
 
