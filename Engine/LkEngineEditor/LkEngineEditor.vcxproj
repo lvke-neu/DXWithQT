@@ -73,7 +73,7 @@
       <AdditionalLibraryDirectories>../../bin/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
-      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/</AdditionalIncludeDirectories>
     </ClCompile>
     <QtUic>
       <QtUicDir>$(IntDir)uic\</QtUicDir>
@@ -93,7 +93,7 @@
     </Link>
     <ClCompile>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
-      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <QtUic>

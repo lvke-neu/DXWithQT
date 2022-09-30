@@ -53,6 +53,9 @@
     <Filter Include="Scene\Shader\FlatPixelFixedImage">
       <UniqueIdentifier>{bbdad7a1-fc54-4ddc-b826-a25b5641eea3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\serialization">
+      <UniqueIdentifier>{88f22cb5-8a02-4166-a3b2-d72fee959e72}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -127,9 +130,6 @@
     <ClInclude Include="Core\Event\CameraChangedManager.h">
       <Filter>Core\Event</Filter>
     </ClInclude>
-    <ClInclude Include="Core\base\Reflection.h">
-      <Filter>Core\base</Filter>
-    </ClInclude>
     <ClInclude Include="Core\collision\Ray.h">
       <Filter>Core\collision</Filter>
     </ClInclude>
@@ -141,6 +141,15 @@
     </ClInclude>
     <ClInclude Include="Scene\Component\SpatialImageComponent.h">
       <Filter>Scene\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\serialization\Reference.h">
+      <Filter>Core\serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\serialization\SerializationManager.h">
+      <Filter>Core\serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\serialization\Reflection.h">
+      <Filter>Core\serialization</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -215,6 +224,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Component\SpatialImageComponent.cpp">
       <Filter>Scene\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\serialization\SerializationManager.cpp">
+      <Filter>Core\serialization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

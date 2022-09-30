@@ -11,7 +11,7 @@ namespace LkEngine
 
 	void InputEventManager::unRegisterInputEvent(InputEvent* inputEvent) 
 	{
-		for (auto it = m_inputEvents.begin(); it != m_inputEvents.end(); it++)
+		for (auto it = m_inputEvents.begin(); it != m_inputEvents.end();)
 		{
 			if (*it == inputEvent)
 			{

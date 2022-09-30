@@ -1,7 +1,7 @@
 #include "SpatialImageComponent.h"
 #include "Common/VertexType.h"
 #include "Common/RenderStates.h"
-#include "../../Core/base/Reflection.h"
+#include "../../Core/serialization/Reflection.h"
 
 
 

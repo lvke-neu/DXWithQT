@@ -40,6 +40,9 @@ namespace LkEngine
 		void setWireFrame(bool b) { SceneManager::getInstance().setWireFrame(b); }
 		void addComponent(const std::string& componentType) { SceneManager::getInstance().addComponent(componentType); }
 		void deleteComponent(const std::string& uuid) { SceneManager::getInstance().deleteComponent(uuid); }
+		void openSolution() { SceneManager::getInstance().openSolution(); }
+		void saveSolution() { SceneManager::getInstance().saveSolution(); }
+
 
 		Transform getCameraTransform() { return CameraManager::getInstance().getTransform(); }
 		void setCameraTransform(const Transform& transform) { CameraManager::getInstance().setTransform(transform); }

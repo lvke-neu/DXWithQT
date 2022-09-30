@@ -23,10 +23,13 @@ namespace LkEngine
 		explicit LkEngineEditor(QWidget *parent = nullptr);
 		~LkEngineEditor();
 	public slots:
+		void openSolution();
+		void saveSolution();
 		void openSceneCfg();
 		void closeSceneCfg();
 		virtual void onAddComponent(IComponent* component) override;
 		virtual void onDeleteComponent(IComponent* component) override;
+
 		
 	private:
 		Ui::LkEngineEditor *ui;

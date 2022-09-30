@@ -63,7 +63,7 @@ void ToolPage::expand()
 		transform.setPosition(DirectX::XMFLOAT3(transform.getPosition().x, transform.getPosition().y + 10, transform.getPosition().z));
 		transform.setRotation(DirectX::XMFLOAT3(1.5f, 0.0f, 0.0f));
 
-		LkEngine::Engine::getInstance().setCameraTransform(transform);
+		//LkEngine::Engine::getInstance().setCameraTransform(transform);
 	}
 
     ui->widgetContent->show();

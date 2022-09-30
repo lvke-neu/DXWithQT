@@ -84,7 +84,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
@@ -136,7 +136,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
@@ -157,7 +157,6 @@
     <ClInclude Include="Asset\DDSTextureLoader.h" />
     <ClInclude Include="Asset\WICTextureLoader.h" />
     <ClInclude Include="Core\base\ManagerInterface.h" />
-    <ClInclude Include="Core\base\Reflection.h" />
     <ClInclude Include="Core\base\SingletonInterface.h" />
     <ClInclude Include="Core\base\Utility.h" />
     <ClInclude Include="Core\collision\Ray.h" />
@@ -168,6 +167,9 @@
     <ClInclude Include="Core\Event\InputEventManager.h" />
     <ClInclude Include="Core\Event\PickEventManager.h" />
     <ClInclude Include="Core\log\LogManager.h" />
+    <ClInclude Include="Core\serialization\Reference.h" />
+    <ClInclude Include="Core\serialization\Reflection.h" />
+    <ClInclude Include="Core\serialization\SerializationManager.h" />
     <ClInclude Include="Scene\Component\BoxComponent.h" />
     <ClInclude Include="Scene\Component\Camera\CameraController.h" />
     <ClInclude Include="Scene\Component\Camera\CameraManager.h" />
@@ -198,6 +200,7 @@
     <ClCompile Include="Core\Event\InputEventManager.cpp" />
     <ClCompile Include="Core\Event\PickEventManager.cpp" />
     <ClCompile Include="Core\log\LogManager.cpp" />
+    <ClCompile Include="Core\serialization\SerializationManager.cpp" />
     <ClCompile Include="Scene\Component\BoxComponent.cpp" />
     <ClCompile Include="Scene\Component\Camera\CameraController.cpp" />
     <ClCompile Include="Scene\Component\Camera\CameraManager.cpp" />

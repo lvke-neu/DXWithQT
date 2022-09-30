@@ -9,10 +9,12 @@ The Interface of Component
 
 #include <d3d11.h>
 #include <wrl/client.h>
+#include <DirectXCollision.h>
 #include <string>
 #include "../Common/Material.h"
 #include "../Common/Transform.h"
-#include <DirectXCollision.h>
+#include "../../../Core/serialization/Reference.h"
+
 
 /*
  commonshader constbuffer rule:
@@ -25,7 +27,7 @@ namespace LkEngine
 {
 	using namespace Microsoft::WRL;
 
-	class IComponent
+	class IComponent : public Reference
 	{
 	public:	
 		struct WorldMatrix
@@ -41,6 +43,9 @@ namespace LkEngine
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) = 0;
 		virtual void bindPipeState() = 0;
 		virtual void draw() = 0;
+	public:
+		virtual void serialize(std::string& serializationStr) override;
+		virtual void runFunction(const std::string& funcName, const rapidjson::Value& funcParameter) override;
 	public:
 		std::string getVsShader() { return m_vsShader; }
 		void setVsShader(const std::string& vsShader);
@@ -80,6 +85,15 @@ namespace LkEngine
 	protected:
 		void setComponetType(const std::string componetType) { m_componetType = componetType; }
 		void setUuId(const std::string uuid) { m_uuid = uuid; }
+		void bind_Set_Func();
+
+		void set_VsShader(const rapidjson::Value& funcParameter);
+		void set_GsShader(const rapidjson::Value& funcParameter);
+		void set_PsShader(const rapidjson::Value& funcParameter);
+		void set_Texture(const rapidjson::Value& funcParameter);
+		void set_Material(const rapidjson::Value& funcParameter);
+		void set_Transform(const rapidjson::Value& funcParameter);
+
 	public:
 		void onTransformChanged();
 	protected:

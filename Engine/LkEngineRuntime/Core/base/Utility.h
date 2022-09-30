@@ -25,8 +25,14 @@ using namespace LkEngine;
 
 #define SHOW_WIREFRAME m_pd3dImmediateContext->RSSetState(RenderStates::RSWireframe.Get());
 
-void RelativePath2AbsolutePath(const std::string& relativeShaderPath, std::string& absoluteShaderPath);
+void RelativePath2AbsolutePath(const std::string& relativePath, std::string& absolutePath);
 
 wchar_t* multiByteToWideChar(const std::string& pKey);
 
 char* wideCharToMultiByte(const wchar_t* pWCStrKey);
+
+void readFile(const std::string& relativeFilePath, std::string& readContent);
+
+void writeFile(const std::string& relativeFilePath, const std::string& writerContent);
+
+

@@ -37,7 +37,7 @@
    </attribute>
    <addaction name="openSolution"/>
    <addaction name="separator"/>
-   <addaction name="closeSolution"/>
+   <addaction name="saveSolution"/>
    <addaction name="separator"/>
    <addaction name="openSceneCfg"/>
    <addaction name="separator"/>
@@ -51,7 +51,7 @@
     <string>打开解决方案</string>
    </property>
   </action>
-  <action name="closeSolution">
+  <action name="saveSolution">
    <property name="text">
     <string>保存解决方案</string>
    </property>

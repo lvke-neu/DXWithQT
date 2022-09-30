@@ -10,7 +10,7 @@ namespace LkEngine
 
 	void PickEventManager::unRegisterPickEvent(PickEvent* pickEvent)
 	{
-		for (auto it = m_pickEvents.begin(); it != m_pickEvents.end(); it++)
+		for (auto it = m_pickEvents.begin(); it != m_pickEvents.end();)
 		{
 			if (*it == pickEvent)
 			{
@@ -38,7 +38,7 @@ namespace LkEngine
 
 	void PickEventManager::unRegisterAddComponentEvent(AddComponentEvent* addComponentEvent)
 	{
-		for (auto it = m_addComponentEvents.begin(); it != m_addComponentEvents.end(); it++)
+		for (auto it = m_addComponentEvents.begin(); it != m_addComponentEvents.end(); )
 		{
 			if (*it == addComponentEvent)
 			{
@@ -66,7 +66,7 @@ namespace LkEngine
 
 	void PickEventManager::unRegisterDeleteComponentEvent(DeleteComponentEvent* deleteComponentEvent)
 	{
-		for (auto it = m_deleteComponentEvents.begin(); it != m_deleteComponentEvents.end(); it++)
+		for (auto it = m_deleteComponentEvents.begin(); it != m_deleteComponentEvents.end(); )
 		{
 			if (*it == deleteComponentEvent)
 			{

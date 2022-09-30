@@ -34,20 +34,14 @@ namespace LkEngine
 		void setWireFrame(bool b);
 		void addComponent(const std::string& componentType);
 		void deleteComponent(const std::string& uuid);
+		void deleteAllComponent();
+		void openSolution();
+		void saveSolution();
 	private:
-		void processPick();
-
-	private:
-
-		std::map<std::string, IComponent*> m_componets;
-		std::string m_currentPick{""};
-		MousePos m_oldMousePos;
-
-
-
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };
 		CameraController* m_pCameraController{ nullptr };
 
+		std::map<std::string, IComponent*> m_componets;
 	};
 }

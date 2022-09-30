@@ -1,6 +1,7 @@
 #include "LkEngineEditor.h"
 #include "../LkEngineRuntime/Core/base/Utility.h"
 #include <qdockwidget.h>
+#include <QDialog>
 
 #include "CustomToolBox/Form.h"
 #include "CustomToolBox/SkyBoxForm.h"
@@ -27,7 +28,8 @@ namespace LkEngine
 		
 		m_sceneCfgToolBox->hide();
 
-
+		connect(ui->openSolution, SIGNAL(triggered()), this, SLOT(openSolution()));
+		connect(ui->saveSolution, SIGNAL(triggered()), this, SLOT(saveSolution()));
 		connect(ui->openSceneCfg, SIGNAL(triggered()),this, SLOT(openSceneCfg()));
 		connect(ui->closeSceneCfg, SIGNAL(triggered()), this, SLOT(closeSceneCfg()));
 
@@ -44,6 +46,21 @@ namespace LkEngine
 		SAFE_DELETE_SET_NULL(m_renderWindow);
 		SAFE_DELETE_SET_NULL(ui);
 		
+	}
+
+	void LkEngineEditor::openSolution()
+	{
+		//QDialog* dlg = new QDialog(this);
+		//CameraForm* aa = new CameraForm(dlg);
+		//dlg->resize(200, 50);
+		//dlg->exec();
+
+		Engine::getInstance().openSolution();
+	}
+
+	void LkEngineEditor::saveSolution()
+	{
+		Engine::getInstance().saveSolution();
 	}
 
 	void LkEngineEditor::openSceneCfg()

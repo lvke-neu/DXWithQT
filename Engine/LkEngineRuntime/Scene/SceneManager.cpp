@@ -2,7 +2,7 @@
 #include "../Core/base/Utility.h"
 #include "Component/Common/RenderStates.h"
 #include "Component/Camera/CameraManager.h"
-#include "../Core/base/Reflection.h"
+#include "../Core/serialization/Reflection.h"
 #include "../Core/collision/Ray.h"
 #include "../Core/engine/Engine.h"
 #include "../Core/Event/PickEventManager.h"
@@ -10,10 +10,16 @@
 #include "Component/SphereComponent.h"
 #include "Component/SpatialImageComponent.h"
 
+#include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
+
 namespace LkEngine
 {
 	void SceneManager::init()
 	{
+		REGISTER_CLASS(Reference, "BoxComponent", BoxComponent);
+		REGISTER_CLASS(Reference, "SphereComponent", SphereComponent);
+		REGISTER_CLASS(Reference, "SpatialImageComponent", SpatialImageComponent);
+
 		RenderStates::Init(m_pd3dDevice);
 
 		CameraManager::getInstance().setTransform(Transform(
@@ -26,13 +32,6 @@ namespace LkEngine
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
 	
-
-
-		REGISTER_CLASS(IComponent, "BoxComponent", BoxComponent);
-		REGISTER_CLASS(IComponent, "SphereComponent", SphereComponent);
-		REGISTER_CLASS(IComponent, "SpatialImageComponent", SpatialImageComponent);
-
-
 		LOG_INFO("SceneManager initialization is complete");
 	}
 	SceneManager::~SceneManager()
@@ -47,18 +46,17 @@ namespace LkEngine
 
 	void SceneManager::updateScene(float deltaTime)
 	{
-		static float rot = 0.0f;
-		rot += deltaTime;
-		//processPick();
+
+
 	}
 
 	void SceneManager::drawScene()
 	{		
-
 		m_pPlaneComponent->draw();
 
 		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
 			iter->second->draw();
+
 
 		m_pSkyBoxComponent->draw();
 	}
@@ -83,7 +81,7 @@ namespace LkEngine
 		void* parameter[2];
 		parameter[0] = m_pd3dDevice.Get();
 		parameter[1] = m_pd3dImmediateContext.Get();
-		IComponent* ic = Reflection<IComponent>::getInstance().createObject(componentType, parameter);
+		IComponent* ic = (IComponent*)Reflection<Reference>::getInstance().createObject(componentType, parameter);
 
 		if (ic)
 		{
@@ -94,44 +92,6 @@ namespace LkEngine
 		
 	}
 
-	void SceneManager::processPick()
-	{
-		if (Engine::getInstance().isMousePress(LeftButton))
-		{
-			bool bIsAllNotHit = true;
-			Ray ray_camera2pickPoint = Ray::ScreenToRay(Engine::getInstance().getCursorPos().x, Engine::getInstance().getCursorPos().y);
-			for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
-			{
-				float dis;
-				BoundingBox aabb;
-				//LocalBoundingBox to WorldBoudingBox
-				iter->second->getBoundingBox().Transform(aabb, iter->second->getTransform().getWorldMatrix());
-				if (ray_camera2pickPoint.hit(aabb, dis))
-				{
-					m_currentPick = iter->second->getUuId();
-					LOG_INFO("hit: type = " + iter->second->getComponetType() + ", uuid = " + m_currentPick);
-					
-					Engine::getInstance().setMousePress(LeftButton, false);
-					bIsAllNotHit = false;
-
-					PickEventManager::getInstance().onPickComponent(iter->second);
-					break;
-				}
-				else
-				{
-					m_currentPick = "";
-				}
-			}
-			if (bIsAllNotHit)
-			{
-				Engine::getInstance().setMousePress(LeftButton, false);
-				LOG_INFO("hit null");
-			}
-				
-
-		}
-	}
-	
 	void SceneManager::deleteComponent(const std::string& uuid)
 	{
 		auto iter = m_componets.find(uuid);
@@ -143,6 +103,87 @@ namespace LkEngine
 			m_componets.erase(iter);
 		}
 			
+	}
+
+	void SceneManager::deleteAllComponent()
+	{
+		for (auto it = m_componets.begin(); it != m_componets.end();)
+		{
+			PickEventManager::getInstance().onDeleteComponent(it->second);
+			it = m_componets.erase(it);
+			if (it == m_componets.end())
+				break;
+		}
+	}
+
+	void SceneManager::saveSolution()
+	{
+		rapidjson::Document docSolution;
+		docSolution.SetObject();
+		rapidjson::Document::AllocatorType& allocator = docSolution.GetAllocator();
+		rapidjson::Value componentObjectArray(rapidjson::kArrayType);
+
+		std::string outSerializationStr;
+		rapidjson::Document docSerialization;
+		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
+		{
+			SerializationManager::getInstance().serialize(iter->second, outSerializationStr);
+			docSerialization.Parse(outSerializationStr.c_str());
+	
+			componentObjectArray.PushBack(docSerialization, allocator);
+
+
+		}
+		docSolution.AddMember("component", componentObjectArray, allocator);
+
+		rapidjson::StringBuffer buffer;
+		rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+		docSolution.Accept(writer);
+
+		writeFile("assets\\solution.json", buffer.GetString());
+
+		LOG_INFO(" Serialization success: assets\\solution.json");
+	}
+
+	void SceneManager::openSolution()
+	{
+	
+		deleteAllComponent();
+
+		void* parameter[2];
+		parameter[0] = m_pd3dDevice.Get();
+		parameter[1] = m_pd3dImmediateContext.Get();
+		std::string inSerializationStr;
+		readFile("assets\\solution.lkproject", inSerializationStr);
+
+		rapidjson::Document docSolution;
+		if (!docSolution.Parse(inSerializationStr.c_str()).HasParseError())
+		{
+			if (docSolution.HasMember("component"))
+			{
+				const rapidjson::Value& componentArr= docSolution["component"];
+				unsigned int arrSize = componentArr.Size();
+				for (unsigned int i = 0; i < arrSize; i++)
+				{
+					Reference* reference{ nullptr };
+
+					rapidjson::StringBuffer buffer;
+					rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+					componentArr[i].Accept(writer);
+
+					SerializationManager::getInstance().unSerialize(reference, buffer.GetString(), parameter);
+
+					if (reference)
+					{
+						m_componets.insert({ ((IComponent*)reference)->getUuId(), (IComponent*)reference });
+						PickEventManager::getInstance().onAddComponent((IComponent*)reference);
+						LOG_INFO(" Serialization addComponent-" + ((IComponent*)reference)->getComponetType() + "-" + ((IComponent*)reference)->getUuId());
+					}
+				}
+
+			}
+		}
+		
 	}
 }
 
