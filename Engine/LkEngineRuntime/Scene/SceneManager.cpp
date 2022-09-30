@@ -116,7 +116,48 @@ namespace LkEngine
 		}
 	}
 
-	void SceneManager::saveSolution()
+	void SceneManager::openSolution(const std::string& filePath)
+	{
+
+		deleteAllComponent();
+
+		void* parameter[2];
+		parameter[0] = m_pd3dDevice.Get();
+		parameter[1] = m_pd3dImmediateContext.Get();
+		std::string inSerializationStr;
+		readAbsoluteFile(filePath, inSerializationStr);
+
+		rapidjson::Document docSolution;
+		if (!docSolution.Parse(inSerializationStr.c_str()).HasParseError())
+		{
+			if (docSolution.HasMember("component"))
+			{
+				const rapidjson::Value& componentArr = docSolution["component"];
+				unsigned int arrSize = componentArr.Size();
+				for (unsigned int i = 0; i < arrSize; i++)
+				{
+					Reference* reference{ nullptr };
+
+					rapidjson::StringBuffer buffer;
+					rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+					componentArr[i].Accept(writer);
+
+					SerializationManager::getInstance().unSerialize(reference, buffer.GetString(), parameter);
+
+					if (reference)
+					{
+						m_componets.insert({ ((IComponent*)reference)->getUuId(), (IComponent*)reference });
+						PickEventManager::getInstance().onAddComponent((IComponent*)reference);
+						LOG_INFO(" Serialization addComponent-" + ((IComponent*)reference)->getComponetType() + "-" + ((IComponent*)reference)->getUuId());
+					}
+				}
+
+			}
+		}
+
+	}
+
+	void SceneManager::saveSolution(const std::string& filePath)
 	{
 		rapidjson::Document docSolution;
 		docSolution.SetObject();
@@ -140,50 +181,11 @@ namespace LkEngine
 		rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
 		docSolution.Accept(writer);
 
-		writeFile("assets\\solution.json", buffer.GetString());
+		writeabsoluteFile(filePath, buffer.GetString());
 
-		LOG_INFO(" Serialization success: assets\\solution.json");
+		LOG_INFO(" Serialization success:" + filePath);
 	}
 
-	void SceneManager::openSolution()
-	{
-	
-		deleteAllComponent();
 
-		void* parameter[2];
-		parameter[0] = m_pd3dDevice.Get();
-		parameter[1] = m_pd3dImmediateContext.Get();
-		std::string inSerializationStr;
-		readFile("assets\\solution.lkproject", inSerializationStr);
-
-		rapidjson::Document docSolution;
-		if (!docSolution.Parse(inSerializationStr.c_str()).HasParseError())
-		{
-			if (docSolution.HasMember("component"))
-			{
-				const rapidjson::Value& componentArr= docSolution["component"];
-				unsigned int arrSize = componentArr.Size();
-				for (unsigned int i = 0; i < arrSize; i++)
-				{
-					Reference* reference{ nullptr };
-
-					rapidjson::StringBuffer buffer;
-					rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
-					componentArr[i].Accept(writer);
-
-					SerializationManager::getInstance().unSerialize(reference, buffer.GetString(), parameter);
-
-					if (reference)
-					{
-						m_componets.insert({ ((IComponent*)reference)->getUuId(), (IComponent*)reference });
-						PickEventManager::getInstance().onAddComponent((IComponent*)reference);
-						LOG_INFO(" Serialization addComponent-" + ((IComponent*)reference)->getComponetType() + "-" + ((IComponent*)reference)->getUuId());
-					}
-				}
-
-			}
-		}
-		
-	}
 }
 

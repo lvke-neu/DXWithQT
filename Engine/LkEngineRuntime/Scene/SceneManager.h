@@ -35,8 +35,8 @@ namespace LkEngine
 		void addComponent(const std::string& componentType);
 		void deleteComponent(const std::string& uuid);
 		void deleteAllComponent();
-		void openSolution();
-		void saveSolution();
+		void openSolution(const std::string& filePath);
+		void saveSolution(const std::string& filePath);
 	private:
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };

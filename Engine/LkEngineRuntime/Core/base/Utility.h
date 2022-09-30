@@ -31,8 +31,13 @@ wchar_t* multiByteToWideChar(const std::string& pKey);
 
 char* wideCharToMultiByte(const wchar_t* pWCStrKey);
 
-void readFile(const std::string& relativeFilePath, std::string& readContent);
+void readRelativeFile(const std::string& relativeFilePath, std::string& readContent);
 
-void writeFile(const std::string& relativeFilePath, const std::string& writerContent);
+void writeRelativeFile(const std::string& relativeFilePath, const std::string& writerContent);
+
+void readAbsoluteFile(const std::string& absoluteFilePath, std::string& readContent);
+
+void writeabsoluteFile(const std::string& absoluteFilePath, const std::string& writerContent);
+
 
 

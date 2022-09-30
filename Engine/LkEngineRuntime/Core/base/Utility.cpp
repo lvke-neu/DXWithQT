@@ -38,13 +38,24 @@ char* wideCharToMultiByte(const wchar_t* pWCStrKey)
 
 }
 
-void readFile(const std::string& relativeFilePath, std::string& readContent)
+void readRelativeFile(const std::string& relativeFilePath, std::string& readContent)
 {
-	std::string absoluteShaderPath;
-	RelativePath2AbsolutePath(relativeFilePath, absoluteShaderPath);
+	std::string absoluteFilePath;
+	RelativePath2AbsolutePath(relativeFilePath, absoluteFilePath);
+	readAbsoluteFile(absoluteFilePath, readContent);
+}
 
+void writeRelativeFile(const std::string& relativeFilePath, const std::string& writerContent)
+{
+	std::string absoluteFilePath;
+	RelativePath2AbsolutePath(relativeFilePath, absoluteFilePath);
+	writeabsoluteFile(absoluteFilePath, writerContent);
+}
+
+void readAbsoluteFile(const std::string& absoluteFilePath, std::string& readContent)
+{
 	std::ifstream ifs;
-	ifs.open(absoluteShaderPath, std::ios::in);
+	ifs.open(absoluteFilePath, std::ios::in);
 
 	char arr[4096] = { 0 };
 	while (ifs >> arr)
@@ -54,13 +65,10 @@ void readFile(const std::string& relativeFilePath, std::string& readContent)
 	ifs.close();
 }
 
-void writeFile(const std::string& relativeFilePath, const std::string& writerContent)
+void writeabsoluteFile(const std::string& absoluteFilePath, const std::string& writerContent)
 {
-	std::string absoluteShaderPath;
-	RelativePath2AbsolutePath(relativeFilePath, absoluteShaderPath);
-
 	std::ofstream ofs;
-	ofs.open(absoluteShaderPath, std::ios::out | std::ios::trunc);
+	ofs.open(absoluteFilePath, std::ios::out | std::ios::trunc);
 	ofs << writerContent;
 	ofs.close();
 }

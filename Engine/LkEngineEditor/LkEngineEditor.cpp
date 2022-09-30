@@ -1,7 +1,7 @@
 #include "LkEngineEditor.h"
 #include "../LkEngineRuntime/Core/base/Utility.h"
 #include <qdockwidget.h>
-#include <QDialog>
+#include <qfiledialog.h>
 
 #include "CustomToolBox/Form.h"
 #include "CustomToolBox/SkyBoxForm.h"
@@ -50,17 +50,20 @@ namespace LkEngine
 
 	void LkEngineEditor::openSolution()
 	{
-		//QDialog* dlg = new QDialog(this);
-		//CameraForm* aa = new CameraForm(dlg);
-		//dlg->resize(200, 50);
-		//dlg->exec();
-
-		Engine::getInstance().openSolution();
+		QString curPath, aFileName;
+		curPath = QCoreApplication::applicationDirPath() + "/assets";
+		aFileName = QFileDialog::getOpenFileName(this, tr("Open Solution"), curPath, tr("*.lkproject"));
+		if(aFileName != "")
+			Engine::getInstance().openSolution(aFileName.toStdString());
 	}
 
 	void LkEngineEditor::saveSolution()
 	{
-		Engine::getInstance().saveSolution();
+		QString curPath, aFileName;
+		curPath = QCoreApplication::applicationDirPath() + "/assets";
+		aFileName = QFileDialog::getSaveFileName(this, tr("Save Solution"), curPath, tr("*.lkproject"));
+		if (aFileName != "")
+			Engine::getInstance().saveSolution(aFileName.toStdString());
 	}
 
 	void LkEngineEditor::openSceneCfg()
