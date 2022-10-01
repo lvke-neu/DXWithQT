@@ -84,7 +84,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/;../../thirdparty/curl/x64/include/</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
     </ClCompile>
     <Link>
@@ -94,11 +94,10 @@
       <Path>$(IntDir)$(MSBuildProjectName)_d.log</Path>
     </BuildLog>
     <Lib>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../thirdparty/curl/x64/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <LinkTimeCodeGeneration>true</LinkTimeCodeGeneration>
     </Lib>
   </ItemDefinitionGroup>
@@ -136,7 +135,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/;../../thirdparty/curl/x64/include/</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
     </ClCompile>
     <Link>
@@ -145,11 +144,10 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>libcurl.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
     <Lib>
-      <AdditionalLibraryDirectories>
-      </AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>../../thirdparty/curl/x64/lib/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -167,6 +165,7 @@
     <ClInclude Include="Core\Event\InputEventManager.h" />
     <ClInclude Include="Core\Event\PickEventManager.h" />
     <ClInclude Include="Core\log\LogManager.h" />
+    <ClInclude Include="Core\Network Request\HttpRequestManager.h" />
     <ClInclude Include="Core\serialization\Reference.h" />
     <ClInclude Include="Core\serialization\Reflection.h" />
     <ClInclude Include="Core\serialization\SerializationManager.h" />
@@ -200,6 +199,7 @@
     <ClCompile Include="Core\Event\InputEventManager.cpp" />
     <ClCompile Include="Core\Event\PickEventManager.cpp" />
     <ClCompile Include="Core\log\LogManager.cpp" />
+    <ClCompile Include="Core\Network Request\HttpRequestManager.cpp" />
     <ClCompile Include="Core\serialization\SerializationManager.cpp" />
     <ClCompile Include="Scene\Component\BoxComponent.cpp" />
     <ClCompile Include="Scene\Component\Camera\CameraController.cpp" />

@@ -91,7 +91,10 @@ namespace LkEngine
 
 	void RenderWindow::wheelEvent(QWheelEvent *event)
 	{
-
+		MouseState ms;
+		ms.delta = event->delta();
+		
+		Engine::getInstance().onMouseWheelEvent(ms);
 	}
 
 

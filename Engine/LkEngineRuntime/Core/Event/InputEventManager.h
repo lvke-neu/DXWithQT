@@ -551,6 +551,7 @@ namespace LkEngine
 	{
 		MouseType mouseType;
 		MousePos mousePos;
+		int delta;
 	};
 	class InputEvent
 	{

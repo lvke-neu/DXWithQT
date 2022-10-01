@@ -12,6 +12,9 @@
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
 
+#include "../../LkEngineRuntime/Core/Network Request/HttpRequestManager.h"
+
+
 namespace LkEngine
 {
 	void SceneManager::init()
@@ -110,6 +113,7 @@ namespace LkEngine
 		for (auto it = m_componets.begin(); it != m_componets.end();)
 		{
 			PickEventManager::getInstance().onDeleteComponent(it->second);
+			SAFE_DELETE_SET_NULL(it->second);
 			it = m_componets.erase(it);
 			if (it == m_componets.end())
 				break;
@@ -118,6 +122,56 @@ namespace LkEngine
 
 	void SceneManager::openSolution(const std::string& filePath)
 	{
+		//static int i = -1;
+		//i++;
+		//i = i % 3;
+		//std::string str[3] = { {"scene1.lkproject"}, {"scene2.lkproject"}, {"scene3.lkproject"} };
+
+		//std::string relativeFilePath = "assets/scene1Http.lkproject";
+		//CURLcode res = HttpRequestManager::getInstance().download("http://192.168.127.128:9000/solution/"+str[i], relativeFilePath);
+	
+		//LOG_INFO("http code:" + std::to_string(res));
+
+
+		//deleteAllComponent();
+
+		//void* parameter[2];
+		//parameter[0] = m_pd3dDevice.Get();
+		//parameter[1] = m_pd3dImmediateContext.Get();
+		//std::string inSerializationStr;
+		//readRelativeFile(relativeFilePath, inSerializationStr);
+
+		//rapidjson::Document docSolution;
+		//if (!docSolution.Parse(inSerializationStr.c_str()).HasParseError())
+		//{
+		//	if (docSolution.HasMember("component"))
+		//	{
+		//		const rapidjson::Value& componentArr = docSolution["component"];
+		//		unsigned int arrSize = componentArr.Size();
+		//		for (unsigned int i = 0; i < arrSize; i++)
+		//		{
+		//			Reference* reference{ nullptr };
+
+		//			rapidjson::StringBuffer buffer;
+		//			rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+		//			componentArr[i].Accept(writer);
+
+		//			SerializationManager::getInstance().unSerialize(reference, buffer.GetString(), parameter);
+
+		//			if (reference)
+		//			{
+		//				m_componets.insert({ ((IComponent*)reference)->getUuId(), (IComponent*)reference });
+		//				PickEventManager::getInstance().onAddComponent((IComponent*)reference);
+		//				LOG_INFO(" Serialization addComponent-" + ((IComponent*)reference)->getComponetType() + "-" + ((IComponent*)reference)->getUuId());
+		//			}
+		//		}
+
+		//	}
+		//}
+
+
+
+
 
 		deleteAllComponent();
 
@@ -172,8 +226,6 @@ namespace LkEngine
 			docSerialization.Parse(outSerializationStr.c_str());
 	
 			componentObjectArray.PushBack(docSerialization, allocator);
-
-
 		}
 		docSolution.AddMember("component", componentObjectArray, allocator);
 
@@ -185,7 +237,5 @@ namespace LkEngine
 
 		LOG_INFO(" Serialization success:" + filePath);
 	}
-
-
 }
 

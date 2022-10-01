@@ -46,6 +46,7 @@ namespace LkEngine
 		MousePos m_oldMousePos;
 		float m_mouseDeltaX = 0.0f;
 		float m_mouseDeltaY = 0.0f;
+		int m_middleButtonDelta = 0;
 	};
 }
 

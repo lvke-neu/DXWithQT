@@ -44,7 +44,7 @@ namespace LkEngine
 
 	void CameraController::onMouseWheelEvent(const MouseState& mouseState) 
 	{
-
+		m_middleButtonDelta = mouseState.delta;
 	}
 
 	void CameraController::onFrameMove(float deltaTime)
@@ -82,6 +82,12 @@ namespace LkEngine
 		//	CameraManager::getInstance().rotYAxis(-deltaTime);
 		//if (m_isKeyDown[Keys::Key_Right])
 		//	CameraManager::getInstance().rotYAxis(deltaTime);
+
+		if (m_middleButtonDelta != 0)
+		{
+			CameraManager::getInstance().moveZAxis(deltaTime * m_middleButtonDelta * 40);
+			m_middleButtonDelta = 0;
+		}
 
 		if (m_whichMousePress == RightButton)
 		{
