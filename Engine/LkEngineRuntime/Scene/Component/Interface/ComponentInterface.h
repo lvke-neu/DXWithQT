@@ -36,6 +36,7 @@ namespace LkEngine
 			XMMATRIX g_worldInvTranspose;
 		};
 	public:
+		IComponent() = default;
 		IComponent(void** parameter);
 		IComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 		virtual ~IComponent();

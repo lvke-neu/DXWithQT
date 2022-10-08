@@ -135,15 +135,44 @@ namespace LkEngine
 
 	ModelComponent::ModelComponent(void** parameter)
 	{
+		m_pd3dDevice = (ID3D11Device*)parameter[0];
+		m_pd3dImmediateContext = (ID3D11DeviceContext*)parameter[1];
+		m_modelPath = *((std::string*)parameter[2]);
+		setComponetType("BoxComponent");
+		loadModel();
 
+		GUID guid;
+		CoCreateGuid(&guid);
+		const UINT bufferLength = 256;
+		char* guidStr = new char[bufferLength];
+		_snprintf_s(guidStr, bufferLength, bufferLength - 1,
+			"%08X-%04X-%04x-%02X%02X-%02X%02X%02X%02X%02X%02X",
+			guid.Data1, guid.Data2, guid.Data3,
+			guid.Data4[0], guid.Data4[1], guid.Data4[2],
+			guid.Data4[3], guid.Data4[4], guid.Data4[5],
+			guid.Data4[6], guid.Data4[7]);
+		m_uuid = guidStr;
 	}
 
-	ModelComponent::ModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, const std::string& modelPath) :
-	m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
+	ModelComponent::ModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, const std::string& modelPath)
 	{
-		//RelativePath2AbsolutePath(modelPath, m_modelPath);
+		m_pd3dDevice = pd3dDevice;
+		m_pd3dImmediateContext = pd3dImmediateContext;
 		m_modelPath = modelPath;
+		setComponetType("BoxComponent");
 		loadModel();
+
+		GUID guid;
+		CoCreateGuid(&guid);
+		const UINT bufferLength = 256;
+		char* guidStr = new char[bufferLength];
+		_snprintf_s(guidStr, bufferLength, bufferLength - 1,
+			"%08X-%04X-%04x-%02X%02X-%02X%02X%02X%02X%02X%02X",
+			guid.Data1, guid.Data2, guid.Data3,
+			guid.Data4[0], guid.Data4[1], guid.Data4[2],
+			guid.Data4[3], guid.Data4[4], guid.Data4[5],
+			guid.Data4[6], guid.Data4[7]);
+		m_uuid = guidStr;
 	}
 
 

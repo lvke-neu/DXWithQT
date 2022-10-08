@@ -9,6 +9,7 @@
 
 #include "Component/SphereComponent.h"
 #include "Component/SpatialImageComponent.h"
+#include "Component/ModelComponent.h"
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
 
@@ -22,6 +23,7 @@ namespace LkEngine
 		REGISTER_CLASS(Reference, "BoxComponent", BoxComponent);
 		REGISTER_CLASS(Reference, "SphereComponent", SphereComponent);
 		REGISTER_CLASS(Reference, "SpatialImageComponent", SpatialImageComponent);
+		REGISTER_CLASS(Reference, "ModelComponent", ModelComponent);
 
 		RenderStates::Init(m_pd3dDevice);
 
@@ -35,7 +37,19 @@ namespace LkEngine
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
 	
-		modelComponent = new ModelComponent(m_pd3dDevice, m_pd3dImmediateContext, "E:\\C++Project\\LK_Little_Engine\\bin\\builtin\\Model\\Tree\\tree.obj");
+		void* parameter[3];
+		parameter[0] = m_pd3dDevice.Get();
+		parameter[1] = m_pd3dImmediateContext.Get();
+		std::string str("E:\\C++Project\\LK_Little_Engine\\bin\\builtin\\Model\\Tree\\tree.obj");
+		parameter[2] = &str;
+		IComponent* ic = (IComponent*)Reflection<Reference>::getInstance().createObject("ModelComponent", parameter);
+
+		if (ic)
+		{
+			m_componets.insert({ ic->getUuId(), ic });
+			PickEventManager::getInstance().onAddComponent(ic);
+			LOG_INFO("addComponent-" + "ModelComponent" + "-" + ic->getUuId());
+		}
 
 		LOG_INFO("SceneManager initialization is complete");
 	}
@@ -62,7 +76,7 @@ namespace LkEngine
 		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
 			iter->second->draw();
 
-		modelComponent->draw();
+
 		m_pSkyBoxComponent->draw();
 	}
 

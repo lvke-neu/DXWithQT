@@ -13,7 +13,7 @@ SceneManager
 #include "Component/Camera/CameraController.h"
 #include "Component/SkyBoxComponent.h"
 #include "Component/PlaneComponent.h"
-#include "Component/ModelComponent.h"
+
 
 
 namespace LkEngine
@@ -44,7 +44,5 @@ namespace LkEngine
 		CameraController* m_pCameraController{ nullptr };
 
 		std::map<std::string, IComponent*> m_componets;
-
-		ModelComponent* modelComponent{ nullptr };
 	};
 }

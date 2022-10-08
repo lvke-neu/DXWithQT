@@ -33,21 +33,21 @@ namespace LkEngine
 		aiMesh* m_mesh;
 	};
 
-	class ModelComponent
+	class ModelComponent : public IComponent
 	{
 	public:
 		ModelComponent(void** parameter);
 		ModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, const std::string& modelPath);
 	
+		void buildMesh() {};
+		void createVertexLayout(const ComPtr<ID3DBlob>& blob) {};
+		void bindPipeState() {};
 		void draw();
 	private:
 		void loadModel();
 		void processNode(aiNode* node, const aiScene* scene);
 	private:
-		ComPtr<ID3D11Device> m_pd3dDevice{ nullptr };
-		ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext{ nullptr };
 		std::string m_modelPath{ "" };
-
 		std::vector<SubModelComponent> m_subModelComponents;
 	};
 }
