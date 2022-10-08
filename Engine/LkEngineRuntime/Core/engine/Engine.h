@@ -42,7 +42,7 @@ namespace LkEngine
 		void deleteComponent(const std::string& uuid) { SceneManager::getInstance().deleteComponent(uuid); }
 		void openSolution(const std::string& filePath) { SceneManager::getInstance().openSolution(filePath); }
 		void saveSolution(const std::string& filePath) { SceneManager::getInstance().saveSolution(filePath); }
-
+		void setCameraMoveSpeed(float moveSpeed) { SceneManager::getInstance().setCameraMoveSpeed(moveSpeed); }
 
 		Transform getCameraTransform() { return CameraManager::getInstance().getTransform(); }
 		void setCameraTransform(const Transform& transform) { CameraManager::getInstance().setTransform(transform); }

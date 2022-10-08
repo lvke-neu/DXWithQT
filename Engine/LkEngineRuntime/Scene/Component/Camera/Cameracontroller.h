@@ -38,7 +38,9 @@ namespace LkEngine
 		virtual void onMouseWheelEvent(const MouseState& mouseState) override;
 
 		virtual void onFrameMove(float deltaTime) override;
-	
+
+	public:
+		void setCameraMoveSpeed(float moveSpeed);
 	private:
 		std::map<Keys, bool> m_isKeyDown;
 
@@ -47,6 +49,8 @@ namespace LkEngine
 		float m_mouseDeltaX = 0.0f;
 		float m_mouseDeltaY = 0.0f;
 		int m_middleButtonDelta = 0;
+		
+		float m_moveSpeed = 100.0f;
 	};
 }
 

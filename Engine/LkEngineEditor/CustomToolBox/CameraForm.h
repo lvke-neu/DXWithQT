@@ -24,6 +24,7 @@ public slots:
 	void setWireFrame(bool b);
 	void setCameraTransform();
 	void setCameraFrustum();
+	void setCameraMoveSpeed();
 private:
 	Ui::CameraForm *ui;
 };

@@ -35,6 +35,8 @@ namespace LkEngine
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
 	
+		modelComponent = new ModelComponent(m_pd3dDevice, m_pd3dImmediateContext, "E:\\C++Project\\LK_Little_Engine\\bin\\builtin\\Model\\Tree\\tree.obj");
+
 		LOG_INFO("SceneManager initialization is complete");
 	}
 	SceneManager::~SceneManager()
@@ -60,7 +62,7 @@ namespace LkEngine
 		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
 			iter->second->draw();
 
-
+		modelComponent->draw();
 		m_pSkyBoxComponent->draw();
 	}
 
@@ -236,6 +238,14 @@ namespace LkEngine
 		writeabsoluteFile(filePath, buffer.GetString());
 
 		LOG_INFO(" Serialization success:" + filePath);
+	}
+
+	void SceneManager::setCameraMoveSpeed(float moveSpeed)
+	{
+		if (m_pCameraController)
+		{
+			m_pCameraController->setCameraMoveSpeed(moveSpeed);
+		}
 	}
 }
 

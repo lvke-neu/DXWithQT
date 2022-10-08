@@ -30,6 +30,8 @@ CameraForm::CameraForm(QWidget *parent) :
 	connect(ui->doubleSpinBox_12, SIGNAL(valueChanged(double)), this, SLOT(setCameraFrustum()));
 	connect(ui->doubleSpinBox_13, SIGNAL(valueChanged(double)), this, SLOT(setCameraFrustum()));
 
+	connect(ui->doubleSpinBox_14, SIGNAL(valueChanged(double)), this, SLOT(setCameraMoveSpeed()));
+
 	CameraChangedManager::getInstance().registerCameraMoveEvent(this);
 	CameraChangedManager::getInstance().registerCameraFrustumChangedEvent(this);
 }
@@ -109,4 +111,9 @@ void CameraForm::setCameraTransform()
 void CameraForm::setCameraFrustum()
 {
 	Engine::getInstance().setCameraFrustum(ui->doubleSpinBox_10->value(), ui->doubleSpinBox_11->value(), ui->doubleSpinBox_12->value(), ui->doubleSpinBox_13->value());
+}
+
+void CameraForm::setCameraMoveSpeed()
+{
+	Engine::getInstance().setCameraMoveSpeed(ui->doubleSpinBox_14->value());
 }

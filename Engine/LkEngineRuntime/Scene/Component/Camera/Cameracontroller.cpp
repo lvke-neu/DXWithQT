@@ -52,25 +52,25 @@ namespace LkEngine
 		bool bMove = false;
 		if (m_isKeyDown[Keys::Key_W])
 		{
-			CameraManager::getInstance().moveZAxis(deltaTime * 20);
+			CameraManager::getInstance().moveZAxis(deltaTime * m_moveSpeed);
 			bMove = true;
 		}
 			
 		if (m_isKeyDown[Keys::Key_S])
 		{
-			CameraManager::getInstance().moveZAxis(-deltaTime * 20);
+			CameraManager::getInstance().moveZAxis(-deltaTime * m_moveSpeed);
 			bMove = true;
 		}
 			
 		if (m_isKeyDown[Keys::Key_A])
 		{
-			CameraManager::getInstance().moveXAxis(-deltaTime * 20);
+			CameraManager::getInstance().moveXAxis(-deltaTime * m_moveSpeed);
 			bMove = true;
 		}
 			
 		if (m_isKeyDown[Keys::Key_D])
 		{
-			CameraManager::getInstance().moveXAxis(deltaTime * 20);
+			CameraManager::getInstance().moveXAxis(deltaTime * m_moveSpeed);
 			bMove = true;
 		}
 
@@ -101,5 +101,10 @@ namespace LkEngine
 		if (bMove)
 			CameraChangedManager::getInstance().onCameraMove();
 			
+	}
+
+	void CameraController::setCameraMoveSpeed(float moveSpeed)
+	{
+		m_moveSpeed = moveSpeed;
 	}
 }

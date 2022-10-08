@@ -11,7 +11,7 @@ namespace LkEngine
 		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
 		setTexture("builtin\\Texture\\floor.dds");
 		setTransform(Transform(
-			XMFLOAT3(20.0f, 20.0f, 1.0f),
+			XMFLOAT3(200.0f, 200.0f, 1.0f),
 			XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
 			XMFLOAT3(0.0f, -5.0f, 5.0f)
 		));
