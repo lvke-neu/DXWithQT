@@ -4,6 +4,9 @@
 #include "../../../LkEngineRuntime/Core/base/Utility.h"
 
 #include <thread>
+#include <mutex>
+
+std::mutex mtx;
 
 namespace LkEngine
 {
@@ -185,7 +188,7 @@ namespace LkEngine
 			aiProcess_ImproveCacheLocality |
 			aiProcess_SortByPType);
 
-		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
+ 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
 		{
 
 			return;
@@ -193,6 +196,7 @@ namespace LkEngine
 
 		processNode(scene->mRootNode, scene);
 
+		loadingCompleted = true;
 		setTransform(m_transform);
 	}
 
@@ -211,9 +215,11 @@ namespace LkEngine
 				material->GetTexture(aiTextureType_DIFFUSE, j, &str);
 				subModelComponent.setTexture(std::string("builtin\\Model\\") + std::string(str.C_Str()));
 			}
-
-
+			
+			//mtx.lock();
 			m_subModelComponents.push_back(subModelComponent);
+			//mtx.unlock();
+
 		}
 
 		for (unsigned int i = 0; i < node->mNumChildren; i++)
@@ -225,8 +231,12 @@ namespace LkEngine
 
 	void ModelComponent::draw()
 	{
-		for (auto& submodel : m_subModelComponents)
-			submodel.draw();
+		if (loadingCompleted)
+		{
+			for (auto& submodel : m_subModelComponents)
+				submodel.draw();
+		}
+
 	}
 
 	std::string ModelComponent::getModelPath() 
@@ -238,9 +248,9 @@ namespace LkEngine
 	{ 
 		m_modelPath = modelPath; 
 
-		std::thread t1(&ModelComponent::loadModel, this);
-		t1.detach();
-		//loadModel();
+		//std::thread t1(&ModelComponent::loadModel, this);
+		//t1.detach();
+		loadModel();
 	}
 
 	void ModelComponent::serialize(std::string& serializationStr)

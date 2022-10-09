@@ -29,7 +29,7 @@ ComponentForm::ComponentForm(QWidget *parent) :
 		{
 			QString curPath, aFileName;
 			curPath = QCoreApplication::applicationDirPath() + "/builtin/Model/";
-			aFileName = QFileDialog::getOpenFileName(this, tr("Open Solution"), curPath, tr("*.obj"));
+			aFileName = QFileDialog::getOpenFileName(this, tr("Open Solution"), curPath, tr("*.obj;*.gltf"));
 			if (aFileName != "")
 				LkEngine::Engine::getInstance().addComponent("ModelComponent", aFileName.toStdString());
 		});

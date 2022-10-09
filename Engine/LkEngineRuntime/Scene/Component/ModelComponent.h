@@ -117,6 +117,7 @@ namespace LkEngine
 	private:
 		std::string m_modelPath{ "" };
 		std::vector<SubModelComponent> m_subModelComponents;
+		bool loadingCompleted = false;
 	};
 }
 
