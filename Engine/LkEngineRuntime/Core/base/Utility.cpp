@@ -57,7 +57,10 @@ void readAbsoluteFile(const std::string& absoluteFilePath, std::string& readCont
 	std::ifstream ifs;
 	ifs.open(absoluteFilePath, std::ios::in);
 
-	char arr[4096] = { 0 };
+	ifs.seekg(0, std::ios_base::end);
+	char* arr = new char[ifs.tellg()];
+	ifs.seekg(0, std::ios_base::beg);
+
 	while (ifs >> arr)
 	{
 		readContent += arr;

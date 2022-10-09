@@ -65,7 +65,7 @@ namespace LkEngine
 
 		m_pSkyBoxComponent->draw();
 	}
-
+	 
 	std::string SceneManager::getSkyBoxTexture()
 	{
 		return m_pSkyBoxComponent->getTexture();
