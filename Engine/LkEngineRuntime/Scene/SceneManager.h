@@ -32,7 +32,7 @@ namespace LkEngine
 		std::string getSkyBoxTexture();
 		void setSkyBoxTexture(const std::string& skyBoxTexture);
 		void setWireFrame(bool b);
-		void addComponent(const std::string& componentType);
+		void addComponent(const std::string& componentType, const std::string& modelPath = "");
 		void deleteComponent(const std::string& uuid);
 		void deleteAllComponent();
 		void openSolution(const std::string& filePath);

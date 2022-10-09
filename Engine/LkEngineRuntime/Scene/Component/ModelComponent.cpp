@@ -138,8 +138,14 @@ namespace LkEngine
 		m_pd3dDevice = (ID3D11Device*)parameter[0];
 		m_pd3dImmediateContext = (ID3D11DeviceContext*)parameter[1];
 		m_modelPath = *((std::string*)parameter[2]);
-		setComponetType("BoxComponent");
+		setComponetType("ModelComponent");
 		loadModel();
+
+		setTransform(Transform(
+			XMFLOAT3(0.1f, 0.1f, 0.1f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f)
+		));
 
 		GUID guid;
 		CoCreateGuid(&guid);
@@ -159,8 +165,14 @@ namespace LkEngine
 		m_pd3dDevice = pd3dDevice;
 		m_pd3dImmediateContext = pd3dImmediateContext;
 		m_modelPath = modelPath;
-		setComponetType("BoxComponent");
+		setComponetType("ModelComponent");
 		loadModel();
+
+		setTransform(Transform(
+			XMFLOAT3(0.1f, 0.1f, 0.1f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f)
+		));
 
 		GUID guid;
 		CoCreateGuid(&guid);

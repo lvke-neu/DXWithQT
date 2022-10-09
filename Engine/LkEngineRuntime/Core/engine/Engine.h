@@ -38,7 +38,7 @@ namespace LkEngine
 		std::string getSkyBoxTexture() { return SceneManager::getInstance().getSkyBoxTexture(); }
 		void setSkyBoxTexture(const std::string& skyBoxTexture) { SceneManager::getInstance().setSkyBoxTexture(skyBoxTexture); }
 		void setWireFrame(bool b) { SceneManager::getInstance().setWireFrame(b); }
-		void addComponent(const std::string& componentType) { SceneManager::getInstance().addComponent(componentType); }
+		void addComponent(const std::string& componentType, const std::string& modelPath = "") { SceneManager::getInstance().addComponent(componentType, modelPath); }
 		void deleteComponent(const std::string& uuid) { SceneManager::getInstance().deleteComponent(uuid); }
 		void openSolution(const std::string& filePath) { SceneManager::getInstance().openSolution(filePath); }
 		void saveSolution(const std::string& filePath) { SceneManager::getInstance().saveSolution(filePath); }

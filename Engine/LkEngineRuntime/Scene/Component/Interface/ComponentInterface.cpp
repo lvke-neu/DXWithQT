@@ -256,11 +256,13 @@ namespace LkEngine
 		worldMatrix.g_world = XMMatrixTranspose(m_transform.getWorldMatrix());
 		worldMatrix.g_worldInvTranspose = XMMatrixTranspose(InverseTranspose(m_transform.getWorldMatrix()));
 
-
-		D3D11_MAPPED_SUBRESOURCE mappedData;
-		m_pd3dImmediateContext->Map(m_pWorldMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
-		memcpy_s(mappedData.pData, sizeof(WorldMatrix), &worldMatrix, sizeof(WorldMatrix));
-		m_pd3dImmediateContext->Unmap(m_pWorldMatrixCB.Get(), 0);
+		if (m_pWorldMatrixCB)
+		{
+			D3D11_MAPPED_SUBRESOURCE mappedData;
+			m_pd3dImmediateContext->Map(m_pWorldMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+			memcpy_s(mappedData.pData, sizeof(WorldMatrix), &worldMatrix, sizeof(WorldMatrix));
+			m_pd3dImmediateContext->Unmap(m_pWorldMatrixCB.Get(), 0);
+		}
 	}
 
 	void IComponent::serialize(std::string& serializationStr)

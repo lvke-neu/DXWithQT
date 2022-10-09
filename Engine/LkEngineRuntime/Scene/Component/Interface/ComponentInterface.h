@@ -48,41 +48,41 @@ namespace LkEngine
 		virtual void serialize(std::string& serializationStr) override;
 		virtual void runFunction(const std::string& funcName, const rapidjson::Value& funcParameter) override;
 	public:
-		std::string getVsShader() { return m_vsShader; }
-		void setVsShader(const std::string& vsShader);
+		virtual std::string getVsShader() { return m_vsShader; }
+		virtual void setVsShader(const std::string& vsShader);
+		
+		virtual std::string getPsShader() { return m_psShader; }
+		virtual void setPsShader(const std::string& psShader);
 
-		std::string getPsShader() { return m_psShader; }
-		void setPsShader(const std::string& psShader);
+		virtual std::string getGsShader() { return m_gsShader; }
+		virtual void setGsShader(const std::string& gsShader);
 
-		std::string getGsShader() { return m_gsShader; }
-		void setGsShader(const std::string& gsShader);
+		virtual std::string getTexture(){ return m_texture; }
+		virtual void setTexture(const std::string& texture); 
 
-		std::string getTexture(){ return m_texture; }
-		void setTexture(const std::string& texture); 
-
-		Material getMaterial() { return m_material; }
-		void setMaterial(const Material& material);
+		virtual Material getMaterial() { return m_material; }
+		virtual void setMaterial(const Material& material);
 	public:
-		Transform getTransform() { return m_transform; }
-		void setTransform(const Transform& transform) { m_transform = transform; onTransformChanged(); }
+		virtual Transform getTransform() { return m_transform; }
+		virtual void setTransform(const Transform& transform) { m_transform = transform; onTransformChanged(); }
 
-		XMFLOAT3 getScale() { return m_transform.getScale(); }
-		void setScale(float x, float y, float z){ setScale(XMFLOAT3(x, y, z));}
-		void setScale(const XMFLOAT3& scale) { m_transform.setScale(scale); onTransformChanged();}
+		virtual XMFLOAT3 getScale() { return m_transform.getScale(); }
+		virtual void setScale(float x, float y, float z){ setScale(XMFLOAT3(x, y, z));}
+		virtual void setScale(const XMFLOAT3& scale) { m_transform.setScale(scale); onTransformChanged();}
 
-		XMFLOAT3 getRotation() { return m_transform.getRotation(); }
-		void setRotation(float x, float y, float z){setRotation(XMFLOAT3(x, y, z));}
-		void setRotation(const XMFLOAT3& rot) { m_transform.setRotation(rot); onTransformChanged();}
+		virtual XMFLOAT3 getRotation() { return m_transform.getRotation(); }
+		virtual void setRotation(float x, float y, float z){setRotation(XMFLOAT3(x, y, z));}
+		virtual void setRotation(const XMFLOAT3& rot) { m_transform.setRotation(rot); onTransformChanged();}
 
-		XMFLOAT3 getPosition() { return m_transform.getPosition(); }
-		void setPosition(float x, float y, float z){setPosition(XMFLOAT3(x, y, z));}
-		void setPosition(const XMFLOAT3& pos) { m_transform.setPosition(pos); onTransformChanged();}
+		virtual XMFLOAT3 getPosition() { return m_transform.getPosition(); }
+		virtual void setPosition(float x, float y, float z){setPosition(XMFLOAT3(x, y, z));}
+		virtual void setPosition(const XMFLOAT3& pos) { m_transform.setPosition(pos); onTransformChanged();}
 
-		BoundingBox getBoundingBox() { return m_boundingBox; };
-		void setBoundingBox(BoundingBox boundingBox) { m_boundingBox = boundingBox; };
+		virtual BoundingBox getBoundingBox() { return m_boundingBox; };
+		virtual void setBoundingBox(BoundingBox boundingBox) { m_boundingBox = boundingBox; };
 
-		std::string getComponetType() { return m_componetType; }
-		std::string getUuId() { return m_uuid; }
+		virtual std::string getComponetType() { return m_componetType; }
+		virtual std::string getUuId() { return m_uuid; }
 	protected:
 		void setComponetType(const std::string componetType) { m_componetType = componetType; }
 		void setUuId(const std::string uuid) { m_uuid = uuid; }

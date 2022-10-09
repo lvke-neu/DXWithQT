@@ -36,22 +36,9 @@ namespace LkEngine
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
-	
-		void* parameter[3];
-		parameter[0] = m_pd3dDevice.Get();
-		parameter[1] = m_pd3dImmediateContext.Get();
-		std::string str("E:\\C++Project\\LK_Little_Engine\\bin\\builtin\\Model\\Tree\\tree.obj");
-		parameter[2] = &str;
-		IComponent* ic = (IComponent*)Reflection<Reference>::getInstance().createObject("ModelComponent", parameter);
-
-		if (ic)
-		{
-			m_componets.insert({ ic->getUuId(), ic });
-			PickEventManager::getInstance().onAddComponent(ic);
-			LOG_INFO("addComponent-" + "ModelComponent" + "-" + ic->getUuId());
-		}
 
 		LOG_INFO("SceneManager initialization is complete");
+
 	}
 	SceneManager::~SceneManager()
 	{
@@ -65,7 +52,6 @@ namespace LkEngine
 
 	void SceneManager::updateScene(float deltaTime)
 	{
-
 
 	}
 
@@ -95,20 +81,32 @@ namespace LkEngine
 		m_pd3dImmediateContext->RSSetState(b ? RenderStates::RSWireframe.Get() : RenderStates::RSNoCull.Get());
 	}
 
-	void SceneManager::addComponent(const std::string& componentType)
+	void SceneManager::addComponent(const std::string& componentType, const std::string& modelPath)
 	{
-		void* parameter[2];
-		parameter[0] = m_pd3dDevice.Get();
-		parameter[1] = m_pd3dImmediateContext.Get();
-		IComponent* ic = (IComponent*)Reflection<Reference>::getInstance().createObject(componentType, parameter);
+		void** parameter{ nullptr };
 
+		if (componentType == "ModelComponent")
+		{
+			parameter = new void*[3];
+			parameter[0] = m_pd3dDevice.Get();
+			parameter[1] = m_pd3dImmediateContext.Get();
+			std::string* str = new std::string(modelPath);
+			parameter[2] = str;
+		}
+		else
+		{
+			parameter = new void*[2];
+			parameter[0] = m_pd3dDevice.Get();
+			parameter[1] = m_pd3dImmediateContext.Get();
+		}
+
+		IComponent* ic = (IComponent*)Reflection<Reference>::getInstance().createObject(componentType, parameter);
 		if (ic)
 		{
 			m_componets.insert({ ic->getUuId(), ic });
 			PickEventManager::getInstance().onAddComponent(ic);
 			LOG_INFO("addComponent-" + componentType + "-" + ic->getUuId());
 		}
-		
 	}
 
 	void SceneManager::deleteComponent(const std::string& uuid)
