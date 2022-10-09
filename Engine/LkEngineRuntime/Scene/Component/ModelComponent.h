@@ -37,7 +37,7 @@ namespace LkEngine
 	{
 	public:
 		ModelComponent(void** parameter);
-		ModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, const std::string& modelPath);
+		ModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext);
 	
 		void buildMesh() {};
 		void createVertexLayout(const ComPtr<ID3DBlob>& blob) {};
@@ -105,6 +105,9 @@ namespace LkEngine
 			for (auto& submodel : m_subModelComponents)
 				submodel.setPosition(pos);
 		}
+
+		std::string getModelPath();
+		void  setModelPath(const std::string& modelPath); 
 	private:
 		void loadModel();
 		void processNode(aiNode* node, const aiScene* scene);

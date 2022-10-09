@@ -137,15 +137,6 @@ namespace LkEngine
 	{
 		m_pd3dDevice = (ID3D11Device*)parameter[0];
 		m_pd3dImmediateContext = (ID3D11DeviceContext*)parameter[1];
-		m_modelPath = *((std::string*)parameter[2]);
-		setComponetType("ModelComponent");
-		loadModel();
-
-		setTransform(Transform(
-			XMFLOAT3(0.1f, 0.1f, 0.1f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f)
-		));
 
 		GUID guid;
 		CoCreateGuid(&guid);
@@ -158,21 +149,14 @@ namespace LkEngine
 			guid.Data4[3], guid.Data4[4], guid.Data4[5],
 			guid.Data4[6], guid.Data4[7]);
 		m_uuid = guidStr;
+
+		setComponetType("ModelComponent");
 	}
 
-	ModelComponent::ModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, const std::string& modelPath)
+	ModelComponent::ModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 	{
 		m_pd3dDevice = pd3dDevice;
 		m_pd3dImmediateContext = pd3dImmediateContext;
-		m_modelPath = modelPath;
-		setComponetType("ModelComponent");
-		loadModel();
-
-		setTransform(Transform(
-			XMFLOAT3(0.1f, 0.1f, 0.1f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f)
-		));
 
 		GUID guid;
 		CoCreateGuid(&guid);
@@ -185,12 +169,12 @@ namespace LkEngine
 			guid.Data4[3], guid.Data4[4], guid.Data4[5],
 			guid.Data4[6], guid.Data4[7]);
 		m_uuid = guidStr;
-	}
 
+		setComponetType("ModelComponent");
+	}
 
 	void ModelComponent::loadModel()
 	{
-
 		Assimp::Importer importer;
 
 		importer.SetPropertyInteger(AI_CONFIG_PP_SBP_REMOVE, aiPrimitiveType_LINE | aiPrimitiveType_POINT);
@@ -201,21 +185,17 @@ namespace LkEngine
 			aiProcess_ImproveCacheLocality |
 			aiProcess_SortByPType);
 
-
-
 		if (!scene || scene->mFlags & AI_SCENE_FLAGS_INCOMPLETE || !scene->mRootNode)
 		{
 
 			return;
 		}
 
-
 		processNode(scene->mRootNode, scene);
 	}
 
 	void ModelComponent::processNode(aiNode* node, const aiScene* scene)
 	{
-
 		for (unsigned int i = 0; i < node->mNumMeshes; i++)
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
@@ -245,5 +225,16 @@ namespace LkEngine
 	{
 		for (auto& submodel : m_subModelComponents)
 			submodel.draw();
+	}
+
+	std::string ModelComponent::getModelPath() 
+	{ 
+		return m_modelPath; 
+	}
+
+	void  ModelComponent::setModelPath(const std::string& modelPath) 
+	{ 
+		m_modelPath = modelPath; 
+		loadModel();
 	}
 }

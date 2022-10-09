@@ -83,26 +83,17 @@ namespace LkEngine
 
 	void SceneManager::addComponent(const std::string& componentType, const std::string& modelPath)
 	{
-		void** parameter{ nullptr };
-
-		if (componentType == "ModelComponent")
-		{
-			parameter = new void*[3];
-			parameter[0] = m_pd3dDevice.Get();
-			parameter[1] = m_pd3dImmediateContext.Get();
-			std::string* str = new std::string(modelPath);
-			parameter[2] = str;
-		}
-		else
-		{
-			parameter = new void*[2];
-			parameter[0] = m_pd3dDevice.Get();
-			parameter[1] = m_pd3dImmediateContext.Get();
-		}
+		void* parameter[2];
+		parameter[0] = m_pd3dDevice.Get();
+		parameter[1] = m_pd3dImmediateContext.Get();
 
 		IComponent* ic = (IComponent*)Reflection<Reference>::getInstance().createObject(componentType, parameter);
 		if (ic)
 		{
+			if(componentType == "ModelComponent")
+			{
+				((ModelComponent*)ic)->setModelPath(modelPath);
+			}
 			m_componets.insert({ ic->getUuId(), ic });
 			PickEventManager::getInstance().onAddComponent(ic);
 			LOG_INFO("addComponent-" + componentType + "-" + ic->getUuId());
