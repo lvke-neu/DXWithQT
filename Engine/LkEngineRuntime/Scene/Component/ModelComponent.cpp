@@ -3,6 +3,8 @@
 #include "Common/RenderStates.h"
 #include "../../../LkEngineRuntime/Core/base/Utility.h"
 
+#include <thread>
+
 namespace LkEngine
 {
 	SubModelComponent::SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh) : IComponent(pd3dDevice, pd3dImmediateContext)
@@ -191,11 +193,7 @@ namespace LkEngine
 
 		processNode(scene->mRootNode, scene);
 
-		setTransform(Transform(
-			XMFLOAT3(0.1f, 0.1f, 0.1f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f)
-		));
+		setTransform(m_transform);
 	}
 
 	void ModelComponent::processNode(aiNode* node, const aiScene* scene)
@@ -239,7 +237,10 @@ namespace LkEngine
 	void  ModelComponent::setModelPath(const std::string& modelPath) 
 	{ 
 		m_modelPath = modelPath; 
-		loadModel();
+
+		std::thread t1(&ModelComponent::loadModel, this);
+		t1.detach();
+		//loadModel();
 	}
 
 	void ModelComponent::serialize(std::string& serializationStr)

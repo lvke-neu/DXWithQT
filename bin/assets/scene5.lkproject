@@ -2959,6 +2959,2590 @@
                     }
                 }
             ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
+        },
+        {
+            "classType": "ModelComponent",
+            "functionName": [
+                "set_ModelPath",
+                "set_VsShader",
+                "set_GsShader",
+                "set_PsShader",
+                "set_Texture",
+                "set_Material",
+                "set_Transform"
+            ],
+            "funcParameter": [
+                {
+                    "modelPath": "E:/C++Project/LK_Little_Engine/bin/builtin/Model/House/house.obj"
+                },
+                {
+                    "vsShader": ""
+                },
+                {
+                    "gsShader": ""
+                },
+                {
+                    "psShader": ""
+                },
+                {
+                    "texture": ""
+                },
+                {
+                    "material": {
+                        "ambient": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "diffuse": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "specular": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ],
+                        "reflect": [
+                            "0.000000",
+                            "0.000000",
+                            "0.000000",
+                            "0.000000"
+                        ]
+                    }
+                },
+                {
+                    "transform": {
+                        "scale": [
+                            "0.100000",
+                            "0.100000",
+                            "0.100000"
+                        ],
+                        "rotation": [
+                            "0.000000",
+                            "1.600000",
+                            "0.000000"
+                        ],
+                        "position": [
+                            "1.000000",
+                            "-1.000000",
+                            "-85.000000"
+                        ]
+                    }
+                }
+            ]
         }
     ]
 }

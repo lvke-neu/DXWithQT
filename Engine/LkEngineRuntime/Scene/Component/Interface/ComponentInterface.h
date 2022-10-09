@@ -116,7 +116,7 @@ namespace LkEngine
 		std::string m_psShader;
 		std::string m_texture;
 		Material m_material;
-		Transform m_transform;
+		Transform m_transform{ {1.0f, 1.0f, 1.0f},{0.0f, 0.0f, 0.0f},{0.0f, 0.0f, 0.0f} };
 		BoundingBox m_boundingBox;
 
 		std::string m_uuid;
