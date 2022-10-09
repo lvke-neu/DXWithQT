@@ -15,11 +15,6 @@ namespace LkEngine
 
 		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
 		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
-		setTransform(Transform(
-			XMFLOAT3(0.1f, 0.1f, 0.1f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f)
-		));
 	}
 
 	void SubModelComponent::buildMesh()
@@ -130,9 +125,6 @@ namespace LkEngine
 		m_pd3dImmediateContext->DrawIndexed(m_indexCount, 0, 0);
 	}
 
-
-
-
 	ModelComponent::ModelComponent(void** parameter)
 	{
 		m_pd3dDevice = (ID3D11Device*)parameter[0];
@@ -151,6 +143,9 @@ namespace LkEngine
 		m_uuid = guidStr;
 
 		setComponetType("ModelComponent");
+
+		bind_Set_Func();
+		m_functions["set_ModelPath"] = std::bind(&ModelComponent::set_ModelPath, this, std::placeholders::_1);
 	}
 
 	ModelComponent::ModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
@@ -171,6 +166,9 @@ namespace LkEngine
 		m_uuid = guidStr;
 
 		setComponetType("ModelComponent");
+
+		bind_Set_Func();
+		m_functions["set_ModelPath"] = std::bind(&ModelComponent::set_ModelPath, this, std::placeholders::_1);
 	}
 
 	void ModelComponent::loadModel()
@@ -192,6 +190,12 @@ namespace LkEngine
 		}
 
 		processNode(scene->mRootNode, scene);
+
+		setTransform(Transform(
+			XMFLOAT3(0.1f, 0.1f, 0.1f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f)
+		));
 	}
 
 	void ModelComponent::processNode(aiNode* node, const aiScene* scene)
@@ -236,5 +240,131 @@ namespace LkEngine
 	{ 
 		m_modelPath = modelPath; 
 		loadModel();
+	}
+
+	void ModelComponent::serialize(std::string& serializationStr)
+	{
+
+		rapidjson::StringBuffer strBuf;
+		rapidjson::Writer<rapidjson::StringBuffer> writer(strBuf);
+
+		writer.StartObject();
+
+
+		writer.Key("classType");
+		writer.String(getComponetType().c_str());
+
+
+		writer.Key("functionName");
+		writer.StartArray();
+		writer.String("set_ModelPath");
+		writer.String("set_VsShader");
+		writer.String("set_GsShader");
+		writer.String("set_PsShader");
+		writer.String("set_Texture");
+		writer.String("set_Material");
+		writer.String("set_Transform");
+		writer.EndArray();
+
+		writer.Key("funcParameter");
+		writer.StartArray();
+
+		//ModelPath
+		writer.StartObject();
+		writer.Key("modelPath");
+		writer.String(getModelPath().c_str());
+		writer.EndObject();
+		//VsShader
+		writer.StartObject();
+		writer.Key("vsShader");
+		writer.String(getVsShader().c_str());
+		writer.EndObject();
+		//GsShader
+		writer.StartObject();
+		writer.Key("gsShader");
+		writer.String(getGsShader().c_str());
+		writer.EndObject();
+		//PsShader
+		writer.StartObject();
+		writer.Key("psShader");
+		writer.String(getPsShader().c_str());
+		writer.EndObject();
+		//Texture
+		writer.StartObject();
+		writer.Key("texture");
+		writer.String(getTexture().c_str());
+		writer.EndObject();
+		//Material
+		writer.StartObject();
+		writer.Key("material");
+		writer.StartObject();
+		writer.String("ambient");
+		writer.StartArray();
+		writer.String(std::to_string(getMaterial().ambient.x).c_str());
+		writer.String(std::to_string(getMaterial().ambient.y).c_str());
+		writer.String(std::to_string(getMaterial().ambient.z).c_str());
+		writer.String(std::to_string(getMaterial().ambient.w).c_str());
+		writer.EndArray();
+		writer.String("diffuse");
+		writer.StartArray();
+		writer.String(std::to_string(getMaterial().diffuse.x).c_str());
+		writer.String(std::to_string(getMaterial().diffuse.y).c_str());
+		writer.String(std::to_string(getMaterial().diffuse.z).c_str());
+		writer.String(std::to_string(getMaterial().diffuse.w).c_str());
+		writer.EndArray();
+		writer.String("specular");
+		writer.StartArray();
+		writer.String(std::to_string(getMaterial().specular.x).c_str());
+		writer.String(std::to_string(getMaterial().specular.y).c_str());
+		writer.String(std::to_string(getMaterial().specular.z).c_str());
+		writer.String(std::to_string(getMaterial().specular.w).c_str());
+		writer.EndArray();
+		writer.String("reflect");
+		writer.StartArray();
+		writer.String(std::to_string(getMaterial().reflect.x).c_str());
+		writer.String(std::to_string(getMaterial().reflect.y).c_str());
+		writer.String(std::to_string(getMaterial().reflect.z).c_str());
+		writer.String(std::to_string(getMaterial().reflect.w).c_str());
+		writer.EndArray();
+		writer.EndObject();
+		writer.EndObject();
+		//Transform
+		writer.StartObject();
+		writer.Key("transform");
+		writer.StartObject();
+		writer.String("scale");
+		writer.StartArray();
+		writer.String(std::to_string(getTransform().getScale().x).c_str());
+		writer.String(std::to_string(getTransform().getScale().y).c_str());
+		writer.String(std::to_string(getTransform().getScale().z).c_str());
+		writer.EndArray();
+		writer.String("rotation");
+		writer.StartArray();
+		writer.String(std::to_string(getTransform().getRotation().x).c_str());
+		writer.String(std::to_string(getTransform().getRotation().y).c_str());
+		writer.String(std::to_string(getTransform().getRotation().z).c_str());
+		writer.EndArray();
+		writer.String("position");
+		writer.StartArray();
+		writer.String(std::to_string(getTransform().getPosition().x).c_str());
+		writer.String(std::to_string(getTransform().getPosition().y).c_str());
+		writer.String(std::to_string(getTransform().getPosition().z).c_str());
+		writer.EndArray();
+		writer.EndObject();
+		writer.EndObject();
+
+
+		writer.EndArray();
+		writer.EndObject();
+
+		serializationStr = strBuf.GetString();
+	}
+
+	void ModelComponent::set_ModelPath(const rapidjson::Value& funcParameter)
+	{
+		if (funcParameter.HasMember("modelPath"))
+		{
+			setModelPath(funcParameter["modelPath"].GetString());
+		}
 	}
 }

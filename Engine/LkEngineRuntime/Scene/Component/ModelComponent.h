@@ -44,6 +44,8 @@ namespace LkEngine
 		void bindPipeState() {};
 		void draw();
 	public:
+		virtual void serialize(std::string& serializationStr) override;
+	public:
 		virtual Transform getTransform()
 		{ 
 			return m_transform; 
@@ -108,6 +110,7 @@ namespace LkEngine
 
 		std::string getModelPath();
 		void  setModelPath(const std::string& modelPath); 
+		void set_ModelPath(const rapidjson::Value& funcParameter);
 	private:
 		void loadModel();
 		void processNode(aiNode* node, const aiScene* scene);

@@ -234,10 +234,13 @@ namespace LkEngine
 	{ 
 		m_material = material; 
 
-		D3D11_MAPPED_SUBRESOURCE mappedData;
-		m_pd3dImmediateContext->Map(m_pMaterialCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
-		memcpy_s(mappedData.pData, sizeof(Material), &m_material, sizeof(Material));
-		m_pd3dImmediateContext->Unmap(m_pMaterialCB.Get(), 0);
+		if (m_pMaterialCB)
+		{
+			D3D11_MAPPED_SUBRESOURCE mappedData;
+			m_pd3dImmediateContext->Map(m_pMaterialCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+			memcpy_s(mappedData.pData, sizeof(Material), &m_material, sizeof(Material));
+			m_pd3dImmediateContext->Unmap(m_pMaterialCB.Get(), 0);
+		}
 	}
 
 	XMMATRIX XM_CALLCONV InverseTranspose(DirectX::FXMMATRIX M)

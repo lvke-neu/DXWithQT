@@ -29,8 +29,8 @@ namespace LkEngine
 
 		CameraManager::getInstance().setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
-			XMFLOAT3(0.0f, 0.0f, 0.0f),
-			XMFLOAT3(0.0f, 0.0f, -20.0f)
+			XMFLOAT3(0.330000f, 1.170000f, 0.0f),
+			XMFLOAT3(-139.830292f, 70.397552f, -83.729988f)
 		));
 
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
