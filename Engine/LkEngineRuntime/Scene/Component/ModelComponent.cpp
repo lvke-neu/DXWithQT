@@ -180,8 +180,11 @@ namespace LkEngine
 	{
 		Assimp::Importer importer;
 
+		std::string absolutePath;
+		RelativePath2AbsolutePath(m_modelPath, absolutePath);
+
 		importer.SetPropertyInteger(AI_CONFIG_PP_SBP_REMOVE, aiPrimitiveType_LINE | aiPrimitiveType_POINT);
-		const aiScene* scene = importer.ReadFile(m_modelPath,
+		const aiScene* scene = importer.ReadFile(absolutePath,
 			aiProcess_ConvertToLeftHanded |
 			aiProcess_GenBoundingBoxes |
 			aiProcess_Triangulate |
@@ -248,6 +251,7 @@ namespace LkEngine
 	{ 
 		m_modelPath = modelPath; 
 
+		AbsolutePath2RelativePath(modelPath, m_modelPath);
 		//std::thread t1(&ModelComponent::loadModel, this);
 		//t1.detach();
 		loadModel();

@@ -13,6 +13,19 @@ void RelativePath2AbsolutePath(const std::string& relativePath, std::string& abs
 	absolutePath = exeDirectory + relativePath;
 }
 
+void AbsolutePath2RelativePath(const std::string& absolutePath, std::string& relativePath)
+{
+	char exePath[MAX_PATH];
+	GetModuleFileName(NULL, (LPSTR)exePath, sizeof(exePath));
+	std::string exeDirectory(exePath);
+
+	size_t n = exeDirectory.rfind("LkEngineEditor");
+	exeDirectory = exeDirectory.erase(n, exeDirectory.size() - n);
+
+	size_t pos = absolutePath.find("builtin");
+
+	relativePath = absolutePath.substr(pos);
+}
 
 wchar_t *multiByteToWideChar(const std::string& pKey)
 {
