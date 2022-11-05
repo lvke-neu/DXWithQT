@@ -4,7 +4,6 @@
 
 #include "ui_LkEngineEditor.h"
 #include "RenderWindow.h"
-#include "CustomToolBox/ToolBox.h"
 #include "../LkEngineRuntime/Core/Event/PickEventManager.h"
 
 namespace Ui {
@@ -25,17 +24,23 @@ namespace LkEngine
 	public slots:
 		void openSolution();
 		void saveSolution();
+		void skyboxConfig();
 		void cameraConfig();
-		void openSceneCfg();
-		void closeSceneCfg();
+		void addComponent();
+
 		virtual void onAddComponent(IComponent* component) override;
 		virtual void onDeleteComponent(IComponent* component) override;
 
-		
+	private:
+		void initUi();
+		void initDialog();
 	private:
 		Ui::LkEngineEditor *ui;
 		RenderWindow* m_renderWindow{ nullptr };
-		ToolBox* m_sceneCfgToolBox{ nullptr };
+
+		QDialog* m_skyboxDlg{ nullptr };
+		QDialog* m_cameraDlg{ nullptr };
+		QDialog* m_addComDlg{ nullptr };
 	};
 }
 

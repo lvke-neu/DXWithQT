@@ -168,7 +168,7 @@ namespace LkEngine
 
 		m_pd3dImmediateContext->RSSetViewports(1, &m_ScreenViewport);
 
-		CameraManager::getInstance().setFrustum(XM_PI / 3, static_cast<float>(windowWidth) / windowHeight, 0.5f, 1000.0f);
+		CameraManager::getInstance().setFrustum(XM_PI / 3, static_cast<float>(windowWidth) / windowHeight, 0.5f, 10000.0f);
 		CameraManager::getInstance().setViewport(m_ScreenViewport);
 	}
 }

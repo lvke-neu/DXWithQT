@@ -1,12 +1,12 @@
 #pragma once
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
 class ComponentForm;
 }
 
-class ComponentForm : public QWidget
+class ComponentForm : public QDialog
 {
     Q_OBJECT
 

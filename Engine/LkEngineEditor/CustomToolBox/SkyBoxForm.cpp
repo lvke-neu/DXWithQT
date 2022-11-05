@@ -4,7 +4,7 @@
 #include "../../LkEngineRuntime/Core/engine/Engine.h"
 
 SkyBoxForm::SkyBoxForm(QWidget *parent) :
-    QWidget(parent),
+	QDialog(parent),
     ui(new Ui::SkyBoxForm)
 {
     ui->setupUi(this);

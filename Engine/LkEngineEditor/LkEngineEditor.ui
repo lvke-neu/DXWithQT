@@ -25,20 +25,6 @@
     </property>
    </widget>
   </widget>
-  <widget class="QToolBar" name="toolBar">
-   <property name="windowTitle">
-    <string>toolBar</string>
-   </property>
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-   <addaction name="openSceneCfg"/>
-   <addaction name="separator"/>
-   <addaction name="closeSceneCfg"/>
-  </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -73,23 +59,15 @@
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>组件配置</string>
+     <string>组件</string>
     </property>
+    <addaction name="addComponent"/>
+    <addaction name="sceneComConfig"/>
    </widget>
    <addaction name="fileMenu"/>
    <addaction name="sceneConfig"/>
    <addaction name="menu"/>
   </widget>
-  <action name="openSceneCfg">
-   <property name="text">
-    <string>打开基础场景配置</string>
-   </property>
-  </action>
-  <action name="closeSceneCfg">
-   <property name="text">
-    <string>关闭基础场景配置</string>
-   </property>
-  </action>
   <action name="openSolution">
    <property name="text">
     <string>打开解决方案</string>
@@ -104,15 +82,40 @@
    <property name="text">
     <string>天空盒配置</string>
    </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
   </action>
   <action name="camera">
    <property name="text">
     <string>相机配置</string>
    </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
   </action>
   <action name="light">
    <property name="text">
     <string>光照配置</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="addComponent">
+   <property name="text">
+    <string>添加组件</string>
+   </property>
+   <property name="shortcut">
+    <string>F4</string>
+   </property>
+  </action>
+  <action name="sceneComConfig">
+   <property name="text">
+    <string>场景组件配置</string>
+   </property>
+   <property name="shortcut">
+    <string>F5</string>
    </property>
   </action>
  </widget>

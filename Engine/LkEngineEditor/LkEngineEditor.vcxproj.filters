@@ -10,15 +10,6 @@
     <ClCompile Include="RenderWindow.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="CustomToolBox\Form.cpp">
-      <Filter>CustomToolBox\源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomToolBox\ToolBox.cpp">
-      <Filter>CustomToolBox\源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="CustomToolBox\ToolPage.cpp">
-      <Filter>CustomToolBox\源文件</Filter>
-    </ClCompile>
     <ClCompile Include="CustomToolBox\SkyBoxForm.cpp">
       <Filter>CustomToolBox\源文件</Filter>
     </ClCompile>
@@ -59,15 +50,6 @@
     <QtUic Include="LkEngineEditor.ui">
       <Filter>资源文件</Filter>
     </QtUic>
-    <QtUic Include="CustomToolBox\Form.ui">
-      <Filter>CustomToolBox\资源文件</Filter>
-    </QtUic>
-    <QtUic Include="CustomToolBox\ToolBox.ui">
-      <Filter>CustomToolBox\资源文件</Filter>
-    </QtUic>
-    <QtUic Include="CustomToolBox\ToolPage.ui">
-      <Filter>CustomToolBox\资源文件</Filter>
-    </QtUic>
     <QtUic Include="CustomToolBox\SkyBoxForm.ui">
       <Filter>CustomToolBox\资源文件</Filter>
     </QtUic>
@@ -88,15 +70,6 @@
     <QtMoc Include="RenderWindow.h">
       <Filter>头文件</Filter>
     </QtMoc>
-    <QtMoc Include="CustomToolBox\Form.h">
-      <Filter>CustomToolBox\头文件</Filter>
-    </QtMoc>
-    <QtMoc Include="CustomToolBox\ToolBox.h">
-      <Filter>CustomToolBox\头文件</Filter>
-    </QtMoc>
-    <QtMoc Include="CustomToolBox\ToolPage.h">
-      <Filter>CustomToolBox\头文件</Filter>
-    </QtMoc>
     <QtMoc Include="CustomToolBox\SkyBoxForm.h">
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
@@ -113,12 +86,6 @@
   <ItemGroup>
     <QtRcc Include="..\..\bin\Resource.qrc">
       <Filter>资源文件</Filter>
-    </QtRcc>
-    <QtRcc Include="CustomToolBox\img.qrc">
-      <Filter>CustomToolBox\资源文件</Filter>
-    </QtRcc>
-    <QtRcc Include="CustomToolBox\qss.qrc">
-      <Filter>CustomToolBox\资源文件</Filter>
     </QtRcc>
   </ItemGroup>
 </Project>

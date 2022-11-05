@@ -1,12 +1,12 @@
 #pragma once
 
-#include <QWidget>
+#include <QDialog>
 
 namespace Ui {
 class SkyBoxForm;
 }
 
-class SkyBoxForm : public QWidget
+class SkyBoxForm : public QDialog
 {
     Q_OBJECT
 

@@ -4,7 +4,7 @@
 #include <qfiledialog.h>
 
 ComponentForm::ComponentForm(QWidget *parent) :
-    QWidget(parent),
+	QDialog(parent),
     ui(new Ui::ComponentForm)
 {
     ui->setupUi(this);

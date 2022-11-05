@@ -2,11 +2,10 @@
 #include "ui_CameraForm.h"
 #include "../../LkEngineRuntime/Core/base/Utility.h"
 #include "../../LkEngineRuntime/Core/engine/Engine.h"
-#include "ToolPage.h"
 #include "../../LkEngineRuntime/Scene/Component/Common/Transform.h"
 
 CameraForm::CameraForm(QWidget *parent) :
-	QWidget(parent),
+	QDialog(parent),
 	ui(new Ui::CameraForm)
 {
 	ui->setupUi(this);
@@ -53,7 +52,7 @@ void CameraForm::setWireFrame(bool b)
 
 void CameraForm::onCameraMove()
 {
-	if (ToolPage::m_bIsExpanded)
+	if (!isHidden())
 	{
 		Transform transform = Engine::getInstance().getCameraTransform();
 		XMFLOAT3 scale = transform.getScale();
@@ -80,17 +79,20 @@ void CameraForm::onCameraMove()
 
 void CameraForm::onCameraFrustumChanged()
 {
-	float FovAngleY; 
-	float AspectRatio;
-	float NearZ;  
-	float FarZ;
-	Engine::getInstance().getCameraFrustum(FovAngleY, AspectRatio, NearZ, FarZ);
-	ui->doubleSpinBox_10->setValue(FovAngleY);
-	ui->doubleSpinBox_11->setValue(AspectRatio);
-	ui->doubleSpinBox_12->setValue(NearZ);
-	ui->doubleSpinBox_13->setValue(FarZ);
+	if (!isHidden())
+	{
+		float FovAngleY;
+		float AspectRatio;
+		float NearZ;
+		float FarZ;
+		Engine::getInstance().getCameraFrustum(FovAngleY, AspectRatio, NearZ, FarZ);
+		ui->doubleSpinBox_10->setValue(FovAngleY);
+		ui->doubleSpinBox_11->setValue(AspectRatio);
+		ui->doubleSpinBox_12->setValue(NearZ);
+		ui->doubleSpinBox_13->setValue(FarZ);
 
-	update();
+		update();
+	}
 }
 
 

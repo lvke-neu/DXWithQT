@@ -6,5 +6,7 @@
         <file>builtin/EngineLogo/camera.jpeg</file>
         <file>builtin/EngineLogo/skybox.jpeg</file>
         <file>builtin/EngineLogo/light.jpeg</file>
+        <file>builtin/EngineLogo/addComponent.jpeg</file>
+        <file>builtin/EngineLogo/sceneComConfig.jpeg</file>
     </qresource>
 </RCC>

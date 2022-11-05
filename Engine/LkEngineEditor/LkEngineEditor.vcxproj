@@ -135,11 +135,8 @@
   <ItemGroup>
     <ClCompile Include="CustomToolBox\CameraForm.cpp" />
     <ClCompile Include="CustomToolBox\ComponentForm.cpp" />
-    <ClCompile Include="CustomToolBox\Form.cpp" />
     <ClCompile Include="CustomToolBox\PickInfoForm.cpp" />
     <ClCompile Include="CustomToolBox\SkyBoxForm.cpp" />
-    <ClCompile Include="CustomToolBox\ToolBox.cpp" />
-    <ClCompile Include="CustomToolBox\ToolPage.cpp" />
     <ClCompile Include="main.cpp">
       <WholeProgramOptimization Condition="'$(Configuration)|$(Platform)'=='Release|x64'">false</WholeProgramOptimization>
     </ClCompile>
@@ -152,11 +149,8 @@
   <ItemGroup>
     <QtUic Include="CustomToolBox\CameraForm.ui" />
     <QtUic Include="CustomToolBox\ComponentForm.ui" />
-    <QtUic Include="CustomToolBox\Form.ui" />
     <QtUic Include="CustomToolBox\PickInfoForm.ui" />
     <QtUic Include="CustomToolBox\SkyBoxForm.ui" />
-    <QtUic Include="CustomToolBox\ToolBox.ui" />
-    <QtUic Include="CustomToolBox\ToolPage.ui" />
     <QtUic Include="LkEngineEditor.ui" />
   </ItemGroup>
   <ItemGroup>
@@ -164,17 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="..\..\bin\Resource.qrc" />
-    <QtRcc Include="CustomToolBox\img.qrc" />
-    <QtRcc Include="CustomToolBox\qss.qrc" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="CustomToolBox\Form.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="CustomToolBox\ToolBox.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="CustomToolBox\ToolPage.h" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CustomToolBox\SkyBoxForm.h" />

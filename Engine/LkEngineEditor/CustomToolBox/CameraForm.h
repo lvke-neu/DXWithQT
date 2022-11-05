@@ -1,6 +1,6 @@
 #pragma once
 
-#include <QWidget>
+#include <QDialog>
 #include "../../LkEngineRuntime/Core/Event/CameraChangedManager.h"
 
 
@@ -10,7 +10,7 @@ namespace Ui {
 
 
 
-class CameraForm : public QWidget, public LkEngine::CameraMoveEvent, public LkEngine::CameraFrustumChangedEvent
+class CameraForm : public QDialog, public LkEngine::CameraMoveEvent, public LkEngine::CameraFrustumChangedEvent
 {
 	Q_OBJECT
 

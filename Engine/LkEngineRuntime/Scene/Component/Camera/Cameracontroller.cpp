@@ -88,7 +88,7 @@ namespace LkEngine
 
 		if (m_middleButtonDelta != 0)
 		{
-			CameraManager::getInstance().moveZAxis(deltaTime * m_middleButtonDelta * 40);
+			CameraManager::getInstance().moveZAxis(deltaTime * m_middleButtonDelta * m_moveSpeed);
 			m_middleButtonDelta = 0;
 		}
 
