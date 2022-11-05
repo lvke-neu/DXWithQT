@@ -17,7 +17,7 @@ namespace LkEngine
 	class SubModelComponent : public IComponent
 	{
 	public:
-		SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh);
+		SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh, const std::string& vsShader, const std::string& psShader);
 	public:
 		virtual void buildMesh() override;
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) override;

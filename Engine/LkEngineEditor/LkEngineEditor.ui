@@ -43,6 +43,40 @@
    <addaction name="separator"/>
    <addaction name="closeSceneCfg"/>
   </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1200</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <underline>false</underline>
+    </font>
+   </property>
+   <property name="defaultUp">
+    <bool>false</bool>
+   </property>
+   <widget class="QMenu" name="fileMenu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="ops"/>
+    <addaction name="cls"/>
+   </widget>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>场景配置</string>
+    </property>
+    <addaction name="actionfsasdf"/>
+    <addaction name="actiondasdasd"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="menu"/>
+  </widget>
   <action name="openSolution">
    <property name="enabled">
     <bool>true</bool>
@@ -64,6 +98,31 @@
   <action name="closeSceneCfg">
    <property name="text">
     <string>关闭基础场景配置</string>
+   </property>
+  </action>
+  <action name="ops">
+   <property name="text">
+    <string>打开解决方案</string>
+   </property>
+  </action>
+  <action name="cls">
+   <property name="text">
+    <string>保存解决方案</string>
+   </property>
+  </action>
+  <action name="actionfsasdf">
+   <property name="text">
+    <string>打开场景配置</string>
+   </property>
+  </action>
+  <action name="actiondasdasd">
+   <property name="text">
+    <string>关闭场景配置</string>
+   </property>
+  </action>
+  <action name="actiondasdas">
+   <property name="text">
+    <string>dasdas</string>
    </property>
   </action>
  </widget>

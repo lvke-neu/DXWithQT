@@ -17,6 +17,13 @@ namespace LkEngine
 	{
 		ui->setupUi(this);
 		setWindowIcon(QIcon(":/builtin/EngineLogo/logo.png"));
+		//this->setStyleSheet("QMenu::item:selected{background-color:#444444;}\
+  //                        QMenuBar{background-color:#444444;}");
+
+
+		this->setStyleSheet("QMenu::item:selected{background-color:rgb(0,100,200);}\
+                         QMenuBar{background-color:rgb(200,200,200);}");
+
 
 		m_renderWindow = new RenderWindow(this);
 		setCentralWidget(m_renderWindow);
@@ -24,7 +31,7 @@ namespace LkEngine
 		m_sceneCfgToolBox = new ToolBox(m_renderWindow);
 		m_sceneCfgToolBox->addWidget("SkyBox", new SkyBoxForm());
 		m_sceneCfgToolBox->addWidget("Camera", new CameraForm());
-		m_sceneCfgToolBox->addWidget("Add Component", new ComponentForm());
+		m_sceneCfgToolBox->addWidget("Component", new ComponentForm());
 		
 		m_sceneCfgToolBox->hide();
 

@@ -10,7 +10,8 @@ std::mutex mtx;
 
 namespace LkEngine
 {
-	SubModelComponent::SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh) : IComponent(pd3dDevice, pd3dImmediateContext)
+	SubModelComponent::SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh, const std::string& vsShader, const std::string& psShader) : 
+		IComponent(pd3dDevice, pd3dImmediateContext)
 	{
 		m_mesh = mesh;
 
@@ -18,8 +19,8 @@ namespace LkEngine
 
 		buildMesh();
 
-		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
-		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		setVsShader(vsShader);
+		setPsShader(psShader);
 	}
 
 	void SubModelComponent::buildMesh()
@@ -148,6 +149,8 @@ namespace LkEngine
 		m_uuid = guidStr;
 
 		setComponetType("ModelComponent");
+		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
 
 		bind_Set_Func();
 		m_functions["set_ModelPath"] = std::bind(&ModelComponent::set_ModelPath, this, std::placeholders::_1);
@@ -171,6 +174,8 @@ namespace LkEngine
 		m_uuid = guidStr;
 
 		setComponetType("ModelComponent");
+		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
+		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
 
 		bind_Set_Func();
 		m_functions["set_ModelPath"] = std::bind(&ModelComponent::set_ModelPath, this, std::placeholders::_1);
@@ -209,7 +214,7 @@ namespace LkEngine
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 
-			SubModelComponent subModelComponent(m_pd3dDevice, m_pd3dImmediateContext, mesh);
+			SubModelComponent subModelComponent(m_pd3dDevice, m_pd3dImmediateContext, mesh, m_vsShader, m_psShader);
 
 			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 			for (unsigned int j = 0; j < material->GetTextureCount(aiTextureType_DIFFUSE); j++)

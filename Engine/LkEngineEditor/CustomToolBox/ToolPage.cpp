@@ -47,7 +47,7 @@ ToolPage::~ToolPage()
 
 void ToolPage::addWidget(const QString &title, QWidget *widget)
 {
-	if(title != "SkyBox" && title !="Camera" && title != "Add Component")
+	if(title != "SkyBox" && title !="Camera" && title != "Component")
 		m_PickInfoForm = (PickInfoForm*)widget;
 
     ui->pushButtonFold->setText(title);
