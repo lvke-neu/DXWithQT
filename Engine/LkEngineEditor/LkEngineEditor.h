@@ -25,6 +25,7 @@ namespace LkEngine
 	public slots:
 		void openSolution();
 		void saveSolution();
+		void cameraConfig();
 		void openSceneCfg();
 		void closeSceneCfg();
 		virtual void onAddComponent(IComponent* component) override;

@@ -35,10 +35,6 @@
    <attribute name="toolBarBreak">
     <bool>false</bool>
    </attribute>
-   <addaction name="openSolution"/>
-   <addaction name="separator"/>
-   <addaction name="saveSolution"/>
-   <addaction name="separator"/>
    <addaction name="openSceneCfg"/>
    <addaction name="separator"/>
    <addaction name="closeSceneCfg"/>
@@ -64,32 +60,26 @@
     <property name="title">
      <string>文件</string>
     </property>
-    <addaction name="ops"/>
-    <addaction name="cls"/>
+    <addaction name="openSolution"/>
+    <addaction name="saveSolution"/>
+   </widget>
+   <widget class="QMenu" name="sceneConfig">
+    <property name="title">
+     <string>基础场景配置</string>
+    </property>
+    <addaction name="skybox"/>
+    <addaction name="camera"/>
+    <addaction name="light"/>
    </widget>
    <widget class="QMenu" name="menu">
     <property name="title">
-     <string>场景配置</string>
+     <string>组件配置</string>
     </property>
-    <addaction name="actionfsasdf"/>
-    <addaction name="actiondasdasd"/>
    </widget>
    <addaction name="fileMenu"/>
+   <addaction name="sceneConfig"/>
    <addaction name="menu"/>
   </widget>
-  <action name="openSolution">
-   <property name="enabled">
-    <bool>true</bool>
-   </property>
-   <property name="text">
-    <string>打开解决方案</string>
-   </property>
-  </action>
-  <action name="saveSolution">
-   <property name="text">
-    <string>保存解决方案</string>
-   </property>
-  </action>
   <action name="openSceneCfg">
    <property name="text">
     <string>打开基础场景配置</string>
@@ -100,29 +90,29 @@
     <string>关闭基础场景配置</string>
    </property>
   </action>
-  <action name="ops">
+  <action name="openSolution">
    <property name="text">
     <string>打开解决方案</string>
    </property>
   </action>
-  <action name="cls">
+  <action name="saveSolution">
    <property name="text">
     <string>保存解决方案</string>
    </property>
   </action>
-  <action name="actionfsasdf">
+  <action name="skybox">
    <property name="text">
-    <string>打开场景配置</string>
+    <string>天空盒配置</string>
    </property>
   </action>
-  <action name="actiondasdasd">
+  <action name="camera">
    <property name="text">
-    <string>关闭场景配置</string>
+    <string>相机配置</string>
    </property>
   </action>
-  <action name="actiondasdas">
+  <action name="light">
    <property name="text">
-    <string>dasdas</string>
+    <string>光照配置</string>
    </property>
   </action>
  </widget>

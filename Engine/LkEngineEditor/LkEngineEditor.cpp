@@ -17,28 +17,31 @@ namespace LkEngine
 	{
 		ui->setupUi(this);
 		setWindowIcon(QIcon(":/builtin/EngineLogo/logo.png"));
-		//this->setStyleSheet("QMenu::item:selected{background-color:#444444;}\
-  //                        QMenuBar{background-color:#444444;}");
-
-
 		this->setStyleSheet("QMenu::item:selected{background-color:rgb(0,100,200);}\
                          QMenuBar{background-color:rgb(200,200,200);}");
-
-
-		m_renderWindow = new RenderWindow(this);
-		setCentralWidget(m_renderWindow);
+		ui->openSolution->setIcon(QIcon(":/builtin/EngineLogo/open.jpeg"));
+		ui->saveSolution->setIcon(QIcon(":/builtin/EngineLogo/save.jpeg"));
+		ui->skybox->setIcon(QIcon(":/builtin/EngineLogo/skybox.jpeg"));
+		ui->camera->setIcon(QIcon(":/builtin/EngineLogo/camera.jpeg"));
+		ui->light->setIcon(QIcon(":/builtin/EngineLogo/light.jpeg"));
 
 		m_sceneCfgToolBox = new ToolBox(m_renderWindow);
 		m_sceneCfgToolBox->addWidget("SkyBox", new SkyBoxForm());
 		m_sceneCfgToolBox->addWidget("Camera", new CameraForm());
 		m_sceneCfgToolBox->addWidget("Component", new ComponentForm());
-		
 		m_sceneCfgToolBox->hide();
 
 		connect(ui->openSolution, SIGNAL(triggered()), this, SLOT(openSolution()));
 		connect(ui->saveSolution, SIGNAL(triggered()), this, SLOT(saveSolution()));
+		connect(ui->camera, SIGNAL(triggered()), this, SLOT(cameraConfig()));
+	
+
 		connect(ui->openSceneCfg, SIGNAL(triggered()),this, SLOT(openSceneCfg()));
 		connect(ui->closeSceneCfg, SIGNAL(triggered()), this, SLOT(closeSceneCfg()));
+
+
+		m_renderWindow = new RenderWindow(this);
+		setCentralWidget(m_renderWindow);
 
 		PickEventManager::getInstance().registerAddComponentEvent(this);
 		PickEventManager::getInstance().registerDeleteComponentEvent(this);
@@ -71,6 +74,12 @@ namespace LkEngine
 		aFileName = QFileDialog::getSaveFileName(this, tr("Save Solution"), curPath, tr("*.lkproject"));
 		if (aFileName != "")
 			Engine::getInstance().saveSolution(aFileName.toStdString());
+	}
+
+	void LkEngineEditor::cameraConfig()
+	{
+		//CameraForm* cfm = new CameraForm();
+		//cfm->show();
 	}
 
 	void LkEngineEditor::openSceneCfg()

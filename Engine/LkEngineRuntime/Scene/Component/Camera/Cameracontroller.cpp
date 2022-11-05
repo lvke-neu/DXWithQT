@@ -20,16 +20,19 @@ namespace LkEngine
 	void CameraController::onMousePress(const MouseState& mouseState)
 	{
 		m_whichMousePress = mouseState.mouseType;
-		m_oldMousePos = mouseState.mousePos;
+		//if (m_whichMousePress == RightButton)
+		//{
+			m_oldMousePos = mouseState.mousePos;
+		//}
 	}
 
 
 	void CameraController::onMouseRelease(const MouseState& mouseState)
 	{
-		if (m_whichMousePress == RightButton)
-		{
+		//if (m_whichMousePress == RightButton)
+		//{
 			m_whichMousePress = NoButton;
-		}
+		//}
 	}
 
 	void CameraController::onMouseMove(const MouseState& mouseState) 

@@ -1,5 +1,10 @@
 <RCC>
     <qresource prefix="/">
         <file>builtin/EngineLogo/logo.png</file>
+        <file>builtin/EngineLogo/save.jpeg</file>
+        <file>builtin/EngineLogo/open.jpeg</file>
+        <file>builtin/EngineLogo/camera.jpeg</file>
+        <file>builtin/EngineLogo/skybox.jpeg</file>
+        <file>builtin/EngineLogo/light.jpeg</file>
     </qresource>
 </RCC>
