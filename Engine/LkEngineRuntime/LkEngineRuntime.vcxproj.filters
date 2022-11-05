@@ -65,6 +65,9 @@
     <Filter Include="Scene\Component\Model">
       <UniqueIdentifier>{33ddb374-ad25-4de6-996e-84bba2e07ed5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Pick">
+      <UniqueIdentifier>{65011954-d969-4c3d-ad0a-da857370b295}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -166,6 +169,9 @@
     <ClInclude Include="Scene\Component\ModelComponent.h">
       <Filter>Scene\Component\Model</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Pick\PickDetection.h">
+      <Filter>Scene\Pick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -248,6 +254,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Component\ModelComponent.cpp">
       <Filter>Scene\Component\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pick\PickDetection.cpp">
+      <Filter>Scene\Pick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -21,21 +21,17 @@ namespace LkEngine
 		m_renderWindow = new RenderWindow(this);
 		setCentralWidget(m_renderWindow);
 
-		PickEventManager::getInstance().registerAddComponentEvent(this);
-		PickEventManager::getInstance().registerDeleteComponentEvent(this);
-
 		LOG_INFO("Window initialization is complete");
 	}
 
 	LkEngineEditor::~LkEngineEditor()
 	{
-		PickEventManager::getInstance().unRegisterAddComponentEvent(this);
-		PickEventManager::getInstance().unRegisterDeleteComponentEvent(this);
 		SAFE_DELETE_SET_NULL(m_skyboxDlg);
 		SAFE_DELETE_SET_NULL(m_cameraDlg);
+		SAFE_DELETE_SET_NULL(m_addComDlg);
+		SAFE_DELETE_SET_NULL(m_sceneComCfgDlg);
 		SAFE_DELETE_SET_NULL(m_renderWindow);
 		SAFE_DELETE_SET_NULL(ui);
-		
 	}
 	
 	void LkEngineEditor::initUi()
@@ -67,13 +63,18 @@ namespace LkEngine
 		m_addComDlg->hide();
 		m_addComDlg->setWindowTitle("Add Component");
 		m_addComDlg->setWindowIcon(QIcon(":/builtin/EngineLogo/addComponent.jpeg"));
-
+		m_sceneComCfgDlg = new PickInfoForm(this);
+		m_sceneComCfgDlg->hide();
+		m_sceneComCfgDlg->setWindowTitle("Scene Component Config");
+		m_sceneComCfgDlg->setWindowIcon(QIcon(":/builtin/EngineLogo/sceneComConfig.jpeg"));
 
 		connect(ui->openSolution, SIGNAL(triggered()), this, SLOT(openSolution()));
 		connect(ui->saveSolution, SIGNAL(triggered()), this, SLOT(saveSolution()));
 		connect(ui->skybox, SIGNAL(triggered()), this, SLOT(skyboxConfig()));
 		connect(ui->camera, SIGNAL(triggered()), this, SLOT(cameraConfig()));
 		connect(ui->addComponent, SIGNAL(triggered()), this, SLOT(addComponent()));
+		connect(ui->sceneComConfig, SIGNAL(triggered()), this, SLOT(sceneComConfig()));
+
 	}
 
 	void LkEngineEditor::openSolution()
@@ -112,17 +113,14 @@ namespace LkEngine
 			m_addComDlg->show();
 	}
 
-
-
-	void LkEngineEditor::onAddComponent(IComponent* component)
+	void LkEngineEditor::sceneComConfig()
 	{
-		//m_sceneCfgToolBox->addWidget(component->getUuId(), new PickInfoForm(component));
+		if (m_sceneComCfgDlg)
+			m_sceneComCfgDlg->show();
 	}
 
-	void LkEngineEditor::onDeleteComponent(IComponent* component)
-	{
-		//m_sceneCfgToolBox->deleteWidget(component->getUuId());
-	}
+
+
 
 
 

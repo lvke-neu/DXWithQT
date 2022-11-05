@@ -4,7 +4,7 @@
 
 #include "ui_LkEngineEditor.h"
 #include "RenderWindow.h"
-#include "../LkEngineRuntime/Core/Event/PickEventManager.h"
+
 
 namespace Ui {
 	class LkEngineEditor;
@@ -13,7 +13,7 @@ namespace Ui {
 
 namespace LkEngine
 {
-	class LkEngineEditor : public QMainWindow, public AddComponentEvent, public DeleteComponentEvent
+	class LkEngineEditor : public QMainWindow
 	{
 		Q_OBJECT
 
@@ -27,9 +27,7 @@ namespace LkEngine
 		void skyboxConfig();
 		void cameraConfig();
 		void addComponent();
-
-		virtual void onAddComponent(IComponent* component) override;
-		virtual void onDeleteComponent(IComponent* component) override;
+		void sceneComConfig();
 
 	private:
 		void initUi();
@@ -41,6 +39,7 @@ namespace LkEngine
 		QDialog* m_skyboxDlg{ nullptr };
 		QDialog* m_cameraDlg{ nullptr };
 		QDialog* m_addComDlg{ nullptr };
+		QDialog* m_sceneComCfgDlg{ nullptr };
 	};
 }
 

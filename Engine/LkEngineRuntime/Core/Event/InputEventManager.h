@@ -556,12 +556,12 @@ namespace LkEngine
 	class InputEvent
 	{
 	public:
-		virtual void onKeyPress(const Keys& key) = 0;
-		virtual void onKeyRelease(const Keys& key) = 0;
-		virtual void onMousePress(const MouseState& mouseState) = 0;
-		virtual void onMouseRelease(const MouseState& mouseState) = 0;
-		virtual void onMouseMove(const MouseState& mouseState) = 0;
-		virtual void onMouseWheelEvent(const MouseState& mouseState) = 0;
+		virtual void onKeyPress(const Keys& key) {};
+		virtual void onKeyRelease(const Keys& key) {};
+		virtual void onMousePress(const MouseState& mouseState) {};
+		virtual void onMouseRelease(const MouseState& mouseState) {};
+		virtual void onMouseMove(const MouseState& mouseState) {};
+		virtual void onMouseWheelEvent(const MouseState& mouseState) {};
 	};
 	class InputEventManager : public ISingleton<InputEventManager>
 	{

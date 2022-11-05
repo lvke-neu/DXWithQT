@@ -13,12 +13,12 @@ SceneManager
 #include "Component/Camera/CameraController.h"
 #include "Component/SkyBoxComponent.h"
 #include "Component/PlaneComponent.h"
-
+#include "../Core/Event/InputEventManager.h"
 
 
 namespace LkEngine
 {
-	class SceneManager : public ISingleton<SceneManager>, public IManager
+	class SceneManager : public ISingleton<SceneManager>, public IManager, public InputEvent
 	{
 	public:
 		virtual void init() override;
@@ -27,7 +27,8 @@ namespace LkEngine
 
 	public:
 		virtual ~SceneManager();
-
+	public:
+		virtual void onMousePress(const MouseState& mouseState) override;
 	public:
 		std::string getSkyBoxTexture();
 		void setSkyBoxTexture(const std::string& skyBoxTexture);

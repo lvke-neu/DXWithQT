@@ -19,6 +19,13 @@ namespace LkEngine
 
 		buildMesh();
 
+		//BoundingBox
+		XMFLOAT3 vMin(mesh->mAABB.mMin.x, mesh->mAABB.mMin.y, mesh->mAABB.mMin.z);
+		XMFLOAT3 vMax(mesh->mAABB.mMax.x, mesh->mAABB.mMax.y, mesh->mAABB.mMax.z);
+		BoundingBox aabb;
+		BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&vMin), XMLoadFloat3(&vMax));
+		setBoundingBox(aabb);
+
 		setVsShader(vsShader);
 		setPsShader(psShader);
 	}
@@ -92,6 +99,8 @@ namespace LkEngine
 		ZeroMemory(&InitData, sizeof(InitData));
 		InitData.pSysMem = indices;
 		m_pd3dDevice->CreateBuffer(&ibd, &InitData, m_pIndexBuffer.GetAddressOf());
+
+
 	}
 
 	void SubModelComponent::createVertexLayout(const ComPtr<ID3DBlob>& blob)
@@ -203,6 +212,16 @@ namespace LkEngine
 		}
 
 		processNode(scene->mRootNode, scene);
+		
+		BoundingBox aabb;
+		XMFLOAT3 vMin(0.0f, 0.0f, 0.0f);
+		XMFLOAT3 vMax(0.0f, 0.0f, 0.0f);
+		BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&vMin), XMLoadFloat3(&vMax));
+		for (auto subModelCom : m_subModelComponents)
+		{
+			BoundingBox::CreateMerged(aabb, aabb, subModelCom.getBoundingBox());
+		}
+		setBoundingBox(aabb);
 
 		loadingCompleted = true;
 		setTransform(m_transform);

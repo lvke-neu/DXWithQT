@@ -3,16 +3,15 @@
 #include "Component/Common/RenderStates.h"
 #include "Component/Camera/CameraManager.h"
 #include "../Core/serialization/Reflection.h"
-#include "../Core/collision/Ray.h"
 #include "../Core/engine/Engine.h"
 #include "../Core/Event/PickEventManager.h"
+#include "Pick/PickDetection.h"
 
 #include "Component/SphereComponent.h"
 #include "Component/SpatialImageComponent.h"
 #include "Component/ModelComponent.h"
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
-
 #include "../../LkEngineRuntime/Core/Network Request/HttpRequestManager.h"
 
 
@@ -37,17 +36,38 @@ namespace LkEngine
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
 
+
+		InputEventManager::getInstance().registerInputEvent(this);
 		LOG_INFO("SceneManager initialization is complete");
 
 	}
 	SceneManager::~SceneManager()
 	{
+		InputEventManager::getInstance().unRegisterInputEvent(this);
+
 		for (auto iter = m_componets.begin(); iter!=m_componets.end(); iter++)
 			SAFE_DELETE_SET_NULL(iter->second);
 
 		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		SAFE_DELETE_SET_NULL(m_pCameraController);
+	}
+
+	void SceneManager::onMousePress(const MouseState & mouseState)
+	{
+		if (mouseState.mouseType == MouseType::LeftButton)
+		{
+			std::string pickUuid = PickDetection::getInstance().pickDetect(mouseState.mousePos.x, mouseState.mousePos.y, m_componets);
+			if (pickUuid != "-1")
+			{
+				PickEventManager::getInstance().onPickComponent(m_componets[pickUuid]);
+				LOG_INFO("pick: " + pickUuid)
+			}
+			else
+			{
+				LOG_INFO("pick: null")
+			}		
+		}
 	}
 
 	void SceneManager::updateScene(float deltaTime)
@@ -60,7 +80,8 @@ namespace LkEngine
 		m_pPlaneComponent->draw();
 
 		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
-			iter->second->draw();
+			if(iter->second)
+				iter->second->draw();
 
 
 		m_pSkyBoxComponent->draw();
@@ -96,7 +117,7 @@ namespace LkEngine
 			}
 			m_componets.insert({ ic->getUuId(), ic });
 			PickEventManager::getInstance().onAddComponent(ic);
-			LOG_INFO("addComponent-" + componentType + "-" + ic->getUuId());
+			LOG_INFO("Add Component: " + componentType + "-" + ic->getUuId());
 		}
 	}
 
@@ -106,7 +127,7 @@ namespace LkEngine
 		if (iter != m_componets.end())
 		{
 			PickEventManager::getInstance().onDeleteComponent(iter->second);
-			LOG_INFO("deleteComponent-" + iter->second->getComponetType() + "-" + iter->second->getUuId());
+			LOG_INFO("Delete Component: " + iter->second->getComponetType() + "-" + iter->second->getUuId());
 			SAFE_DELETE_SET_NULL(iter->second);
 			m_componets.erase(iter);
 		}
