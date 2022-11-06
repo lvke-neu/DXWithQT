@@ -135,8 +135,8 @@ namespace LkEngine
 
 
 		//BoundingBox
-		XMFLOAT3 vMin(-1.0f, -1.0f, -1.0f);
-		XMFLOAT3 vMax(1.0f, 1.0f, 1.0f);
+		XMFLOAT3 vMin(-0.5f, 0.0f, -0.5f);
+		XMFLOAT3 vMax(0.5f, 1.0f, 0.5f);
 		BoundingBox aabb;
 		BoundingBox::CreateFromPoints(aabb, XMLoadFloat3(&vMin), XMLoadFloat3(&vMax));
 		setBoundingBox(aabb);

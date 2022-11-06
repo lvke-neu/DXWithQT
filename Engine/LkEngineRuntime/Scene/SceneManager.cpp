@@ -60,10 +60,13 @@ namespace LkEngine
 	{
 		if (mouseState.mouseType == MouseType::LeftButton)
 		{
+			m_mouseType = MouseType::LeftButton;
+			m_oldMousePos = mouseState.mousePos;
 			std::string pickUuid = PickDetection::getInstance().pickDetect(mouseState.mousePos.x, mouseState.mousePos.y, m_componets);
 			if (pickUuid != "-1")
 			{
 				LOG_INFO("pick: " + pickUuid)
+				m_bIsPickAxis = false;
 				PickEventManager::getInstance().onPickComponent(m_componets[pickUuid]);
 				if (m_axisComponent)
 				{
@@ -73,11 +76,59 @@ namespace LkEngine
 			}
 			else
 			{
-				LOG_INFO("pick: null")
-				if (m_axisComponent)
-					m_axisComponent->enableShow(false);
+				pickUuid = m_axisComponent->pickDetection(mouseState.mousePos.x, mouseState.mousePos.y);
+
+				if (pickUuid != "-1")
+				{
+					LOG_INFO("axis pick: " + pickUuid)
+					m_bIsPickAxis = true;
+					m_pickAxis = pickUuid;
+				}
+				else
+				{
+					LOG_INFO("pick: null")
+					m_bIsPickAxis = false;
+					if (m_axisComponent)
+						m_axisComponent->enableShow(false);
+				}
 			}		
 		}
+	}
+
+	void SceneManager::onMouseMove(const MouseState & mouseState)
+	{
+		if (m_mouseType == MouseType::LeftButton && m_bIsPickAxis)
+		{
+			if (m_pickAxis == "UpAxis")
+			{
+				float deltaY = -float(mouseState.mousePos.y - m_oldMousePos.y) * 0.1f;
+				auto pos = m_axisComponent->getBindedComponent()->getPosition();
+				m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y + deltaY, pos.z);
+			}
+			if (m_pickAxis == "RightAxis")
+			{
+				float deltaX = float(mouseState.mousePos.x - m_oldMousePos.x) * 0.1f;
+				auto pos = m_axisComponent->getBindedComponent()->getPosition();
+				m_axisComponent->getBindedComponent()->setPosition(pos.x + deltaX, pos.y, pos.z);
+			}
+			if (m_pickAxis == "ForwardAxis")
+			{
+				float deltaX = float(mouseState.mousePos.x - m_oldMousePos.x) * 0.1f;
+				float deltaY = -float(mouseState.mousePos.y - m_oldMousePos.y) * 0.1f;
+				float deltaZ = -deltaX + deltaY;
+				auto pos = m_axisComponent->getBindedComponent()->getPosition();
+				m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z + deltaZ);
+			}
+
+			m_oldMousePos = mouseState.mousePos;
+
+			PickEventManager::getInstance().onPickComponent(m_axisComponent->getBindedComponent());
+		}
+	}
+
+	void SceneManager::onMouseRelease(const MouseState & mouseState)
+	{
+		m_mouseType = MouseType::NoButton;
 	}
 
 	void SceneManager::updateScene(float deltaTime)

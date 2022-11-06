@@ -9,6 +9,7 @@ Axis Component when pick something
 #include "CylinderComponent.h"
 #include "../../../LkEngineRuntime/Core/Event/FrameMoveEventManager.h"
 
+
 namespace LkEngine
 {
 	class AxisComponent : public FrameMoveEvent
@@ -20,9 +21,13 @@ namespace LkEngine
 		virtual void onFrameMove(float deltaTime) override;
 
 		void bindComponent(IComponent* bindComponent);
+		IComponent* getBindedComponent() { return m_bindComponent; }
 		void enableShow(bool flag) { m_bShow = flag; }
 		void  draw();
+		std::string pickDetection(uint16_t mouseX, uint16_t mouseY);
 	private:
+		std::map<std::string, IComponent*> m_componets;
+		std::map<std::string, std::string> m_UuidWithName;
 		//green
 		IComponent* icUp{ nullptr };
 		//red

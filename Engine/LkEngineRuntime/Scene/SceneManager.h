@@ -29,6 +29,8 @@ namespace LkEngine
 		virtual ~SceneManager();
 	public:
 		virtual void onMousePress(const MouseState& mouseState) override;
+		virtual void onMouseMove(const MouseState& mouseState) override;
+		virtual void onMouseRelease(const MouseState& mouseState) override;
 	public:
 		std::string getSkyBoxTexture();
 		void setSkyBoxTexture(const std::string& skyBoxTexture);
@@ -39,6 +41,11 @@ namespace LkEngine
 		void openSolution(const std::string& filePath);
 		void saveSolution(const std::string& filePath);
 		void setCameraMoveSpeed(float moveSpeed);
+	private:
+		bool m_bIsPickAxis{ false };
+		std::string m_pickAxis;
+		MouseType m_mouseType{ MouseType::NoButton };
+		MousePos m_oldMousePos;
 	private:
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };

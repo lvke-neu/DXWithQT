@@ -1,5 +1,6 @@
 #include "AxisComponent.h"
 #include "../../../LkEngineRuntime/Core/base/Utility.h"
+#include "../Pick/PickDetection.h"
 
 namespace LkEngine
 {
@@ -16,10 +17,20 @@ namespace LkEngine
 
 		icForward = new CylinderComponent(pd3dDevice, pd3dImmediateContext);
 		icForward->setScale(0.5f, 10.0f, 0.5f);
-		icForward->setRotation(-XM_PI / 2, 0.0f, 0.0f);
+		icForward->setRotation(XM_PI / 2, 0.0f, 0.0f);
 		icForward->setUseTexOrColor(false, XMFLOAT4(0.0f, 0.0f, 1.0f, 0.3f));
 
+		m_componets.insert({icUp->getUuId(), icUp});
+		m_componets.insert({ icRight->getUuId(), icRight });
+		m_componets.insert({ icForward->getUuId(), icForward });
+
+		m_UuidWithName.insert({ icUp->getUuId(), "UpAxis" });
+		m_UuidWithName.insert({ icRight->getUuId(), "RightAxis" });
+		m_UuidWithName.insert({ icForward->getUuId(), "ForwardAxis" });
+
+
 		FrameMoveEventManager::getInstance().registerFrameMoveEvent(this);
+
 	}
 
 	AxisComponent::~AxisComponent()
@@ -46,7 +57,6 @@ namespace LkEngine
 					icForward->setPosition(pos);
 			}
 		}
-
 	}
 
 	void AxisComponent::bindComponent(IComponent * bindComponent)
@@ -67,6 +77,13 @@ namespace LkEngine
 		}
 	}
 
+	std::string AxisComponent::pickDetection(uint16_t mouseX, uint16_t mouseY)
+	{
+		std::string res = PickDetection::getInstance().pickDetect(mouseX, mouseY, m_componets);
+		if (res != "-1")
+			return m_UuidWithName[res];
+		return res;
+	}
 }
 
 
