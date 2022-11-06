@@ -171,6 +171,7 @@
     <ClInclude Include="Core\serialization\Reference.h" />
     <ClInclude Include="Core\serialization\Reflection.h" />
     <ClInclude Include="Core\serialization\SerializationManager.h" />
+    <ClInclude Include="Scene\Component\AxisComponent.h" />
     <ClInclude Include="Scene\Component\BoxComponent.h" />
     <ClInclude Include="Scene\Component\Camera\CameraController.h" />
     <ClInclude Include="Scene\Component\Camera\CameraManager.h" />
@@ -179,6 +180,7 @@
     <ClInclude Include="Scene\Component\Common\RenderStates.h" />
     <ClInclude Include="Scene\Component\Common\Transform.h" />
     <ClInclude Include="Scene\Component\Common\VertexType.h" />
+    <ClInclude Include="Scene\Component\CylinderComponent.h" />
     <ClInclude Include="Scene\Component\Interface\ComponentInterface.h" />
     <ClInclude Include="Scene\Component\ModelComponent.h" />
     <ClInclude Include="Scene\Component\PlaneComponent.h" />
@@ -205,12 +207,14 @@
     <ClCompile Include="Core\log\LogManager.cpp" />
     <ClCompile Include="Core\Network Request\HttpRequestManager.cpp" />
     <ClCompile Include="Core\serialization\SerializationManager.cpp" />
+    <ClCompile Include="Scene\Component\AxisComponent.cpp" />
     <ClCompile Include="Scene\Component\BoxComponent.cpp" />
     <ClCompile Include="Scene\Component\Camera\CameraController.cpp" />
     <ClCompile Include="Scene\Component\Camera\CameraManager.cpp" />
     <ClCompile Include="Scene\Component\Common\RenderStates.cpp" />
     <ClCompile Include="Scene\Component\Common\Transform.cpp" />
     <ClCompile Include="Scene\Component\Common\VertexType.cpp" />
+    <ClCompile Include="Scene\Component\CylinderComponent.cpp" />
     <ClCompile Include="Scene\Component\Interface\ComponentInterface.cpp" />
     <ClCompile Include="Scene\Component\ModelComponent.cpp" />
     <ClCompile Include="Scene\Component\PlaneComponent.cpp" />

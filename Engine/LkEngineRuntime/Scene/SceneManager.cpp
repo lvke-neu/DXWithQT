@@ -10,6 +10,7 @@
 #include "Component/SphereComponent.h"
 #include "Component/SpatialImageComponent.h"
 #include "Component/ModelComponent.h"
+#include "Component/CylinderComponent.h"
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
 #include "../../LkEngineRuntime/Core/Network Request/HttpRequestManager.h"
@@ -23,6 +24,7 @@ namespace LkEngine
 		REGISTER_CLASS(Reference, "SphereComponent", SphereComponent);
 		REGISTER_CLASS(Reference, "SpatialImageComponent", SpatialImageComponent);
 		REGISTER_CLASS(Reference, "ModelComponent", ModelComponent);
+		REGISTER_CLASS(Reference, "CylinderComponent", CylinderComponent);
 
 		RenderStates::Init(m_pd3dDevice);
 
@@ -35,7 +37,7 @@ namespace LkEngine
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
-
+		m_axisComponent = new AxisComponent(m_pd3dDevice, m_pd3dImmediateContext);
 
 		InputEventManager::getInstance().registerInputEvent(this);
 		LOG_INFO("SceneManager initialization is complete");
@@ -51,6 +53,7 @@ namespace LkEngine
 		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		SAFE_DELETE_SET_NULL(m_pCameraController);
+		SAFE_DELETE_SET_NULL(m_axisComponent);
 	}
 
 	void SceneManager::onMousePress(const MouseState & mouseState)
@@ -60,12 +63,19 @@ namespace LkEngine
 			std::string pickUuid = PickDetection::getInstance().pickDetect(mouseState.mousePos.x, mouseState.mousePos.y, m_componets);
 			if (pickUuid != "-1")
 			{
-				PickEventManager::getInstance().onPickComponent(m_componets[pickUuid]);
 				LOG_INFO("pick: " + pickUuid)
+				PickEventManager::getInstance().onPickComponent(m_componets[pickUuid]);
+				if (m_axisComponent)
+				{
+					m_axisComponent->bindComponent(m_componets[pickUuid]);
+					m_axisComponent->enableShow(true);
+				}
 			}
 			else
 			{
 				LOG_INFO("pick: null")
+				if (m_axisComponent)
+					m_axisComponent->enableShow(false);
 			}		
 		}
 	}
@@ -83,6 +93,9 @@ namespace LkEngine
 			if(iter->second)
 				iter->second->draw();
 
+		m_pd3dImmediateContext->OMSetBlendState(RenderStates::BSTransparent.Get(), nullptr, 0xFFFFFFFF);
+		m_axisComponent->draw();
+		m_pd3dImmediateContext->OMSetBlendState(nullptr, nullptr, 0xFFFFFFFF);
 
 		m_pSkyBoxComponent->draw();
 	}

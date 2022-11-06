@@ -10,7 +10,7 @@ namespace LkEngine
 
 	void FrameMoveEventManager::unRegisterFrameMoveEvent(FrameMoveEvent* frameMoveEvent)
 	{
-		for (auto it = m_frameMoveEvents.begin(); it != m_frameMoveEvents.end(); )
+		for (auto it = m_frameMoveEvents.begin(); it != m_frameMoveEvents.end(); ++it)
 		{
 			if (*it == frameMoveEvent)
 			{

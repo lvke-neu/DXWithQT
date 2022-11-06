@@ -74,6 +74,15 @@
     <Filter Include="Scene\Component\Effect\BasicPrimitive">
       <UniqueIdentifier>{6cdf57f5-6a90-488f-bef1-9a15148f851c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Component\Effect\skybox">
+      <UniqueIdentifier>{dfe3668c-e7a5-4967-90e6-8d4f4d01ef3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component\Effect\image">
+      <UniqueIdentifier>{746140f3-16fa-41cd-a7bf-fdc31ca810a2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component\Effect\axis">
+      <UniqueIdentifier>{ac895bcb-972c-42a4-a3ea-9991bc2166ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -157,12 +166,6 @@
     <ClInclude Include="Core\Network Request\HttpRequestManager.h">
       <Filter>Core\Network Request</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Component\SkyBoxComponent.h">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Component\SpatialImageComponent.h">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Component\ModelComponent.h">
       <Filter>Scene\Component\Model</Filter>
     </ClInclude>
@@ -177,6 +180,18 @@
     </ClInclude>
     <ClInclude Include="Scene\Component\SphereComponent.h">
       <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\CylinderComponent.h">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\SkyBoxComponent.h">
+      <Filter>Scene\Component\Effect\skybox</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\SpatialImageComponent.h">
+      <Filter>Scene\Component\Effect\image</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\AxisComponent.h">
+      <Filter>Scene\Component\Effect\axis</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -243,12 +258,6 @@
     <ClCompile Include="Core\Network Request\HttpRequestManager.cpp">
       <Filter>Core\Network Request</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Component\SkyBoxComponent.cpp">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Component\SpatialImageComponent.cpp">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Component\ModelComponent.cpp">
       <Filter>Scene\Component\Model</Filter>
     </ClCompile>
@@ -263,6 +272,18 @@
     </ClCompile>
     <ClCompile Include="Scene\Component\SphereComponent.cpp">
       <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\CylinderComponent.cpp">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\SkyBoxComponent.cpp">
+      <Filter>Scene\Component\Effect\skybox</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\SpatialImageComponent.cpp">
+      <Filter>Scene\Component\Effect\image</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\AxisComponent.cpp">
+      <Filter>Scene\Component\Effect\axis</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

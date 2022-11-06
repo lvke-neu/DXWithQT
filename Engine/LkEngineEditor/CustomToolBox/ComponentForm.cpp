@@ -24,6 +24,11 @@ ComponentForm::ComponentForm(QWidget *parent) :
 		{
 			LkEngine::Engine::getInstance().addComponent("SpatialImageComponent");
 		});
+	connect(ui->pushButton_5, &QPushButton::clicked, this,
+		[]()
+		{
+			LkEngine::Engine::getInstance().addComponent("CylinderComponent");
+		});
 	connect(ui->pushButton_4, &QPushButton::clicked, this,
 		[=]()
 		{

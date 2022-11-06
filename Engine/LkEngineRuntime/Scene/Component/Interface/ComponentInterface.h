@@ -90,6 +90,8 @@ namespace LkEngine
 
 		virtual std::string getComponetType() { return m_componetType; }
 		virtual std::string getUuId() { return m_uuid; }
+
+		void setUseTexOrColor(bool isUseTex, const XMFLOAT4& color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
 	protected:
 		void setComponetType(const std::string componetType) { m_componetType = componetType; }
 		void setUuId(const std::string uuid) { m_uuid = uuid; }
@@ -102,7 +104,7 @@ namespace LkEngine
 		void set_Material(const rapidjson::Value& funcParameter);
 		void set_Transform(const rapidjson::Value& funcParameter);
 
-		void setUseTexOrColor(bool isUseTex, const XMFLOAT4& color = XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f));
+		
 	public:
 		void onTransformChanged();
 	protected:

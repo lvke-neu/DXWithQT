@@ -14,7 +14,7 @@ SceneManager
 #include "Component/SkyBoxComponent.h"
 #include "Component/PlaneComponent.h"
 #include "../Core/Event/InputEventManager.h"
-
+#include "Component/AxisComponent.h"
 
 namespace LkEngine
 {
@@ -43,6 +43,7 @@ namespace LkEngine
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };
 		CameraController* m_pCameraController{ nullptr };
+		AxisComponent* m_axisComponent{ nullptr };
 
 		std::map<std::string, IComponent*> m_componets;
 	};
