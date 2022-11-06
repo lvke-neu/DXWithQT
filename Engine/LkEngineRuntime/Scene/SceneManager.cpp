@@ -13,6 +13,7 @@
 #include "Component/SpatialImageComponent.h"
 #include "Component/ModelComponent.h"
 #include "Component/CylinderComponent.h"
+#include "Component/ConeComponent.h"
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
 #include "../../LkEngineRuntime/Core/Network Request/HttpRequestManager.h"
@@ -27,6 +28,7 @@ namespace LkEngine
 		REGISTER_CLASS(Reference, "SpatialImageComponent", SpatialImageComponent);
 		REGISTER_CLASS(Reference, "ModelComponent", ModelComponent);
 		REGISTER_CLASS(Reference, "CylinderComponent", CylinderComponent);
+		REGISTER_CLASS(Reference, "ConeComponent", ConeComponent);
 
 		RenderStates::Init(m_pd3dDevice);
 
@@ -119,7 +121,7 @@ namespace LkEngine
 			XMFLOAT3 moveDir;
 			XMStoreFloat3(&moveDir, XMVector3Normalize(XMVectorSubtract(worldEndPtVec, worldStartPtVec)));
 			
-			if (m_pickAxis == "RightAxis")
+			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
 			{
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
 				if (moveDir.x <= 0.0f)
@@ -127,7 +129,7 @@ namespace LkEngine
 				else
 					m_axisComponent->getBindedComponent()->setPosition(pos.x + moveDis * 200.0f, pos.y, pos.z);
 			}
-			if (m_pickAxis == "ForwardAxis")
+			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
 			{
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
 				if(moveDir.z >= 0.0f)
@@ -135,7 +137,7 @@ namespace LkEngine
 				else
 					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z - moveDis * 200.0f);
 			}
-			if (m_pickAxis == "UpAxis")
+			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
 			{
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
 				if (moveDir.y >= 0.0f)

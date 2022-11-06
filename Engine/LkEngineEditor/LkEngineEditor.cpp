@@ -119,11 +119,6 @@ namespace LkEngine
 			m_sceneComCfgDlg->show();
 	}
 
-
-
-
-
-
 }
 
 

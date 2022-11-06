@@ -7,6 +7,7 @@ Axis Component when pick something
 
 #pragma once
 #include "CylinderComponent.h"
+#include "ConeComponent.h"
 #include "../../../LkEngineRuntime/Core/Event/FrameMoveEventManager.h"
 
 
@@ -30,15 +31,19 @@ namespace LkEngine
 		std::map<std::string, std::string> m_UuidWithName;
 		//green
 		IComponent* icUp{ nullptr };
+		IComponent* icUpArrow{ nullptr };
 		//red
 		IComponent* icRight{ nullptr };
+		IComponent* icRightArrow{ nullptr };
 		//blue
 		IComponent* icForward{ nullptr };
+		IComponent* icForwardArrow{ nullptr };
+
 
 		bool m_bShow = false;
 
 		IComponent* m_bindComponent{ nullptr };
-		XMFLOAT3 m_position;
+		XMFLOAT3 m_position{0.0f, 0.0f, 0.0f};
 	};
 }
 

@@ -193,6 +193,9 @@
     <ClInclude Include="Scene\Component\AxisComponent.h">
       <Filter>Scene\Component\Effect\axis</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Component\ConeComponent.h">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -284,6 +287,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Component\AxisComponent.cpp">
       <Filter>Scene\Component\Effect\axis</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\ConeComponent.cpp">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

@@ -16,13 +16,9 @@ namespace LkEngine
 		setFocusPolicy(Qt::StrongFocus);
 		setMouseTracking(true);
 
-
-	
-
 		Engine::getInstance().initialize((HWND)winId(), m_parent->width(), m_parent->height());
 		LOG_INFO("Engine initialization is complete");
 		
-
 		m_Timer.Start();
 		m_Timer.Reset();
 	}

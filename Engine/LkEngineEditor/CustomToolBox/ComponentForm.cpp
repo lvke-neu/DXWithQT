@@ -29,6 +29,11 @@ ComponentForm::ComponentForm(QWidget *parent) :
 		{
 			LkEngine::Engine::getInstance().addComponent("CylinderComponent");
 		});
+	connect(ui->pushButton_7, &QPushButton::clicked, this,
+		[]()
+		{
+			LkEngine::Engine::getInstance().addComponent("ConeComponent");
+		});
 	connect(ui->pushButton_4, &QPushButton::clicked, this,
 		[=]()
 		{
