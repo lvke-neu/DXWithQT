@@ -21,6 +21,8 @@ namespace LkEngine
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
+
+		setUseTexOrColor(true);
 	}
 
 	BoxComponent::BoxComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) : IComponent(pd3dDevice, pd3dImmediateContext) 
@@ -37,6 +39,8 @@ namespace LkEngine
 			XMFLOAT3(0.0f, 0.0f, 0.0f),
 			XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
+
+		setUseTexOrColor(true);
 	}
 
 	void BoxComponent::buildMesh()
@@ -170,7 +174,8 @@ namespace LkEngine
 		m_pd3dImmediateContext->PSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());
 		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
 		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
-		
+		m_pd3dImmediateContext->VSSetConstantBuffers(4, 1, m_pUseColorCB.GetAddressOf());
+		m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pUseColorCB.GetAddressOf());
 	}
 
 	void BoxComponent::draw()

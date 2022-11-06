@@ -35,6 +35,13 @@ namespace LkEngine
 			XMMATRIX g_world;
 			XMMATRIX g_worldInvTranspose;
 		};
+
+		struct UseTexOrColor
+		{
+			XMFLOAT4 texColor;
+			XMFLOAT3 padd;
+			float isUseTex;	
+		};
 	public:
 		IComponent() = default;
 		IComponent(void** parameter);
@@ -95,6 +102,7 @@ namespace LkEngine
 		void set_Material(const rapidjson::Value& funcParameter);
 		void set_Transform(const rapidjson::Value& funcParameter);
 
+		void setUseTexOrColor(bool isUseTex, const XMFLOAT4& color = XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f));
 	public:
 		void onTransformChanged();
 	protected:
@@ -110,6 +118,8 @@ namespace LkEngine
 
 		ComPtr<ID3D11Buffer> m_pWorldMatrixCB{ nullptr };;
 		ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };
+
+		ComPtr<ID3D11Buffer> m_pUseColorCB{ nullptr };
 	protected:
 		std::string m_vsShader;
 		std::string m_gsShader;

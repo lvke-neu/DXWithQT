@@ -158,8 +158,8 @@ namespace LkEngine
 		m_uuid = guidStr;
 
 		setComponetType("ModelComponent");
-		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
-		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		setVsShader("builtin\\Shader\\ModelComponentVS.cso");
+		setPsShader("builtin\\Shader\\ModelComponentPS.cso");
 
 		bind_Set_Func();
 		m_functions["set_ModelPath"] = std::bind(&ModelComponent::set_ModelPath, this, std::placeholders::_1);
@@ -183,8 +183,8 @@ namespace LkEngine
 		m_uuid = guidStr;
 
 		setComponetType("ModelComponent");
-		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
-		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
+		setVsShader("builtin\\Shader\\ModelComponentVS.cso");
+		setPsShader("builtin\\Shader\\ModelComponentPS.cso");
 
 		bind_Set_Func();
 		m_functions["set_ModelPath"] = std::bind(&ModelComponent::set_ModelPath, this, std::placeholders::_1);

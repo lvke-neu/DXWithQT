@@ -68,6 +68,12 @@
     <Filter Include="Scene\Pick">
       <UniqueIdentifier>{65011954-d969-4c3d-ad0a-da857370b295}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Shader\ModelComponent">
+      <UniqueIdentifier>{85303f47-d581-4c23-9237-6a484b265d99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component\Effect\BasicPrimitive">
+      <UniqueIdentifier>{6cdf57f5-6a90-488f-bef1-9a15148f851c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -151,19 +157,10 @@
     <ClInclude Include="Core\Network Request\HttpRequestManager.h">
       <Filter>Core\Network Request</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Component\BoxComponent.h">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Component\PlaneComponent.h">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Component\SkyBoxComponent.h">
       <Filter>Scene\Component\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Component\SpatialImageComponent.h">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Component\SphereComponent.h">
       <Filter>Scene\Component\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Component\ModelComponent.h">
@@ -171,6 +168,15 @@
     </ClInclude>
     <ClInclude Include="Scene\Pick\PickDetection.h">
       <Filter>Scene\Pick</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\BoxComponent.h">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\PlaneComponent.h">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\SphereComponent.h">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -237,19 +243,10 @@
     <ClCompile Include="Core\Network Request\HttpRequestManager.cpp">
       <Filter>Core\Network Request</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Component\BoxComponent.cpp">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Component\PlaneComponent.cpp">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Component\SkyBoxComponent.cpp">
       <Filter>Scene\Component\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Component\SpatialImageComponent.cpp">
-      <Filter>Scene\Component\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Component\SphereComponent.cpp">
       <Filter>Scene\Component\Effect</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Component\ModelComponent.cpp">
@@ -257,6 +254,15 @@
     </ClCompile>
     <ClCompile Include="Scene\Pick\PickDetection.cpp">
       <Filter>Scene\Pick</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\BoxComponent.cpp">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\PlaneComponent.cpp">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\SphereComponent.cpp">
+      <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -275,6 +281,9 @@
     </None>
     <None Include="Scene\Shader\FlatPixelFixedImage\FlatPixelFixedImage.hlsli">
       <Filter>Scene\Shader\FlatPixelFixedImage</Filter>
+    </None>
+    <None Include="Scene\Shader\ModelComponent\ModelComponent.hlsli">
+      <Filter>Scene\Shader\ModelComponent</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -307,6 +316,12 @@
     </FxCompile>
     <FxCompile Include="Scene\Shader\FlatPixelFixedImage\FlatPixelFixedImageVS.hlsl">
       <Filter>Scene\Shader\FlatPixelFixedImage</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ModelComponent\ModelComponentPS.hlsl">
+      <Filter>Scene\Shader\ModelComponent</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ModelComponent\ModelComponentVS.hlsl">
+      <Filter>Scene\Shader\ModelComponent</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

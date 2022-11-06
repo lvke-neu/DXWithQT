@@ -20,6 +20,10 @@ namespace LkEngine
 		cbd.ByteWidth = sizeof(Material);
 		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pMaterialCB.GetAddressOf());
 
+
+		cbd.ByteWidth = sizeof(UseTexOrColor);
+		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pUseColorCB.GetAddressOf());
+
 		//generate uui
 		GUID guid;
 		CoCreateGuid(&guid);
@@ -50,6 +54,10 @@ namespace LkEngine
 
 		cbd.ByteWidth = sizeof(Material);
 		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pMaterialCB.GetAddressOf());
+
+
+		cbd.ByteWidth = sizeof(UseTexOrColor);
+		m_pd3dDevice->CreateBuffer(&cbd, nullptr, m_pUseColorCB.GetAddressOf());
 
 		//generate uui
 		GUID guid;
@@ -178,6 +186,24 @@ namespace LkEngine
 		}
 	}
 
+	void IComponent::setUseTexOrColor(bool isUseTex, const XMFLOAT4 & color)
+	{
+		if (m_pUseColorCB)
+		{
+			UseTexOrColor useTexOrColor;
+			useTexOrColor.isUseTex = isUseTex;
+			useTexOrColor.texColor = color;
+
+			if (m_pUseColorCB)
+			{
+				D3D11_MAPPED_SUBRESOURCE mappedData;
+				m_pd3dImmediateContext->Map(m_pUseColorCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
+				memcpy_s(mappedData.pData, sizeof(UseTexOrColor), &useTexOrColor, sizeof(UseTexOrColor));
+				m_pd3dImmediateContext->Unmap(m_pUseColorCB.Get(), 0);
+			}
+		}
+	}
+
 
 	IComponent::~IComponent()
 	{
@@ -187,6 +213,7 @@ namespace LkEngine
 		m_pVertexLayout.Reset();
 		m_pTexture.Reset();
 		m_pMaterialCB.Reset();
+		m_pUseColorCB.Reset();
 	}
 
 	void IComponent::setVsShader(const std::string& vsShader)

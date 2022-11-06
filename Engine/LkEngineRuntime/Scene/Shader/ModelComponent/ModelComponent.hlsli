@@ -25,10 +25,3 @@ cbuffer  MaterialCB : register(b3)
 {
 	Material g_material;
 }
-
-cbuffer UseTexOrColor : register(b4)
-{
-	float4 texColor;
-	float3 padd;
-	float isUseTex;
-}

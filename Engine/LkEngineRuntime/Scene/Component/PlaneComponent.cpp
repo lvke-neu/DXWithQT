@@ -15,6 +15,8 @@ namespace LkEngine
 			XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
 			XMFLOAT3(0.0f, -5.0f, 5.0f)
 		));
+
+		setUseTexOrColor(true);
 	}
 
 	void PlaneComponent::buildMesh()
@@ -105,6 +107,8 @@ namespace LkEngine
 		m_pd3dImmediateContext->PSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());
 		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
 		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
+		m_pd3dImmediateContext->VSSetConstantBuffers(4, 1, m_pUseColorCB.GetAddressOf());
+		m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pUseColorCB.GetAddressOf());
 
 	}
 
