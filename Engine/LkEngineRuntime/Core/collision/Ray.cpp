@@ -68,4 +68,23 @@ namespace LkEngine
 		XMStoreFloat3(&direction, XMVector3Normalize(Target - XMLoadFloat3(&camPos)));
 		return Ray(CameraManager::getInstance().getPosition(), direction);
 	}
+
+	void Ray::ScreenPointToWorld(XMFLOAT3 & worldPoint, float screenPtX, float screenPtY)
+	{
+		static const XMVECTORF32 D = { { { -1.0f, 1.0f, 0.0f, 0.0f } } };
+		XMVECTOR V = XMVectorSet(screenPtX, screenPtY, 0.0f, 1.0f);
+		D3D11_VIEWPORT viewPort = CameraManager::getInstance().getViewport();
+
+		XMVECTOR Scale = XMVectorSet(viewPort.Width * 0.5f, -viewPort.Height * 0.5f, viewPort.MaxDepth - viewPort.MinDepth, 1.0f);
+		Scale = XMVectorReciprocal(Scale);
+
+		XMVECTOR Offset = XMVectorSet(-viewPort.TopLeftX, -viewPort.TopLeftY, -viewPort.MinDepth, 0.0f);
+		Offset = XMVectorMultiplyAdd(Scale, Offset, D.v);
+
+		XMMATRIX Transform = XMMatrixMultiply(CameraManager::getInstance().getViewMatrix(), CameraManager::getInstance().getProjMatrix());
+		Transform = XMMatrixInverse(nullptr, Transform);
+
+		XMVECTOR Target = XMVectorMultiplyAdd(V, Scale, Offset);
+		XMStoreFloat3(&worldPoint, XMVector3TransformCoord(Target, Transform));
+	}
 }

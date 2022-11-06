@@ -19,6 +19,7 @@ namespace LkEngine
 		bool hit(const BoundingBox& AABB, float& distance);
 		bool hit(const BoundingOrientedBox& OBB, float& distance);
 		static Ray ScreenToRay(float screenPtX, float screenPtY);
+		static void ScreenPointToWorld(XMFLOAT3& worldPoint, float screenPtX, float screenPtY);
 	private:
 		XMFLOAT3 m_origin;
 		XMFLOAT3 m_dir;

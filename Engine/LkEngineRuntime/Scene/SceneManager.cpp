@@ -4,8 +4,10 @@
 #include "Component/Camera/CameraManager.h"
 #include "../Core/serialization/Reflection.h"
 #include "../Core/engine/Engine.h"
+#include "../Core/collision/Ray.h"
 #include "../Core/Event/PickEventManager.h"
 #include "Pick/PickDetection.h"
+
 
 #include "Component/SphereComponent.h"
 #include "Component/SpatialImageComponent.h"
@@ -97,30 +99,50 @@ namespace LkEngine
 
 	void SceneManager::onMouseMove(const MouseState & mouseState)
 	{
+
+
 		if (m_mouseType == MouseType::LeftButton && m_bIsPickAxis)
 		{
-			if (m_pickAxis == "UpAxis")
-			{
-				float deltaY = -float(mouseState.mousePos.y - m_oldMousePos.y) * 0.1f;
-				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y + deltaY, pos.z);
-			}
+			XMFLOAT3 worldStartPt;
+			XMFLOAT3 worldEndPt;
+			Ray::ScreenPointToWorld(worldStartPt, m_oldMousePos.x, m_oldMousePos.y);
+			Ray::ScreenPointToWorld(worldEndPt, mouseState.mousePos.x, mouseState.mousePos.y);
+			float moveDis = sqrt(pow(worldStartPt.x - worldEndPt.x, 2) + pow(worldStartPt.y - worldEndPt.y, 2) + pow(worldStartPt.z - worldEndPt.z, 2));
+
+
+			XMVECTOR worldStartPtVec;
+			XMVECTOR worldEndPtVec;
+			worldStartPtVec = XMLoadFloat3(&worldStartPt);
+			worldEndPtVec = XMLoadFloat3(&worldEndPt);
+
+	
+			XMFLOAT3 moveDir;
+			XMStoreFloat3(&moveDir, XMVector3Normalize(XMVectorSubtract(worldEndPtVec, worldStartPtVec)));
+			
 			if (m_pickAxis == "RightAxis")
 			{
-				float deltaX = float(mouseState.mousePos.x - m_oldMousePos.x) * 0.1f;
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				m_axisComponent->getBindedComponent()->setPosition(pos.x + deltaX, pos.y, pos.z);
+				if (moveDir.x <= 0.0f)
+					m_axisComponent->getBindedComponent()->setPosition(pos.x - moveDis * 100.0f, pos.y, pos.z);
+				else
+					m_axisComponent->getBindedComponent()->setPosition(pos.x + moveDis * 100.0f, pos.y, pos.z);
 			}
 			if (m_pickAxis == "ForwardAxis")
 			{
-				float deltaX = float(mouseState.mousePos.x - m_oldMousePos.x) * 0.1f;
-				float deltaY = float(mouseState.mousePos.y - m_oldMousePos.y) * 0.1f;
-				float deltaZ = deltaX + deltaY;
-				deltaZ = -deltaZ;
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z + deltaZ);
+				if(moveDir.z >= 0.0f)
+					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z + moveDis * 100.0f);
+				else
+					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z - moveDis * 100.0f);
 			}
-
+			if (m_pickAxis == "UpAxis")
+			{
+				auto pos = m_axisComponent->getBindedComponent()->getPosition();
+				if (moveDir.y >= 0.0f)
+					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y + moveDis * 100.0f, pos.z);
+				else
+					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y - moveDis * 100.0f, pos.z);
+			}
 			m_oldMousePos = mouseState.mousePos;
 
 			PickEventManager::getInstance().onPickComponent(m_axisComponent->getBindedComponent());
