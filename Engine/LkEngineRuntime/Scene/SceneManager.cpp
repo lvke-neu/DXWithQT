@@ -114,8 +114,9 @@ namespace LkEngine
 			if (m_pickAxis == "ForwardAxis")
 			{
 				float deltaX = float(mouseState.mousePos.x - m_oldMousePos.x) * 0.1f;
-				float deltaY = -float(mouseState.mousePos.y - m_oldMousePos.y) * 0.1f;
-				float deltaZ = -deltaX + deltaY;
+				float deltaY = float(mouseState.mousePos.y - m_oldMousePos.y) * 0.1f;
+				float deltaZ = deltaX + deltaY;
+				deltaZ = -deltaZ;
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
 				m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z + deltaZ);
 			}
@@ -192,6 +193,12 @@ namespace LkEngine
 		{
 			PickEventManager::getInstance().onDeleteComponent(iter->second);
 			LOG_INFO("Delete Component: " + iter->second->getComponetType() + "-" + iter->second->getUuId());
+			if (iter->second == m_axisComponent->getBindedComponent())
+			{
+				m_axisComponent->bindComponent(nullptr);
+				m_axisComponent->enableShow(false);
+			}
+				
 			SAFE_DELETE_SET_NULL(iter->second);
 			m_componets.erase(iter);
 		}
@@ -202,6 +209,12 @@ namespace LkEngine
 	{
 		for (auto it = m_componets.begin(); it != m_componets.end();)
 		{
+			if (it->second == m_axisComponent->getBindedComponent())
+			{
+				m_axisComponent->bindComponent(nullptr);
+				m_axisComponent->enableShow(false);
+			}
+
 			PickEventManager::getInstance().onDeleteComponent(it->second);
 			SAFE_DELETE_SET_NULL(it->second);
 			it = m_componets.erase(it);
