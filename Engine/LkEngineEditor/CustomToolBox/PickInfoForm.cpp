@@ -99,6 +99,27 @@ void PickInfoForm::onPickComponent(LkEngine::IComponent * component)
 		isPicking = false;
 		//update();
 	}
+	else
+	{
+		ui->UUID->setText("");
+		ui->Type->setText("");
+		ui->Texture->setText("");
+		ui->VsShader->setText("");
+		ui->GsShader->setText("");
+		ui->PsShader->setText("");
+
+		ui->scaleX->setValue(0);
+		ui->scaleY->setValue(0);
+		ui->scaleZ->setValue(0);
+
+		ui->rotX->setValue(0);
+		ui->rotY->setValue(0);
+		ui->rotZ->setValue(0);
+
+		ui->posX->setValue(0);
+		ui->posY->setValue(0);
+		ui->posZ->setValue(0);
+	}
 }
 
 void PickInfoForm::setComponentPorperty()

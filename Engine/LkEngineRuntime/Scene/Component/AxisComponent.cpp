@@ -4,22 +4,22 @@
 
 namespace LkEngine
 {
-	float thickness = 100.0f;
-	float length = 1.0f;
+	float thickness = 2.0f;
+	float length = 50.0f;
 
 	AxisComponent::AxisComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext)
 	{
 		icUp = new CylinderComponent(pd3dDevice, pd3dImmediateContext);
-		icUp->setScale(length, thickness, length);
+		icUp->setScale(thickness, length, thickness);
 		icUp->setUseTexOrColor(false, XMFLOAT4(0.0f, 1.0f, 0.0f, 0.3f));
 
 		icRight = new CylinderComponent(pd3dDevice, pd3dImmediateContext);
-		icRight->setScale(length, thickness, length);
+		icRight->setScale(thickness, length, thickness);
 		icRight->setRotation(0.0f, 0.0f, -XM_PI / 2);
 		icRight->setUseTexOrColor(false, XMFLOAT4(1.0f, 0.0f, 0.0f, 0.3f));
 
 		icForward = new CylinderComponent(pd3dDevice, pd3dImmediateContext);
-		icForward->setScale(length, thickness, length);
+		icForward->setScale(thickness, length, thickness);
 		icForward->setRotation(XM_PI / 2, 0.0f, 0.0f);
 		icForward->setUseTexOrColor(false, XMFLOAT4(0.0f, 0.0f, 1.0f, 0.3f));
 

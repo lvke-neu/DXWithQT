@@ -123,25 +123,25 @@ namespace LkEngine
 			{
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
 				if (moveDir.x <= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x - moveDis * 100.0f, pos.y, pos.z);
+					m_axisComponent->getBindedComponent()->setPosition(pos.x - moveDis * 200.0f, pos.y, pos.z);
 				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x + moveDis * 100.0f, pos.y, pos.z);
+					m_axisComponent->getBindedComponent()->setPosition(pos.x + moveDis * 200.0f, pos.y, pos.z);
 			}
 			if (m_pickAxis == "ForwardAxis")
 			{
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
 				if(moveDir.z >= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z + moveDis * 100.0f);
+					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z + moveDis * 200.0f);
 				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z - moveDis * 100.0f);
+					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z - moveDis * 200.0f);
 			}
 			if (m_pickAxis == "UpAxis")
 			{
 				auto pos = m_axisComponent->getBindedComponent()->getPosition();
 				if (moveDir.y >= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y + moveDis * 100.0f, pos.z);
+					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y + moveDis * 200.0f, pos.z);
 				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y - moveDis * 100.0f, pos.z);
+					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y - moveDis * 200.0f, pos.z);
 			}
 			m_oldMousePos = mouseState.mousePos;
 
@@ -243,6 +243,8 @@ namespace LkEngine
 			if (it == m_componets.end())
 				break;
 		}
+
+		PickEventManager::getInstance().onPickComponent(nullptr);
 	}
 
 	void SceneManager::openSolution(const std::string& filePath)
