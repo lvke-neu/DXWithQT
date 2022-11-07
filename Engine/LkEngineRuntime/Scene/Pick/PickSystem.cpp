@@ -42,6 +42,16 @@ namespace LkEngine
 		LOG_INFO("PickSystem initialization is complete");
 	}
 
+	void PickSystem::onKeyPress(const Keys & key)
+	{
+		if (key == Keys::Key_1)
+			m_dragType = DragType::SCALE;
+		if (key == Keys::Key_2)
+			m_dragType = DragType::ROTATION;
+		if (key == Keys::Key_3)
+			m_dragType = DragType::TRANSITION;
+	}
+
 	PickSystem::~PickSystem()
 	{
 		InputEventManager::getInstance().unRegisterInputEvent(this);
@@ -90,8 +100,6 @@ namespace LkEngine
 
 	void PickSystem::onMouseMove(const MouseState & mouseState)
 	{
-
-
 		if (m_mouseType == MouseType::LeftButton && m_bIsPickAxis)
 		{
 			XMFLOAT3 worldStartPt;
@@ -100,42 +108,17 @@ namespace LkEngine
 			Ray::ScreenPointToWorld(worldEndPt, mouseState.mousePos.x, mouseState.mousePos.y);
 			float moveDis = sqrt(pow(worldStartPt.x - worldEndPt.x, 2) + pow(worldStartPt.y - worldEndPt.y, 2) + pow(worldStartPt.z - worldEndPt.z, 2));
 
-
 			XMVECTOR worldStartPtVec;
 			XMVECTOR worldEndPtVec;
 			worldStartPtVec = XMLoadFloat3(&worldStartPt);
 			worldEndPtVec = XMLoadFloat3(&worldEndPt);
 
-
 			XMFLOAT3 moveDir;
 			XMStoreFloat3(&moveDir, XMVector3Normalize(XMVectorSubtract(worldEndPtVec, worldStartPtVec)));
 
-			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
-			{
-				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				if (moveDir.x <= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x - moveDis * 200.0f, pos.y, pos.z);
-				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x + moveDis * 200.0f, pos.y, pos.z);
-			}
-			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
-			{
-				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				if (moveDir.z >= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z + moveDis * 200.0f);
-				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z - moveDis * 200.0f);
-			}
-			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
-			{
-				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				if (moveDir.y >= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y + moveDis * 200.0f, pos.z);
-				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y - moveDis * 200.0f, pos.z);
-			}
-			m_oldMousePos = mouseState.mousePos;
+			drag(moveDir, moveDis);
 
+			m_oldMousePos = mouseState.mousePos;
 			PickEventManager::getInstance().onPickComponent(m_axisComponent->getBindedComponent());
 		}
 	}
@@ -144,4 +127,60 @@ namespace LkEngine
 	{
 		m_mouseType = MouseType::NoButton;
 	}
+
+	void PickSystem::drag(const XMFLOAT3& moveDir, float moveDis)
+	{
+		if (m_dragType == DragType::TRANSITION)
+		{
+			auto pos = m_axisComponent->getBindedComponent()->getPosition();
+			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setPosition(moveDir.x > 0.0f ? pos.x + moveDis * 200.0f : pos.x - moveDis * 200.0f, pos.y, pos.z);
+			}
+			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, moveDir.z < 0.0f ? pos.z - moveDis * 200.0f : pos.z + moveDis * 200.0f);
+			}
+			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setPosition(pos.x, moveDir.y < 0.0f ? pos.y - moveDis * 200.0f : pos.y + moveDis * 200.0f, pos.z);
+			}
+		}
+
+		if (m_dragType == DragType::SCALE)
+		{
+			auto scale = m_axisComponent->getBindedComponent()->getScale();
+			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setScale(moveDir.x > 0.0f ? scale.x + moveDis * 200.0f : scale.x - moveDis * 200.0f, scale.y, scale.z);
+			}
+			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setScale(scale.x, scale.y, moveDir.z < 0.0f ? scale.z - moveDis * 200.0f : scale.z + moveDis * 200.0f);
+			}
+			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setScale(scale.x, moveDir.y < 0.0f ? scale.y - moveDis * 200.0f : scale.y + moveDis * 200.0f, scale.z);
+			}
+		}
+
+		if (m_dragType == DragType::ROTATION)
+		{
+			auto rot = m_axisComponent->getBindedComponent()->getRotation();
+			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setRotation(moveDir.x > 0.0f ? rot.x + moveDis * 200.0f : rot.x - moveDis * 200.0f, rot.y, rot.z);
+			}
+			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setRotation(rot.x, rot.y, moveDir.z < 0.0f ? rot.z - moveDis * 200.0f : rot.z + moveDis * 200.0f);
+			}
+			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
+			{
+				m_axisComponent->getBindedComponent()->setRotation(rot.x, moveDir.y < 0.0f ? rot.y - moveDis * 200.0f : rot.y + moveDis * 200.0f, rot.z);
+			}
+		}
+	}
+
 }
+

@@ -6,6 +6,7 @@ pick system, process the pick in the scene
 ************************************************************************/
 
 #pragma once
+#include <DirectXMath.h>
 #include "../../Core/base/SingletonInterface.h"
 #include "../../Core/base/ManagerInterface.h"
 #include "../../Core/Event/InputEventManager.h"
@@ -14,6 +15,14 @@ namespace LkEngine
 {
 	class AxisComponent;
 	class IComponent;
+
+	enum DragType
+	{
+		SCALE,
+		ROTATION,
+		TRANSITION
+	};
+
 	class PickSystem : public ISingleton<PickSystem>, public IManager, public InputEvent
 	{
 	public:
@@ -25,10 +34,13 @@ namespace LkEngine
 		void enableShow(bool flag);
 	public:
 		virtual void init() override;
+		virtual void onKeyPress(const Keys& key) override;
 		virtual void onMousePress(const MouseState& mouseState) override;
 		virtual void onMouseMove(const MouseState& mouseState) override;
 		virtual void onMouseRelease(const MouseState& mouseState) override;
 
+	private:
+		void drag(const DirectX::XMFLOAT3& moveDir, float moveDis);
 	private:
 		bool m_bIsPickAxis{ false };
 		std::string m_pickAxis;
@@ -36,6 +48,8 @@ namespace LkEngine
 		MousePos m_oldMousePos;
 
 		AxisComponent* m_axisComponent{ nullptr };
+
+		DragType m_dragType{ DragType::TRANSITION };
 	};
 }
 
