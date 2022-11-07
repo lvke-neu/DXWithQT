@@ -2,7 +2,7 @@
 Author: lvke
 Date:2022/9/21 19:03
 Description:
-Box Component
+Plane Component
 ****************************************************************************************/
 
 #pragma once
@@ -11,8 +11,6 @@ Box Component
 
 namespace LkEngine
 {
-
-
 	class PlaneComponent : public IComponent
 	{
 	public:

@@ -13,6 +13,7 @@ The Engine is responsible for initializing D3D and building the process of TICK
 #include "../Event/InputEventManager.h"
 #include "../Event/FrameMoveEventManager.h"
 #include "../../Scene/SceneManager.h"
+#include "../../Scene/Component/Camera/CameraManager.h"
 
 namespace LkEngine
 {

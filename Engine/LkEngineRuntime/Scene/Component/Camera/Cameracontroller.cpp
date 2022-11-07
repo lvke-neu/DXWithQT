@@ -90,6 +90,7 @@ namespace LkEngine
 		{
 			CameraManager::getInstance().moveZAxis(deltaTime * m_middleButtonDelta * m_moveSpeed);
 			m_middleButtonDelta = 0;
+			bMove = true;
 		}
 
 		if (m_whichMousePress == RightButton)

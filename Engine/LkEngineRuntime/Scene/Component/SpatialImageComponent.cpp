@@ -3,8 +3,6 @@
 #include "Common/RenderStates.h"
 #include "../../Core/serialization/Reflection.h"
 
-
-
 namespace LkEngine
 {
 	SpatialImageComponent::SpatialImageComponent(void** parameter) : IComponent(parameter)
@@ -46,7 +44,6 @@ namespace LkEngine
 		m_pVertexBuffer.Reset();
 		m_pIndexBuffer.Reset();
 
-
 		VertexPos vertices[1]; 
 		vertices[0].position = XMFLOAT3(0.0f, 0.0f, 0.0f);
 			
@@ -61,8 +58,6 @@ namespace LkEngine
 		ZeroMemory(&InitData, sizeof(InitData));
 		InitData.pSysMem = vertices;
 		m_pd3dDevice->CreateBuffer(&vbd, &InitData, m_pVertexBuffer.GetAddressOf());
-
-
 	}
 
 	void SpatialImageComponent::createVertexLayout(const ComPtr<ID3DBlob>& blob)
@@ -83,10 +78,7 @@ namespace LkEngine
 		m_pd3dImmediateContext->GSSetShader(m_pGeometryShader.Get(), nullptr, 0);
 		m_pd3dImmediateContext->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
 
-
 		m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
-
-
 		m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
 		m_pd3dImmediateContext->VSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());

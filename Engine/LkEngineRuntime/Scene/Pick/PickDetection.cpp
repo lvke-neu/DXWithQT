@@ -1,5 +1,6 @@
 #include "PickDetection.h"
 #include "../../Core/collision/Ray.h"
+#include "../Component/Interface/ComponentInterface.h"
 
 namespace LkEngine
 {

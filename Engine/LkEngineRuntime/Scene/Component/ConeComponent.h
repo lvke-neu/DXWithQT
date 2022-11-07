@@ -11,8 +11,6 @@ Cone Component
 
 namespace LkEngine
 {
-
-
 	class ConeComponent : public IComponent
 	{
 	public:

@@ -97,10 +97,7 @@ namespace LkEngine
 		m_pd3dImmediateContext->GSSetShader(m_pGeometryShader.Get(), nullptr, 0);
 		m_pd3dImmediateContext->PSSetShader(m_pPixelShader.Get(), nullptr, 0);
 
-
 		m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
-
-
 		m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
 		m_pd3dImmediateContext->VSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());

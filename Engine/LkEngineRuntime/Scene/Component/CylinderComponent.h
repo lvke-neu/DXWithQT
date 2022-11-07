@@ -11,8 +11,6 @@ Cylinder Component
 
 namespace LkEngine
 {
-
-
 	class CylinderComponent : public IComponent
 	{
 	public:

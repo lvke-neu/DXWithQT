@@ -1,19 +1,21 @@
 #include "SceneManager.h"
 #include "../Core/base/Utility.h"
-#include "Component/Common/RenderStates.h"
-#include "Component/Camera/CameraManager.h"
 #include "../Core/serialization/Reflection.h"
 #include "../Core/engine/Engine.h"
-#include "../Core/collision/Ray.h"
 #include "../Core/Event/PickEventManager.h"
-#include "Pick/PickDetection.h"
 
-
+#include "Component/Common/RenderStates.h"
+#include "Component/Camera/CameraManager.h"
+#include "Component/Camera/CameraController.h"
+#include "Component/SkyBoxComponent.h"
+#include "Component/PlaneComponent.h"
 #include "Component/SphereComponent.h"
 #include "Component/SpatialImageComponent.h"
 #include "Component/ModelComponent.h"
 #include "Component/CylinderComponent.h"
 #include "Component/ConeComponent.h"
+
+#include "Pick/PickSystem.h"
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
 #include "../../LkEngineRuntime/Core/Network Request/HttpRequestManager.h"
@@ -23,14 +25,14 @@ namespace LkEngine
 {
 	void SceneManager::init()
 	{
+		RenderStates::Init(m_pd3dDevice);
+
 		REGISTER_CLASS(Reference, "BoxComponent", BoxComponent);
 		REGISTER_CLASS(Reference, "SphereComponent", SphereComponent);
 		REGISTER_CLASS(Reference, "SpatialImageComponent", SpatialImageComponent);
 		REGISTER_CLASS(Reference, "ModelComponent", ModelComponent);
 		REGISTER_CLASS(Reference, "CylinderComponent", CylinderComponent);
 		REGISTER_CLASS(Reference, "ConeComponent", ConeComponent);
-
-		RenderStates::Init(m_pd3dDevice);
 
 		CameraManager::getInstance().setTransform(Transform(
 			XMFLOAT3(1.0f, 1.0f, 1.0f),
@@ -41,119 +43,19 @@ namespace LkEngine
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
-		m_axisComponent = new AxisComponent(m_pd3dDevice, m_pd3dImmediateContext);
 
-		InputEventManager::getInstance().registerInputEvent(this);
+		PickSystem::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
 		LOG_INFO("SceneManager initialization is complete");
-
 	}
+
 	SceneManager::~SceneManager()
 	{
-		InputEventManager::getInstance().unRegisterInputEvent(this);
-
 		for (auto iter = m_componets.begin(); iter!=m_componets.end(); iter++)
 			SAFE_DELETE_SET_NULL(iter->second);
 
 		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		SAFE_DELETE_SET_NULL(m_pCameraController);
-		SAFE_DELETE_SET_NULL(m_axisComponent);
-	}
-
-	void SceneManager::onMousePress(const MouseState & mouseState)
-	{
-		if (mouseState.mouseType == MouseType::LeftButton)
-		{
-			m_mouseType = MouseType::LeftButton;
-			m_oldMousePos = mouseState.mousePos;
-			std::string pickUuid = PickDetection::getInstance().pickDetect(mouseState.mousePos.x, mouseState.mousePos.y, m_componets);
-			if (pickUuid != "-1")
-			{
-				LOG_INFO("pick: " + pickUuid)
-				m_bIsPickAxis = false;
-				PickEventManager::getInstance().onPickComponent(m_componets[pickUuid]);
-				if (m_axisComponent)
-				{
-					m_axisComponent->bindComponent(m_componets[pickUuid]);
-					m_axisComponent->enableShow(true);
-				}
-			}
-			else
-			{
-				pickUuid = m_axisComponent->pickDetection(mouseState.mousePos.x, mouseState.mousePos.y);
-
-				if (pickUuid != "-1")
-				{
-					LOG_INFO("axis pick: " + pickUuid)
-					m_bIsPickAxis = true;
-					m_pickAxis = pickUuid;
-				}
-				else
-				{
-					LOG_INFO("pick: null")
-					m_bIsPickAxis = false;
-					if (m_axisComponent)
-						m_axisComponent->enableShow(false);
-				}
-			}		
-		}
-	}
-
-	void SceneManager::onMouseMove(const MouseState & mouseState)
-	{
-
-
-		if (m_mouseType == MouseType::LeftButton && m_bIsPickAxis)
-		{
-			XMFLOAT3 worldStartPt;
-			XMFLOAT3 worldEndPt;
-			Ray::ScreenPointToWorld(worldStartPt, m_oldMousePos.x, m_oldMousePos.y);
-			Ray::ScreenPointToWorld(worldEndPt, mouseState.mousePos.x, mouseState.mousePos.y);
-			float moveDis = sqrt(pow(worldStartPt.x - worldEndPt.x, 2) + pow(worldStartPt.y - worldEndPt.y, 2) + pow(worldStartPt.z - worldEndPt.z, 2));
-
-
-			XMVECTOR worldStartPtVec;
-			XMVECTOR worldEndPtVec;
-			worldStartPtVec = XMLoadFloat3(&worldStartPt);
-			worldEndPtVec = XMLoadFloat3(&worldEndPt);
-
-	
-			XMFLOAT3 moveDir;
-			XMStoreFloat3(&moveDir, XMVector3Normalize(XMVectorSubtract(worldEndPtVec, worldStartPtVec)));
-			
-			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
-			{
-				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				if (moveDir.x <= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x - moveDis * 200.0f, pos.y, pos.z);
-				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x + moveDis * 200.0f, pos.y, pos.z);
-			}
-			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
-			{
-				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				if(moveDir.z >= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z + moveDis * 200.0f);
-				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, pos.z - moveDis * 200.0f);
-			}
-			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
-			{
-				auto pos = m_axisComponent->getBindedComponent()->getPosition();
-				if (moveDir.y >= 0.0f)
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y + moveDis * 200.0f, pos.z);
-				else
-					m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y - moveDis * 200.0f, pos.z);
-			}
-			m_oldMousePos = mouseState.mousePos;
-
-			PickEventManager::getInstance().onPickComponent(m_axisComponent->getBindedComponent());
-		}
-	}
-
-	void SceneManager::onMouseRelease(const MouseState & mouseState)
-	{
-		m_mouseType = MouseType::NoButton;
 	}
 
 	void SceneManager::updateScene(float deltaTime)
@@ -169,9 +71,7 @@ namespace LkEngine
 			if(iter->second)
 				iter->second->draw();
 
-		m_pd3dImmediateContext->OMSetBlendState(RenderStates::BSTransparent.Get(), nullptr, 0xFFFFFFFF);
-		m_axisComponent->draw();
-		m_pd3dImmediateContext->OMSetBlendState(nullptr, nullptr, 0xFFFFFFFF);
+		PickSystem::getInstance().drawAxis();
 
 		m_pSkyBoxComponent->draw();
 	}
@@ -217,10 +117,10 @@ namespace LkEngine
 		{
 			PickEventManager::getInstance().onDeleteComponent(iter->second);
 			LOG_INFO("Delete Component: " + iter->second->getComponetType() + "-" + iter->second->getUuId());
-			if (iter->second == m_axisComponent->getBindedComponent())
+			if (iter->second == PickSystem::getInstance().getBindedComponent())
 			{
-				m_axisComponent->bindComponent(nullptr);
-				m_axisComponent->enableShow(false);
+				PickSystem::getInstance().bindComponent(nullptr);
+				PickSystem::getInstance().enableShow(false);
 			}
 				
 			SAFE_DELETE_SET_NULL(iter->second);
@@ -233,10 +133,10 @@ namespace LkEngine
 	{
 		for (auto it = m_componets.begin(); it != m_componets.end();)
 		{
-			if (it->second == m_axisComponent->getBindedComponent())
+			if (it->second == PickSystem::getInstance().getBindedComponent())
 			{
-				m_axisComponent->bindComponent(nullptr);
-				m_axisComponent->enableShow(false);
+				PickSystem::getInstance().bindComponent(nullptr);
+				PickSystem::getInstance().enableShow(false);
 			}
 
 			PickEventManager::getInstance().onDeleteComponent(it->second);

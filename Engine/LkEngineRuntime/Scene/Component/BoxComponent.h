@@ -11,8 +11,6 @@ Box Component
 
 namespace LkEngine
 {
-
-
 	class BoxComponent : public IComponent
 	{
 	public:

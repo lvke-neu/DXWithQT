@@ -6,13 +6,12 @@ Axis Component when pick something
 ****************************************************************************************/
 
 #pragma once
-#include "CylinderComponent.h"
-#include "ConeComponent.h"
 #include "../../../LkEngineRuntime/Core/Event/FrameMoveEventManager.h"
-
+#include "../Component/Interface/ComponentInterface.h"
 
 namespace LkEngine
 {
+
 	class AxisComponent : public FrameMoveEvent
 	{
 	public:

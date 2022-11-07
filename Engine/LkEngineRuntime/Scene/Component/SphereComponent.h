@@ -4,8 +4,6 @@
 
 namespace LkEngine
 {
-
-
 	class SphereComponent : public IComponent
 	{
 	public:

@@ -7,11 +7,12 @@ PickEventManager
 #pragma once
 
 #include "../base/SingletonInterface.h"
-#include "../../Scene/Component/Interface/ComponentInterface.h"
 #include <vector>
 
 namespace LkEngine
 {
+	class IComponent;
+
 	class PickEvent
 	{
 	public:

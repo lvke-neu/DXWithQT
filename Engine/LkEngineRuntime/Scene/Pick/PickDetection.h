@@ -7,10 +7,12 @@ Pick Detection(Component in Scene)
 #pragma once
 
 #include "../../Core/base/SingletonInterface.h"
-#include "../Component/Interface/ComponentInterface.h"
+#include <string>
+#include <map>
 
 namespace LkEngine
 {
+	class IComponent;
 	class PickDetection : public ISingleton<PickDetection>
 	{
 	public:

@@ -8,7 +8,6 @@ SkyBox Component
 #pragma once
 
 #include "BoxComponent.h"
-#include "Camera/CameraManager.h"
 
 namespace LkEngine
 {

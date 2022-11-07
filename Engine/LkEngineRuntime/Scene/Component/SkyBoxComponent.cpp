@@ -1,6 +1,7 @@
 #include "SkyBoxComponent.h"
 #include "../../Asset/AssetManager.h"
 #include "Common/RenderStates.h"
+#include "Camera/CameraManager.h"
 
 namespace LkEngine
 {

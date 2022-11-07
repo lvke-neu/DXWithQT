@@ -196,6 +196,9 @@
     <ClInclude Include="Scene\Component\ConeComponent.h">
       <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\Pick\PickSystem.h">
+      <Filter>Scene\Pick</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -290,6 +293,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Component\ConeComponent.cpp">
       <Filter>Scene\Component\Effect\BasicPrimitive</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Pick\PickSystem.cpp">
+      <Filter>Scene\Pick</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

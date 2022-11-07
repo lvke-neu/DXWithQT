@@ -1,6 +1,8 @@
 #include "AxisComponent.h"
 #include "../../../LkEngineRuntime/Core/base/Utility.h"
 #include "../Pick/PickDetection.h"
+#include "CylinderComponent.h"
+#include "ConeComponent.h"
 
 namespace LkEngine
 {
