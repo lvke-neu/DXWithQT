@@ -6,6 +6,7 @@
 #include "CustomToolBox/CameraForm.h"
 #include "CustomToolBox/ComponentForm.h"
 #include "CustomToolBox/PickInfoForm.h"
+#include "../LkEngineRuntime/Scene/Pick/PickSystem.h"
 
 namespace LkEngine
 {
@@ -47,6 +48,10 @@ namespace LkEngine
 		ui->light->setIcon(QIcon(":/builtin/EngineLogo/light.jpeg"));
 		ui->addComponent->setIcon(QIcon(":/builtin/EngineLogo/addComponent.jpeg"));
 		ui->sceneComConfig->setIcon(QIcon(":/builtin/EngineLogo/sceneComConfig.jpeg"));
+		ui->transition->setIcon(QIcon(":/builtin/EngineLogo/transition.jpeg"));
+		ui->rotation->setIcon(QIcon(":/builtin/EngineLogo/rotation.jpeg"));
+		ui->scale->setIcon(QIcon(":/builtin/EngineLogo/scale.jpeg"));
+		ui->reset->setIcon(QIcon(":/builtin/EngineLogo/reset.jpeg"));
 	}
 
 	void LkEngineEditor::initDialog()
@@ -74,7 +79,10 @@ namespace LkEngine
 		connect(ui->camera, SIGNAL(triggered()), this, SLOT(cameraConfig()));
 		connect(ui->addComponent, SIGNAL(triggered()), this, SLOT(addComponent()));
 		connect(ui->sceneComConfig, SIGNAL(triggered()), this, SLOT(sceneComConfig()));
-
+		connect(ui->transition, SIGNAL(triggered()), this, SLOT(setDragType()));
+		connect(ui->rotation, SIGNAL(triggered()), this, SLOT(setDragType()));
+		connect(ui->scale, SIGNAL(triggered()), this, SLOT(setDragType()));
+		connect(ui->reset, SIGNAL(triggered()), this, SLOT(setDragType()));
 	}
 
 	void LkEngineEditor::openSolution()
@@ -83,7 +91,7 @@ namespace LkEngine
 		curPath = QCoreApplication::applicationDirPath() + "/assets";
 		aFileName = QFileDialog::getOpenFileName(this, tr("Open Solution"), curPath, tr("*.lkproject"));
 		if(aFileName != "")
-			Engine::getInstance().openSolution(aFileName.toStdString());
+			LkEngine::Engine::getInstance().openSolution(aFileName.toStdString());
 	}
 
 	void LkEngineEditor::saveSolution()
@@ -92,7 +100,7 @@ namespace LkEngine
 		curPath = QCoreApplication::applicationDirPath() + "/assets";
 		aFileName = QFileDialog::getSaveFileName(this, tr("Save Solution"), curPath, tr("*.lkproject"));
 		if (aFileName != "")
-			Engine::getInstance().saveSolution(aFileName.toStdString());
+			LkEngine::Engine::getInstance().saveSolution(aFileName.toStdString());
 	}
 
 	void LkEngineEditor::skyboxConfig()
@@ -119,6 +127,30 @@ namespace LkEngine
 			m_sceneComCfgDlg->show();
 	}
 
+	void LkEngineEditor::setDragType()
+	{
+		QAction* action = dynamic_cast<QAction*>(sender());
+		if (action)
+		{
+			if (action->objectName() == "transition")
+			{
+				LkEngine::PickSystem::getInstance().setDragType(DragType::TRANSITION);
+			}
+			else if (action->objectName() == "rotation")
+			{
+				LkEngine::PickSystem::getInstance().setDragType(DragType::ROTATION);
+			}
+			else if (action->objectName() == "scale")
+			{
+				LkEngine::PickSystem::getInstance().setDragType(DragType::SCALE);
+			}
+			else if (action->objectName() == "reset")
+			{
+				LkEngine::Engine::getInstance().resetScene();
+			}
+		}
+
+	}
 }
 
 

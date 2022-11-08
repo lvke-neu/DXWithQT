@@ -11,7 +11,7 @@ namespace LkEngine
 
 	void CameraChangedManager::unRegisterCameraMoveEvent(CameraMoveEvent* cameraMoveEvent)
 	{
-		for (auto it = m_cameraMoveEvents.begin(); it != m_cameraMoveEvents.end(); )
+		for (auto it = m_cameraMoveEvents.begin(); it != m_cameraMoveEvents.end();  ++it)
 		{
 			if (*it == cameraMoveEvent)
 			{
@@ -39,7 +39,7 @@ namespace LkEngine
 
 	void CameraChangedManager::unRegisterCameraFrustumChangedEvent(CameraFrustumChangedEvent* cameraFrustumChangedEvent)
 	{
-		for (auto it = m_cameraFrustumChangedEvent.begin(); it != m_cameraFrustumChangedEvent.end();)
+		for (auto it = m_cameraFrustumChangedEvent.begin(); it != m_cameraFrustumChangedEvent.end();  ++it)
 		{
 			if (*it == cameraFrustumChangedEvent)
 			{

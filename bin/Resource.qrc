@@ -8,5 +8,9 @@
         <file>builtin/EngineLogo/light.jpeg</file>
         <file>builtin/EngineLogo/addComponent.jpeg</file>
         <file>builtin/EngineLogo/sceneComConfig.jpeg</file>
+        <file>builtin/EngineLogo/transition.jpeg</file>
+        <file>builtin/EngineLogo/rotation.jpeg</file>
+        <file>builtin/EngineLogo/scale.jpeg</file>
+        <file>builtin/EngineLogo/reset.jpeg</file>
     </qresource>
 </RCC>

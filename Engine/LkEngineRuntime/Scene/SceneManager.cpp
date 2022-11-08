@@ -133,13 +133,13 @@ namespace LkEngine
 	{
 		for (auto it = m_componets.begin(); it != m_componets.end();)
 		{
+			PickEventManager::getInstance().onDeleteComponent(it->second);
+			LOG_INFO("Delete Component: " + it->second->getComponetType() + "-" + it->second->getUuId());
 			if (it->second == PickSystem::getInstance().getBindedComponent())
 			{
 				PickSystem::getInstance().bindComponent(nullptr);
 				PickSystem::getInstance().enableShow(false);
 			}
-
-			PickEventManager::getInstance().onDeleteComponent(it->second);
 			SAFE_DELETE_SET_NULL(it->second);
 			it = m_componets.erase(it);
 			if (it == m_componets.end())

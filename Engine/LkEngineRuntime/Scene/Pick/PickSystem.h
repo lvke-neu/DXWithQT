@@ -27,6 +27,8 @@ namespace LkEngine
 		IComponent* getBindedComponent(); 
 		void bindComponent(IComponent* bindComponent);
 		void enableShow(bool flag);
+
+		void setDragType(DragType dragType) { m_dragType = dragType; }
 	public:
 		virtual void init() override;
 		virtual void onKeyPress(const Keys& key) override;

@@ -43,11 +43,6 @@ ComponentForm::ComponentForm(QWidget *parent) :
 			if (aFileName != "")
 				LkEngine::Engine::getInstance().addComponent("ModelComponent", aFileName.toStdString());
 		});
-	connect(ui->pushButton_6, &QPushButton::clicked, this,
-		[=]()
-		{
-			LkEngine::Engine::getInstance().resetScene();
-		});
 }
 
 ComponentForm::~ComponentForm()

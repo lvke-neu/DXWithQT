@@ -28,7 +28,7 @@ namespace LkEngine
 		void cameraConfig();
 		void addComponent();
 		void sceneComConfig();
-
+		void setDragType();
 	private:
 		void initUi();
 		void initDialog();
