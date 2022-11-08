@@ -11,6 +11,12 @@ Axis Component when pick something
 
 namespace LkEngine
 {
+	enum DragType
+	{
+		SCALE,
+		ROTATION,
+		TRANSITION
+	};
 
 	class AxisComponent : public FrameMoveEvent
 	{
@@ -23,20 +29,37 @@ namespace LkEngine
 		void bindComponent(IComponent* bindComponent);
 		IComponent* getBindedComponent() { return m_bindComponent; }
 		void enableShow(bool flag) { m_bShow = flag; }
-		void  draw();
-		std::string pickDetection(uint16_t mouseX, uint16_t mouseY);
+		void  draw(DragType dragType);
+		std::string pickDetection(uint16_t mouseX, uint16_t mouseY, DragType dragType);
 	private:
-		std::map<std::string, IComponent*> m_componets;
+		void initAxis();
+		void initArrow();
+		void initCube();
+		void initSphere();
+		void moveAll(const XMFLOAT3& pos);
+	private:
+		ComPtr<ID3D11Device> m_pd3dDevice;
+		ComPtr<ID3D11DeviceContext> m_pd3dImmediateContext;
+
+		std::map<std::string, IComponent*> m_arrowComponets;
+		std::map<std::string, IComponent*> m_cubeComponets;
+		std::map<std::string, IComponent*> m_sphereComponets;
 		std::map<std::string, std::string> m_UuidWithName;
 		//green
 		IComponent* icUp{ nullptr };
 		IComponent* icUpArrow{ nullptr };
+		IComponent* icUpCube{ nullptr };
+		IComponent* icUpSphere{ nullptr };
 		//red
 		IComponent* icRight{ nullptr };
 		IComponent* icRightArrow{ nullptr };
+		IComponent* icRightCube{ nullptr };
+		IComponent* icRightSphere{ nullptr };
 		//blue
 		IComponent* icForward{ nullptr };
 		IComponent* icForwardArrow{ nullptr };
+		IComponent* icForwardCube{ nullptr };
+		IComponent* icForwardSphere{ nullptr };
 
 
 		bool m_bShow = false;

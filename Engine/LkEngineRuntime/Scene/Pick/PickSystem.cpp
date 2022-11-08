@@ -4,7 +4,6 @@
 #include "../../Core/Event/PickEventManager.h"
 #include "../../Core/base/Utility.h"
 #include "../../Core/collision/Ray.h"
-#include "../Component/AxisComponent.h"
 #include "../Component/Common/RenderStates.h"
 
 namespace LkEngine
@@ -14,7 +13,7 @@ namespace LkEngine
 		if (m_axisComponent)
 		{
 			m_pd3dImmediateContext->OMSetBlendState(RenderStates::BSTransparent.Get(), nullptr, 0xFFFFFFFF);
-			m_axisComponent->draw();
+			m_axisComponent->draw(m_dragType);
 			m_pd3dImmediateContext->OMSetBlendState(nullptr, nullptr, 0xFFFFFFFF);
 		}
 	}
@@ -79,7 +78,7 @@ namespace LkEngine
 			}
 			else
 			{
-				pickUuid = m_axisComponent->pickDetection(mouseState.mousePos.x, mouseState.mousePos.y);
+				pickUuid = m_axisComponent->pickDetection(mouseState.mousePos.x, mouseState.mousePos.y, m_dragType);
 
 				if (pickUuid != "-1")
 				{
@@ -132,6 +131,8 @@ namespace LkEngine
 	{
 		if (m_dragType == DragType::TRANSITION)
 		{
+			if (!m_axisComponent->getBindedComponent())
+				return;
 			auto pos = m_axisComponent->getBindedComponent()->getPosition();
 			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
 			{
@@ -150,15 +151,15 @@ namespace LkEngine
 		if (m_dragType == DragType::SCALE)
 		{
 			auto scale = m_axisComponent->getBindedComponent()->getScale();
-			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
+			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightCubeAxis")
 			{
 				m_axisComponent->getBindedComponent()->setScale(moveDir.x > 0.0f ? scale.x + moveDis * 200.0f : scale.x - moveDis * 200.0f, scale.y, scale.z);
 			}
-			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
+			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardCubeAxis")
 			{
 				m_axisComponent->getBindedComponent()->setScale(scale.x, scale.y, moveDir.z < 0.0f ? scale.z - moveDis * 200.0f : scale.z + moveDis * 200.0f);
 			}
-			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
+			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpCubeAxis")
 			{
 				m_axisComponent->getBindedComponent()->setScale(scale.x, moveDir.y < 0.0f ? scale.y - moveDis * 200.0f : scale.y + moveDis * 200.0f, scale.z);
 			}
@@ -167,15 +168,15 @@ namespace LkEngine
 		if (m_dragType == DragType::ROTATION)
 		{
 			auto rot = m_axisComponent->getBindedComponent()->getRotation();
-			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
+			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightSphereAxis")
 			{
 				m_axisComponent->getBindedComponent()->setRotation(moveDir.x > 0.0f ? rot.x + moveDis * 200.0f : rot.x - moveDis * 200.0f, rot.y, rot.z);
 			}
-			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
+			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardSphereAxis")
 			{
 				m_axisComponent->getBindedComponent()->setRotation(rot.x, rot.y, moveDir.z < 0.0f ? rot.z - moveDis * 200.0f : rot.z + moveDis * 200.0f);
 			}
-			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
+			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpSphereAxis")
 			{
 				m_axisComponent->getBindedComponent()->setRotation(rot.x, moveDir.y < 0.0f ? rot.y - moveDis * 200.0f : rot.y + moveDis * 200.0f, rot.z);
 			}

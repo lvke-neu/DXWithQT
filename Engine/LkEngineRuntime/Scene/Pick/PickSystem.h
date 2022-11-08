@@ -11,18 +11,12 @@ pick system, process the pick in the scene
 #include "../../Core/base/SingletonInterface.h"
 #include "../../Core/base/ManagerInterface.h"
 #include "../../Core/Event/InputEventManager.h"
+#include "../Component/AxisComponent.h"
 
 namespace LkEngine
 {
 	class AxisComponent;
 	class IComponent;
-
-	enum DragType
-	{
-		SCALE,
-		ROTATION,
-		TRANSITION
-	};
 
 	class PickSystem : public ISingleton<PickSystem>, public IManager, public InputEvent
 	{
