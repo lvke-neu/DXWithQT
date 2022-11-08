@@ -7,6 +7,7 @@ pick system, process the pick in the scene
 
 #pragma once
 #include <DirectXMath.h>
+#include <string>
 #include "../../Core/base/SingletonInterface.h"
 #include "../../Core/base/ManagerInterface.h"
 #include "../../Core/Event/InputEventManager.h"
