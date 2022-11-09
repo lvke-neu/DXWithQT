@@ -31,6 +31,7 @@ namespace LkEngine
 		void enableShow(bool flag) { m_bShow = flag; }
 		void  draw(DragType dragType);
 		std::string pickDetection(uint16_t mouseX, uint16_t mouseY, DragType dragType);
+		void setAxisLength(float length);
 	private:
 		void initAxis();
 		void initArrow();
@@ -66,6 +67,8 @@ namespace LkEngine
 
 		IComponent* m_bindComponent{ nullptr };
 		XMFLOAT3 m_position{0.0f, 0.0f, 0.0f};
+
+		float m_length = 50.0f;
 	};
 }
 

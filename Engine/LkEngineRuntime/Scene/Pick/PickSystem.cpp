@@ -33,6 +33,17 @@ namespace LkEngine
 		m_axisComponent->enableShow(flag);
 	}
 
+	void PickSystem::setAxisLength(float length) 
+	{
+		if (m_axisComponent) 
+			m_axisComponent->setAxisLength(length); 
+	}
+
+	void PickSystem::setMoveScaleCoefficient(float scaleCoefficient) 
+	{ 
+		m_scaleCoefficient = scaleCoefficient;
+	}
+
 	void PickSystem::init()
 	{
 		m_axisComponent = new AxisComponent(m_pd3dDevice, m_pd3dImmediateContext);
@@ -136,15 +147,15 @@ namespace LkEngine
 			auto pos = m_axisComponent->getBindedComponent()->getPosition();
 			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightArrowAxis")
 			{
-				m_axisComponent->getBindedComponent()->setPosition(moveDir.x > 0.0f ? pos.x + moveDis * 200.0f : pos.x - moveDis * 200.0f, pos.y, pos.z);
+				m_axisComponent->getBindedComponent()->setPosition(moveDir.x > 0.0f ? pos.x + moveDis * m_scaleCoefficient : pos.x - moveDis * m_scaleCoefficient, pos.y, pos.z);
 			}
 			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardArrowAxis")
 			{
-				m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, moveDir.z < 0.0f ? pos.z - moveDis * 200.0f : pos.z + moveDis * 200.0f);
+				m_axisComponent->getBindedComponent()->setPosition(pos.x, pos.y, moveDir.z < 0.0f ? pos.z - moveDis * m_scaleCoefficient : pos.z + moveDis * m_scaleCoefficient);
 			}
 			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpArrowAxis")
 			{
-				m_axisComponent->getBindedComponent()->setPosition(pos.x, moveDir.y < 0.0f ? pos.y - moveDis * 200.0f : pos.y + moveDis * 200.0f, pos.z);
+				m_axisComponent->getBindedComponent()->setPosition(pos.x, moveDir.y < 0.0f ? pos.y - moveDis * m_scaleCoefficient : pos.y + moveDis * m_scaleCoefficient, pos.z);
 			}
 		}
 
@@ -153,15 +164,15 @@ namespace LkEngine
 			auto scale = m_axisComponent->getBindedComponent()->getScale();
 			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightCubeAxis")
 			{
-				m_axisComponent->getBindedComponent()->setScale(moveDir.x > 0.0f ? scale.x + moveDis * 200.0f : scale.x - moveDis * 200.0f, scale.y, scale.z);
+				m_axisComponent->getBindedComponent()->setScale(moveDir.x > 0.0f ? scale.x + moveDis * m_scaleCoefficient : scale.x - moveDis * m_scaleCoefficient, scale.y, scale.z);
 			}
 			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardCubeAxis")
 			{
-				m_axisComponent->getBindedComponent()->setScale(scale.x, scale.y, moveDir.z < 0.0f ? scale.z - moveDis * 200.0f : scale.z + moveDis * 200.0f);
+				m_axisComponent->getBindedComponent()->setScale(scale.x, scale.y, moveDir.z < 0.0f ? scale.z - moveDis * m_scaleCoefficient : scale.z + moveDis * m_scaleCoefficient);
 			}
 			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpCubeAxis")
 			{
-				m_axisComponent->getBindedComponent()->setScale(scale.x, moveDir.y < 0.0f ? scale.y - moveDis * 200.0f : scale.y + moveDis * 200.0f, scale.z);
+				m_axisComponent->getBindedComponent()->setScale(scale.x, moveDir.y < 0.0f ? scale.y - moveDis * m_scaleCoefficient : scale.y + moveDis * m_scaleCoefficient, scale.z);
 			}
 		}
 
@@ -170,15 +181,15 @@ namespace LkEngine
 			auto rot = m_axisComponent->getBindedComponent()->getRotation();
 			if (m_pickAxis == "RightAxis" || m_pickAxis == "RightSphereAxis")
 			{
-				m_axisComponent->getBindedComponent()->setRotation(moveDir.x > 0.0f ? rot.x + moveDis * 200.0f : rot.x - moveDis * 200.0f, rot.y, rot.z);
+				m_axisComponent->getBindedComponent()->setRotation(moveDir.x > 0.0f ? rot.x + moveDis * m_scaleCoefficient : rot.x - moveDis * m_scaleCoefficient, rot.y, rot.z);
 			}
 			if (m_pickAxis == "ForwardAxis" || m_pickAxis == "ForwardSphereAxis")
 			{
-				m_axisComponent->getBindedComponent()->setRotation(rot.x, rot.y, moveDir.z < 0.0f ? rot.z - moveDis * 200.0f : rot.z + moveDis * 200.0f);
+				m_axisComponent->getBindedComponent()->setRotation(rot.x, rot.y, moveDir.z < 0.0f ? rot.z - moveDis * m_scaleCoefficient : rot.z + moveDis * m_scaleCoefficient);
 			}
 			if (m_pickAxis == "UpAxis" || m_pickAxis == "UpSphereAxis")
 			{
-				m_axisComponent->getBindedComponent()->setRotation(rot.x, moveDir.y < 0.0f ? rot.y - moveDis * 200.0f : rot.y + moveDis * 200.0f, rot.z);
+				m_axisComponent->getBindedComponent()->setRotation(rot.x, moveDir.y < 0.0f ? rot.y - moveDis * m_scaleCoefficient : rot.y + moveDis * m_scaleCoefficient, rot.z);
 			}
 		}
 	}

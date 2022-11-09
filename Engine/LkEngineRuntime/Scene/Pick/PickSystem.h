@@ -29,6 +29,8 @@ namespace LkEngine
 		void enableShow(bool flag);
 
 		void setDragType(DragType dragType) { m_dragType = dragType; }
+		void setAxisLength(float length); 
+		void setMoveScaleCoefficient(float scaleCoefficient); 
 	public:
 		virtual void init() override;
 		virtual void onKeyPress(const Keys& key) override;
@@ -47,6 +49,8 @@ namespace LkEngine
 		AxisComponent* m_axisComponent{ nullptr };
 
 		DragType m_dragType{ DragType::TRANSITION };
+
+		float m_scaleCoefficient = 200.0f;
 	};
 }
 

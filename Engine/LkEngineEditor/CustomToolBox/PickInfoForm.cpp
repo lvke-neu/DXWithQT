@@ -26,6 +26,9 @@ PickInfoForm::PickInfoForm(QWidget *parent) :
 	connect(ui->posY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
 	connect(ui->posZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
 
+	connect(ui->dragLength, SIGNAL(valueChanged(double)), this, SLOT(setAxisPorperty()));
+	connect(ui->dragMoveCoefficient, SIGNAL(valueChanged(double)), this, SLOT(setAxisPorperty()));
+
 	connect(ui->deleteComponent, &QPushButton::clicked, this,
 		[=]()
 		{
@@ -63,6 +66,23 @@ PickInfoForm::~PickInfoForm()
 	delete ui;
 }
 
+
+
+void PickInfoForm::setAxisPorperty()
+{
+	QDoubleSpinBox* doubleSpinBox = dynamic_cast<QDoubleSpinBox*>(sender());
+	if (doubleSpinBox)
+	{
+		if (doubleSpinBox->objectName() == "dragLength")
+		{
+			LkEngine::Engine::getInstance().setAxisLength(ui->dragLength->value());
+		}
+		else if (doubleSpinBox->objectName() == "dragMoveCoefficient")
+		{
+			LkEngine::Engine::getInstance().setMoveScaleCoefficient(ui->dragMoveCoefficient->value());
+		}
+	}
+}
 
 bool isPicking = false;
 void PickInfoForm::onPickComponent(LkEngine::IComponent * component)

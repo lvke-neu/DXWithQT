@@ -46,6 +46,8 @@ namespace LkEngine
 		void setCameraMoveSpeed(float moveSpeed) { SceneManager::getInstance().setCameraMoveSpeed(moveSpeed); }
 		void resetScene() { SceneManager::getInstance().deleteAllComponent(); }
 		UINT getTriangleCount() { return SceneManager::getInstance().getTriangleCount(); }
+		void setAxisLength(float length) { SceneManager::getInstance().setAxisLength(length); }
+		void setMoveScaleCoefficient(float scaleCoefficient) { SceneManager::getInstance().setMoveScaleCoefficient(scaleCoefficient); }
 
 		Transform getCameraTransform() { return CameraManager::getInstance().getTransform(); }
 		void setCameraTransform(const Transform& transform) { CameraManager::getInstance().setTransform(transform); }

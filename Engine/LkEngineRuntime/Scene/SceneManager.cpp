@@ -289,5 +289,15 @@ namespace LkEngine
 		}
 		return triangleCount;
 	}
+
+	void SceneManager::setAxisLength(float length)
+	{
+		PickSystem::getInstance().setAxisLength(length);
+	}
+
+	void SceneManager::setMoveScaleCoefficient(float scaleCoefficient)
+	{
+		PickSystem::getInstance().setMoveScaleCoefficient(scaleCoefficient);
+	}
 }
 

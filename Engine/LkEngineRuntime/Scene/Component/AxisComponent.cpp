@@ -9,7 +9,6 @@
 namespace LkEngine
 {
 	float thickness = 2.0f;
-	float length = 50.0f;
 	float scaleCoefficient = 2.5;
 
 	AxisComponent::AxisComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) : m_pd3dDevice(pd3dDevice), m_pd3dImmediateContext(pd3dImmediateContext)
@@ -125,19 +124,37 @@ namespace LkEngine
 			return m_UuidWithName[res];
 		return res;
 	}
+
+	void AxisComponent::setAxisLength(float length)
+	{
+		m_length = length;
+
+		icUp->setScale(thickness, m_length, thickness);
+		icRight->setScale(thickness, m_length, thickness);
+		icForward->setScale(thickness, m_length, thickness);
+
+		//icUpArrow->setScale(thickness * 3.0f, m_length * 0.2f, thickness * 3.0f);
+		//icRightArrow->setScale(thickness * 3.0f, m_length * 0.2f, thickness * 3.0f);
+		//icForwardArrow->setScale(thickness * 3.0f, m_length * 0.2f, thickness * 3.0f);
+
+		if (m_bindComponent)
+			moveAll(m_bindComponent->getPosition());
+	}
+
+
 	void AxisComponent::initAxis()
 	{
 		icUp = new CylinderComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		icUp->setScale(thickness, length, thickness);
+		icUp->setScale(thickness, m_length, thickness);
 		icUp->setUseTexOrColor(false, XMFLOAT4(0.0f, 1.0f, 0.0f, 0.3f));
 
 		icRight = new CylinderComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		icRight->setScale(thickness, length, thickness);
+		icRight->setScale(thickness, m_length, thickness);
 		icRight->setRotation(0.0f, 0.0f, -XM_PI / 2);
 		icRight->setUseTexOrColor(false, XMFLOAT4(1.0f, 0.0f, 0.0f, 0.3f));
 
 		icForward = new CylinderComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		icForward->setScale(thickness, length, thickness);
+		icForward->setScale(thickness, m_length, thickness);
 		icForward->setRotation(XM_PI / 2, 0.0f, 0.0f);
 		icForward->setUseTexOrColor(false, XMFLOAT4(0.0f, 0.0f, 1.0f, 0.3f));
 
@@ -159,17 +176,17 @@ namespace LkEngine
 	void AxisComponent::initArrow()
 	{
 		icUpArrow = new ConeComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		icUpArrow->setScale(thickness * 3.0f, length * 0.2f, thickness * 3.0f);
+		icUpArrow->setScale(thickness * 3.0f, m_length * 0.2f, thickness * 3.0f);
 		icUpArrow->setUseTexOrColor(false, XMFLOAT4(0.0f, 1.0f, 1.0f, 0.3f));
 
 		icRightArrow = new ConeComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		icRightArrow->setRotation(0.0f, 0.0f, -XM_PI / 2);
-		icRightArrow->setScale(thickness * 3.0f, length * 0.2f, thickness * 3.0f);
+		icRightArrow->setScale(thickness * 3.0f, m_length * 0.2f, thickness * 3.0f);
 		icRightArrow->setUseTexOrColor(false, XMFLOAT4(1.0f, 0.0f, 0.0f, 0.3f));
 
 		icForwardArrow = new ConeComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		icForwardArrow->setRotation(XM_PI / 2, 0.0f, 0.0f);
-		icForwardArrow->setScale(thickness * 3.0f, length * 0.2f, thickness * 3.0f);
+		icForwardArrow->setScale(thickness * 3.0f, m_length * 0.2f, thickness * 3.0f);
 		icForwardArrow->setUseTexOrColor(false, XMFLOAT4(0.0f, 0.0f, 1.0f, 0.3f));
 
 		m_arrowComponets.insert({ icUpArrow->getUuId(), icUpArrow });
@@ -234,7 +251,7 @@ namespace LkEngine
 		{
 			icUp->setPosition(pos);
 			auto tmpPos = pos;
-			tmpPos.y += length;
+			tmpPos.y += m_length;
 			if (icUpArrow)
 				icUpArrow->setPosition(tmpPos);
 			if (icUpCube)
@@ -247,7 +264,7 @@ namespace LkEngine
 		{
 			icRight->setPosition(pos);
 			auto tmpPos = pos;
-			tmpPos.x += length;
+			tmpPos.x += m_length;
 			if (icRightArrow)
 				icRightArrow->setPosition(tmpPos);
 			if (icRightCube)
@@ -261,7 +278,7 @@ namespace LkEngine
 		{
 			icForward->setPosition(pos);
 			auto tmpPos = pos;
-			tmpPos.z += length;
+			tmpPos.z += m_length;
 			if (icForwardArrow)
 				icForwardArrow->setPosition(tmpPos);
 			if (icForwardCube)

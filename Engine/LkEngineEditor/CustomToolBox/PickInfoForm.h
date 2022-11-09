@@ -17,6 +17,7 @@ public:
 
 public slots:
 	void setComponentPorperty();
+	void setAxisPorperty();
 public:
 	virtual void onPickComponent(LkEngine::IComponent* component) override;
 private:

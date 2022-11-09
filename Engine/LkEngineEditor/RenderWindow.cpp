@@ -27,9 +27,12 @@ namespace LkEngine
 		{
 			m_label->setAutoFillBackground(true);
 			//m_label->move(120, 23);
-			m_label->setFixedWidth(500);
+			m_label->setFixedWidth(200);
 			m_label->setText("Triangle num:14");
-			m_label->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
+			QFont font("Microsoft YaHei", 10, 75);
+			m_label->setStyleSheet("color:green;");
+			m_label->setFont(font);
+			//m_label->setStyleSheet("QLabel{font:13px,Bold;color:green;background-color:rgba(f9,f9,f9);}");
 		}
 
 
