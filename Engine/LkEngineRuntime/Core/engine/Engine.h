@@ -45,6 +45,7 @@ namespace LkEngine
 		void saveSolution(const std::string& filePath) { SceneManager::getInstance().saveSolution(filePath); }
 		void setCameraMoveSpeed(float moveSpeed) { SceneManager::getInstance().setCameraMoveSpeed(moveSpeed); }
 		void resetScene() { SceneManager::getInstance().deleteAllComponent(); }
+		UINT getTriangleCount() { return SceneManager::getInstance().getTriangleCount(); }
 
 		Transform getCameraTransform() { return CameraManager::getInstance().getTransform(); }
 		void setCameraTransform(const Transform& transform) { CameraManager::getInstance().setTransform(transform); }

@@ -115,16 +115,18 @@ namespace LkEngine
 		auto iter = m_componets.find(uuid);
 		if (iter != m_componets.end())
 		{
-			PickEventManager::getInstance().onDeleteComponent(iter->second);
-			LOG_INFO("Delete Component: " + iter->second->getComponetType() + "-" + iter->second->getUuId());
 			if (iter->second == PickSystem::getInstance().getBindedComponent())
 			{
 				PickSystem::getInstance().bindComponent(nullptr);
 				PickSystem::getInstance().enableShow(false);
 			}
-				
-			SAFE_DELETE_SET_NULL(iter->second);
+
+			auto itComTmp = iter->second;
 			m_componets.erase(iter);
+			PickEventManager::getInstance().onDeleteComponent(itComTmp);
+
+			LOG_INFO("Delete Component: " + itComTmp->getComponetType() + "-" + itComTmp->getUuId());
+			SAFE_DELETE_SET_NULL(itComTmp);
 		}
 			
 	}
@@ -133,15 +135,17 @@ namespace LkEngine
 	{
 		for (auto it = m_componets.begin(); it != m_componets.end();)
 		{
-			PickEventManager::getInstance().onDeleteComponent(it->second);
-			LOG_INFO("Delete Component: " + it->second->getComponetType() + "-" + it->second->getUuId());
 			if (it->second == PickSystem::getInstance().getBindedComponent())
 			{
 				PickSystem::getInstance().bindComponent(nullptr);
 				PickSystem::getInstance().enableShow(false);
 			}
-			SAFE_DELETE_SET_NULL(it->second);
+			auto  itComTmp = it->second;
 			it = m_componets.erase(it);
+			PickEventManager::getInstance().onDeleteComponent(itComTmp);
+			LOG_INFO("Delete Component: " + itComTmp->getComponetType() + "-" + itComTmp->getUuId());
+			SAFE_DELETE_SET_NULL(itComTmp);
+			
 			if (it == m_componets.end())
 				break;
 		}
@@ -273,6 +277,17 @@ namespace LkEngine
 		{
 			m_pCameraController->setCameraMoveSpeed(moveSpeed);
 		}
+	}
+
+
+	UINT SceneManager::getTriangleCount()
+	{
+		UINT triangleCount = 14;
+		for (auto& component : m_componets)
+		{
+			triangleCount += component.second->getTriangleCount();
+		}
+		return triangleCount;
 	}
 }
 

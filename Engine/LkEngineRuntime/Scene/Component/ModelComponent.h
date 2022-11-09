@@ -25,11 +25,6 @@ namespace LkEngine
 		virtual void draw() override;
 
 	private:
-		ComPtr<ID3D11Buffer> m_pVertexBuffer{ nullptr };
-		ComPtr<ID3D11Buffer> m_pIndexBuffer{ nullptr };
-
-		UINT m_indexCount = 0;
-
 		aiMesh* m_mesh;
 	};
 
@@ -43,6 +38,7 @@ namespace LkEngine
 		void createVertexLayout(const ComPtr<ID3DBlob>& blob) {};
 		void bindPipeState() {};
 		void draw();
+		virtual UINT getTriangleCount() override;
 	public:
 		virtual void serialize(std::string& serializationStr) override;
 	public:

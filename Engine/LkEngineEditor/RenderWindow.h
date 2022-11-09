@@ -8,14 +8,14 @@ The render window
 #pragma once
 
 #include <QWidget>
-
+#include <QLabel>
 #include "../LkEngineRuntime/Core/engine/Engine.h"
 #include "../LkEngineRuntime/Core/engine/GameTimer.h"
-
+#include "../LkEngineRuntime/Core/Event/PickEventManager.h"
 
 namespace LkEngine
 {
-	class RenderWindow : public QWidget
+	class RenderWindow : public QWidget, public AddComponentEvent, public DeleteComponentEvent
 	{
 		Q_OBJECT
 
@@ -26,7 +26,9 @@ namespace LkEngine
 		{
 			return NULL;
 		}
-
+	public:
+		virtual void onAddComponent(IComponent* component) override;
+		virtual void onDeleteComponent(IComponent* component) override;
 	private:
 		virtual void resizeEvent(QResizeEvent *event) override;
 		virtual void paintEvent(QPaintEvent *event) override;
@@ -43,6 +45,7 @@ namespace LkEngine
 
 	private:
 		QWidget* m_parent{ nullptr };
+		QLabel* m_label{ nullptr };
 		GameTimer m_Timer;
 
 	};

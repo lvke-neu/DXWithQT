@@ -266,6 +266,16 @@ namespace LkEngine
 
 	}
 
+	UINT ModelComponent::getTriangleCount()
+	{
+		UINT triangleCount = 0;
+		for (auto& subModelCom : m_subModelComponents)
+		{
+			triangleCount += subModelCom.getTriangleCount();
+		}
+		return triangleCount;
+	}
+
 	std::string ModelComponent::getModelPath() 
 	{ 
 		return m_modelPath; 

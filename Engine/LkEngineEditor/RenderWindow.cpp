@@ -21,11 +21,28 @@ namespace LkEngine
 		
 		m_Timer.Start();
 		m_Timer.Reset();
+
+		m_label = new QLabel(this);
+		if (m_label)
+		{
+			m_label->setAutoFillBackground(true);
+			//m_label->move(120, 23);
+			m_label->setFixedWidth(500);
+			m_label->setText("Triangle num:14");
+			m_label->setStyleSheet("QLabel{font:13px;color:red;background-color:rgb(f9,f9,f9);}");
+		}
+
+
+		PickEventManager::getInstance().registerAddComponentEvent(this);
+		PickEventManager::getInstance().registerDeleteComponentEvent(this);
+
 	}
 
 	RenderWindow::~RenderWindow()
 	{
-
+		PickEventManager::getInstance().unRegisterAddComponentEvent(this);
+		PickEventManager::getInstance().unRegisterDeleteComponentEvent(this);
+		SAFE_DELETE_SET_NULL(m_label);
 	}
 
 	void RenderWindow::paintEvent(QPaintEvent *event)
@@ -37,6 +54,22 @@ namespace LkEngine
 		Engine::getInstance().drawScene();
 
 		update();
+	}
+
+	void RenderWindow::onAddComponent(IComponent * component)
+	{
+		if (m_label)
+		{
+			m_label->setText(("Triangle num:" + std::to_string(Engine::getInstance().getTriangleCount())).c_str());
+		}
+	}
+
+	void RenderWindow::onDeleteComponent(IComponent * component)
+	{
+		if (m_label)
+		{
+			m_label->setText(("Triangle num:" + std::to_string(Engine::getInstance().getTriangleCount())).c_str());
+		}
 	}
 
 	void RenderWindow::resizeEvent(QResizeEvent *event)

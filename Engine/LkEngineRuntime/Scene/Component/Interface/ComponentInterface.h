@@ -91,6 +91,7 @@ namespace LkEngine
 		virtual std::string getComponetType() { return m_componetType; }
 		virtual std::string getUuId() { return m_uuid; }
 
+		virtual UINT getTriangleCount() { return m_indexCount / 3; }
 		void setUseTexOrColor(bool isUseTex, const XMFLOAT4& color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
 	protected:
 		void setComponetType(const std::string componetType) { m_componetType = componetType; }
@@ -121,6 +122,9 @@ namespace LkEngine
 		ComPtr<ID3D11Buffer> m_pWorldMatrixCB{ nullptr };;
 		ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };
 
+		ComPtr<ID3D11Buffer> m_pVertexBuffer{ nullptr };
+		ComPtr<ID3D11Buffer> m_pIndexBuffer{ nullptr };
+
 		ComPtr<ID3D11Buffer> m_pUseColorCB{ nullptr };
 	protected:
 		std::string m_vsShader;
@@ -133,5 +137,7 @@ namespace LkEngine
 
 		std::string m_uuid;
 		std::string m_componetType;
+
+		UINT m_indexCount = 0;
 	};
 }

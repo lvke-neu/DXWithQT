@@ -14,10 +14,5 @@ namespace LkEngine
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) override;
 		virtual void bindPipeState() override;
 		virtual void draw() override;
-	private:
-		ComPtr<ID3D11Buffer> m_pVertexBuffer{ nullptr };
-		ComPtr<ID3D11Buffer> m_pIndexBuffer{ nullptr };
-
-		UINT m_indexCount = 0;
 	};
 }

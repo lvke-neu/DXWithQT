@@ -36,6 +36,7 @@ namespace LkEngine
 		void openSolution(const std::string& filePath);
 		void saveSolution(const std::string& filePath);
 		void setCameraMoveSpeed(float moveSpeed);
+		UINT getTriangleCount();
 
 	private:
 		PlaneComponent* m_pPlaneComponent{ nullptr };
