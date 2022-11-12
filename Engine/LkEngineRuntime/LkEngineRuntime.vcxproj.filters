@@ -83,6 +83,9 @@
     <Filter Include="Scene\Component\Effect\axis">
       <UniqueIdentifier>{ac895bcb-972c-42a4-a3ea-9991bc2166ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Light">
+      <UniqueIdentifier>{338f72b5-d84f-4bad-a45d-225716c63cc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -105,9 +108,6 @@
     </ClInclude>
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Component\Common\Light.h">
-      <Filter>Scene\Component\Common</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Component\Common\Material.h">
       <Filter>Scene\Component\Common</Filter>
@@ -198,6 +198,12 @@
     </ClInclude>
     <ClInclude Include="Scene\Pick\PickSystem.h">
       <Filter>Scene\Pick</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Light\Light.h">
+      <Filter>Scene\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Light\LightManager.h">
+      <Filter>Scene\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -296,6 +302,9 @@
     </ClCompile>
     <ClCompile Include="Scene\Pick\PickSystem.cpp">
       <Filter>Scene\Pick</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Light\LightManager.cpp">
+      <Filter>Scene\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

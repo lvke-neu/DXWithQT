@@ -163,12 +163,12 @@ namespace LkEngine
 		m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
 		m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
 
-		m_pd3dImmediateContext->VSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());
-		m_pd3dImmediateContext->PSSetConstantBuffers(2, 1, m_pWorldMatrixCB.GetAddressOf());
-		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
-		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pMaterialCB.GetAddressOf());
-		m_pd3dImmediateContext->VSSetConstantBuffers(4, 1, m_pUseColorCB.GetAddressOf());
-		m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pUseColorCB.GetAddressOf());
+		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
+		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
+		m_pd3dImmediateContext->VSSetConstantBuffers(4, 1, m_pMaterialCB.GetAddressOf());
+		m_pd3dImmediateContext->PSSetConstantBuffers(4, 1, m_pMaterialCB.GetAddressOf());
+		m_pd3dImmediateContext->VSSetConstantBuffers(5, 1, m_pUseColorCB.GetAddressOf());
+		m_pd3dImmediateContext->PSSetConstantBuffers(5, 1, m_pUseColorCB.GetAddressOf());
 	}
 
 	void CylinderComponent::draw()

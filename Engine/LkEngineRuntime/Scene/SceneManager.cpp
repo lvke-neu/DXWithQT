@@ -16,6 +16,7 @@
 #include "Component/ConeComponent.h"
 
 #include "Pick/PickSystem.h"
+#include "Light/LightManager.h"
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
 #include "../../LkEngineRuntime/Core/Network Request/HttpRequestManager.h"
@@ -45,6 +46,7 @@ namespace LkEngine
 		m_pCameraController = new CameraController;
 
 		PickSystem::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
+		LightManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
 		LOG_INFO("SceneManager initialization is complete");
 	}
 

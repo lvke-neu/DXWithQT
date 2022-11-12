@@ -2,7 +2,7 @@
 #include "ui_PickInfoForm.h"
 #include "../../LkEngineRuntime/Core/Event/PickEventManager.h"
 #include "../../LkEngineRuntime/Core/engine/Engine.h"
-
+#include <QColorDialog>
 
 PickInfoForm::PickInfoForm(QWidget *parent) :
 	QDialog(parent),
@@ -26,43 +26,42 @@ PickInfoForm::PickInfoForm(QWidget *parent) :
 	connect(ui->posY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
 	connect(ui->posZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
 
+	connect(ui->ambientX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->ambientY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->ambientZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->ambientX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+
+	connect(ui->diffuseX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->diffuseY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->diffuseZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->diffuseW, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+
+	connect(ui->specularX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->specularY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->specularZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->specularW, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+
+	connect(ui->reflectX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->reflectY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->reflectZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->reflectW, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+
+	connect(ui->ambientColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColor()));
+	connect(ui->diffuseColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColor()));
+	connect(ui->specularColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColor()));
+	connect(ui->reflectColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColor()));
+
 	connect(ui->dragLength, SIGNAL(valueChanged(double)), this, SLOT(setAxisPorperty()));
 	connect(ui->dragMoveCoefficient, SIGNAL(valueChanged(double)), this, SLOT(setAxisPorperty()));
-
-	connect(ui->deleteComponent, &QPushButton::clicked, this,
-		[=]()
-		{
-			if (m_pComponent)
-			{
-				LkEngine::Engine::getInstance().deleteComponent(m_pComponent->getUuId());
-				m_pComponent = nullptr;
-				ui->UUID->setText("");
-				ui->Type->setText("");
-				ui->Texture->setText("");
-				ui->VsShader->setText("");
-				ui->GsShader->setText("");
-				ui->PsShader->setText("");
-
-				ui->scaleX->setValue(0);
-				ui->scaleY->setValue(0);
-				ui->scaleZ->setValue(0);
-
-				ui->rotX->setValue(0);
-				ui->rotY->setValue(0);
-				ui->rotZ->setValue(0);
-
-				ui->posX->setValue(0);
-				ui->posY->setValue(0);
-				ui->posZ->setValue(0);
-			}
-		});
 	
 	LkEngine::PickEventManager::getInstance().registerPickEvent(this);
+	LkEngine::PickEventManager::getInstance().registerDeleteComponentEvent(this);
 }
 
 PickInfoForm::~PickInfoForm()
 {
 	LkEngine::PickEventManager::getInstance().unRegisterPickEvent(this);
+	LkEngine::PickEventManager::getInstance().unRegisterDeleteComponentEvent(this);
 	delete ui;
 }
 
@@ -80,6 +79,76 @@ void PickInfoForm::setAxisPorperty()
 		else if (doubleSpinBox->objectName() == "dragMoveCoefficient")
 		{
 			LkEngine::Engine::getInstance().setMoveScaleCoefficient(ui->dragMoveCoefficient->value());
+		}
+	}
+}
+
+void PickInfoForm::setMaterialColor()
+{
+	QToolButton* toolButton = dynamic_cast<QToolButton*>(sender());
+	
+	if (toolButton)
+	{
+		QColorDialog dlg(this);
+		if (toolButton->objectName() == "ambientColor")
+		{
+			dlg.setWindowTitle("Ambient Color Editor");
+			DirectX::XMFLOAT4 ambientColor(ui->ambientX->value(), ui->ambientY->value(), ui->ambientZ->value(), ui->ambientW->value());
+			dlg.setCurrentColor(QColor(250 * ambientColor.x, 250 * ambientColor.y, 250 * ambientColor.z, 250 * ambientColor.w));
+			connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& qColor)
+				{
+					ui->ambientX->setValue(qColor.red() / 255.0f);
+					ui->ambientY->setValue(qColor.green() / 255.0f);
+					ui->ambientZ->setValue(qColor.blue() / 255.0f);
+					ui->ambientW->setValue(qColor.alpha() / 255.0f);
+				});
+			if (dlg.exec() != QColorDialog::Accepted)
+			{
+				ui->ambientX->setValue(ambientColor.x);
+				ui->ambientY->setValue(ambientColor.y);
+				ui->ambientZ->setValue(ambientColor.z);
+				ui->ambientW->setValue(ambientColor.w);
+			}
+		}
+		else if (toolButton->objectName() == "diffuseColor")
+		{
+			dlg.setWindowTitle("Diffuse Color Editor");
+			DirectX::XMFLOAT4 diffuseColor(ui->diffuseX->value(), ui->diffuseY->value(), ui->diffuseZ->value(), ui->diffuseW->value());
+			dlg.setCurrentColor(QColor(250 * diffuseColor.x, 250 * diffuseColor.y, 250 * diffuseColor.z, 250 * diffuseColor.w));
+			connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& qColor)
+				{
+					ui->diffuseX->setValue(qColor.red() / 255.0f);
+					ui->diffuseY->setValue(qColor.green() / 255.0f);
+					ui->diffuseZ->setValue(qColor.blue() / 255.0f);
+					ui->diffuseW->setValue(qColor.alpha() / 255.0f);
+				});
+			if (dlg.exec() != QColorDialog::Accepted)
+			{
+				ui->diffuseX->setValue(diffuseColor.x);
+				ui->diffuseY->setValue(diffuseColor.y);
+				ui->diffuseZ->setValue(diffuseColor.z);
+				ui->diffuseW->setValue(diffuseColor.w);
+			}
+		}
+		else if (toolButton->objectName() == "specularColor")
+		{
+			dlg.setWindowTitle("Specular Color Editor");
+			DirectX::XMFLOAT4 specularColor(ui->specularX->value(), ui->specularY->value(), ui->specularZ->value(), ui->specularW->value());
+			dlg.setCurrentColor(QColor(250 * specularColor.x, 250 * specularColor.y, 250 * specularColor.z));
+			connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& qColor)
+				{
+					ui->specularX->setValue(qColor.red() / 255.0f);
+					ui->specularY->setValue(qColor.green() / 255.0f);
+					ui->specularZ->setValue(qColor.blue() / 255.0f);
+					//ui->specularW->setValue(qColor.alpha() / 255.0f);
+				});
+			if (dlg.exec() != QColorDialog::Accepted)
+			{
+				ui->specularX->setValue(specularColor.x);
+				ui->specularY->setValue(specularColor.y);
+				ui->specularZ->setValue(specularColor.z);
+				//ui->specularW->setValue(specularColor.w);
+			}
 		}
 	}
 }
@@ -116,6 +185,31 @@ void PickInfoForm::onPickComponent(LkEngine::IComponent * component)
 		ui->posY->setValue(pos.y);
 		ui->posZ->setValue(pos.z);
 
+		if (m_pComponent->getComponetType() != "ModelComponent")
+		{
+			LkEngine::Material mat;
+			mat = m_pComponent->getMaterial();
+			ui->ambientX->setValue(mat.ambient.x);
+			ui->ambientY->setValue(mat.ambient.y);
+			ui->ambientZ->setValue(mat.ambient.z);
+			ui->ambientW->setValue(mat.ambient.w);
+
+			ui->diffuseX->setValue(mat.diffuse.x);
+			ui->diffuseY->setValue(mat.diffuse.y);
+			ui->diffuseZ->setValue(mat.diffuse.z);
+			ui->ambientW->setValue(mat.diffuse.w);
+
+			ui->specularX->setValue(mat.specular.x);
+			ui->specularY->setValue(mat.specular.y);
+			ui->specularZ->setValue(mat.specular.z);
+			ui->specularW->setValue(mat.specular.w);
+
+			ui->reflectX->setValue(mat.reflect.x);
+			ui->reflectY->setValue(mat.reflect.y);
+			ui->reflectZ->setValue(mat.reflect.z);
+			ui->reflectW->setValue(mat.reflect.w);
+		}
+
 		isPicking = false;
 		//update();
 	}
@@ -139,6 +233,72 @@ void PickInfoForm::onPickComponent(LkEngine::IComponent * component)
 		ui->posX->setValue(0);
 		ui->posY->setValue(0);
 		ui->posZ->setValue(0);
+
+		ui->ambientX->setValue(0);
+		ui->ambientY->setValue(0);
+		ui->ambientZ->setValue(0);
+		ui->ambientW->setValue(0);
+							   
+		ui->diffuseX->setValue(0);
+		ui->diffuseY->setValue(0);
+		ui->diffuseZ->setValue(0);
+		ui->ambientW->setValue(0);
+
+		ui->specularX->setValue(0);
+		ui->specularY->setValue(0);
+		ui->specularZ->setValue(0);
+		ui->specularW->setValue(0);
+
+		ui->reflectX->setValue(0);
+		ui->reflectY->setValue(0);
+		ui->reflectZ->setValue(0);
+		ui->reflectW->setValue(0);
+	}
+}
+
+void PickInfoForm::onDeleteComponent(LkEngine::IComponent * component)
+{
+	if (m_pComponent == component)
+	{
+		m_pComponent = nullptr;
+		ui->UUID->setText("");
+		ui->Type->setText("");
+		ui->Texture->setText("");
+		ui->VsShader->setText("");
+		ui->GsShader->setText("");
+		ui->PsShader->setText("");
+
+		ui->scaleX->setValue(0);
+		ui->scaleY->setValue(0);
+		ui->scaleZ->setValue(0);
+
+		ui->rotX->setValue(0);
+		ui->rotY->setValue(0);
+		ui->rotZ->setValue(0);
+
+		ui->posX->setValue(0);
+		ui->posY->setValue(0);
+		ui->posZ->setValue(0);
+
+		ui->ambientX->setValue(0);
+		ui->ambientY->setValue(0);
+		ui->ambientZ->setValue(0);
+		ui->ambientW->setValue(0);
+
+		ui->diffuseX->setValue(0);
+		ui->diffuseY->setValue(0);
+		ui->diffuseZ->setValue(0);
+		ui->ambientW->setValue(0);
+
+		ui->specularX->setValue(0);
+		ui->specularY->setValue(0);
+		ui->specularZ->setValue(0);
+		ui->specularW->setValue(0);
+
+		ui->reflectX->setValue(0);
+		ui->reflectY->setValue(0);
+		ui->reflectZ->setValue(0);
+		ui->reflectW->setValue(0);
 	}
 }
 
@@ -154,8 +314,15 @@ void PickInfoForm::setComponentPorperty()
 		DirectX::XMFLOAT3 rot(ui->rotX->value(), ui->rotY->value(), ui->rotZ->value());
 		DirectX::XMFLOAT3 pos(ui->posX->value(), ui->posY->value(), ui->posZ->value());
 		LkEngine::Transform transform(scale, rot, pos);
-
 		m_pComponent->setTransform(transform);
+
+		LkEngine::Material mat;
+		mat.ambient = DirectX::XMFLOAT4(ui->ambientX->value(), ui->ambientY->value(), ui->ambientZ->value(), ui->ambientW->value());
+		mat.diffuse = DirectX::XMFLOAT4(ui->diffuseX->value(), ui->diffuseY->value(), ui->diffuseZ->value(), ui->ambientW->value());
+		mat.specular = DirectX::XMFLOAT4(ui->specularX->value(), ui->specularY->value(), ui->specularZ->value(), ui->specularW->value());
+		mat.reflect = DirectX::XMFLOAT4(ui->reflectX->value(), ui->reflectY->value(), ui->reflectZ->value(), ui->reflectW->value());
+		
+		m_pComponent->setMaterial(mat);
 	}
 }
 

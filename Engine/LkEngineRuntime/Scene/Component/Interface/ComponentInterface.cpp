@@ -38,6 +38,8 @@ namespace LkEngine
 		m_uuid = guidStr;
 
 		bind_Set_Func();
+
+		setMaterial(COMMON_MAT);
 	}
 
 	IComponent::IComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) :
@@ -74,6 +76,8 @@ namespace LkEngine
 
 
 		bind_Set_Func();
+
+		setMaterial(COMMON_MAT);
 	}
 
 	void IComponent::bind_Set_Func()

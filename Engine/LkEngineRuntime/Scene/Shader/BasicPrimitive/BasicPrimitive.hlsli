@@ -15,18 +15,18 @@ struct VertexOut
 	float2 texcoord: TEXCOORD;
 };
 
-cbuffer WorldMatrix : register(b2)
+cbuffer WorldMatrix : register(b3)
 {
 	matrix g_world;
 	matrix g_worldInvTranspose;
 }
 
-cbuffer  MaterialCB : register(b3)
+cbuffer  MaterialCB : register(b4)
 {
 	Material g_material;
 }
 
-cbuffer UseTexOrColor : register(b4)
+cbuffer UseTexOrColor : register(b5)
 {
 	float4 texColor;
 	float3 padd;

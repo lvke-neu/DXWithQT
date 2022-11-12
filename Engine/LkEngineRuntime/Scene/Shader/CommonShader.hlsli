@@ -1,21 +1,4 @@
 
-
-cbuffer ViewMatrix : register(b0)
-{
-	matrix g_view;
-	float3 g_eyePosW;
-	float pad;
-
-}
-
-cbuffer ProjMatrix : register(b1)
-{
-	matrix g_proj;
-	matrix g_invProj;
-	float4 g_viewportSize;
-}
-
-
 struct Material
 {
 	float4 ambient;
@@ -33,6 +16,25 @@ struct DirectionLight
 	float pad;
 };
 
+cbuffer ViewMatrix : register(b0)
+{
+	matrix g_view;
+	float3 g_eyePosW;
+	float pad;
+
+}
+
+cbuffer ProjMatrix : register(b1)
+{
+	matrix g_proj;
+	matrix g_invProj;
+	float4 g_viewportSize;
+}
+
+cbuffer DirectionLightCB : register(b2)
+{
+	DirectionLight g_dirLight;
+}
 
 void ComputeDirectionLight(Material material, DirectionLight directionLight, float3 normalW, float3 toEyeW,
 	out float4 ambient,

@@ -175,7 +175,6 @@
     <ClInclude Include="Scene\Component\BoxComponent.h" />
     <ClInclude Include="Scene\Component\Camera\CameraController.h" />
     <ClInclude Include="Scene\Component\Camera\CameraManager.h" />
-    <ClInclude Include="Scene\Component\Common\Light.h" />
     <ClInclude Include="Scene\Component\Common\Material.h" />
     <ClInclude Include="Scene\Component\Common\RenderStates.h" />
     <ClInclude Include="Scene\Component\Common\Transform.h" />
@@ -188,6 +187,8 @@
     <ClInclude Include="Scene\Component\SpatialImageComponent.h" />
     <ClInclude Include="Scene\Component\SkyBoxComponent.h" />
     <ClInclude Include="Scene\Component\SphereComponent.h" />
+    <ClInclude Include="Scene\Light\Light.h" />
+    <ClInclude Include="Scene\Light\LightManager.h" />
     <ClInclude Include="Scene\Pick\PickDetection.h" />
     <ClInclude Include="Scene\Pick\PickSystem.h" />
     <ClInclude Include="Scene\SceneManager.h" />
@@ -224,6 +225,7 @@
     <ClCompile Include="Scene\Component\SpatialImageComponent.cpp" />
     <ClCompile Include="Scene\Component\SkyBoxComponent.cpp" />
     <ClCompile Include="Scene\Component\SphereComponent.cpp" />
+    <ClCompile Include="Scene\Light\LightManager.cpp" />
     <ClCompile Include="Scene\Pick\PickDetection.cpp" />
     <ClCompile Include="Scene\Pick\PickSystem.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />

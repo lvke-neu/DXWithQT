@@ -54,12 +54,11 @@ namespace LkEngine
 
 	void PickSystem::onKeyPress(const Keys & key)
 	{
-		if (key == Keys::Key_1)
-			m_dragType = DragType::SCALE;
-		if (key == Keys::Key_2)
-			m_dragType = DragType::ROTATION;
-		if (key == Keys::Key_3)
-			m_dragType = DragType::TRANSITION;
+		if (key == Keys::Key_Delete || key == Keys::Key_Backspace)
+		{
+			if (m_axisComponent->getBindedComponent())
+				SceneManager::getInstance().deleteComponent(m_axisComponent->getBindedComponent()->getUuId());
+		}
 	}
 
 	PickSystem::~PickSystem()

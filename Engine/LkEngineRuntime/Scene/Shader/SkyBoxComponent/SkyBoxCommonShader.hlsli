@@ -16,7 +16,7 @@ struct VertexOut
 	float3 posL : POSITION1;
 };
 
-cbuffer WorldMatrix : register(b2)
+cbuffer WorldMatrix : register(b3)
 {
 	matrix g_world;
 	matrix g_worldInvTranspose;
