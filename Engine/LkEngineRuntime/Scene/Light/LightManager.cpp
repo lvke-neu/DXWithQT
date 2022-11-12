@@ -1,5 +1,4 @@
 #include "LightManager.h"
-#include "Light.h"
 #include "../../Core/base/Utility.h"
 
 namespace LkEngine
@@ -33,6 +32,7 @@ namespace LkEngine
 
 	void LightManager::setDirLight(const DirectionLight & dirLight)
 	{
+		m_dirLight = dirLight;
 		D3D11_MAPPED_SUBRESOURCE mappedData;
 		m_pd3dImmediateContext->Map(m_pSceneDirLightCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
 		memcpy_s(mappedData.pData, sizeof(DirectionLight), &dirLight, sizeof(DirectionLight));

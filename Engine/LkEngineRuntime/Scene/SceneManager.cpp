@@ -16,7 +16,7 @@
 #include "Component/ConeComponent.h"
 
 #include "Pick/PickSystem.h"
-#include "Light/LightManager.h"
+
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
 #include "../../LkEngineRuntime/Core/Network Request/HttpRequestManager.h"

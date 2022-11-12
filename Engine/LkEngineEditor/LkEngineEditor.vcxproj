@@ -135,6 +135,7 @@
   <ItemGroup>
     <ClCompile Include="CustomToolBox\CameraForm.cpp" />
     <ClCompile Include="CustomToolBox\ComponentForm.cpp" />
+    <ClCompile Include="CustomToolBox\LightForm.cpp" />
     <ClCompile Include="CustomToolBox\PickInfoForm.cpp" />
     <ClCompile Include="CustomToolBox\SkyBoxForm.cpp" />
     <ClCompile Include="main.cpp">
@@ -149,6 +150,7 @@
   <ItemGroup>
     <QtUic Include="CustomToolBox\CameraForm.ui" />
     <QtUic Include="CustomToolBox\ComponentForm.ui" />
+    <QtUic Include="CustomToolBox\LightForm.ui" />
     <QtUic Include="CustomToolBox\PickInfoForm.ui" />
     <QtUic Include="CustomToolBox\SkyBoxForm.ui" />
     <QtUic Include="LkEngineEditor.ui" />
@@ -170,6 +172,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CustomToolBox\PickInfoForm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="CustomToolBox\LightForm.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

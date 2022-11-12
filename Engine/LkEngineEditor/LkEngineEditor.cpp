@@ -6,6 +6,7 @@
 #include "CustomToolBox/CameraForm.h"
 #include "CustomToolBox/ComponentForm.h"
 #include "CustomToolBox/PickInfoForm.h"
+#include "CustomToolBox/LightForm.h"
 #include "../LkEngineRuntime/Scene/Pick/PickSystem.h"
 
 namespace LkEngine
@@ -31,6 +32,7 @@ namespace LkEngine
 		SAFE_DELETE_SET_NULL(m_cameraDlg);
 		SAFE_DELETE_SET_NULL(m_addComDlg);
 		SAFE_DELETE_SET_NULL(m_sceneComCfgDlg);
+		SAFE_DELETE_SET_NULL(m_lightDlg);
 		SAFE_DELETE_SET_NULL(m_renderWindow);
 		SAFE_DELETE_SET_NULL(ui);
 	}
@@ -73,6 +75,12 @@ namespace LkEngine
 		m_sceneComCfgDlg->setWindowTitle("Scene Component Config");
 		m_sceneComCfgDlg->setWindowIcon(QIcon(":/builtin/EngineLogo/sceneComConfig.jpeg"));
 
+		m_lightDlg = new LightForm(this);
+		m_lightDlg->hide();
+		m_lightDlg->setWindowTitle("Scene Light Config");
+		m_lightDlg->setWindowIcon(QIcon(":/builtin/EngineLogo/light.jpeg"));
+		
+
 		connect(ui->openSolution, SIGNAL(triggered()), this, SLOT(openSolution()));
 		connect(ui->saveSolution, SIGNAL(triggered()), this, SLOT(saveSolution()));
 		connect(ui->skybox, SIGNAL(triggered()), this, SLOT(skyboxConfig()));
@@ -83,6 +91,7 @@ namespace LkEngine
 		connect(ui->rotation, SIGNAL(triggered()), this, SLOT(setDragType()));
 		connect(ui->scale, SIGNAL(triggered()), this, SLOT(setDragType()));
 		connect(ui->reset, SIGNAL(triggered()), this, SLOT(setDragType()));
+		connect(ui->light, SIGNAL(triggered()), this, SLOT(lightConfig()));
 	}
 
 	void LkEngineEditor::openSolution()
@@ -150,6 +159,14 @@ namespace LkEngine
 			}
 		}
 
+	}
+	void LkEngineEditor::lightConfig()
+	{
+		if (m_lightDlg)
+		{
+			m_lightDlg->show();
+			((LightForm*)m_lightDlg)->initLightProperty();
+		}	
 	}
 }
 

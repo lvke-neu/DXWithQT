@@ -31,6 +31,13 @@ namespace LkEngine
 	  {0.5f, 0.5f, 0.5f, 100.0f},
 	  {1.0f, 1.0f, 1.0f, 1.0f},
 	};
+
+	static Material Basic_HAS_AMBIENT_MAT
+	{ {0.5f, 0.5f, 0.5f, 1.0f},
+	  {1.0f, 1.0f, 1.0f, 1.0f},
+	  {0.5f, 0.5f, 0.5f, 100.0f},
+	  {1.0f, 1.0f, 1.0f, 1.0f},
+	};
 }
 
 

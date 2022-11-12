@@ -10,6 +10,7 @@ SceneManager
 #include "../Core/base/SingletonInterface.h"
 #include "../Core/base/ManagerInterface.h"
 #include "Component/Interface/ComponentInterface.h"
+#include "Light/LightManager.h"
 
 namespace LkEngine
 {
@@ -17,6 +18,7 @@ namespace LkEngine
 	class SkyBoxComponent;
 	class CameraController;
 	class PickSystem;
+
 	class SceneManager : public ISingleton<SceneManager>, public IManager
 	{
 		friend PickSystem;
@@ -39,6 +41,8 @@ namespace LkEngine
 		UINT getTriangleCount();
 		void setAxisLength(float length);
 		void setMoveScaleCoefficient(float scaleCoefficient);
+		DirectionLight getDirLight() { return LightManager::getInstance().getDirLight(); }
+		void setDirLight(const DirectionLight& dirLight) {LightManager::getInstance().setDirLight(dirLight);}
 	private:
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };

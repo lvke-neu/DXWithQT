@@ -29,6 +29,7 @@ namespace LkEngine
 		void addComponent();
 		void sceneComConfig();
 		void setDragType();
+		void lightConfig();
 	private:
 		void initUi();
 		void initDialog();
@@ -40,6 +41,7 @@ namespace LkEngine
 		QDialog* m_cameraDlg{ nullptr };
 		QDialog* m_addComDlg{ nullptr };
 		QDialog* m_sceneComCfgDlg{ nullptr };
+		QDialog* m_lightDlg{ nullptr };
 	};
 }
 

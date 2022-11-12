@@ -15,18 +15,21 @@ specular	   no          yes
 
 #include "../../Core/base/ManagerInterface.h"
 #include "../../Core/base/SingletonInterface.h"
+#include "Light.h"
 
 namespace LkEngine
 {
 	
-	struct DirectionLight;
+
 	class LightManager : public ISingleton<LightManager>, public IManager
 	{
 	public:
 		virtual void init() override;
 		virtual ~LightManager();
+		DirectionLight getDirLight() { return m_dirLight; }
 		void setDirLight(const DirectionLight& dirLight);
 	private:
 		ComPtr<ID3D11Buffer> m_pSceneDirLightCB;
+		DirectionLight m_dirLight;
 	};
 }

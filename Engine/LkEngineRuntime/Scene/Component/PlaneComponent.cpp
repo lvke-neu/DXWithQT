@@ -17,6 +17,7 @@ namespace LkEngine
 		));
 
 		setUseTexOrColor(true);
+		setMaterial(Basic_HAS_AMBIENT_MAT);
 	}
 
 	void PlaneComponent::buildMesh()

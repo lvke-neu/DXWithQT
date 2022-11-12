@@ -102,6 +102,7 @@ void PickInfoForm::setMaterialColor()
 					ui->ambientZ->setValue(qColor.blue() / 255.0f);
 					ui->ambientW->setValue(qColor.alpha() / 255.0f);
 				});
+
 			if (dlg.exec() != QColorDialog::Accepted)
 			{
 				ui->ambientX->setValue(ambientColor.x);

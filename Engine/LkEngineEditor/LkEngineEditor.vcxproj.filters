@@ -22,6 +22,9 @@
     <ClCompile Include="CustomToolBox\ComponentForm.cpp">
       <Filter>CustomToolBox\源文件</Filter>
     </ClCompile>
+    <ClCompile Include="CustomToolBox\LightForm.cpp">
+      <Filter>CustomToolBox\源文件</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="头文件">
@@ -62,6 +65,9 @@
     <QtUic Include="CustomToolBox\ComponentForm.ui">
       <Filter>CustomToolBox\资源文件</Filter>
     </QtUic>
+    <QtUic Include="CustomToolBox\LightForm.ui">
+      <Filter>CustomToolBox\资源文件</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="LkEngineEditor.h">
@@ -80,6 +86,9 @@
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
     <QtMoc Include="CustomToolBox\ComponentForm.h">
+      <Filter>CustomToolBox\头文件</Filter>
+    </QtMoc>
+    <QtMoc Include="CustomToolBox\LightForm.h">
       <Filter>CustomToolBox\头文件</Filter>
     </QtMoc>
   </ItemGroup>
