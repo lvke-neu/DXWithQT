@@ -7,6 +7,7 @@ SceneManager
 
 #pragma once
 
+#include <vector>
 #include "../Core/base/SingletonInterface.h"
 #include "../Core/base/ManagerInterface.h"
 #include "Component/Interface/ComponentInterface.h"
@@ -43,6 +44,8 @@ namespace LkEngine
 		void setMoveScaleCoefficient(float scaleCoefficient);
 		DirectionLight getDirLight() { return LightManager::getInstance().getDirLight(); }
 		void setDirLight(const DirectionLight& dirLight) {LightManager::getInstance().setDirLight(dirLight);}
+		std::vector<std::string> getAllComponetUuid(); 
+		IComponent* getComponentByUuid(const std::string& uuid);
 	private:
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };

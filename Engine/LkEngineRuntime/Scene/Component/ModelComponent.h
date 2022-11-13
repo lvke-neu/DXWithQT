@@ -105,6 +105,12 @@ namespace LkEngine
 				submodel.setPosition(pos);
 		}
 
+		void setAllModelCommonMat(const Material& mat)
+		{
+			for (auto& submodel : m_subModelComponents)
+				submodel.setMaterial(mat);
+		}
+
 		std::string getModelPath();
 		void  setModelPath(const std::string& modelPath); 
 		void set_ModelPath(const rapidjson::Value& funcParameter);

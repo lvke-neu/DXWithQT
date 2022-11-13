@@ -133,6 +133,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="CustomToolBox\ApplyMatDlg.cpp" />
     <ClCompile Include="CustomToolBox\CameraForm.cpp" />
     <ClCompile Include="CustomToolBox\ComponentForm.cpp" />
     <ClCompile Include="CustomToolBox\LightForm.cpp" />
@@ -148,6 +149,7 @@
     <QtMoc Include="LkEngineEditor.h" />
   </ItemGroup>
   <ItemGroup>
+    <QtUic Include="CustomToolBox\ApplyMatDlg.ui" />
     <QtUic Include="CustomToolBox\CameraForm.ui" />
     <QtUic Include="CustomToolBox\ComponentForm.ui" />
     <QtUic Include="CustomToolBox\LightForm.ui" />
@@ -175,6 +177,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="CustomToolBox\LightForm.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="CustomToolBox\ApplyMatDlg.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

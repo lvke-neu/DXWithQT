@@ -301,5 +301,26 @@ namespace LkEngine
 	{
 		PickSystem::getInstance().setMoveScaleCoefficient(scaleCoefficient);
 	}
+
+	std::vector<std::string> SceneManager::getAllComponetUuid()
+	{
+		std::vector<std::string> uuid;
+		for (auto& componet : m_componets)
+		{
+			uuid.push_back(componet.first);
+		}
+
+		return uuid;
+	}
+
+	IComponent * SceneManager::getComponentByUuid(const std::string & uuid)
+	{
+		auto iter = m_componets.find(uuid);
+		if (iter != m_componets.end())
+		{
+			return iter->second;
+		}
+		return nullptr;
+	}
 }
 

@@ -50,6 +50,8 @@ namespace LkEngine
 		void setMoveScaleCoefficient(float scaleCoefficient) { SceneManager::getInstance().setMoveScaleCoefficient(scaleCoefficient); }
 		DirectionLight getDirLight() { return SceneManager::getInstance().getDirLight(); }
 		void setDirLight(const DirectionLight& dirLight) { SceneManager::getInstance().setDirLight(dirLight); }
+		std::vector<std::string> getAllComponetUuid() { return SceneManager::getInstance().getAllComponetUuid(); }
+		IComponent * getComponentByUuid(const std::string & uuid) { return SceneManager::getInstance().getComponentByUuid(uuid); }
 
 		Transform getCameraTransform() { return CameraManager::getInstance().getTransform(); }
 		void setCameraTransform(const Transform& transform) { CameraManager::getInstance().setTransform(transform); }

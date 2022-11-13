@@ -1,7 +1,9 @@
 #include "PickInfoForm.h"
 #include "ui_PickInfoForm.h"
+#include "ApplyMatDlg.h"
 #include "../../LkEngineRuntime/Core/Event/PickEventManager.h"
 #include "../../LkEngineRuntime/Core/engine/Engine.h"
+#include "../../LkEngineRuntime/Core/base/Utility.h"
 #include <QColorDialog>
 
 PickInfoForm::PickInfoForm(QWidget *parent) :
@@ -9,6 +11,9 @@ PickInfoForm::PickInfoForm(QWidget *parent) :
 	ui(new Ui::PickInfoForm)
 {
 	ui->setupUi(this);
+
+	m_applyMatDlg = new ApplyMatDlg(this);
+	m_applyMatDlg->hide();
 
 	connect(ui->Texture, SIGNAL(textChanged(const QString &)), this, SLOT(setComponentPorperty()));
 	connect(ui->VsShader, SIGNAL(textChanged(const QString &)), this, SLOT(setComponentPorperty()));
@@ -50,10 +55,21 @@ PickInfoForm::PickInfoForm(QWidget *parent) :
 	connect(ui->diffuseColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColorDlg()));
 	connect(ui->specularColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColorDlg()));
 	connect(ui->reflectColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColorDlg()));
+	connect(ui->applyMat, &QPushButton::clicked, this, [&]() 
+		{
+			m_applyMatDlg->show();
+			m_applyMatDlg->setAllComponet(LkEngine::Engine::getInstance().getAllComponetUuid()); 
+			LkEngine::Material mat;
+			mat.ambient = DirectX::XMFLOAT4(ui->ambientX->value(), ui->ambientY->value(), ui->ambientZ->value(), ui->ambientW->value());
+			mat.diffuse = DirectX::XMFLOAT4(ui->diffuseX->value(), ui->diffuseY->value(), ui->diffuseZ->value(), ui->ambientW->value());
+			mat.specular = DirectX::XMFLOAT4(ui->specularX->value(), ui->specularY->value(), ui->specularZ->value(), ui->specularW->value());
+			mat.reflect = DirectX::XMFLOAT4(ui->reflectX->value(), ui->reflectY->value(), ui->reflectZ->value(), ui->reflectW->value());
+			m_applyMatDlg->setCurrentMat(mat);
+		});
 
 	connect(ui->dragLength, SIGNAL(valueChanged(double)), this, SLOT(setAxisPorperty()));
 	connect(ui->dragMoveCoefficient, SIGNAL(valueChanged(double)), this, SLOT(setAxisPorperty()));
-	
+
 	LkEngine::PickEventManager::getInstance().registerPickEvent(this);
 	LkEngine::PickEventManager::getInstance().registerDeleteComponentEvent(this);
 }
@@ -62,6 +78,7 @@ PickInfoForm::~PickInfoForm()
 {
 	LkEngine::PickEventManager::getInstance().unRegisterPickEvent(this);
 	LkEngine::PickEventManager::getInstance().unRegisterDeleteComponentEvent(this);
+	SAFE_DELETE_SET_NULL(m_applyMatDlg)
 	delete ui;
 }
 
