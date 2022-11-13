@@ -10,10 +10,11 @@ std::mutex mtx;
 
 namespace LkEngine
 {
-	SubModelComponent::SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh, const std::string& vsShader, const std::string& psShader) : 
+	SubModelComponent::SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh, aiMaterial* material, const std::string& vsShader, const std::string& psShader) :
 		IComponent(pd3dDevice, pd3dImmediateContext)
 	{
 		m_mesh = mesh;
+		m_material = material;
 
 		setComponetType("SubModelComponent");
 
@@ -28,6 +29,20 @@ namespace LkEngine
 
 		setVsShader(vsShader);
 		setPsShader(psShader);
+
+		Material mat;
+		aiColor3D color;
+
+		m_material->Get(AI_MATKEY_COLOR_AMBIENT, color);
+		mat.ambient =XMFLOAT4(color.r, color.g, color.b, 1.0);
+		m_material->Get(AI_MATKEY_COLOR_DIFFUSE, color);
+		mat.diffuse = XMFLOAT4(color.r, color.g, color.b, 1.0);
+		m_material->Get(AI_MATKEY_COLOR_SPECULAR, color);
+		mat.specular = XMFLOAT4(color.r, color.g, color.b, 1.0);
+		m_material->Get(AI_MATKEY_COLOR_REFLECTIVE, color);
+		mat.reflect = XMFLOAT4(color.r, color.g, color.b, 1.0);
+		
+		setMaterial(mat);
 	}
 
 	void SubModelComponent::buildMesh()
@@ -232,10 +247,10 @@ namespace LkEngine
 		for (unsigned int i = 0; i < node->mNumMeshes; i++)
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
-
-			SubModelComponent subModelComponent(m_pd3dDevice, m_pd3dImmediateContext, mesh, m_vsShader, m_psShader);
-
 			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+
+			SubModelComponent subModelComponent(m_pd3dDevice, m_pd3dImmediateContext, mesh, material, m_vsShader, m_psShader);
+
 			for (unsigned int j = 0; j < material->GetTextureCount(aiTextureType_DIFFUSE); j++)
 			{
 				aiString str;

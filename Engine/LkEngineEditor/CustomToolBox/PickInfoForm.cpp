@@ -26,30 +26,30 @@ PickInfoForm::PickInfoForm(QWidget *parent) :
 	connect(ui->posY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
 	connect(ui->posZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
 
-	connect(ui->ambientX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->ambientY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->ambientZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->ambientX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->ambientX, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->ambientY, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->ambientZ, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->ambientX, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
 
-	connect(ui->diffuseX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->diffuseY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->diffuseZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->diffuseW, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->diffuseX, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->diffuseY, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->diffuseZ, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->diffuseW, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
 
-	connect(ui->specularX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->specularY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->specularZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->specularW, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->specularX, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->specularY, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->specularZ, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->specularW, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
 
-	connect(ui->reflectX, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->reflectY, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->reflectZ, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
-	connect(ui->reflectW, SIGNAL(valueChanged(double)), this, SLOT(setComponentPorperty()));
+	connect(ui->reflectX, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->reflectY, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->reflectZ, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
+	connect(ui->reflectW, SIGNAL(valueChanged(double)), this, SLOT(setMaterialColor()));
 
-	connect(ui->ambientColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColor()));
-	connect(ui->diffuseColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColor()));
-	connect(ui->specularColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColor()));
-	connect(ui->reflectColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColor()));
+	connect(ui->ambientColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColorDlg()));
+	connect(ui->diffuseColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColorDlg()));
+	connect(ui->specularColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColorDlg()));
+	connect(ui->reflectColor, SIGNAL(clicked(bool)), this, SLOT(setMaterialColorDlg()));
 
 	connect(ui->dragLength, SIGNAL(valueChanged(double)), this, SLOT(setAxisPorperty()));
 	connect(ui->dragMoveCoefficient, SIGNAL(valueChanged(double)), this, SLOT(setAxisPorperty()));
@@ -84,6 +84,20 @@ void PickInfoForm::setAxisPorperty()
 }
 
 void PickInfoForm::setMaterialColor()
+{
+	if (m_pComponent)
+	{
+		LkEngine::Material mat;
+		mat.ambient = DirectX::XMFLOAT4(ui->ambientX->value(), ui->ambientY->value(), ui->ambientZ->value(), ui->ambientW->value());
+		mat.diffuse = DirectX::XMFLOAT4(ui->diffuseX->value(), ui->diffuseY->value(), ui->diffuseZ->value(), ui->ambientW->value());
+		mat.specular = DirectX::XMFLOAT4(ui->specularX->value(), ui->specularY->value(), ui->specularZ->value(), ui->specularW->value());
+		mat.reflect = DirectX::XMFLOAT4(ui->reflectX->value(), ui->reflectY->value(), ui->reflectZ->value(), ui->reflectW->value());
+
+		m_pComponent->setMaterial(mat);
+	}
+}
+
+void PickInfoForm::setMaterialColorDlg()
 {
 	QToolButton* toolButton = dynamic_cast<QToolButton*>(sender());
 	
@@ -316,14 +330,6 @@ void PickInfoForm::setComponentPorperty()
 		DirectX::XMFLOAT3 pos(ui->posX->value(), ui->posY->value(), ui->posZ->value());
 		LkEngine::Transform transform(scale, rot, pos);
 		m_pComponent->setTransform(transform);
-
-		LkEngine::Material mat;
-		mat.ambient = DirectX::XMFLOAT4(ui->ambientX->value(), ui->ambientY->value(), ui->ambientZ->value(), ui->ambientW->value());
-		mat.diffuse = DirectX::XMFLOAT4(ui->diffuseX->value(), ui->diffuseY->value(), ui->diffuseZ->value(), ui->ambientW->value());
-		mat.specular = DirectX::XMFLOAT4(ui->specularX->value(), ui->specularY->value(), ui->specularZ->value(), ui->specularW->value());
-		mat.reflect = DirectX::XMFLOAT4(ui->reflectX->value(), ui->reflectY->value(), ui->reflectZ->value(), ui->reflectW->value());
-		
-		m_pComponent->setMaterial(mat);
 	}
 }
 

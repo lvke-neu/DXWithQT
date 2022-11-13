@@ -19,6 +19,7 @@ public slots:
 	void setComponentPorperty();
 	void setAxisPorperty();
 	void setMaterialColor();
+	void setMaterialColorDlg();
 public:
 	virtual void onPickComponent(LkEngine::IComponent* component) override;
 	virtual void onDeleteComponent(LkEngine::IComponent* component) override;

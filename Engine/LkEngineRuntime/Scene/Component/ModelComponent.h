@@ -17,7 +17,7 @@ namespace LkEngine
 	class SubModelComponent : public IComponent
 	{
 	public:
-		SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh, const std::string& vsShader, const std::string& psShader);
+		SubModelComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext, aiMesh* mesh, aiMaterial* material, const std::string& vsShader, const std::string& psShader);
 	public:
 		virtual void buildMesh() override;
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) override;
@@ -26,6 +26,7 @@ namespace LkEngine
 
 	private:
 		aiMesh* m_mesh;
+		aiMaterial* m_material;
 	};
 
 	class ModelComponent : public IComponent
@@ -102,12 +103,6 @@ namespace LkEngine
 			m_transform.setPosition(pos);
 			for (auto& submodel : m_subModelComponents)
 				submodel.setPosition(pos);
-		}
-
-		virtual void setMaterial(const Material& material)
-		{
-			for (auto& submodel : m_subModelComponents)
-				submodel.setMaterial(material);
 		}
 
 		std::string getModelPath();
