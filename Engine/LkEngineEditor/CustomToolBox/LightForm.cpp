@@ -1,6 +1,7 @@
 #include "LightForm.h"
 #include "ui_LightForm.h"
 #include "../../LkEngineRuntime/Core/engine/Engine.h"
+#include <QColorDialog>
 
 LightForm::LightForm(QWidget *parent) :
 	QDialog(parent),
@@ -55,6 +56,10 @@ void LightForm::initLightProperty()
 	connect(ui->directionX, SIGNAL(valueChanged(double)), this, SLOT(setLightProperty()));
 	connect(ui->directionY, SIGNAL(valueChanged(double)), this, SLOT(setLightProperty()));
 	connect(ui->directionZ, SIGNAL(valueChanged(double)), this, SLOT(setLightProperty()));
+
+	connect(ui->ambientColor, SIGNAL(clicked(bool)), this, SLOT(setLightColor()));
+	connect(ui->diffuseColor, SIGNAL(clicked(bool)), this, SLOT(setLightColor()));
+	connect(ui->specularColor, SIGNAL(clicked(bool)), this, SLOT(setLightColor()));
 }
 
 void LightForm::setLightProperty()
@@ -65,5 +70,76 @@ void LightForm::setLightProperty()
 	dirLight.specular = DirectX::XMFLOAT4(ui->specularX->value(), ui->specularY->value(), ui->specularZ->value(), ui->specularW->value());
 	dirLight.direction = DirectX::XMFLOAT3(ui->directionX->value(), ui->directionY->value(), ui->directionZ->value());
 	LkEngine::Engine::getInstance().setDirLight(dirLight);
+}
+
+void LightForm::setLightColor()
+{
+	QToolButton* toolButton = dynamic_cast<QToolButton*>(sender());
+
+	if (toolButton)
+	{
+		QColorDialog dlg(this);
+		if (toolButton->objectName() == "ambientColor")
+		{
+			dlg.setWindowTitle("Ambient Color Editor");
+			DirectX::XMFLOAT4 ambientColor(ui->ambientX->value(), ui->ambientY->value(), ui->ambientZ->value(), ui->ambientW->value());
+			dlg.setCurrentColor(QColor(250 * ambientColor.x, 250 * ambientColor.y, 250 * ambientColor.z, 250 * ambientColor.w));
+			connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& qColor)
+				{
+					ui->ambientX->setValue(qColor.red() / 255.0f);
+					ui->ambientY->setValue(qColor.green() / 255.0f);
+					ui->ambientZ->setValue(qColor.blue() / 255.0f);
+					ui->ambientW->setValue(qColor.alpha() / 255.0f);
+				});
+
+			if (dlg.exec() != QColorDialog::Accepted)
+			{
+				ui->ambientX->setValue(ambientColor.x);
+				ui->ambientY->setValue(ambientColor.y);
+				ui->ambientZ->setValue(ambientColor.z);
+				ui->ambientW->setValue(ambientColor.w);
+			}
+		}
+		else if (toolButton->objectName() == "diffuseColor")
+		{
+			dlg.setWindowTitle("Diffuse Color Editor");
+			DirectX::XMFLOAT4 diffuseColor(ui->diffuseX->value(), ui->diffuseY->value(), ui->diffuseZ->value(), ui->diffuseW->value());
+			dlg.setCurrentColor(QColor(250 * diffuseColor.x, 250 * diffuseColor.y, 250 * diffuseColor.z, 250 * diffuseColor.w));
+			connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& qColor)
+				{
+					ui->diffuseX->setValue(qColor.red() / 255.0f);
+					ui->diffuseY->setValue(qColor.green() / 255.0f);
+					ui->diffuseZ->setValue(qColor.blue() / 255.0f);
+					ui->diffuseW->setValue(qColor.alpha() / 255.0f);
+				});
+			if (dlg.exec() != QColorDialog::Accepted)
+			{
+				ui->diffuseX->setValue(diffuseColor.x);
+				ui->diffuseY->setValue(diffuseColor.y);
+				ui->diffuseZ->setValue(diffuseColor.z);
+				ui->diffuseW->setValue(diffuseColor.w);
+			}
+		}
+		else if (toolButton->objectName() == "specularColor")
+		{
+			dlg.setWindowTitle("Specular Color Editor");
+			DirectX::XMFLOAT4 specularColor(ui->specularX->value(), ui->specularY->value(), ui->specularZ->value(), ui->specularW->value());
+			dlg.setCurrentColor(QColor(250 * specularColor.x, 250 * specularColor.y, 250 * specularColor.z));
+			connect(&dlg, &QColorDialog::currentColorChanged, this, [&](const QColor& qColor)
+				{
+					ui->specularX->setValue(qColor.red() / 255.0f);
+					ui->specularY->setValue(qColor.green() / 255.0f);
+					ui->specularZ->setValue(qColor.blue() / 255.0f);
+					//ui->specularW->setValue(qColor.alpha() / 255.0f);
+				});
+			if (dlg.exec() != QColorDialog::Accepted)
+			{
+				ui->specularX->setValue(specularColor.x);
+				ui->specularY->setValue(specularColor.y);
+				ui->specularZ->setValue(specularColor.z);
+				//ui->specularW->setValue(specularColor.w);
+			}
+		}
+	}
 }
 

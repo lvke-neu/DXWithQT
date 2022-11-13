@@ -17,6 +17,7 @@ public:
 	void initLightProperty();
 public slots:
 	void setLightProperty();
+	void setLightColor();
 private:
 	Ui::LightForm *ui;
 
