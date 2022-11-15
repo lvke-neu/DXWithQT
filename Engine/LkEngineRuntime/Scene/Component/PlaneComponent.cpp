@@ -17,7 +17,7 @@ namespace LkEngine
 		));
 
 		//setUseTexOrColor(true);
-		setUseTexOrColor(false, XMFLOAT4(114.0f / 255, 154.0f / 255, 66.0f / 255, 1.0f));
+		setUseTexOrColor(false, XMFLOAT4(65.0f / 255, 90.0f / 255, 20.0f / 255, 1.0f));
 		setMaterial(Basic_HAS_AMBIENT_MAT);
 	}
 
