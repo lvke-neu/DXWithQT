@@ -42,6 +42,7 @@ namespace LkEngine
 		));
 
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_pPlaneComponent->setScale(10000.0f, 10000.0f, 10000.f);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
 

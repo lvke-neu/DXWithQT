@@ -9,7 +9,7 @@ namespace LkEngine
 		buildMesh(); 
 		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
 		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
-		setTexture("builtin\\Texture\\floor.dds");
+		setTexture("builtin\\Texture\\grass.dds");
 		setTransform(Transform(
 			XMFLOAT3(200.0f, 200.0f, 1.0f),
 			XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
@@ -17,6 +17,7 @@ namespace LkEngine
 		));
 
 		setUseTexOrColor(true);
+		//setUseTexOrColor(false, XMFLOAT4(87.0f / 255, 99.0f / 255, 57.0f / 255, 1.0f));
 		setMaterial(Basic_HAS_AMBIENT_MAT);
 	}
 
@@ -39,9 +40,9 @@ namespace LkEngine
 		}
 
 		vertices[0].texcoord = XMFLOAT2(0.0f, 0.0f);
-		vertices[1].texcoord = XMFLOAT2(0.0f, 5.0f);
-		vertices[2].texcoord = XMFLOAT2(5.0f, 5.0f);
-		vertices[3].texcoord = XMFLOAT2(5.0f, 0.0f);
+		vertices[1].texcoord = XMFLOAT2(0.0f, 50.0f);
+		vertices[2].texcoord = XMFLOAT2(50.0f, 50.0f);
+		vertices[3].texcoord = XMFLOAT2(50.0f, 0.0f);
 
 		DWORD indices[] = {
 			0, 1, 3,
