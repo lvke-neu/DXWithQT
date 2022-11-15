@@ -9,15 +9,15 @@ namespace LkEngine
 		buildMesh(); 
 		setVsShader("builtin\\Shader\\BasicPrimitiveVS.cso");
 		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
-		setTexture("builtin\\Texture\\grass.dds");
+		setTexture("builtin\\Texture\\checkboard.dds");
 		setTransform(Transform(
 			XMFLOAT3(200.0f, 200.0f, 1.0f),
 			XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
 			XMFLOAT3(0.0f, -5.0f, 5.0f)
 		));
 
-		setUseTexOrColor(true);
-		//setUseTexOrColor(false, XMFLOAT4(87.0f / 255, 99.0f / 255, 57.0f / 255, 1.0f));
+		//setUseTexOrColor(true);
+		setUseTexOrColor(false, XMFLOAT4(65.0f / 255, 90.0f / 255, 20.0f / 255, 1.0f));
 		setMaterial(Basic_HAS_AMBIENT_MAT);
 	}
 
