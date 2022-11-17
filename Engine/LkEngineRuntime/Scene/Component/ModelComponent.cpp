@@ -257,7 +257,10 @@ namespace LkEngine
 				material->GetTexture(aiTextureType_DIFFUSE, j, &str);
 				subModelComponent.setTexture(std::string("builtin\\Model\\") + std::string(str.C_Str()));
 			}
-			
+			if (subModelComponent.getTexture() == "")
+			{
+				subModelComponent.setTexture("builtin\\Texture\\grass.dds");
+			}
 			//mtx.lock();
 			m_subModelComponents.push_back(subModelComponent);
 			//mtx.unlock();
