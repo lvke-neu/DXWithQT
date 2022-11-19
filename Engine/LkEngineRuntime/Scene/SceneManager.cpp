@@ -17,7 +17,7 @@
 #include "Component/ParticleComponent.h"
 
 #include "Pick/PickSystem.h"
-
+#include "ShadowMap/ShadowMapManager.h"
 
 #include "../../LkEngineRuntime/Core/serialization/SerializationManager.h"
 #include "../../LkEngineRuntime/Core/Network Request/HttpRequestManager.h"
@@ -43,15 +43,17 @@ namespace LkEngine
 		));
 
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		m_pPlaneComponent->setScale(10000.0f, 10000.0f, 10000.f);
+		//m_pPlaneComponent->setScale(1000.0f, 1000.0f, 100.0f);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
-		m_pParticleComponent = new ParticleComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		m_pParticleComponent->setPosition(0.0f, 10.0f, 0.0f);
+		//m_pParticleComponent = new ParticleComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		//m_pParticleComponent->setPosition(0.0f, 10.0f, 0.0f);
 
 
 		PickSystem::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
 		LightManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
+		ShadowMapManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
+
 		LOG_INFO("SceneManager initialization is complete");
 	}
 
@@ -68,20 +70,38 @@ namespace LkEngine
 
 	void SceneManager::updateScene(float deltaTime)
 	{
-		static float sum = 0.0f;
-		sum += deltaTime;
-		static XMFLOAT3 originPos = m_pParticleComponent->getPosition();
+		//static float sum = 0.0f;
+		//sum += deltaTime;
+		//static XMFLOAT3 originPos = m_pParticleComponent->getPosition();
 
-		XMFLOAT3 tmpPos = originPos;
-		tmpPos.y += std::sin(sum) * 50;
-		m_pParticleComponent->setPosition(tmpPos);
+		//XMFLOAT3 tmpPos = originPos;
+		//tmpPos.y += std::sin(sum) * 50;
+		//m_pParticleComponent->setPosition(tmpPos);
 	}
 
 	void SceneManager::drawScene()
-	{		
-		m_pPlaneComponent->draw();
+	{	
+		/**********************************************************************************/
+		ShadowMapManager::getInstance().begin(nullptr);
+		//m_pPlaneComponent->drawShadowMap();
+		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
+			if (iter->second)
+				iter->second->drawShadowMap();
+		ShadowMapManager::getInstance().end();
+		/**********************************************************************************/
 
-		m_pParticleComponent->draw();
+
+
+
+		/**********************************************************************************/
+		m_pPlaneComponent->setShadowMap(ShadowMapManager::getInstance().GetOutputTexture());
+		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
+			if (iter->second)
+				iter->second->setShadowMap(ShadowMapManager::getInstance().GetOutputTexture());
+		/**********************************************************************************/
+
+
+		m_pPlaneComponent->draw();
 
 		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
 			if(iter->second)

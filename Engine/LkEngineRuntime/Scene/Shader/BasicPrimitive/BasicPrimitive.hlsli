@@ -13,6 +13,7 @@ struct VertexOut
 	float3 posW : POSITION;
 	float3 normalW: NORMAL;
 	float2 texcoord: TEXCOORD;
+	float4 ShadowPosH : TEXCOORD1;
 };
 
 cbuffer WorldMatrix : register(b3)

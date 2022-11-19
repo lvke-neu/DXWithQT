@@ -51,6 +51,7 @@ namespace LkEngine
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) = 0;
 		virtual void bindPipeState() = 0;
 		virtual void draw() = 0;
+		virtual void drawShadowMap() = 0;
 	public:
 		virtual void serialize(std::string& serializationStr) override;
 		virtual void runFunction(const std::string& funcName, const rapidjson::Value& funcParameter) override;
@@ -93,6 +94,8 @@ namespace LkEngine
 
 		virtual UINT getTriangleCount() { return m_indexCount / 3; }
 		void setUseTexOrColor(bool isUseTex, const XMFLOAT4& color = XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+
+		virtual void setShadowMap(ID3D11ShaderResourceView* pSRV) { m_pShadowMapTexture = pSRV; }
 	protected:
 		void setComponetType(const std::string componetType) { m_componetType = componetType; }
 		void setUuId(const std::string uuid) { m_uuid = uuid; }
@@ -118,6 +121,7 @@ namespace LkEngine
 		ComPtr<ID3D11InputLayout> m_pVertexLayout{ nullptr };
 
 		ComPtr<ID3D11ShaderResourceView> m_pTexture{ nullptr };
+		ComPtr<ID3D11ShaderResourceView> m_pShadowMapTexture{ nullptr };
 
 		ComPtr<ID3D11Buffer> m_pWorldMatrixCB{ nullptr };;
 		ComPtr<ID3D11Buffer> m_pMaterialCB{ nullptr };

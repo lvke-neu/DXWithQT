@@ -13,6 +13,7 @@ namespace LkEngine
 
 		static ComPtr<ID3D11SamplerState> SSLinearWrap;
 		static ComPtr<ID3D11SamplerState> SSAnisotropicWrap;
+		static ComPtr<ID3D11SamplerState> SSShadow;
 
 		static ComPtr<ID3D11RasterizerState> RSWireframe;
 		static ComPtr<ID3D11RasterizerState> RSNoCull;
@@ -25,6 +26,9 @@ namespace LkEngine
 		static ComPtr<ID3D11DepthStencilState> DSSDrawWithStencil;
 		static ComPtr<ID3D11DepthStencilState> DSSLessEqual;
 		static ComPtr<ID3D11DepthStencilState> DSSNoDepthTest;
+
+		
+
 
 
 	public:

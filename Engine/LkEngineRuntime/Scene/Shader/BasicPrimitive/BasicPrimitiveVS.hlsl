@@ -12,6 +12,7 @@ VertexOut VS(VertexIn vIn)
 	vOut.posW = posW.xyz;
 	vOut.normalW = mul(vIn.normalL, (float3x3)g_worldInvTranspose);
 	vOut.texcoord = vIn.texcoord;
+	vOut.ShadowPosH = mul(posW, g_ShadowTransform);
 
 	return vOut;
 }

@@ -23,7 +23,7 @@ namespace LkEngine
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) override;
 		virtual void bindPipeState() override;
 		virtual void draw() override;
-
+		virtual void drawShadowMap() override;
 	private:
 		aiMesh* m_mesh;
 		aiMaterial* m_material;
@@ -39,7 +39,9 @@ namespace LkEngine
 		void createVertexLayout(const ComPtr<ID3DBlob>& blob) {};
 		void bindPipeState() {};
 		void draw();
+		virtual void drawShadowMap() override;
 		virtual UINT getTriangleCount() override;
+		virtual void setShadowMap(ID3D11ShaderResourceView* pSRV);
 	public:
 		virtual void serialize(std::string& serializationStr) override;
 	public:

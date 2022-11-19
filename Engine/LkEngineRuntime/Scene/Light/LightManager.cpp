@@ -1,5 +1,6 @@
 #include "LightManager.h"
 #include "../../Core/base/Utility.h"
+#include "../ShadowMap/ShadowMapManager.h"
 
 namespace LkEngine
 {
@@ -37,6 +38,8 @@ namespace LkEngine
 		m_pd3dImmediateContext->Map(m_pSceneDirLightCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
 		memcpy_s(mappedData.pData, sizeof(DirectionLight), &dirLight, sizeof(DirectionLight));
 		m_pd3dImmediateContext->Unmap(m_pSceneDirLightCB.Get(), 0);
+
+		ShadowMapManager::getInstance().setViewMatrix(dirLight.direction);
 	}
 }
 

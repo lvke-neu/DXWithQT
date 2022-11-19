@@ -4,6 +4,9 @@
 
 namespace LkEngine
 {
+	#define PLANE_EDGE 10000
+
+
 	PlaneComponent::PlaneComponent(ComPtr<ID3D11Device> pd3dDevice, ComPtr<ID3D11DeviceContext> pd3dImmediateContext) :IComponent(pd3dDevice, pd3dImmediateContext) 
 	{ 
 		buildMesh(); 
@@ -11,9 +14,9 @@ namespace LkEngine
 		setPsShader("builtin\\Shader\\BasicPrimitivePS.cso");
 		setTexture("builtin\\Texture\\checkboard.dds");
 		setTransform(Transform(
-			XMFLOAT3(200.0f, 200.0f, 1.0f),
-			XMFLOAT3(XM_PI / 2, 0.0f, 0.0f),
-			XMFLOAT3(0.0f, -5.0f, 5.0f)
+			XMFLOAT3(1.0f, 1.0f, 1.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f),
+			XMFLOAT3(0.0f, 0.0f, 0.0f)
 		));
 
 		//setUseTexOrColor(true);
@@ -29,14 +32,14 @@ namespace LkEngine
 		const UINT vertexCount = 4;
 		VertexPosNormalTex vertices[vertexCount];
 
-		vertices[0].position = XMFLOAT3(-1.0f, 1.0f, 0.0f);
-		vertices[1].position = XMFLOAT3(1.0f, 1.0f, 0.0f);
-		vertices[2].position = XMFLOAT3(1.0f, -1.0f, 0.0f);
-		vertices[3].position = XMFLOAT3(-1.0f, -1.0f, 0.0f);
+		vertices[0].position = XMFLOAT3(-PLANE_EDGE,0.0f, PLANE_EDGE);
+		vertices[1].position = XMFLOAT3(PLANE_EDGE, 0.0f, PLANE_EDGE);
+		vertices[2].position = XMFLOAT3(PLANE_EDGE, 0.0f, -PLANE_EDGE);
+		vertices[3].position = XMFLOAT3(-PLANE_EDGE, 0.0f, -PLANE_EDGE);
 
 		for (UINT i = 0; i < 4; ++i)
 		{
-			vertices[i].normal = XMFLOAT3(0.0f, 0.0f, -1.0f);
+			vertices[i].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
 		}
 
 		vertices[0].texcoord = XMFLOAT2(0.0f, 0.0f);
@@ -101,6 +104,8 @@ namespace LkEngine
 
 		m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
 		m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
+		m_pd3dImmediateContext->PSSetShaderResources(1, 1, m_pShadowMapTexture.GetAddressOf());
+		m_pd3dImmediateContext->PSSetSamplers(1, 1, RenderStates::SSShadow.GetAddressOf());
 
 		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
 		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
@@ -114,6 +119,23 @@ namespace LkEngine
 	void PlaneComponent::draw()
 	{
 		bindPipeState();
+		m_pd3dImmediateContext->DrawIndexed(m_indexCount, 0, 0);
+	}
+
+	void PlaneComponent::drawShadowMap()
+	{
+		UINT stride = sizeof(VertexPosNormalTex);
+		UINT offset = 0;
+		m_pd3dImmediateContext->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+		m_pd3dImmediateContext->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+		m_pd3dImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
+		m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
+
+		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
+		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
+
 		m_pd3dImmediateContext->DrawIndexed(m_indexCount, 0, 0);
 	}
 }

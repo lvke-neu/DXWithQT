@@ -4,7 +4,7 @@ namespace LkEngine
 
 	ComPtr<ID3D11SamplerState> RenderStates::SSLinearWrap;
 	ComPtr<ID3D11SamplerState> RenderStates::SSAnisotropicWrap;
-
+	ComPtr<ID3D11SamplerState> RenderStates::SSShadow = nullptr;
 
 	ComPtr<ID3D11RasterizerState> RenderStates::RSNoCull = nullptr;
 	ComPtr<ID3D11RasterizerState> RenderStates::RSWireframe = nullptr;
@@ -17,6 +17,8 @@ namespace LkEngine
 	ComPtr<ID3D11DepthStencilState> RenderStates::DSSDrawWithStencil = nullptr;
 	ComPtr<ID3D11DepthStencilState> RenderStates::DSSLessEqual = nullptr;
 	ComPtr<ID3D11DepthStencilState> RenderStates::DSSNoDepthTest = nullptr;
+
+	
 
 	void RenderStates::Init(ComPtr<ID3D11Device> pd3dDevice)
 	{
@@ -45,6 +47,15 @@ namespace LkEngine
 		sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
 		pd3dDevice->CreateSamplerState(&sampDesc, SSAnisotropicWrap.GetAddressOf());
 
+		sampDesc.Filter = D3D11_FILTER_COMPARISON_MIN_MAG_LINEAR_MIP_POINT;
+		sampDesc.AddressU = D3D11_TEXTURE_ADDRESS_BORDER;
+		sampDesc.AddressV = D3D11_TEXTURE_ADDRESS_BORDER;
+		sampDesc.AddressW = D3D11_TEXTURE_ADDRESS_BORDER;
+		sampDesc.ComparisonFunc = D3D11_COMPARISON_LESS_EQUAL;
+		sampDesc.BorderColor[0] = { 1.0f };
+		sampDesc.MinLOD = 0;
+		sampDesc.MaxLOD = D3D11_FLOAT32_MAX;
+		pd3dDevice->CreateSamplerState(&sampDesc, SSShadow.GetAddressOf());
 
 		/*******************************ID3D11RasterizerState***********************************/
 		D3D11_RASTERIZER_DESC rasterizerDesc;

@@ -27,6 +27,14 @@ namespace LkEngine
 		virtual void init() override;
 		virtual ~LightManager();
 		DirectionLight getDirLight() { return m_dirLight; }
+		XMFLOAT3 getNormalizedLightDirection()
+		{
+			XMVECTOR tmpDirVec = XMLoadFloat3(&m_dirLight.direction);
+			tmpDirVec = XMVector3Normalize(tmpDirVec);
+			XMFLOAT3 tmpDir;
+			XMStoreFloat3(&tmpDir, tmpDirVec);
+			return tmpDir;
+		}
 		void setDirLight(const DirectionLight& dirLight);
 	private:
 		ComPtr<ID3D11Buffer> m_pSceneDirLightCB;

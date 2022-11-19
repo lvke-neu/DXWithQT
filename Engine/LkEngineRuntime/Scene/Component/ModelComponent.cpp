@@ -138,9 +138,9 @@ namespace LkEngine
 
 
 		m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
-
-
 		m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
+		m_pd3dImmediateContext->PSSetShaderResources(1, 1, m_pShadowMapTexture.GetAddressOf());
+		m_pd3dImmediateContext->PSSetSamplers(1, 1, RenderStates::SSShadow.GetAddressOf());
 
 		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
 		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
@@ -152,6 +152,23 @@ namespace LkEngine
 	void SubModelComponent::draw()
 	{
 		bindPipeState();
+		m_pd3dImmediateContext->DrawIndexed(m_indexCount, 0, 0);
+	}
+
+	void SubModelComponent::drawShadowMap()
+	{
+		UINT stride = sizeof(VertexPosNormalTex);
+		UINT offset = 0;
+		m_pd3dImmediateContext->IASetVertexBuffers(0, 1, m_pVertexBuffer.GetAddressOf(), &stride, &offset);
+		m_pd3dImmediateContext->IASetIndexBuffer(m_pIndexBuffer.Get(), DXGI_FORMAT_R32_UINT, 0);
+		m_pd3dImmediateContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		m_pd3dImmediateContext->PSSetShaderResources(0, 1, m_pTexture.GetAddressOf());
+		m_pd3dImmediateContext->PSSetSamplers(0, 1, RenderStates::SSLinearWrap.GetAddressOf());
+
+		m_pd3dImmediateContext->VSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
+		m_pd3dImmediateContext->PSSetConstantBuffers(3, 1, m_pWorldMatrixCB.GetAddressOf());
+
 		m_pd3dImmediateContext->DrawIndexed(m_indexCount, 0, 0);
 	}
 
@@ -292,6 +309,15 @@ namespace LkEngine
 
 	}
 
+	void ModelComponent::drawShadowMap()
+	{
+		if (loadingCompleted)
+		{
+			for (auto& submodel : m_subModelComponents)
+				submodel.drawShadowMap();
+		}
+	}
+
 	UINT ModelComponent::getTriangleCount()
 	{
 		UINT triangleCount = 0;
@@ -300,6 +326,14 @@ namespace LkEngine
 			triangleCount += subModelCom.getTriangleCount();
 		}
 		return triangleCount;
+	}
+
+	void ModelComponent::setShadowMap(ID3D11ShaderResourceView * pSRV)
+	{
+		for (auto& subModelCom : m_subModelComponents)
+		{
+			subModelCom.setShadowMap(pSRV);
+		}
 	}
 
 	std::string ModelComponent::getModelPath() 
@@ -442,4 +476,6 @@ namespace LkEngine
 			setModelPath(funcParameter["modelPath"].GetString());
 		}
 	}
+
+
 }
