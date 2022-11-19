@@ -11,7 +11,7 @@ ApplyMatDlg::ApplyMatDlg(QWidget *parent) :
 {
 	ui->setupUi(this);
 	setWindowTitle("Apply to which component");
-	connect(ui->allComponetCBX, SIGNAL(activated(QString)), this, SLOT(showComponentAxis(QString)));
+	connect(ui->allComponetCBX, SIGNAL(highlighted(QString)), this, SLOT(showComponentAxis(QString)));
 	connect(ui->applyMatPB, &QPushButton::clicked, this, &ApplyMatDlg::confirmMat);
 }
 

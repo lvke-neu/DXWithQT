@@ -19,6 +19,7 @@ namespace LkEngine
 	class SkyBoxComponent;
 	class CameraController;
 	class PickSystem;
+	class ParticleComponent;
 
 	class SceneManager : public ISingleton<SceneManager>, public IManager
 	{
@@ -50,6 +51,7 @@ namespace LkEngine
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };
 		CameraController* m_pCameraController{ nullptr };
+		ParticleComponent* m_pParticleComponent{ nullptr };
 
 		std::map<std::string, IComponent*> m_componets;
 	};

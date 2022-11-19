@@ -62,9 +62,6 @@
     <Filter Include="Scene\Component\Effect">
       <UniqueIdentifier>{cdfa5be2-edc3-4f23-a27b-222fe31a0ce2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Component\Model">
-      <UniqueIdentifier>{33ddb374-ad25-4de6-996e-84bba2e07ed5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene\Pick">
       <UniqueIdentifier>{65011954-d969-4c3d-ad0a-da857370b295}</UniqueIdentifier>
     </Filter>
@@ -85,6 +82,15 @@
     </Filter>
     <Filter Include="Scene\Light">
       <UniqueIdentifier>{338f72b5-d84f-4bad-a45d-225716c63cc9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component\Effect\Model">
+      <UniqueIdentifier>{33ddb374-ad25-4de6-996e-84bba2e07ed5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component\Effect\Particle">
+      <UniqueIdentifier>{0ea6bdbe-ae99-4a6d-8c29-643d1c16d711}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Shader\ParticleComponent">
+      <UniqueIdentifier>{458bf781-d4a8-4719-a769-b4ec9b59002e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -167,7 +173,7 @@
       <Filter>Core\Network Request</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Component\ModelComponent.h">
-      <Filter>Scene\Component\Model</Filter>
+      <Filter>Scene\Component\Effect\Model</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Pick\PickDetection.h">
       <Filter>Scene\Pick</Filter>
@@ -204,6 +210,9 @@
     </ClInclude>
     <ClInclude Include="Scene\Light\LightManager.h">
       <Filter>Scene\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\ParticleComponent.h">
+      <Filter>Scene\Component\Effect\Particle</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -271,7 +280,7 @@
       <Filter>Core\Network Request</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Component\ModelComponent.cpp">
-      <Filter>Scene\Component\Model</Filter>
+      <Filter>Scene\Component\Effect\Model</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Pick\PickDetection.cpp">
       <Filter>Scene\Pick</Filter>
@@ -306,6 +315,9 @@
     <ClCompile Include="Scene\Light\LightManager.cpp">
       <Filter>Scene\Light</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\Component\ParticleComponent.cpp">
+      <Filter>Scene\Component\Effect\Particle</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scene\Shader\CommonShader.hlsli">
@@ -326,6 +338,9 @@
     </None>
     <None Include="Scene\Shader\ModelComponent\ModelComponent.hlsli">
       <Filter>Scene\Shader\ModelComponent</Filter>
+    </None>
+    <None Include="Scene\Shader\ParticleComponent\ParticleComponent.hlsli">
+      <Filter>Scene\Shader\ParticleComponent</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -364,6 +379,12 @@
     </FxCompile>
     <FxCompile Include="Scene\Shader\ModelComponent\ModelComponentVS.hlsl">
       <Filter>Scene\Shader\ModelComponent</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ParticleComponent\ParticleComponentPS.hlsl">
+      <Filter>Scene\Shader\ParticleComponent</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ParticleComponent\ParticleComponentVS.hlsl">
+      <Filter>Scene\Shader\ParticleComponent</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>

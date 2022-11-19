@@ -14,6 +14,7 @@
 #include "Component/ModelComponent.h"
 #include "Component/CylinderComponent.h"
 #include "Component/ConeComponent.h"
+#include "Component/ParticleComponent.h"
 
 #include "Pick/PickSystem.h"
 
@@ -42,8 +43,12 @@ namespace LkEngine
 		));
 
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_pPlaneComponent->setScale(10000.0f, 10000.0f, 10000.f);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
+		m_pParticleComponent = new ParticleComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_pParticleComponent->setPosition(0.0f, 10.0f, 0.0f);
+
 
 		PickSystem::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
 		LightManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
@@ -58,16 +63,25 @@ namespace LkEngine
 		SAFE_DELETE_SET_NULL(m_pPlaneComponent);
 		SAFE_DELETE_SET_NULL(m_pSkyBoxComponent);
 		SAFE_DELETE_SET_NULL(m_pCameraController);
+		SAFE_DELETE_SET_NULL(m_pParticleComponent);
 	}
 
 	void SceneManager::updateScene(float deltaTime)
 	{
+		static float sum = 0.0f;
+		sum += deltaTime;
+		static XMFLOAT3 originPos = m_pParticleComponent->getPosition();
 
+		XMFLOAT3 tmpPos = originPos;
+		tmpPos.y += std::sin(sum) * 50;
+		m_pParticleComponent->setPosition(tmpPos);
 	}
 
 	void SceneManager::drawScene()
 	{		
 		m_pPlaneComponent->draw();
+
+		m_pParticleComponent->draw();
 
 		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
 			if(iter->second)

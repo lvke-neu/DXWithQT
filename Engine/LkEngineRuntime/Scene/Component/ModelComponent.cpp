@@ -244,10 +244,17 @@ namespace LkEngine
 
 	void ModelComponent::processNode(aiNode* node, const aiScene* scene)
 	{
+		
 		for (unsigned int i = 0; i < node->mNumMeshes; i++)
 		{
 			aiMesh* mesh = scene->mMeshes[node->mMeshes[i]];
 			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
+			
+			std::vector<aiBone*> boneVec;
+			for (int j = 0; j < mesh->mNumBones; j++)
+			{
+				boneVec.push_back(mesh->mBones[j]);
+			}
 
 			SubModelComponent subModelComponent(m_pd3dDevice, m_pd3dImmediateContext, mesh, material, m_vsShader, m_psShader);
 
@@ -257,11 +264,15 @@ namespace LkEngine
 				material->GetTexture(aiTextureType_DIFFUSE, j, &str);
 				subModelComponent.setTexture(std::string("builtin\\Model\\") + std::string(str.C_Str()));
 			}
-			
+			if (subModelComponent.getTexture() == "")
+			{
+				subModelComponent.setTexture("builtin\\Texture\\grass.dds");
+			}
 			//mtx.lock();
 			m_subModelComponents.push_back(subModelComponent);
 			//mtx.unlock();
 
+			//break;
 		}
 
 		for (unsigned int i = 0; i < node->mNumChildren; i++)
