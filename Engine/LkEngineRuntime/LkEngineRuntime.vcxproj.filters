@@ -92,6 +92,12 @@
     <Filter Include="Scene\Shader\ParticleComponent">
       <UniqueIdentifier>{458bf781-d4a8-4719-a769-b4ec9b59002e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Shader\ShadowMap">
+      <UniqueIdentifier>{92d7bb16-081e-4b8d-8463-f7ef07112fac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\ShadowMap">
+      <UniqueIdentifier>{e8f4bf19-071a-4246-ba8d-af7d43f14cf2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\base\SingletonInterface.h">
@@ -214,6 +220,9 @@
     <ClInclude Include="Scene\Component\ParticleComponent.h">
       <Filter>Scene\Component\Effect\Particle</Filter>
     </ClInclude>
+    <ClInclude Include="Scene\ShadowMap\ShadowMapManager.h">
+      <Filter>Scene\ShadowMap</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -318,6 +327,9 @@
     <ClCompile Include="Scene\Component\ParticleComponent.cpp">
       <Filter>Scene\Component\Effect\Particle</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\ShadowMap\ShadowMapManager.cpp">
+      <Filter>Scene\ShadowMap</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Scene\Shader\CommonShader.hlsli">
@@ -341,6 +353,9 @@
     </None>
     <None Include="Scene\Shader\ParticleComponent\ParticleComponent.hlsli">
       <Filter>Scene\Shader\ParticleComponent</Filter>
+    </None>
+    <None Include="Scene\Shader\ShadowMap\ShadowMap.hlsli">
+      <Filter>Scene\Shader\ShadowMap</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -385,6 +400,12 @@
     </FxCompile>
     <FxCompile Include="Scene\Shader\ParticleComponent\ParticleComponentVS.hlsl">
       <Filter>Scene\Shader\ParticleComponent</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ShadowMap\ShadowMapPS.hlsl">
+      <Filter>Scene\Shader\ShadowMap</Filter>
+    </FxCompile>
+    <FxCompile Include="Scene\Shader\ShadowMap\ShadowMapVS.hlsl">
+      <Filter>Scene\Shader\ShadowMap</Filter>
     </FxCompile>
   </ItemGroup>
 </Project>
