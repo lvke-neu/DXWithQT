@@ -9,6 +9,7 @@ namespace LkEngine
 	ComPtr<ID3D11RasterizerState> RenderStates::RSNoCull = nullptr;
 	ComPtr<ID3D11RasterizerState> RenderStates::RSWireframe = nullptr;
 	ComPtr<ID3D11RasterizerState> RenderStates::RSCullClockWise = nullptr;
+	ComPtr<ID3D11RasterizerState> RenderStates::RSDepth = nullptr;
 
 	ComPtr<ID3D11BlendState> RenderStates::BSTransparent = nullptr;
 	ComPtr<ID3D11BlendState> RenderStates::BSNoColorWrite = nullptr;
@@ -79,6 +80,16 @@ namespace LkEngine
 		rasterizerDesc.FrontCounterClockwise = true;
 		rasterizerDesc.DepthClipEnable = true;
 		pd3dDevice->CreateRasterizerState(&rasterizerDesc, RSCullClockWise.GetAddressOf());
+
+		rasterizerDesc.FillMode = D3D11_FILL_SOLID;
+		rasterizerDesc.CullMode = D3D11_CULL_BACK;
+		rasterizerDesc.FrontCounterClockwise = false;
+		rasterizerDesc.DepthClipEnable = true;
+		rasterizerDesc.DepthBias = 100000;
+		rasterizerDesc.DepthBiasClamp = 0.0f;
+		rasterizerDesc.SlopeScaledDepthBias = 1.0f;
+		pd3dDevice->CreateRasterizerState(&rasterizerDesc, RSDepth.GetAddressOf());
+
 
 		/*******************************ID3D11BlendState***********************************/
 		D3D11_BLEND_DESC blendDesc;

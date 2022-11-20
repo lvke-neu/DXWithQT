@@ -3,6 +3,7 @@
 #include "../../Asset/AssetManager.h"
 #include "../Component/Common/VertexType.h"
 #include "../Light/LightManager.h"
+#include "../Component/Common/RenderStates.h"
 
 namespace LkEngine
 {
@@ -43,6 +44,8 @@ namespace LkEngine
 		m_pd3dImmediateContext->RSSetViewports(1, &m_OutputViewPort);
 
 		bindPipeState();
+
+		//m_pd3dImmediateContext->RSSetState(RenderStates::RSDepth.Get());
 	}
 
 	void ShadowMapManager::bindPipeState()
@@ -73,6 +76,8 @@ namespace LkEngine
 
 		m_pCacheDSV.Reset();
 		m_pCacheRTV.Reset();
+
+		//m_pd3dImmediateContext->RSSetState(nullptr);
 	}
 
 	void ShadowMapManager::init()
@@ -200,7 +205,7 @@ namespace LkEngine
 		if (m_pd3dImmediateContext)
 		{
 			XMVECTOR dirVec = XMLoadFloat3(&lightDir);
-			XMMATRIX LightView = XMMatrixLookAtLH(dirVec * 20.0f * (-2.0f), g_XMZero, g_XMIdentityR1);
+			XMMATRIX LightView = XMMatrixLookAtLH(dirVec * 200.0f * (-2.0f), g_XMZero, g_XMIdentityR1);
 
 			ViewMatrix viewMatrix;
 			viewMatrix.g_view = XMMatrixTranspose(LightView);
@@ -218,7 +223,7 @@ namespace LkEngine
 				0.0f, 0.0f, 1.0f, 0.0f,
 				0.5f, 0.5f, 0.0f, 1.0f);
 			ShadowTransform shadowTransform;
-			shadowTransform.g_ShadowTransform = XMMatrixTranspose(LightView * XMMatrixOrthographicLH(40.0f, 40.0f, 20.0f, 60.0f) * T);
+			shadowTransform.g_ShadowTransform = XMMatrixTranspose(LightView * XMMatrixOrthographicLH(400.0f, 400.0f, 20.0f, 6000.0f) * T);
 			m_pd3dImmediateContext->Map(m_pShadowTransformCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
 			memcpy_s(mappedData.pData, sizeof(ShadowTransform), &shadowTransform, sizeof(ShadowTransform));
 			m_pd3dImmediateContext->Unmap(m_pShadowTransformCB.Get(), 0);
@@ -229,7 +234,7 @@ namespace LkEngine
 	void ShadowMapManager::setProjMatrix()
 	{
 		ProjMatrix projMatrix;
-		projMatrix.g_orthographiProj = XMMatrixTranspose(XMMatrixOrthographicLH(40.0f, 40.0f, 20.0f, 60.0f));
+		projMatrix.g_orthographiProj = XMMatrixTranspose(XMMatrixOrthographicLH(400.0f, 400.0f, 20.0f, 6000.0f));
 
 		D3D11_MAPPED_SUBRESOURCE mappedData;
 		m_pd3dImmediateContext->Map(m_pProjMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);

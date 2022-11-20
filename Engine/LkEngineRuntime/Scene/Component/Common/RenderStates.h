@@ -18,6 +18,7 @@ namespace LkEngine
 		static ComPtr<ID3D11RasterizerState> RSWireframe;
 		static ComPtr<ID3D11RasterizerState> RSNoCull;
 		static ComPtr<ID3D11RasterizerState> RSCullClockWise;
+		static ComPtr<ID3D11RasterizerState> RSDepth;						
 
 		static ComPtr<ID3D11BlendState> BSTransparent;
 		static ComPtr<ID3D11BlendState> BSNoColorWrite;
