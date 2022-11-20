@@ -1,9 +1,10 @@
 #include "ShadowMapManager.h"
 #include "../../Core/base/Utility.h"
 #include "../../Asset/AssetManager.h"
-#include "../Component/Common/VertexType.h"
 #include "../Light/LightManager.h"
 #include "../Component/Common/RenderStates.h"
+#include "../Component/PlaneComponent.h"
+#include "../Component/Common/VertexType.h"
 
 namespace LkEngine
 {
@@ -205,7 +206,7 @@ namespace LkEngine
 		if (m_pd3dImmediateContext)
 		{
 			XMVECTOR dirVec = XMLoadFloat3(&lightDir);
-			XMMATRIX LightView = XMMatrixLookAtLH(dirVec * 200.0f * (-2.0f), g_XMZero, g_XMIdentityR1);
+			XMMATRIX LightView = XMMatrixLookAtLH(dirVec * m_lightDiscoefficient * (-2.0f), g_XMZero, g_XMIdentityR1);
 
 			ViewMatrix viewMatrix;
 			viewMatrix.g_view = XMMatrixTranspose(LightView);
@@ -223,7 +224,7 @@ namespace LkEngine
 				0.0f, 0.0f, 1.0f, 0.0f,
 				0.5f, 0.5f, 0.0f, 1.0f);
 			ShadowTransform shadowTransform;
-			shadowTransform.g_ShadowTransform = XMMatrixTranspose(LightView * XMMatrixOrthographicLH(400.0f, 400.0f, 20.0f, 6000.0f) * T);
+			shadowTransform.g_ShadowTransform = XMMatrixTranspose(LightView * XMMatrixOrthographicLH(m_viewWidth, m_viewHeight, m_nearZ, m_farZ) * T);
 			m_pd3dImmediateContext->Map(m_pShadowTransformCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);
 			memcpy_s(mappedData.pData, sizeof(ShadowTransform), &shadowTransform, sizeof(ShadowTransform));
 			m_pd3dImmediateContext->Unmap(m_pShadowTransformCB.Get(), 0);
@@ -231,10 +232,43 @@ namespace LkEngine
 
 	}
 
+	void ShadowMapManager::changeOrthographicProjMat(float viewWidth, float viewHeight, float nearZ, float farZ, float lightDiscoefficient)
+	{
+		
+		m_viewWidth = viewWidth;
+		m_viewHeight = viewHeight;
+		m_nearZ = nearZ;
+		m_farZ = farZ;
+		m_lightDiscoefficient = lightDiscoefficient;
+		setViewMatrix(LightManager::getInstance().getNormalizedLightDirection());
+		setProjMatrix();
+		
+	}
+
+	void ShadowMapManager::buildAndApplyShadowMap(PlaneComponent* planeComponent, const std::map<std::string, IComponent*>& componets)
+	{
+		/****************************** Build Shadow Map ****************************************************/
+		begin(nullptr);
+		if(m_enableShadowRange && planeComponent)
+			planeComponent->drawShadowMap();
+		for (auto iter = componets.begin(); iter != componets.end(); iter++)
+			if (iter->second)
+				iter->second->drawShadowMap();
+		end();
+
+		/********************************** Apply Shadow Map ************************************************/
+		if(planeComponent)
+			planeComponent->setShadowMap(GetOutputTexture());
+		for (auto iter = componets.begin(); iter != componets.end(); iter++)
+			if (iter->second)
+				iter->second->setShadowMap(ShadowMapManager::getInstance().GetOutputTexture());
+
+	}
+
 	void ShadowMapManager::setProjMatrix()
 	{
 		ProjMatrix projMatrix;
-		projMatrix.g_orthographiProj = XMMatrixTranspose(XMMatrixOrthographicLH(400.0f, 400.0f, 20.0f, 6000.0f));
+		projMatrix.g_orthographiProj = XMMatrixTranspose(XMMatrixOrthographicLH(m_viewWidth, m_viewHeight, m_nearZ, m_farZ));
 
 		D3D11_MAPPED_SUBRESOURCE mappedData;
 		m_pd3dImmediateContext->Map(m_pProjMatrixCB.Get(), 0, D3D11_MAP_WRITE_DISCARD, 0, &mappedData);

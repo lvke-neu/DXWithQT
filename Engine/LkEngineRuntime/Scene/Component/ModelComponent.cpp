@@ -268,7 +268,7 @@ namespace LkEngine
 			aiMaterial* material = scene->mMaterials[mesh->mMaterialIndex];
 			
 			std::vector<aiBone*> boneVec;
-			for (int j = 0; j < mesh->mNumBones; j++)
+			for (unsigned int j = 0; j < mesh->mNumBones; j++)
 			{
 				boneVec.push_back(mesh->mBones[j]);
 			}

@@ -60,6 +60,13 @@ void LightForm::initLightProperty()
 	connect(ui->ambientColor, SIGNAL(clicked(bool)), this, SLOT(setLightColor()));
 	connect(ui->diffuseColor, SIGNAL(clicked(bool)), this, SLOT(setLightColor()));
 	connect(ui->specularColor, SIGNAL(clicked(bool)), this, SLOT(setLightColor()));
+
+	connect(ui->ViewWidth, SIGNAL(valueChanged(double)), this, SLOT(setShadowOrthographicProjMat()));
+	connect(ui->ViewHeight, SIGNAL(valueChanged(double)), this, SLOT(setShadowOrthographicProjMat()));
+	connect(ui->NearZ, SIGNAL(valueChanged(double)), this, SLOT(setShadowOrthographicProjMat()));
+	connect(ui->FarZ, SIGNAL(valueChanged(double)), this, SLOT(setShadowOrthographicProjMat()));
+	connect(ui->lightDiscoefficient, SIGNAL(valueChanged(double)), this, SLOT(setShadowOrthographicProjMat()));
+	connect(ui->showShadowRange, SIGNAL(toggled(bool)), this, SLOT(onButtonClicked(bool)));
 }
 
 void LightForm::setLightProperty()
@@ -143,3 +150,12 @@ void LightForm::setLightColor()
 	}
 }
 
+void LightForm::setShadowOrthographicProjMat()
+{
+	LkEngine::Engine::getInstance().changeOrthographicProjMat(ui->ViewWidth->value(), ui->ViewHeight->value(), ui->NearZ->value(), ui->FarZ->value(), ui->lightDiscoefficient->value());
+}
+
+void LightForm::onButtonClicked(bool flag)
+{
+	LkEngine::Engine::getInstance().enableShadowRange(flag);
+}

@@ -47,6 +47,8 @@ namespace LkEngine
 		void setDirLight(const DirectionLight& dirLight) {LightManager::getInstance().setDirLight(dirLight);}
 		std::vector<std::string> getAllComponetUuid(); 
 		IComponent* getComponentByUuid(const std::string& uuid);
+		void changeOrthographicProjMat(float viewWidth, float viewHeight, float nearZ, float farZ, float lightDiscoefficient);
+		void enableShadowRange(bool flag); 
 	private:
 		PlaneComponent* m_pPlaneComponent{ nullptr };
 		SkyBoxComponent* m_pSkyBoxComponent{ nullptr };

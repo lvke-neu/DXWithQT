@@ -114,7 +114,13 @@
   </action>
   <action name="light">
    <property name="text">
-    <string>光照配置</string>
+    <string>光照&amp;阴影配置</string>
+   </property>
+   <property name="iconText">
+    <string>光照&amp;阴影配置</string>
+   </property>
+   <property name="toolTip">
+    <string>光照&amp;阴影配置</string>
    </property>
    <property name="shortcut">
     <string>F3</string>

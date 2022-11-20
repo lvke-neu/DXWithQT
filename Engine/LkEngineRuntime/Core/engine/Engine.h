@@ -52,6 +52,8 @@ namespace LkEngine
 		void setDirLight(const DirectionLight& dirLight) { SceneManager::getInstance().setDirLight(dirLight); }
 		std::vector<std::string> getAllComponetUuid() { return SceneManager::getInstance().getAllComponetUuid(); }
 		IComponent * getComponentByUuid(const std::string & uuid) { return SceneManager::getInstance().getComponentByUuid(uuid); }
+		void changeOrthographicProjMat(float viewWidth, float viewHeight, float nearZ, float farZ, float lightDiscoefficient) { SceneManager::getInstance().changeOrthographicProjMat(viewWidth, viewHeight, nearZ, farZ, lightDiscoefficient); }
+		void enableShadowRange(bool flag) { SceneManager::getInstance().enableShadowRange(flag); }
 
 		Transform getCameraTransform() { return CameraManager::getInstance().getTransform(); }
 		void setCameraTransform(const Transform& transform) { CameraManager::getInstance().setTransform(transform); }

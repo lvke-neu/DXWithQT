@@ -18,6 +18,8 @@ public:
 public slots:
 	void setLightProperty();
 	void setLightColor();
+	void setShadowOrthographicProjMat();
+	void onButtonClicked(bool flag);
 private:
 	Ui::LightForm *ui;
 

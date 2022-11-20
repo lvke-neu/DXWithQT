@@ -81,34 +81,15 @@ namespace LkEngine
 
 	void SceneManager::drawScene()
 	{	
-		/**********************************************************************************/
-		ShadowMapManager::getInstance().begin(nullptr);
-		//m_pPlaneComponent->drawShadowMap();
-		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
-			if (iter->second)
-				iter->second->drawShadowMap();
-		ShadowMapManager::getInstance().end();
-		/**********************************************************************************/
+		/****************************** Shadow Map ****************************************************/
+		ShadowMapManager::getInstance().buildAndApplyShadowMap(m_pPlaneComponent, m_componets);
 
-
-
-
-		/**********************************************************************************/
-		m_pPlaneComponent->setShadowMap(ShadowMapManager::getInstance().GetOutputTexture());
-		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
-			if (iter->second)
-				iter->second->setShadowMap(ShadowMapManager::getInstance().GetOutputTexture());
-		/**********************************************************************************/
-
-
+		/****************************** Draw  ****************************************************/
 		m_pPlaneComponent->draw();
-
 		for (auto iter = m_componets.begin(); iter != m_componets.end(); iter++)
 			if(iter->second)
 				iter->second->draw();
-
 		PickSystem::getInstance().drawAxis();
-
 		m_pSkyBoxComponent->draw();
 	}
 	 
@@ -355,6 +336,15 @@ namespace LkEngine
 			return iter->second;
 		}
 		return nullptr;
+	}
+
+	void SceneManager::changeOrthographicProjMat(float viewWidth, float viewHeight, float nearZ, float farZ, float lightDiscoefficient)
+	{
+		ShadowMapManager::getInstance().changeOrthographicProjMat(viewWidth, viewHeight, nearZ, farZ, lightDiscoefficient);
+	}
+	void SceneManager::enableShadowRange(bool flag)
+	{
+		ShadowMapManager::getInstance().enableShadowRange(flag);
 	}
 }
 

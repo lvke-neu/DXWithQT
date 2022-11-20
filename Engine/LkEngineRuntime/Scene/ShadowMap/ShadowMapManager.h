@@ -8,10 +8,14 @@ ShadowMap Manager
 #include "../../Core/base/SingletonInterface.h"
 #include "../../Core/base/ManagerInterface.h"
 #include <DirectXMath.h>
+#include <map>
 
+using namespace DirectX;
 namespace LkEngine
 {
-	using namespace DirectX;
+	class IComponent;
+	class PlaneComponent;
+
 	class ShadowMapManager : public ISingleton<ShadowMapManager>, public IManager
 	{
 		
@@ -36,6 +40,9 @@ namespace LkEngine
 		void end();
 		ID3D11ShaderResourceView* GetOutputTexture() { return m_pOutputTextureSRV.Get(); }
 		void setViewMatrix(const XMFLOAT3& lightDir);
+		void changeOrthographicProjMat(float viewWidth, float viewHeight, float nearZ, float farZ, float lightDiscoefficient);
+		void enableShadowRange(bool flag) { m_enableShadowRange = flag; }
+		void buildAndApplyShadowMap(PlaneComponent* planeComponent, const std::map<std::string, IComponent*>& componets);
 	private:
 		virtual void init() override;
 		void initResource(int texWidth, int texHeight, bool shadowMap = false, bool generateMips = false);
@@ -63,5 +70,13 @@ namespace LkEngine
 		ComPtr<ID3D11Buffer> m_pViewMatrixCB{ nullptr };
 		ComPtr<ID3D11Buffer> m_pProjMatrixCB{ nullptr };
 		ComPtr<ID3D11Buffer> m_pShadowTransformCB{ nullptr };
+	private:
+		float m_viewWidth = 400.0f;
+		float m_viewHeight = 400.0f;
+		float m_nearZ = 20.0f;
+		float m_farZ = 6000.0f;
+		float m_lightDiscoefficient = 200.0f;
+
+		bool m_enableShadowRange = false;
 	};
 }

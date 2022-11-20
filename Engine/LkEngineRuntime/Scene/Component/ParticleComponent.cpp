@@ -53,7 +53,7 @@ namespace LkEngine
 		VertexPos vertices[PARTICLE_COUNT];
 		//vertices[0].position = XMFLOAT3(0.0f, 0.0f, 0.0f);
 		for(int i = 0; i< PARTICLE_COUNT;i++)
-			vertices[i].position = XMFLOAT3(rand() % PARTICLE_RANGE, rand() % PARTICLE_RANGE, rand() % PARTICLE_RANGE);
+			vertices[i].position = XMFLOAT3(float(rand() % PARTICLE_RANGE), float(rand() % PARTICLE_RANGE), float(rand() % PARTICLE_RANGE));
 
 		// VertexBuffer
 		D3D11_BUFFER_DESC vbd;
