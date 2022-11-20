@@ -35,6 +35,16 @@
          <string>desertcube1024.dds</string>
         </property>
        </item>
+       <item>
+        <property name="text">
+         <string>grasscube1024.dds</string>
+        </property>
+       </item>
+       <item>
+        <property name="text">
+         <string>null</string>
+        </property>
+       </item>
       </widget>
      </item>
     </layout>

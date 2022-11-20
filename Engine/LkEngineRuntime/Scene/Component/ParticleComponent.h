@@ -20,5 +20,6 @@ namespace LkEngine
 		virtual void createVertexLayout(const ComPtr<ID3DBlob>& blob) override;
 		virtual void bindPipeState() override;
 		virtual void draw() override;
+		virtual void drawShadowMap() {};
 	};
 }

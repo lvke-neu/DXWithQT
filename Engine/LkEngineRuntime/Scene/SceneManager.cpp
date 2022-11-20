@@ -43,12 +43,10 @@ namespace LkEngine
 		));
 
 		m_pPlaneComponent = new PlaneComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		//m_pPlaneComponent->setScale(1000.0f, 1000.0f, 100.0f);
 		m_pSkyBoxComponent = new SkyBoxComponent(m_pd3dDevice, m_pd3dImmediateContext);
 		m_pCameraController = new CameraController;
-		//m_pParticleComponent = new ParticleComponent(m_pd3dDevice, m_pd3dImmediateContext);
-		//m_pParticleComponent->setPosition(0.0f, 10.0f, 0.0f);
-
+		m_pParticleComponent = new ParticleComponent(m_pd3dDevice, m_pd3dImmediateContext);
+		m_pParticleComponent->setPosition(0.0f, 10.0f, 0.0f);
 
 		PickSystem::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
 		LightManager::getInstance().initialize(m_pd3dDevice, m_pd3dImmediateContext);
@@ -70,13 +68,13 @@ namespace LkEngine
 
 	void SceneManager::updateScene(float deltaTime)
 	{
-		//static float sum = 0.0f;
-		//sum += deltaTime;
-		//static XMFLOAT3 originPos = m_pParticleComponent->getPosition();
+		static float sum = 0.0f;
+		sum += deltaTime;
+		static XMFLOAT3 originPos = m_pParticleComponent->getPosition();
 
-		//XMFLOAT3 tmpPos = originPos;
-		//tmpPos.y += std::sin(sum) * 50;
-		//m_pParticleComponent->setPosition(tmpPos);
+		XMFLOAT3 tmpPos = originPos;
+		tmpPos.y += std::sin(sum) * 50;
+		m_pParticleComponent->setPosition(tmpPos);
 	}
 
 	void SceneManager::drawScene()
@@ -90,6 +88,7 @@ namespace LkEngine
 			if(iter->second)
 				iter->second->draw();
 		PickSystem::getInstance().drawAxis();
+		m_pParticleComponent->draw();
 		m_pSkyBoxComponent->draw();
 	}
 	 
