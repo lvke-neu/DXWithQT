@@ -223,6 +223,21 @@
     <ClInclude Include="Scene\ShadowMap\ShadowMapManager.h">
       <Filter>Scene\ShadowMap</Filter>
     </ClInclude>
+    <ClInclude Include="Core\serialization\ClassFactory.h">
+      <Filter>Core\serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\serialization\ClassField.h">
+      <Filter>Core\serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\serialization\ClassMethod.h">
+      <Filter>Core\serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\serialization\ClassRegister.h">
+      <Filter>Core\serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\serialization\Singleton.h">
+      <Filter>Core\serialization</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\log\LogManager.cpp">
@@ -329,6 +344,9 @@
     </ClCompile>
     <ClCompile Include="Scene\ShadowMap\ShadowMapManager.cpp">
       <Filter>Scene\ShadowMap</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\serialization\ClassFactory.cpp">
+      <Filter>Core\serialization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

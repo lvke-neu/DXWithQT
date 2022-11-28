@@ -9,6 +9,7 @@ ShadowMap Manager
 #include "../../Core/base/ManagerInterface.h"
 #include <DirectXMath.h>
 #include <map>
+#include <string>
 
 using namespace DirectX;
 namespace LkEngine
