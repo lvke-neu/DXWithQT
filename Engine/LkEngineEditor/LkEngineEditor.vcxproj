@@ -74,6 +74,7 @@
     </Link>
     <ClCompile>
       <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/;../../thirdparty/assimp/include/</AdditionalIncludeDirectories>
+      <PreprocessorDefinitions>$(Qt_DEFINES_);%(PreprocessorDefinitions);_DEBUG</PreprocessorDefinitions>
     </ClCompile>
     <QtUic>
       <QtUicDir>$(IntDir)uic\</QtUicDir>
@@ -95,6 +96,7 @@
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/;../../thirdparty/assimp/include/</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
+      <PreprocessorDefinitions>$(Qt_DEFINES_);%(PreprocessorDefinitions);NDEBUG;</PreprocessorDefinitions>
     </ClCompile>
     <QtUic>
       <QtUicDir>$(IntDir)uic\</QtUicDir>
