@@ -4,11 +4,28 @@
     <None Include="cpp.hint" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Reflection">
+    <Filter Include="Core">
+      <UniqueIdentifier>{e0f53acf-4ec9-4242-8bea-569d3efc752a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Reflection">
       <UniqueIdentifier>{217d4774-bb8e-4d60-999c-2b66bfe4a930}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Interface">
+      <UniqueIdentifier>{0666747c-676d-4e10-a0dd-fb09d4564acf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Core\Reflection\ReflectionManager.cpp">
+      <Filter>Core\Reflection</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Core\Interface\SingletonInterface.h">
+      <Filter>Core\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Reflection\ReflectionManager.h">
+      <Filter>Core\Reflection</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
