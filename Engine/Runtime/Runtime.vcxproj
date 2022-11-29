@@ -160,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Core\Reflection\ReflectionManager.cpp" />
+    <ClCompile Include="Core\Serialization\DataStream.cpp" />
     <ClCompile Include="Core\Serialization\SerializationManager.cpp" />
     <ClCompile Include="Core\Utility\Utility.cpp" />
     <ClCompile Include="main.cpp" />
@@ -167,6 +168,8 @@
   <ItemGroup>
     <ClInclude Include="Core\Interface\SingletonInterface.h" />
     <ClInclude Include="Core\Reflection\ReflectionManager.h" />
+    <ClInclude Include="Core\Serialization\DataStream.h" />
+    <ClInclude Include="Core\Serialization\Serialization.h" />
     <ClInclude Include="Core\Serialization\SerializationManager.h" />
     <ClInclude Include="Core\Utility\Utility.h" />
   </ItemGroup>

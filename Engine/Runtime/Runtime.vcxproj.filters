@@ -31,6 +31,9 @@
     <ClCompile Include="Core\Serialization\SerializationManager.cpp">
       <Filter>Core\Serialization</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Serialization\DataStream.cpp">
+      <Filter>Core\Serialization</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Interface\SingletonInterface.h">
@@ -43,6 +46,12 @@
       <Filter>Core\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Core\Serialization\SerializationManager.h">
+      <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Serialization\DataStream.h">
+      <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Serialization\Serialization.h">
       <Filter>Core\Serialization</Filter>
     </ClInclude>
   </ItemGroup>

@@ -6,17 +6,32 @@ Serialization Manager
 ****************************************************************************************/
 #pragma once
 
-#include <string>
 #include "../Interface/SingletonInterface.h"
+#include "DataStream.h"
 
 namespace Twinkle
 {
-	class ReflectionObject;
 	class SerializationManager
 	{
 		FRIEND_SINGLETON(SerializationManager);
 	public:
-		void Serialize(ReflectionObject* objectIn, std::string& objectDesOut);
-		void Unserialize(const std::string& objectDesIn, ReflectionObject*& objectOut);
+		template<class T>
+		void Serialize(const T& t_In, DataStream& dataStream_Out);
+
+		template<class T>
+		void UnSerialize(DataStream& dataStream_In, T& t_Out);
 	};
+
+
+	template<class T>
+	void SerializationManager::Serialize(const T& t_In, DataStream& dataStream_Out)
+	{
+		dataStream_Out << t_In;
+	}
+
+	template<class T>
+	void SerializationManager::UnSerialize(DataStream& dataStream_In, T& t_Out)
+	{
+		dataStream_In >> t_Out;
+	}
 }
