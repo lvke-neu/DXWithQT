@@ -28,8 +28,6 @@ namespace Twinkle
 		return Singleton<ReflectionManager>::GetInstance().get_field(m_className, fieldName);
 	}
 
-
-
 	void ReflectionManager::register_class(const std::string & className, create_object method)
 	{
 		m_classMap[className] = method;
@@ -54,7 +52,7 @@ namespace Twinkle
 
 	ClassField* ReflectionManager::get_field(const std::string& className, uint32_t pos)
 	{
-		size_t size = m_classFieldMap.size();
+		size_t size = m_classFieldMap[className].size();
 		if (pos < 0 || pos >= size)
 			return nullptr;
 		return m_classFieldMap[className][pos];

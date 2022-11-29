@@ -2,7 +2,7 @@
 Author: lvke
 Date:2022/11/28 21:56
 Description:
-
+Reflection Manager
 ****************************************************************************************/
 #pragma once
 
@@ -115,7 +115,7 @@ namespace Twinkle
 
 	class ReflectionManager
 	{
-		friend class Singleton<ReflectionManager>;
+		FRIEND_SINGLETON(ReflectionManager);
 	public:
 		void register_class(const std::string& className, create_object method);
 		ReflectionObject* create_class(const std::string& className);
@@ -173,9 +173,17 @@ namespace Twinkle
 	}\
 	ClassRegister classRegister##className(#className, createObject##className);
 
-#define REGISTER_CLASS_FIELD(className, fieldName, fieldType) \
+#define GENERATE_ADDRES_FUNC(fieldName) \
+public:\
+	size_t get##fieldName##Address()\
+	{\
+		return (size_t)&m_##fieldName;\
+	}\
+private:
+
+#define REGISTER_CLASS_FIELD(className, fieldName, fieldType, offsetFuncName) \
     className className##fieldName; \
-    ClassRegister classRegister##className##fieldName(#className, #fieldName, #fieldType, (size_t)(&(className##fieldName.fieldName)) - (size_t)(&className##fieldName))
+    ClassRegister classRegister##className##fieldName(#className, #fieldName, #fieldType, className##fieldName.offsetFuncName() - (size_t)(&className##fieldName))
 	
 #define REGISTER_CLASS_METHOD(className, methodName, returnType, ...) \
     std::function<returnType(className *, ##__VA_ARGS__)> className##methodName##method = &className::methodName; \

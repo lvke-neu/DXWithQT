@@ -16,6 +16,9 @@
     <Filter Include="Core\Utility">
       <UniqueIdentifier>{285defb1-3d70-4cdd-b72c-e7ad24cd4709}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Serialization">
+      <UniqueIdentifier>{d1b647b6-58ac-4d90-b2aa-2788cc55d788}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -24,6 +27,9 @@
     </ClCompile>
     <ClCompile Include="Core\Utility\Utility.cpp">
       <Filter>Core\Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Serialization\SerializationManager.cpp">
+      <Filter>Core\Serialization</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -35,6 +41,9 @@
     </ClInclude>
     <ClInclude Include="Core\Utility\Utility.h">
       <Filter>Core\Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Serialization\SerializationManager.h">
+      <Filter>Core\Serialization</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

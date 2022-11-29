@@ -23,4 +23,7 @@ namespace Twinkle
 		Singleton(const Singleton&) = default;
 		Singleton& operator=(const Singleton&) = default;
 	};
+
+#define FRIEND_SINGLETON(T) \
+	friend class Singleton<T>;
 }
