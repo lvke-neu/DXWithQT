@@ -74,6 +74,39 @@ namespace Twinkle
 		return nullptr;
 	}
 
+	void ReflectionManager::register_class_method(const std::string& className, const std::string& methodName, uintptr_t method)
+	{
+		m_classMethodMap[className].push_back(new ClassMethod(methodName, method));
+	}
+
+	size_t ReflectionManager::get_class_method_count(const std::string& className)
+	{
+		return m_classMethodMap[className].size();
+	}
+
+	ClassMethod* ReflectionManager::get_class_method(const std::string& className, int pos)
+	{
+		size_t size = m_classMethodMap[className].size();
+		if (pos < 0 || pos >= size)
+		{
+			return nullptr;
+		}
+		return m_classMethodMap[className][pos];
+	}
+
+	ClassMethod* ReflectionManager::get_class_method(const std::string& className, const std::string& methodName)
+	{
+		auto methods = m_classMethodMap[className];
+		for (auto it = methods.begin(); it != methods.end(); it++)
+		{
+			if ((*it)->name() == methodName)
+			{
+				return *it;
+			}
+		}
+		return nullptr;
+	}
+
 	ReflectionManager::~ReflectionManager()
 	{
 		for (auto& classFieldMap : m_classFieldMap)
@@ -81,6 +114,14 @@ namespace Twinkle
 			for (auto& classField : classFieldMap.second)
 			{
 				SAFE_DELETE_SETNULL(classField);
+			}
+		}
+
+		for (auto& classMethodMap : m_classMethodMap)
+		{
+			for (auto& classMethod : classMethodMap.second)
+			{
+				SAFE_DELETE_SETNULL(classMethod);
 			}
 		}
 	}

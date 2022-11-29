@@ -22,6 +22,11 @@ public:
 	{
 		std::cout << "Hello, B" << std::endl;
 	}
+	int testRelectMethod()
+	{
+		std::cout << "Hello, testRelectMethod" << std::endl;
+		return 1;
+	}
 public:
 	std::string m_name = "lvke";
 	int m_age = 250;
@@ -31,6 +36,7 @@ public:
 REGISTER_CLASS(B);
 REGISTER_CLASS_FIELD(B, m_name, std::string);
 REGISTER_CLASS_FIELD(B, m_age, int);
+REGISTER_CLASS_METHOD(B, testRelectMethod, int);
 //REGISTER_CLASS_FIELD(B, m_vector, std::vector<int>);
 
 class C
@@ -73,10 +79,7 @@ int main()
 	B* b = dynamic_cast<B*>(obj);
 	if (b)
 	{
-
-		std::cout << b->get_class_name()<< std::endl;		
-		std::cout << obj->get_field_count()<< std::endl;
-
+		std::cout << b->call<std::string>("testRelectMethod") << std::endl;
 	}
 		
 

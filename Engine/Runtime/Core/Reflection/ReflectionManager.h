@@ -9,6 +9,7 @@ Description:
 #include <string>
 #include <map>
 #include <vector>
+#include <functional>
 #include "../Interface/SingletonInterface.h"
 
 namespace Twinkle
@@ -29,6 +30,30 @@ namespace Twinkle
 		std::string m_name;
 		std::string m_type;
 		size_t m_offset;
+	};
+	/************************************************************************/
+
+	/*************************** Class Method ******************************/
+	class ClassMethod
+	{
+	public:
+		ClassMethod() : m_name(""), m_method(0) {}
+		ClassMethod(const std::string& name, uintptr_t method) : m_name(name), m_method(method) {}
+		~ClassMethod() {}
+
+		std::string name()
+		{
+			return m_name;
+		}
+
+		uintptr_t method()
+		{
+			return m_method;
+		}
+
+	private:
+		std::string m_name;
+		uintptr_t m_method;
 	};
 	/************************************************************************/
 
@@ -53,6 +78,9 @@ namespace Twinkle
 
 		template<typename T>
 		void set(const std::string& fieldName, const T& value);
+
+		template <typename R = void, typename ...Args>
+		R call(const std::string& methodName, Args... args);
 	private:
 		std::string m_className{ "" };
 	};
@@ -70,6 +98,15 @@ namespace Twinkle
 		size_t offset = Singleton<ReflectionManager>::GetInstance().get_field(m_className, fieldName)->offset();
 		*(T*)((unsigned char*)(this) + offset) = value;
 	}
+
+	template <typename R, typename ...Args>
+	R ReflectionObject::call(const std::string& methodName, Args... args)
+	{
+		auto func = Singleton<ReflectionManager>::GetInstance().get_class_method(m_className, methodName)->method();
+		typedef std::function<R(decltype(this), Args...)> class_method;
+		return (*((class_method*)func))(this, args...);
+	}
+
 	/************************************************************************/
 
 
@@ -87,6 +124,11 @@ namespace Twinkle
 		size_t get_field_count(const std::string& className);
 		ClassField* get_field(const std::string& className, uint32_t pos);
 		ClassField* get_field(const std::string& className, const std::string& fieldName);
+
+		void register_class_method(const std::string& className, const std::string& methodName, uintptr_t method);
+		size_t get_class_method_count(const std::string& className);
+		ClassMethod* get_class_method(const std::string& className, int pos);
+		ClassMethod* get_class_method(const std::string& className, const std::string& methodName);
 	private:
 		ReflectionManager() = default;
 		virtual ~ReflectionManager();
@@ -95,6 +137,7 @@ namespace Twinkle
 	private:
 		std::map<std::string, create_object> m_classMap;
 		std::map<std::string, std::vector<ClassField*>> m_classFieldMap;
+		std::map<std::string, std::vector<ClassMethod*>> m_classMethodMap;
 	};
 	/************************************************************************/
 
@@ -110,6 +153,11 @@ namespace Twinkle
 		ClassRegister(const std::string& className, const std::string& fieldName, const std::string& fieldType, size_t offset)
 		{
 			Singleton<ReflectionManager>::GetInstance().register_class_field(className, fieldName, fieldType, offset);
+		}
+		ClassRegister(const std::string& className, const std::string& methodName, uintptr_t method)
+		{
+			// register class method
+			Singleton<ReflectionManager>::GetInstance().register_class_method(className, methodName, method);
 		}
 	};
 	/************************************************************************/
@@ -128,5 +176,9 @@ namespace Twinkle
 #define REGISTER_CLASS_FIELD(className, fieldName, fieldType) \
     className className##fieldName; \
     ClassRegister classRegister##className##fieldName(#className, #fieldName, #fieldType, (size_t)(&(className##fieldName.fieldName)) - (size_t)(&className##fieldName))
+	
+#define REGISTER_CLASS_METHOD(className, methodName, returnType, ...) \
+    std::function<returnType(className *, ##__VA_ARGS__)> className##methodName##method = &className::methodName; \
+    ClassRegister classRegister##className##methodName(#className, #methodName, (uintptr_t)&(className##methodName##method))
 	/************************************************************************/
 }
