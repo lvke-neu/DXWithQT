@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
-  <ItemGroup>
     <Filter Include="Core">
       <UniqueIdentifier>{e0f53acf-4ec9-4242-8bea-569d3efc752a}</UniqueIdentifier>
     </Filter>
@@ -19,6 +16,15 @@
     <Filter Include="Core\Serialization">
       <UniqueIdentifier>{d1b647b6-58ac-4d90-b2aa-2788cc55d788}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Engine">
+      <UniqueIdentifier>{b7956f01-fd2a-408d-80da-3787dd6851b2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Log">
+      <UniqueIdentifier>{a05737db-d8df-428e-a6d0-6facb603930b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Timer">
+      <UniqueIdentifier>{15f358ce-0e4d-4487-9953-37b726b1b0eb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -33,6 +39,15 @@
     </ClCompile>
     <ClCompile Include="Core\Serialization\DataStream.cpp">
       <Filter>Core\Serialization</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Engine\Engine.cpp">
+      <Filter>Core\Engine</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Log\LogManager.cpp">
+      <Filter>Core\Log</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Timer\GameTimer.cpp">
+      <Filter>Core\Timer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -53,6 +68,21 @@
     </ClInclude>
     <ClInclude Include="Core\Serialization\Serialization.h">
       <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Serialization\testSerialization.h">
+      <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Reflection\testReflection.h">
+      <Filter>Core\Reflection</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Engine\Engine.h">
+      <Filter>Core\Engine</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Log\LogManager.h">
+      <Filter>Core\Log</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Timer\GameTimer.h">
+      <Filter>Core\Timer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

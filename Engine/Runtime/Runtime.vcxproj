@@ -40,13 +40,13 @@
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v142</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -92,6 +92,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
+      <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <BuildLog>
       <Path>$(IntDir)$(MSBuildProjectName)_d.log</Path>
@@ -147,6 +148,7 @@
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalDependencies>d3d11.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <Lib>
       <AdditionalDependencies>libcurl.lib;assimp-vc141-mt.lib;%(AdditionalDependencies)</AdditionalDependencies>
@@ -156,21 +158,26 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="cpp.hint" />
-  </ItemGroup>
-  <ItemGroup>
+    <ClCompile Include="Core\Engine\Engine.cpp" />
+    <ClCompile Include="Core\Log\LogManager.cpp" />
     <ClCompile Include="Core\Reflection\ReflectionManager.cpp" />
     <ClCompile Include="Core\Serialization\DataStream.cpp" />
     <ClCompile Include="Core\Serialization\SerializationManager.cpp" />
+    <ClCompile Include="Core\Timer\GameTimer.cpp" />
     <ClCompile Include="Core\Utility\Utility.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Engine\Engine.h" />
     <ClInclude Include="Core\Interface\SingletonInterface.h" />
+    <ClInclude Include="Core\Log\LogManager.h" />
     <ClInclude Include="Core\Reflection\ReflectionManager.h" />
+    <ClInclude Include="Core\Reflection\testReflection.h" />
     <ClInclude Include="Core\Serialization\DataStream.h" />
     <ClInclude Include="Core\Serialization\Serialization.h" />
     <ClInclude Include="Core\Serialization\SerializationManager.h" />
+    <ClInclude Include="Core\Serialization\testSerialization.h" />
+    <ClInclude Include="Core\Timer\GameTimer.h" />
     <ClInclude Include="Core\Utility\Utility.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
