@@ -25,6 +25,9 @@
     <Filter Include="Core\Timer">
       <UniqueIdentifier>{15f358ce-0e4d-4487-9953-37b726b1b0eb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Shader">
+      <UniqueIdentifier>{a41a4ab1-4aae-446d-9fbe-357c157c3f07}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -84,5 +87,13 @@
     <ClInclude Include="Core\Timer\GameTimer.h">
       <Filter>Core\Timer</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <FxCompile Include="Shader\VertexShader.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
+    <FxCompile Include="Shader\PixelShader.hlsl">
+      <Filter>Shader</Filter>
+    </FxCompile>
   </ItemGroup>
 </Project>

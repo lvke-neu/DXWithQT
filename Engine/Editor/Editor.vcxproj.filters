@@ -33,4 +33,9 @@
       <Filter>资源文件</Filter>
     </QtUic>
   </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="Window\Resource.qrc">
+      <Filter>资源文件</Filter>
+    </QtRcc>
+  </ItemGroup>
 </Project>

@@ -13,8 +13,7 @@ namespace  Twinkle
 		setMouseTracking(true);
 		startTimer(0);
 
-		Singleton<Engine>::GetInstance().initialize((HWND)parent->winId());
-		
+		Singleton<Engine>::GetInstance().initialize((HWND)winId(), width(), height());
 	}
 
 	RenderWindow::~RenderWindow()
@@ -26,6 +25,10 @@ namespace  Twinkle
 	{
 		Singleton<Engine>::GetInstance().update();
 		
+	}
+	void RenderWindow::resizeEvent(QResizeEvent* event)
+	{
+		Singleton<Engine>::GetInstance().onResize(width(), height());
 	}
 }
 

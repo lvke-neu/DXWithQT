@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Twinkle 版本0.002</string>
+   <string>Twinkle-v0.002</string>
   </property>
   <widget class="QWidget" name="centralWidget"/>
   <action name="openSolution">

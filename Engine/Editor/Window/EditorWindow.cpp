@@ -11,6 +11,7 @@ namespace Twinkle
 		ui(new Ui::EditorWindow)
 	{
 		ui->setupUi(this);
+		setWindowIcon(QIcon(":/logo/TwinkleLogo.jpeg"));
 		m_renderWindow = new RenderWindow(this);
 		setCentralWidget(m_renderWindow);
 

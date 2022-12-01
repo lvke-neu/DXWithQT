@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>logo/TwinkleLogo.jpeg</file>
+    </qresource>
+</RCC>

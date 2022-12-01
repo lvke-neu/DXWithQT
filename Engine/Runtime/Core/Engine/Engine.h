@@ -7,6 +7,7 @@ Twinkle Engine
 #pragma once
 
 #include <d3d11.h>
+#include <d3dcompiler.h>
 #include "../Interface/SingletonInterface.h"
 #include "../Timer/GameTimer.h"
 
@@ -16,13 +17,16 @@ namespace Twinkle
 	{
 		FRIEND_SINGLETON(Engine);
 	public:
-		bool initialize(HWND hwndWindow);
+		void initialize(HWND hwndWindow, UINT width, UINT height);
+		void onResize(UINT width, UINT height);
 		void update();
 		float getFps();
 	public:
 		ID3D11Device* getDevice();
 		ID3D11DeviceContext* getDeviceContent();
 		IDXGISwapChain* getSwapChain();
+	private:
+		void draw();
 	private:
 		Engine() = default;
 		virtual ~Engine();
@@ -33,6 +37,7 @@ namespace Twinkle
 		ID3D11Device* m_pDevice{ nullptr };
 		ID3D11DeviceContext* m_pDeviceContent{ nullptr };
 		IDXGISwapChain* m_pSwapChain{ nullptr };
+		ID3D11RenderTargetView* m_pRenderTargetView{ nullptr };
 	private:
 		GameTimer m_timer;
 	};
