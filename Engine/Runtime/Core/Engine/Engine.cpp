@@ -1,6 +1,11 @@
 #include "Engine.h"
 #include "../Utility/Utility.h"
 #include "../Log/LogManager.h"
+#include "../Bindable/VertexBuffer.h"
+#include "../Bindable/IndexBuffer.h"
+#include "../Bindable/VertexShader.h"
+#include "../Bindable/InputLayout.h"
+#include "../Bindable/PixelShader.h"
 
 namespace Twinkle
 {
@@ -100,7 +105,7 @@ namespace Twinkle
 
 	void Engine::draw()
 	{
-		
+	
 		static float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		if(m_pDeviceContent)
 			m_pDeviceContent->ClearRenderTargetView(m_pRenderTargetView, color);
@@ -111,68 +116,62 @@ namespace Twinkle
 		{
 			float x;
 			float y;
+			float r;
+			float g;
+			float b;
 		};
-		const Vertex vertices[]
-		{
-			{0.0f, 0.5f},
-			{0.5f, -0.5f},
-			{-0.5f, -0.5f}
+		std::vector<Vertex> vertices{
+
+			{0.0f, 0.5f, 1.0f, 0.0f, 0.0f},
+			{0.5f, 0.0f, 0.0f, 1.0f, 0.0f},
+			{-0.5f, 0.0f, 0.0f, 0.0f, 1.0f},
+			{0.0f, -0.5f, 1.0f, 0.0f, 0.0f}
 		};
+		VertexBuffer<Vertex> vertexBuffer(m_pDevice, m_pDeviceContent, vertices);
 
-		D3D11_BUFFER_DESC bd = {};
-		bd.BindFlags = D3D11_BIND_VERTEX_BUFFER;
-		bd.Usage = D3D11_USAGE_DEFAULT;
-		bd.CPUAccessFlags = 0u;
-		bd.MiscFlags = 0u;
-		bd.ByteWidth = sizeof(vertices);
-		bd.StructureByteStride = sizeof(Vertex); 
-		D3D11_SUBRESOURCE_DATA sd = {};
-		sd.pSysMem = vertices;
-
-		ID3D11Buffer* m_pVertexBuffer{ nullptr };
-
-		m_pDevice->CreateBuffer(&bd, &sd, &m_pVertexBuffer);
-		const UINT stride = sizeof(Vertex);
-		const UINT offset = 0u;
+		//indexbuffer
+		std::vector<UINT32> indices{ 0,1,2,2,1,3 };
+		IndexBuffer<UINT32> indexBuffer(m_pDevice, m_pDeviceContent, indices, DXGI_FORMAT_R32_UINT);
+	
 
 		//vertexshader
-		ID3D11VertexShader* m_pVertexShader{ nullptr };
 		ID3DBlob* pBlob{ nullptr };
 		D3DReadFileToBlob(L"E:\\C++Project\\Twinkle\\bin\\builtin\\BinShader\\VertexShader.cso", &pBlob);
-		m_pDevice->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &m_pVertexShader);
+		VertexShader vertexShader(m_pDevice, m_pDeviceContent, pBlob);
 		
 		//inputlayout
-		ID3D11InputLayout* m_inputLayout{ nullptr };
-		const D3D11_INPUT_ELEMENT_DESC ied[] =
+		std::vector<D3D11_INPUT_ELEMENT_DESC> ied
 		{
-			{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0}
+			{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
+			{"COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 8, D3D11_INPUT_PER_VERTEX_DATA, 0},
 		};
-		m_pDevice->CreateInputLayout(ied, 1, pBlob->GetBufferPointer(), pBlob->GetBufferSize(), &m_inputLayout);
+		InputLayout inputLayout(m_pDevice, m_pDeviceContent, pBlob, ied);
+
 		
 		//pixelshader
-		ID3D11PixelShader* m_pPixelShader{ nullptr };
+
 		ID3DBlob* pBlob2{ nullptr };
 		D3DReadFileToBlob(L"E:\\C++Project\\Twinkle\\bin\\builtin\\BinShader\\PixelShader.cso", &pBlob2);
-		m_pDevice->CreatePixelShader(pBlob2->GetBufferPointer(), pBlob2->GetBufferSize(), nullptr, &m_pPixelShader);
+		PixelShader pixelShader(m_pDevice, m_pDeviceContent, pBlob2);
 
 
 
-		m_pDeviceContent->IASetVertexBuffers(0u, 1u, &m_pVertexBuffer, &stride, &offset);
-		m_pDeviceContent->IASetInputLayout(m_inputLayout);
+
+		vertexBuffer.bind();
+		indexBuffer.bind();
+		vertexShader.bind();
+		inputLayout.bind();
+		pixelShader.bind();
 		m_pDeviceContent->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		m_pDeviceContent->VSSetShader(m_pVertexShader, nullptr, 0u);
-		m_pDeviceContent->PSSetShader(m_pPixelShader, nullptr, 0u);
 
-
-		m_pDeviceContent->Draw(3u, 0u);
+	
+		m_pDeviceContent->DrawIndexed((UINT)indices.size(), 0u, 0u);
+		
 
 		if (m_pSwapChain)
 			m_pSwapChain->Present(0u, 0u);
 
-		SAFE_RELEASE(m_pVertexBuffer);
-		SAFE_RELEASE(m_pVertexShader);
-		SAFE_RELEASE(m_pPixelShader);
-		SAFE_RELEASE(m_inputLayout);
+
 		SAFE_RELEASE(pBlob);
 		SAFE_RELEASE(pBlob2);
 	}

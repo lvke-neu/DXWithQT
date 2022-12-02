@@ -28,6 +28,12 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{a41a4ab1-4aae-446d-9fbe-357c157c3f07}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Bindable">
+      <UniqueIdentifier>{67478c86-a3ed-40ab-a142-5b30de46223f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Bindable\Interface">
+      <UniqueIdentifier>{4d6d5f76-4ee1-4e4f-90ee-27e2b78d8458}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -51,6 +57,9 @@
     </ClCompile>
     <ClCompile Include="Core\Timer\GameTimer.cpp">
       <Filter>Core\Timer</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Bindable\BindableInterface.h">
+      <Filter>Core\Bindable\Interface</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -86,6 +95,21 @@
     </ClInclude>
     <ClInclude Include="Core\Timer\GameTimer.h">
       <Filter>Core\Timer</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bindable\IndexBuffer.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bindable\VertexBuffer.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bindable\VertexShader.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bindable\InputLayout.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bindable\PixelShader.h">
+      <Filter>Core\Bindable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -158,6 +158,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Core\Bindable\BindableInterface.h" />
     <ClCompile Include="Core\Engine\Engine.cpp" />
     <ClCompile Include="Core\Log\LogManager.cpp" />
     <ClCompile Include="Core\Reflection\ReflectionManager.cpp" />
@@ -168,6 +169,11 @@
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Core\Bindable\IndexBuffer.h" />
+    <ClInclude Include="Core\Bindable\InputLayout.h" />
+    <ClInclude Include="Core\Bindable\PixelShader.h" />
+    <ClInclude Include="Core\Bindable\VertexBuffer.h" />
+    <ClInclude Include="Core\Bindable\VertexShader.h" />
     <ClInclude Include="Core\Engine\Engine.h" />
     <ClInclude Include="Core\Interface\SingletonInterface.h" />
     <ClInclude Include="Core\Log\LogManager.h" />
