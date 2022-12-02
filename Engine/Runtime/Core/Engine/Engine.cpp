@@ -66,6 +66,8 @@ namespace Twinkle
 
 		//rebuild RenderTargetView
 		SAFE_RELEASE(m_pRenderTargetView);
+		SAFE_RELEASE(m_pDepthStencilBuffer);
+		SAFE_RELEASE(m_pDepthStencilView);
 
 		ID3D11Texture2D* pBackBuffer{ nullptr };
 		m_pSwapChain->ResizeBuffers(1, width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
@@ -73,7 +75,28 @@ namespace Twinkle
 		m_pDevice->CreateRenderTargetView(pBackBuffer, nullptr, &m_pRenderTargetView);
 		SAFE_RELEASE(pBackBuffer);
 
-		m_pDeviceContent->OMSetRenderTargets(1, &m_pRenderTargetView, nullptr);
+		//rebuild DepthStencilView
+		UINT _4xMsaaQuality;
+		m_pDevice->CheckMultisampleQualityLevels(
+			DXGI_FORMAT_R8G8B8A8_UNORM, 4, &_4xMsaaQuality);
+
+		D3D11_TEXTURE2D_DESC depthStencilDesc;
+		depthStencilDesc.Width = width;
+		depthStencilDesc.Height = height;
+		depthStencilDesc.MipLevels = 1;
+		depthStencilDesc.ArraySize = 1;
+		depthStencilDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+		depthStencilDesc.SampleDesc.Count = 4;
+		depthStencilDesc.SampleDesc.Quality = _4xMsaaQuality - 1;
+		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
+		depthStencilDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+		depthStencilDesc.CPUAccessFlags = 0;
+		depthStencilDesc.MiscFlags = 0;
+		m_pDevice->CreateTexture2D(&depthStencilDesc, nullptr, &m_pDepthStencilBuffer);
+		m_pDevice->CreateDepthStencilView(m_pDepthStencilBuffer, nullptr, &m_pDepthStencilView);
+
+		//bind RenderTargetView and DepthStencilView
+		m_pDeviceContent->OMSetRenderTargets(1, &m_pRenderTargetView, m_pDepthStencilView);
 
 		D3D11_VIEWPORT vp;
 		vp.TopLeftX = 0;
@@ -103,8 +126,12 @@ namespace Twinkle
 	{
 	
 		static float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-		if(m_pDeviceContent)
+		if (m_pDeviceContent)
+		{
 			m_pDeviceContent->ClearRenderTargetView(m_pRenderTargetView, color);
+			m_pDeviceContent->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+		}
+			
 
 		//vertexbuffer
 		struct Vertex

@@ -38,6 +38,8 @@ namespace Twinkle
 		ID3D11DeviceContext* m_pDeviceContent{ nullptr };
 		IDXGISwapChain* m_pSwapChain{ nullptr };
 		ID3D11RenderTargetView* m_pRenderTargetView{ nullptr };
+		ID3D11Texture2D* m_pDepthStencilBuffer{ nullptr };
+		ID3D11DepthStencilView* m_pDepthStencilView{ nullptr };
 	private:
 		GameTimer m_timer;
 	};
