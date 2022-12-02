@@ -28,25 +28,16 @@ namespace Twinkle
 		return new PixelShader(m_pDevice, m_pDeviceContent, pBlob);
 	}
 
-	void BindableManager::DrawCall(IBindable* vertexBuffer, IBindable* indexbuffer,
-		IBindable* vertexShader, IBindable* inputLayout, IBindable* pixelShader, D3D11_PRIMITIVE_TOPOLOGY drawType)
-	{
-		if(vertexBuffer)
-			vertexBuffer->bind();
-		if (indexbuffer)
-			indexbuffer->bind();
-		if (vertexShader)
-			vertexShader->bind();
-		if (inputLayout)
-			inputLayout->bind();
-		if (pixelShader)
-			pixelShader->bind();
-		m_pDeviceContent->IASetPrimitiveTopology(drawType);
-		m_pDeviceContent->DrawIndexed(indexbuffer->getIndexCount(), 0, 0);
-	}
-
 	void BindableManager::Release(IBindable*& bindable)
 	{
 		SAFE_DELETE_SETNULL(bindable);
+	}
+
+	void BindableManager::Release(std::vector<IBindable*>& constantBuffers)
+	{
+		for (auto& constantBuffer : constantBuffers)
+		{
+			Release(constantBuffer);
+		}
 	}
 }

@@ -117,6 +117,9 @@
     <ClInclude Include="Core\Bindable\BindableManager.h">
       <Filter>Core\Bindable</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Bindable\ConstantBuffer.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\VertexShader.hlsl">

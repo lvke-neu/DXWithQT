@@ -9,7 +9,7 @@ Bindable Manager : create and drawcall
 #include "../Interface/SingletonInterface.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
-
+#include "ConstantBuffer.h"
 
 namespace Twinkle
 {
@@ -39,10 +39,39 @@ namespace Twinkle
 
 		IBindable* CreatePixelShader(ID3DBlob* pBlob);
 
+		template <class T>
+		IBindable* CreateConstantBuffer(UINT startSlot)
+		{
+			return new ConstantBuffer<T>(m_pDevice, m_pDeviceContent, startSlot);
+		}
+
+		template <class IndexBufferType>
 		void DrawCall(IBindable* vertexBuffer, IBindable* indexbuffer,
-			IBindable* vertexShader, IBindable* inputLayout, IBindable* pixelShader, D3D11_PRIMITIVE_TOPOLOGY drawType);
+			IBindable* vertexShader, IBindable* inputLayout, IBindable* pixelShader, D3D11_PRIMITIVE_TOPOLOGY drawType, const std::vector<IBindable*>& constantBuffers)
+		{
+			if (vertexBuffer)
+				vertexBuffer->bind();
+			if (indexbuffer)
+				indexbuffer->bind();
+			if (vertexShader)
+				vertexShader->bind();
+			if (inputLayout)
+				inputLayout->bind();
+			if (pixelShader)
+				pixelShader->bind();
+			
+			for (auto& constantBuffer : constantBuffers)
+			{
+				if (constantBuffer)
+					constantBuffer->bind();
+			}
+		
+			m_pDeviceContent->IASetPrimitiveTopology(drawType);
+			m_pDeviceContent->DrawIndexed(dynamic_cast<IndexBuffer<IndexBufferType>*>(indexbuffer)->getIndexCount(), 0, 0);
+		}
 
 		void Release(IBindable*& bindable);
+		void Release(std::vector<IBindable*>& constantBuffers);
 	private:
 		BindableManager();
 		virtual ~BindableManager() =default;

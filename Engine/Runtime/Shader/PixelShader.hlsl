@@ -1,4 +1,9 @@
+cbuffer ColorCB : register(b0)
+{
+	float4 g_color;
+}
+
 float4 main(float3 color : COLOR) : SV_Target
 {
-	return float4(color, 1.0f);
+	return g_color;
 }

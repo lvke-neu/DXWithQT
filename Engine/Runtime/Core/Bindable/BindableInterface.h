@@ -14,7 +14,6 @@ namespace Twinkle
 	{
 	public:
 		virtual void bind() = 0;
-		virtual UINT getIndexCount() { return 0; }
 	protected:
 		ID3D11Device* m_pDevice{ nullptr };
 		ID3D11DeviceContext* m_pDeviceContent{ nullptr };

@@ -16,7 +16,7 @@ namespace Twinkle
 	{
 		friend class BindableManager;
 	public:
-		virtual UINT getIndexCount() override;
+		 UINT getIndexCount();
 	private:
 		IndexBuffer(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::vector<T>& indices, DXGI_FORMAT dxgiFormat);
 		virtual ~IndexBuffer();

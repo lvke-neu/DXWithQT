@@ -171,6 +171,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Bindable\BindableManager.h" />
+    <ClInclude Include="Core\Bindable\ConstantBuffer.h" />
     <ClInclude Include="Core\Bindable\IndexBuffer.h" />
     <ClInclude Include="Core\Bindable\InputLayout.h" />
     <ClInclude Include="Core\Bindable\PixelShader.h" />

@@ -106,8 +106,6 @@ namespace Twinkle
 		if(m_pDeviceContent)
 			m_pDeviceContent->ClearRenderTargetView(m_pRenderTargetView, color);
 
-
-
 		//vertexbuffer
 		struct Vertex
 		{
@@ -152,12 +150,26 @@ namespace Twinkle
 		D3DReadFileToBlob(L"E:\\C++Project\\Twinkle\\bin\\builtin\\BinShader\\PixelShader.cso", &pBlob2);
 		IBindable* pixelShader{ nullptr };
 		pixelShader = Singleton<BindableManager>::GetInstance().CreatePixelShader(pBlob2);
-		
-		Singleton<BindableManager>::GetInstance().DrawCall(vertexBuffer, indexBuffer, vertexShader, inputLayout, pixelShader, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+
+		//constantbuffer
+		struct ColorCB
+		{
+			float r;
+			float g;
+			float b;
+			float a;
+		};
+		ColorCB ccb{1.0f, 1.0f, 0.0f, 1.0f};
+		IBindable* constantBuffer = Singleton<BindableManager>::GetInstance().CreateConstantBuffer<ColorCB>(0);
+		dynamic_cast<ConstantBuffer<ColorCB>*>(constantBuffer)->update(ccb);
+		std::vector<IBindable*> cbs;
+		cbs.push_back(constantBuffer);
+
+		Singleton<BindableManager>::GetInstance().DrawCall<UINT32>(vertexBuffer, indexBuffer, vertexShader, inputLayout, pixelShader, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST, cbs);
 		
 		if (m_pSwapChain)
 			m_pSwapChain->Present(0u, 0u);
-
 
 		SAFE_RELEASE(pBlob);
 		SAFE_RELEASE(pBlob2);
@@ -166,6 +178,7 @@ namespace Twinkle
 		Singleton<BindableManager>::GetInstance().Release(vertexShader);
 		Singleton<BindableManager>::GetInstance().Release(inputLayout);
 		Singleton<BindableManager>::GetInstance().Release(pixelShader);
+		Singleton<BindableManager>::GetInstance().Release(cbs);
 	}
 
 	float Engine::getFps()
