@@ -5,6 +5,7 @@ Description:
 Encapsulate vertexbuffer
 ****************************************************************************************/
 #pragma once
+
 #include "BindableInterface.h"
 #include <vector>
 
@@ -13,11 +14,11 @@ namespace Twinkle
 	template<class T>
 	class VertexBuffer : public IBindable
 	{
-	public:
+		friend class BindableManager;
+	private:
 		VertexBuffer(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::vector<T>& vertices);
 		virtual ~VertexBuffer();
-	public:
-		void bind();
+		virtual void bind() override;
 	private:
 		ID3D11Buffer* m_pVertexBuffer{ nullptr };
 	};

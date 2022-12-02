@@ -5,18 +5,18 @@ Description:
 Encapsulate pixelshader
 ****************************************************************************************/
 #pragma once
+
 #include "BindableInterface.h"
-#include "../Utility/Utility.h"
 
 namespace Twinkle
 {
 	class PixelShader : public IBindable
 	{
-	public:
+		friend class BindableManager;
+	private:
 		PixelShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob);
 		virtual ~PixelShader();
-	public:
-		void bind();
+		virtual void bind() override;
 	private:
 		ID3D11PixelShader* m_pPixelShader{ nullptr };
 	};

@@ -5,6 +5,7 @@ Description:
 Encapsulate indexbuffer
 ****************************************************************************************/
 #pragma once
+
 #include "BindableInterface.h"
 #include <vector>
 
@@ -13,20 +14,21 @@ namespace Twinkle
 	template<class T>
 	class IndexBuffer : public IBindable
 	{
+		friend class BindableManager;
 	public:
-		IndexBuffer(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::vector<T>& indices, UINT dxgiFormat);
+		virtual UINT getIndexCount() override;
+	private:
+		IndexBuffer(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::vector<T>& indices, DXGI_FORMAT dxgiFormat);
 		virtual ~IndexBuffer();
-	public:
-		void bind();
-		UINT getIndexCount();
+		virtual void bind() override;
 	private:
 		UINT m_indexCount{ 0 };
-		UINT m_dxgiFormat{ 0 };
+		DXGI_FORMAT m_dxgiFormat{ (DXGI_FORMAT)0 };
 		ID3D11Buffer* m_pIndexBuffer{ nullptr };
 	};
 
 	template<class T>
-	IndexBuffer<T>::IndexBuffer(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::vector<T>& indices, UINT dxgiFormat)
+	IndexBuffer<T>::IndexBuffer(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::vector<T>& indices, DXGI_FORMAT dxgiFormat)
 	{
 		m_pDevice = pDevice;
 		m_pDeviceContent = pDeviceContent;
@@ -57,7 +59,7 @@ namespace Twinkle
 	void IndexBuffer<T>::bind()
 	{
 		if (m_pDeviceContent)
-			m_pDeviceContent->IASetIndexBuffer(m_pIndexBuffer, (DXGI_FORMAT)m_dxgiFormat, 0);
+			m_pDeviceContent->IASetIndexBuffer(m_pIndexBuffer, m_dxgiFormat, 0);
 	}
 
 	template<class T>

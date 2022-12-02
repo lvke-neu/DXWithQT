@@ -5,23 +5,22 @@ Description:
 Encapsulate vertexshader
 ****************************************************************************************/
 #pragma once
+
 #include "BindableInterface.h"
-#include "../Utility/Utility.h"
 
 namespace Twinkle
 {
-
 	class VertexShader : public IBindable
 	{
-	public:
+		friend class BindableManager;
+	private:
 		VertexShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob);
 		virtual ~VertexShader();
-	public:
-		void bind();
+	private:
+		virtual void bind() override;
 	private:
 		ID3D11VertexShader* m_pVertexShader{ nullptr };
 	};
-
 
 	VertexShader::VertexShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob)
 	{
@@ -31,12 +30,10 @@ namespace Twinkle
 			m_pDevice->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &m_pVertexShader);
 	}
 
-
 	VertexShader::~VertexShader()
 	{
 		SAFE_RELEASE(m_pVertexShader);
 	}
-
 
 	void VertexShader::bind()
 	{

@@ -61,6 +61,9 @@
     <ClCompile Include="Core\Bindable\BindableInterface.h">
       <Filter>Core\Bindable\Interface</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Bindable\BindableManager.cpp">
+      <Filter>Core\Bindable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Interface\SingletonInterface.h">
@@ -109,6 +112,9 @@
       <Filter>Core\Bindable</Filter>
     </ClInclude>
     <ClInclude Include="Core\Bindable\PixelShader.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bindable\BindableManager.h">
       <Filter>Core\Bindable</Filter>
     </ClInclude>
   </ItemGroup>

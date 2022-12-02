@@ -1,11 +1,7 @@
 #include "Engine.h"
 #include "../Utility/Utility.h"
 #include "../Log/LogManager.h"
-#include "../Bindable/VertexBuffer.h"
-#include "../Bindable/IndexBuffer.h"
-#include "../Bindable/VertexShader.h"
-#include "../Bindable/InputLayout.h"
-#include "../Bindable/PixelShader.h"
+#include "../Bindable/BindableManager.h"
 
 namespace Twinkle
 {
@@ -111,6 +107,7 @@ namespace Twinkle
 			m_pDeviceContent->ClearRenderTargetView(m_pRenderTargetView, color);
 
 
+
 		//vertexbuffer
 		struct Vertex
 		{
@@ -127,53 +124,48 @@ namespace Twinkle
 			{-0.5f, 0.0f, 0.0f, 0.0f, 1.0f},
 			{0.0f, -0.5f, 1.0f, 0.0f, 0.0f}
 		};
-		VertexBuffer<Vertex> vertexBuffer(m_pDevice, m_pDeviceContent, vertices);
+		IBindable* vertexBuffer{ nullptr };
+		vertexBuffer = Singleton<BindableManager>::GetInstance().CreateVertexBuffer<Vertex>(vertices);
 
 		//indexbuffer
 		std::vector<UINT32> indices{ 0,1,2,2,1,3 };
-		IndexBuffer<UINT32> indexBuffer(m_pDevice, m_pDeviceContent, indices, DXGI_FORMAT_R32_UINT);
-	
+		IBindable* indexBuffer{ nullptr };
+		indexBuffer = Singleton<BindableManager>::GetInstance().CreateIndexBuffer<UINT32>(indices, DXGI_FORMAT_R32_UINT);
 
 		//vertexshader
 		ID3DBlob* pBlob{ nullptr };
 		D3DReadFileToBlob(L"E:\\C++Project\\Twinkle\\bin\\builtin\\BinShader\\VertexShader.cso", &pBlob);
-		VertexShader vertexShader(m_pDevice, m_pDeviceContent, pBlob);
-		
+		IBindable* vertexShader{ nullptr };
+		vertexShader = Singleton<BindableManager>::GetInstance().CreateVertexShader(pBlob);
+	
 		//inputlayout
 		std::vector<D3D11_INPUT_ELEMENT_DESC> ied
 		{
 			{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
 			{"COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 8, D3D11_INPUT_PER_VERTEX_DATA, 0},
 		};
-		InputLayout inputLayout(m_pDevice, m_pDeviceContent, pBlob, ied);
-
+		IBindable* inputLayout{ nullptr };
+		inputLayout = Singleton<BindableManager>::GetInstance().CreateInputLayout(pBlob, ied);
 		
 		//pixelshader
-
 		ID3DBlob* pBlob2{ nullptr };
 		D3DReadFileToBlob(L"E:\\C++Project\\Twinkle\\bin\\builtin\\BinShader\\PixelShader.cso", &pBlob2);
-		PixelShader pixelShader(m_pDevice, m_pDeviceContent, pBlob2);
-
-
-
-
-		vertexBuffer.bind();
-		indexBuffer.bind();
-		vertexShader.bind();
-		inputLayout.bind();
-		pixelShader.bind();
-		m_pDeviceContent->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-
-	
-		m_pDeviceContent->DrawIndexed((UINT)indices.size(), 0u, 0u);
+		IBindable* pixelShader{ nullptr };
+		pixelShader = Singleton<BindableManager>::GetInstance().CreatePixelShader(pBlob2);
 		
-
+		Singleton<BindableManager>::GetInstance().DrawCall(vertexBuffer, indexBuffer, vertexShader, inputLayout, pixelShader, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		
 		if (m_pSwapChain)
 			m_pSwapChain->Present(0u, 0u);
 
 
 		SAFE_RELEASE(pBlob);
 		SAFE_RELEASE(pBlob2);
+		Singleton<BindableManager>::GetInstance().Release(vertexBuffer);
+		Singleton<BindableManager>::GetInstance().Release(indexBuffer);
+		Singleton<BindableManager>::GetInstance().Release(vertexShader);
+		Singleton<BindableManager>::GetInstance().Release(inputLayout);
+		Singleton<BindableManager>::GetInstance().Release(pixelShader);
 	}
 
 	float Engine::getFps()

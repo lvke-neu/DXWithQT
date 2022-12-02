@@ -5,19 +5,19 @@ Description:
 Encapsulate inputlayout
 ****************************************************************************************/
 #pragma once
+
 #include "BindableInterface.h"
-#include "../Utility/Utility.h"
 #include <vector>
 
 namespace Twinkle
 {
 	class InputLayout : public IBindable
 	{
-	public:
+		friend class BindableManager;
+	private:
 		InputLayout(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied);
 		virtual ~InputLayout();
-	public:
-		void bind();
+		virtual void bind() override;
 	private:
 		ID3D11InputLayout* m_pInputLayout{ nullptr };
 	};
