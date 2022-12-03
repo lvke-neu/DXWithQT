@@ -3,29 +3,34 @@
 #include "VertexShader.h"
 #include "InputLayout.h"
 #include "PixelShader.h"
-
+#include "Texture.h"
 
 namespace Twinkle
 {
 	BindableManager::BindableManager()
 	{
-		m_pDevice = Singleton<Engine>::GetInstance().getDevice();
-		m_pDeviceContent = Singleton<Engine>::GetInstance().getDeviceContent();
+		m_pDevice = Singleton<Engine>::GetInstance().GetDevice();
+		m_pDeviceContent = Singleton<Engine>::GetInstance().GetDeviceContent();
 	}
 
-	IBindable* BindableManager::CreateVertexShader(ID3DBlob* pBlob)
+	IBindable* BindableManager::CreateVertexShader(const std::string& relativeFilePath)
 	{
-		return new VertexShader(m_pDevice, m_pDeviceContent, pBlob);
+		return new VertexShader(m_pDevice, m_pDeviceContent, relativeFilePath);
 	}
 
-	IBindable* BindableManager::CreateInputLayout(ID3DBlob* pBlob, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied)
+	IBindable* BindableManager::CreateInputLayout(const std::string& relativeFilePath, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied)
 	{
-		return new InputLayout(m_pDevice, m_pDeviceContent, pBlob, ied);
+		return new InputLayout(m_pDevice, m_pDeviceContent, relativeFilePath, ied);
 	}
 
-	IBindable* BindableManager::CreatePixelShader(ID3DBlob* pBlob)
+	IBindable* BindableManager::CreatePixelShader(const std::string& relativeFilePath)
 	{
-		return new PixelShader(m_pDevice, m_pDeviceContent, pBlob);
+		return new PixelShader(m_pDevice, m_pDeviceContent, relativeFilePath);
+	}
+
+	IBindable * BindableManager::CreateTexture(UINT startSlot, const std::string & relativeFilePath)
+	{
+		return new Texture(m_pDevice, m_pDeviceContent, startSlot, relativeFilePath);
 	}
 
 	void BindableManager::Release(IBindable*& bindable)

@@ -1,11 +1,13 @@
 #include "Engine.h"
 #include "../Utility/Utility.h"
 #include "../Log/LogManager.h"
-#include "../Bindable/BindableManager.h"
+#include "../../Scene/SceneManager.h"
+#include "../TextureLoader/DDSTextureLoader.h"
+#include "../TextureLoader/WICTextureLoader.h"
 
 namespace Twinkle
 {
-	void Engine::initialize(HWND hwndWindow, UINT width, UINT height)
+	void Engine::Initialize(HWND hwndWindow, UINT width, UINT height)
 	{
 		//create device and deviceContent
 		const D3D_FEATURE_LEVEL featureLevels[] =
@@ -52,7 +54,7 @@ namespace Twinkle
 		dxgiFactory1->CreateSwapChain(m_pDevice, &sd, &m_pSwapChain);
 		dxgiFactory1->MakeWindowAssociation(hwndWindow, DXGI_MWA_NO_ALT_ENTER | DXGI_MWA_NO_WINDOW_CHANGES);
 
-		onResize(width, height);
+		OnResize(width, height);
 
 		m_timer.Reset();
 		m_timer.Start();
@@ -60,7 +62,7 @@ namespace Twinkle
 		LOG_INFO("Engine Initialization is complete");
 	}
 
-	void Engine::onResize(UINT width, UINT height)
+	void Engine::OnResize(UINT width, UINT height)
 	{
 		LOG_INFO("onResize: width = " + std::to_string(width) + " height = " + std::to_string(height));
 
@@ -114,117 +116,102 @@ namespace Twinkle
 		SAFE_RELEASE(m_pDeviceContent);
 		SAFE_RELEASE(m_pSwapChain);
 		SAFE_RELEASE(m_pRenderTargetView);
+		SAFE_RELEASE(m_pDepthStencilBuffer);
+		SAFE_RELEASE(m_pDepthStencilView);
 	}
 
-	void Engine::update()
+	void Engine::Update()
 	{
 		m_timer.Tick();
-		draw();
-	}
+		if (m_bPause)
+			return;
+		
 
-	void Engine::draw()
-	{
-	
+		Singleton<SceneManager>::GetInstance().Update(m_timer.DeltaTime());
 		static float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		if (m_pDeviceContent)
 		{
 			m_pDeviceContent->ClearRenderTargetView(m_pRenderTargetView, color);
 			m_pDeviceContent->ClearDepthStencilView(m_pDepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 		}
-			
-
-		//vertexbuffer
-		struct Vertex
-		{
-			float x;
-			float y;
-			float r;
-			float g;
-			float b;
-		};
-		std::vector<Vertex> vertices{
-
-			{0.0f, 0.5f, 1.0f, 0.0f, 0.0f},
-			{0.5f, 0.0f, 0.0f, 1.0f, 0.0f},
-			{-0.5f, 0.0f, 0.0f, 0.0f, 1.0f},
-			{0.0f, -0.5f, 1.0f, 0.0f, 0.0f}
-		};
-		IBindable* vertexBuffer{ nullptr };
-		vertexBuffer = Singleton<BindableManager>::GetInstance().CreateVertexBuffer<Vertex>(vertices);
-
-		//indexbuffer
-		std::vector<UINT32> indices{ 0,1,2,2,1,3 };
-		IBindable* indexBuffer{ nullptr };
-		indexBuffer = Singleton<BindableManager>::GetInstance().CreateIndexBuffer<UINT32>(indices, DXGI_FORMAT_R32_UINT);
-
-		//vertexshader
-		ID3DBlob* pBlob{ nullptr };
-		D3DReadFileToBlob(L"E:\\C++Project\\Twinkle\\bin\\builtin\\BinShader\\VertexShader.cso", &pBlob);
-		IBindable* vertexShader{ nullptr };
-		vertexShader = Singleton<BindableManager>::GetInstance().CreateVertexShader(pBlob);
-	
-		//inputlayout
-		std::vector<D3D11_INPUT_ELEMENT_DESC> ied
-		{
-			{"POSITION", 0, DXGI_FORMAT_R32G32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0},
-			{"COLOR", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 8, D3D11_INPUT_PER_VERTEX_DATA, 0},
-		};
-		IBindable* inputLayout{ nullptr };
-		inputLayout = Singleton<BindableManager>::GetInstance().CreateInputLayout(pBlob, ied);
-		
-		//pixelshader
-		ID3DBlob* pBlob2{ nullptr };
-		D3DReadFileToBlob(L"E:\\C++Project\\Twinkle\\bin\\builtin\\BinShader\\PixelShader.cso", &pBlob2);
-		IBindable* pixelShader{ nullptr };
-		pixelShader = Singleton<BindableManager>::GetInstance().CreatePixelShader(pBlob2);
-
-
-		//constantbuffer
-		struct ColorCB
-		{
-			float r;
-			float g;
-			float b;
-			float a;
-		};
-		ColorCB ccb{1.0f, 1.0f, 0.0f, 1.0f};
-		IBindable* constantBuffer = Singleton<BindableManager>::GetInstance().CreateConstantBuffer<ColorCB>(0);
-		dynamic_cast<ConstantBuffer<ColorCB>*>(constantBuffer)->update(ccb);
-		std::vector<IBindable*> cbs;
-		cbs.push_back(constantBuffer);
-
-		Singleton<BindableManager>::GetInstance().DrawCall<UINT32>(vertexBuffer, indexBuffer, vertexShader, inputLayout, pixelShader, D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST, cbs);
-		
+		Singleton<SceneManager>::GetInstance().Draw();
 		if (m_pSwapChain)
 			m_pSwapChain->Present(0u, 0u);
-
-		SAFE_RELEASE(pBlob);
-		SAFE_RELEASE(pBlob2);
-		Singleton<BindableManager>::GetInstance().Release(vertexBuffer);
-		Singleton<BindableManager>::GetInstance().Release(indexBuffer);
-		Singleton<BindableManager>::GetInstance().Release(vertexShader);
-		Singleton<BindableManager>::GetInstance().Release(inputLayout);
-		Singleton<BindableManager>::GetInstance().Release(pixelShader);
-		Singleton<BindableManager>::GetInstance().Release(cbs);
 	}
 
-	float Engine::getFps()
+	float Engine::GetFps()
 	{
 		return m_timer.getFps();
 	}
 
-	ID3D11Device* Engine::getDevice()
+	void Engine::Pause()
+	{
+		m_bPause = true;
+	}
+
+	void Engine::Start()
+	{
+		m_bPause = false;
+	}
+
+	ID3DBlob * Engine::ReadFileToBlob(const std::string & relativeFilePath)
+	{
+		ID3DBlob* blob{ nullptr };
+		std::string absoluteFilePath;
+
+		RelativePath2AbsolutePath(relativeFilePath, absoluteFilePath);
+
+		D3DReadFileToBlob(multiByteToWideChar(absoluteFilePath), &blob);
+
+		return blob ;
+	}
+
+	ID3D11ShaderResourceView * Engine::LoadTexture(const std::string & relativeFilePath)
+	{
+		std::string absoluteFilePath;
+		ID3D11ShaderResourceView* pTextureSRV;
+
+		RelativePath2AbsolutePath(relativeFilePath, absoluteFilePath);
+
+		if (absoluteFilePath.substr(absoluteFilePath.size() - 3) == "dds")
+		{
+			DirectX::CreateDDSTextureFromFile(m_pDevice, multiByteToWideChar(absoluteFilePath), nullptr, &pTextureSRV);
+		}
+		else
+		{
+			DirectX::CreateWICTextureFromFile(m_pDevice, multiByteToWideChar(absoluteFilePath), nullptr, &pTextureSRV);
+		}
+
+		return pTextureSRV;
+	}
+
+	ID3D11Device* Engine::GetDevice()
 	{
 		return m_pDevice;
 	}
 
-	ID3D11DeviceContext* Engine::getDeviceContent()
+	ID3D11DeviceContext* Engine::GetDeviceContent()
 	{
 		return m_pDeviceContent;
 	}
 
-	IDXGISwapChain* Engine::getSwapChain()
+	IDXGISwapChain* Engine::GetSwapChain()
 	{
 		return m_pSwapChain;
+	}
+
+	ID3D11RenderTargetView * Engine::GetRenderTargetView()
+	{
+		return m_pRenderTargetView;
+	}
+
+	ID3D11Texture2D * Engine::GetDepthStencilBuffer()
+	{
+		return m_pDepthStencilBuffer;
+	}
+
+	ID3D11DepthStencilView * Engine::GetDepthStencilView()
+	{
+		return m_pDepthStencilView;
 	}
 }

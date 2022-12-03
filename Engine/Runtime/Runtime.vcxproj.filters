@@ -34,6 +34,15 @@
     <Filter Include="Core\Bindable\Interface">
       <UniqueIdentifier>{4d6d5f76-4ee1-4e4f-90ee-27e2b78d8458}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{9d478906-5a68-4cec-93b0-9b7e36b78db9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Component">
+      <UniqueIdentifier>{0eddaa46-2fe3-4d2d-a6a1-eb8cdeeaba75}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\TextureLoader">
+      <UniqueIdentifier>{fbfeaed2-75cf-451f-b105-c1e5c464b4ca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -63,6 +72,18 @@
     </ClCompile>
     <ClCompile Include="Core\Bindable\BindableManager.cpp">
       <Filter>Core\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\SceneManager.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\TestComponent.cpp">
+      <Filter>Scene\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\TextureLoader\DDSTextureLoader.cpp">
+      <Filter>Core\TextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\TextureLoader\WICTextureLoader.cpp">
+      <Filter>Core\TextureLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -118,6 +139,21 @@
       <Filter>Core\Bindable</Filter>
     </ClInclude>
     <ClInclude Include="Core\Bindable\ConstantBuffer.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\SceneManager.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\TestComponent.h">
+      <Filter>Scene\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TextureLoader\DDSTextureLoader.h">
+      <Filter>Core\TextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\TextureLoader\WICTextureLoader.h">
+      <Filter>Core\TextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bindable\Texture.h">
       <Filter>Core\Bindable</Filter>
     </ClInclude>
   </ItemGroup>

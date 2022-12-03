@@ -16,7 +16,7 @@ namespace Twinkle
 	class VertexShader;
 	class InputLayout;
 	class PixelShader;
-
+	class Texture;
 	class BindableManager
 	{
 		FRIEND_SINGLETON(BindableManager);
@@ -33,17 +33,19 @@ namespace Twinkle
 			return new IndexBuffer<T>(m_pDevice, m_pDeviceContent, indices, dxgiFormat);
 		}
 
-		IBindable* CreateVertexShader(ID3DBlob* pBlob);
+		IBindable* CreateVertexShader(const std::string& relativeFilePath);
 
-		IBindable* CreateInputLayout(ID3DBlob* pBlob, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied);
+		IBindable* CreateInputLayout(const std::string& relativeFilePath, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied);
 
-		IBindable* CreatePixelShader(ID3DBlob* pBlob);
+		IBindable* CreatePixelShader(const std::string& relativeFilePath);
 
 		template <class T>
 		IBindable* CreateConstantBuffer(UINT startSlot)
 		{
 			return new ConstantBuffer<T>(m_pDevice, m_pDeviceContent, startSlot);
 		}
+
+		IBindable* CreateTexture(UINT startSlot, const std::string& relativeFilePath);
 
 		template <class IndexBufferType>
 		void DrawCall(IBindable* vertexBuffer, IBindable* indexbuffer,

@@ -8,6 +8,7 @@ Twinkle Engine
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
+#include <string>
 #include "../Interface/SingletonInterface.h"
 #include "../Timer/GameTimer.h"
 
@@ -17,16 +18,22 @@ namespace Twinkle
 	{
 		FRIEND_SINGLETON(Engine);
 	public:
-		void initialize(HWND hwndWindow, UINT width, UINT height);
-		void onResize(UINT width, UINT height);
-		void update();
-		float getFps();
+		void Initialize(HWND hwndWindow, UINT width, UINT height);
+		void OnResize(UINT width, UINT height);
+		void Update();
+		float GetFps();
+		void Pause();
+		void Start();
 	public:
-		ID3D11Device* getDevice();
-		ID3D11DeviceContext* getDeviceContent();
-		IDXGISwapChain* getSwapChain();
-	private:
-		void draw();
+		ID3DBlob* ReadFileToBlob(const std::string& relativeFilePath);
+		ID3D11ShaderResourceView* LoadTexture(const std::string& relativeFilePath);
+	public:
+		ID3D11Device* GetDevice();
+		ID3D11DeviceContext* GetDeviceContent();
+		IDXGISwapChain* GetSwapChain();
+		ID3D11RenderTargetView* GetRenderTargetView();
+		ID3D11Texture2D* GetDepthStencilBuffer();
+		ID3D11DepthStencilView* GetDepthStencilView();
 	private:
 		Engine() = default;
 		virtual ~Engine();
@@ -42,5 +49,6 @@ namespace Twinkle
 		ID3D11DepthStencilView* m_pDepthStencilView{ nullptr };
 	private:
 		GameTimer m_timer;
+		bool m_bPause = false;
 	};
 }

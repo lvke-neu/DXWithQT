@@ -14,23 +14,27 @@ namespace Twinkle
 	{
 		friend class BindableManager;
 	private:
-		PixelShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob);
+		PixelShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::string& relativeFilePath);
 		virtual ~PixelShader();
 		virtual void bind() override;
 	private:
+		ID3DBlob* m_pBlob{ nullptr };
 		ID3D11PixelShader* m_pPixelShader{ nullptr };
 	};
 
-	PixelShader::PixelShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob)
+	PixelShader::PixelShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::string& relativeFilePath)
 	{
 		m_pDevice = pDevice;
 		m_pDeviceContent = pDeviceContent;
-		if (pBlob)
-			m_pDevice->CreatePixelShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &m_pPixelShader);
+
+		m_pBlob = Singleton<Engine>::GetInstance().ReadFileToBlob(relativeFilePath);
+		if (m_pBlob)
+			m_pDevice->CreatePixelShader(m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), nullptr, &m_pPixelShader);
 	}
 
 	PixelShader::~PixelShader()
 	{
+		SAFE_RELEASE(m_pBlob);
 		SAFE_RELEASE(m_pPixelShader);
 	}
 

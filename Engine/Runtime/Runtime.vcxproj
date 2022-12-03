@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{69E006B0-A841-40C4-B034-43B3F90AFB81}</ProjectGuid>
     <RootNamespace>Runtime</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <ProjectName>Runtime</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -165,9 +165,13 @@
     <ClCompile Include="Core\Reflection\ReflectionManager.cpp" />
     <ClCompile Include="Core\Serialization\DataStream.cpp" />
     <ClCompile Include="Core\Serialization\SerializationManager.cpp" />
+    <ClCompile Include="Core\TextureLoader\DDSTextureLoader.cpp" />
+    <ClCompile Include="Core\TextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Core\Timer\GameTimer.cpp" />
     <ClCompile Include="Core\Utility\Utility.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Scene\Component\TestComponent.cpp" />
+    <ClCompile Include="Scene\SceneManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Bindable\BindableManager.h" />
@@ -175,6 +179,7 @@
     <ClInclude Include="Core\Bindable\IndexBuffer.h" />
     <ClInclude Include="Core\Bindable\InputLayout.h" />
     <ClInclude Include="Core\Bindable\PixelShader.h" />
+    <ClInclude Include="Core\Bindable\Texture.h" />
     <ClInclude Include="Core\Bindable\VertexBuffer.h" />
     <ClInclude Include="Core\Bindable\VertexShader.h" />
     <ClInclude Include="Core\Engine\Engine.h" />
@@ -186,8 +191,12 @@
     <ClInclude Include="Core\Serialization\Serialization.h" />
     <ClInclude Include="Core\Serialization\SerializationManager.h" />
     <ClInclude Include="Core\Serialization\testSerialization.h" />
+    <ClInclude Include="Core\TextureLoader\DDSTextureLoader.h" />
+    <ClInclude Include="Core\TextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Core\Timer\GameTimer.h" />
     <ClInclude Include="Core\Utility\Utility.h" />
+    <ClInclude Include="Scene\Component\TestComponent.h" />
+    <ClInclude Include="Scene\SceneManager.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\PixelShader.hlsl">

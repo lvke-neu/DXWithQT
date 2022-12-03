@@ -14,24 +14,28 @@ namespace Twinkle
 	{
 		friend class BindableManager;
 	private:
-		VertexShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob);
+		VertexShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::string& relativeFilePath);
 		virtual ~VertexShader();
 	private:
 		virtual void bind() override;
 	private:
+		ID3DBlob* m_pBlob{ nullptr };
 		ID3D11VertexShader* m_pVertexShader{ nullptr };
 	};
 
-	VertexShader::VertexShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob)
+	VertexShader::VertexShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::string& relativeFilePath)
 	{
 		m_pDevice = pDevice;
 		m_pDeviceContent = pDeviceContent;
-		if (pBlob)
-			m_pDevice->CreateVertexShader(pBlob->GetBufferPointer(), pBlob->GetBufferSize(), nullptr, &m_pVertexShader);
+
+		m_pBlob = Singleton<Engine>::GetInstance().ReadFileToBlob(relativeFilePath);
+		if (m_pBlob)
+			m_pDevice->CreateVertexShader(m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), nullptr, &m_pVertexShader);
 	}
 
 	VertexShader::~VertexShader()
 	{
+		SAFE_RELEASE(m_pBlob);
 		SAFE_RELEASE(m_pVertexShader);
 	}
 

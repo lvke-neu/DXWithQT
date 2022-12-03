@@ -15,25 +15,29 @@ namespace Twinkle
 	{
 		friend class BindableManager;
 	private:
-		InputLayout(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied);
+		InputLayout(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::string& relativeFilePath, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied);
 		virtual ~InputLayout();
 		virtual void bind() override;
 	private:
+		ID3DBlob* m_pBlob{ nullptr };
 		ID3D11InputLayout* m_pInputLayout{ nullptr };
 	};
 
-	InputLayout::InputLayout(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, ID3DBlob* pBlob, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied)
+	InputLayout::InputLayout(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::string& relativeFilePath, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied)
 	{
 		m_pDevice = pDevice;
 		m_pDeviceContent = pDeviceContent;
-		if (pBlob)
+
+		m_pBlob = Singleton<Engine>::GetInstance().ReadFileToBlob(relativeFilePath);
+		if (m_pBlob)
 		{
-			m_pDevice->CreateInputLayout(ied.data(), (UINT)ied.size(), pBlob->GetBufferPointer(), pBlob->GetBufferSize(), &m_pInputLayout);
+			m_pDevice->CreateInputLayout(ied.data(), (UINT)ied.size(), m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), &m_pInputLayout);
 		}	
 	}
 
 	InputLayout::~InputLayout()
 	{
+		SAFE_RELEASE(m_pBlob);
 		SAFE_RELEASE(m_pInputLayout);
 	}
 
