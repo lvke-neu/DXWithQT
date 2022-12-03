@@ -4,9 +4,12 @@
 #include "InputLayout.h"
 #include "PixelShader.h"
 #include "Texture.h"
+#include "SamplerState.h"
 
 namespace Twinkle
 {
+	std::vector<IBindable*> BindableManager::defaultConstantBuffers;
+
 	BindableManager::BindableManager()
 	{
 		m_pDevice = Singleton<Engine>::GetInstance().GetDevice();
@@ -31,6 +34,11 @@ namespace Twinkle
 	IBindable * BindableManager::CreateTexture(UINT startSlot, const std::string & relativeFilePath)
 	{
 		return new Texture(m_pDevice, m_pDeviceContent, startSlot, relativeFilePath);
+	}
+
+	IBindable * BindableManager::CreateSamplerState(UINT startSlot, SamplerStateType samplerStateType)
+	{
+		return new SamplerState(m_pDevice, m_pDeviceContent, startSlot, samplerStateType);
 	}
 
 	void BindableManager::Release(IBindable*& bindable)

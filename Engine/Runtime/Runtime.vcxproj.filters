@@ -85,6 +85,9 @@
     <ClCompile Include="Core\TextureLoader\WICTextureLoader.cpp">
       <Filter>Core\TextureLoader</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Bindable\SamplerStateDesc.cpp">
+      <Filter>Core\Bindable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Interface\SingletonInterface.h">
@@ -156,6 +159,12 @@
     <ClInclude Include="Core\Bindable\Texture.h">
       <Filter>Core\Bindable</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Bindable\SamplerState.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Bindable\SamplerStateDesc.h">
+      <Filter>Core\Bindable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\VertexShader.hlsl">
@@ -164,5 +173,10 @@
     <FxCompile Include="Shader\PixelShader.hlsl">
       <Filter>Shader</Filter>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\CommonShader.hlsli">
+      <Filter>Shader</Filter>
+    </None>
   </ItemGroup>
 </Project>

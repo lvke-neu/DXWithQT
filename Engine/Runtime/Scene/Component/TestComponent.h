@@ -11,9 +11,8 @@ namespace Twinkle
 		{
 			float x;
 			float y;
-			float r;
-			float g;
-			float b;
+			float u;
+			float v;
 		};
 	public:
 		TestComponent();
@@ -27,6 +26,8 @@ namespace Twinkle
 		IBindable*	vertexShader{ nullptr };
 		IBindable* inputLayout{ nullptr };
 		IBindable* pixelShader{ nullptr };
+		IBindable* texture{ nullptr };
+		IBindable* samplerState{ nullptr };
 		std::vector<IBindable*> cbs;
 	};
 }

@@ -160,6 +160,7 @@
   <ItemGroup>
     <ClCompile Include="Core\Bindable\BindableInterface.h" />
     <ClCompile Include="Core\Bindable\BindableManager.cpp" />
+    <ClCompile Include="Core\Bindable\SamplerStateDesc.cpp" />
     <ClCompile Include="Core\Engine\Engine.cpp" />
     <ClCompile Include="Core\Log\LogManager.cpp" />
     <ClCompile Include="Core\Reflection\ReflectionManager.cpp" />
@@ -179,6 +180,8 @@
     <ClInclude Include="Core\Bindable\IndexBuffer.h" />
     <ClInclude Include="Core\Bindable\InputLayout.h" />
     <ClInclude Include="Core\Bindable\PixelShader.h" />
+    <ClInclude Include="Core\Bindable\SamplerState.h" />
+    <ClInclude Include="Core\Bindable\SamplerStateDesc.h" />
     <ClInclude Include="Core\Bindable\Texture.h" />
     <ClInclude Include="Core\Bindable\VertexBuffer.h" />
     <ClInclude Include="Core\Bindable\VertexShader.h" />
@@ -215,6 +218,9 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Release|x64'">5.0</ShaderModel>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Shader\CommonShader.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,9 +1,10 @@
-cbuffer ColorCB : register(b0)
-{
-	float4 g_color;
-}
+#include "CommonShader.hlsli"
 
-float4 main(float3 color : COLOR) : SV_Target
+Texture2D g_texture : register(t0);
+SamplerState g_samplerState : register (s0);
+
+float4 main(VsOut pIn) : SV_Target
 {
-	return g_color;
+	
+	return g_texture.Sample(g_samplerState, pIn.uv);
 }

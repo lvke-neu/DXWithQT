@@ -10,6 +10,7 @@ Bindable Manager : create and drawcall
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "ConstantBuffer.h"
+#include "SamplerStateDesc.h"
 
 namespace Twinkle
 {
@@ -17,6 +18,7 @@ namespace Twinkle
 	class InputLayout;
 	class PixelShader;
 	class Texture;
+
 	class BindableManager
 	{
 		FRIEND_SINGLETON(BindableManager);
@@ -47,9 +49,12 @@ namespace Twinkle
 
 		IBindable* CreateTexture(UINT startSlot, const std::string& relativeFilePath);
 
+		IBindable* CreateSamplerState(UINT startSlot, SamplerStateType samplerStateType);
+
 		template <class IndexBufferType>
 		void DrawCall(IBindable* vertexBuffer, IBindable* indexbuffer,
-			IBindable* vertexShader, IBindable* inputLayout, IBindable* pixelShader, D3D11_PRIMITIVE_TOPOLOGY drawType, const std::vector<IBindable*>& constantBuffers)
+			IBindable* vertexShader, IBindable* inputLayout, IBindable* pixelShader, D3D11_PRIMITIVE_TOPOLOGY drawType, 
+			IBindable* texture = nullptr, IBindable* samplerState = nullptr, const std::vector<IBindable*>& constantBuffers = defaultConstantBuffers)
 		{
 			if (vertexBuffer)
 				vertexBuffer->bind();
@@ -61,7 +66,11 @@ namespace Twinkle
 				inputLayout->bind();
 			if (pixelShader)
 				pixelShader->bind();
-			
+			if (texture)
+				texture->bind();
+			if (samplerState)
+				samplerState->bind();
+
 			for (auto& constantBuffer : constantBuffers)
 			{
 				if (constantBuffer)
@@ -82,5 +91,9 @@ namespace Twinkle
 	private:
 		ID3D11Device* m_pDevice{ nullptr };
 		ID3D11DeviceContext* m_pDeviceContent{ nullptr };
+
+		static std::vector<IBindable*> defaultConstantBuffers;
 	};
+
+	
 }

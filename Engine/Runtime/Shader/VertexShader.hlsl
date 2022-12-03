@@ -1,13 +1,10 @@
-struct VsOut
-{
-	float3 color : COLOR;
-	float4 pos : SV_Position;
-};
+#include "CommonShader.hlsli"
 
-VsOut  main(float2 pos: POSITION, float3 color : COLOR)
+VsOut main(VsIn vIn)
 {
-	VsOut vo;
-	vo.pos = float4(pos.x, pos.y, 0.0f, 1.0f);
-	vo.color = color;
-	return vo;
+	VsOut vOut;
+	vOut.pos = float4(vIn.pos, 0.0f, 1.0f);
+	vOut.uv = vIn.uv;
+
+	return vOut;
 }
