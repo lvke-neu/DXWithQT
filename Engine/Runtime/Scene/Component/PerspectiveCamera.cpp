@@ -13,9 +13,6 @@ namespace Twinkle
 
 		m_viewMatrixCB->bind();
 		m_projMatrixCB->bind();
-
-		constantBuffers.push_back(m_viewMatrixCB);
-		constantBuffers.push_back(m_projMatrixCB);
 	}
 
 	void PerspectiveCamera::SetPosition(float x, float y, float z)
@@ -36,14 +33,6 @@ namespace Twinkle
 		updateProjMatrix();
 	}
 
-	void PerspectiveCamera::Update(float deltaTime)
-	{
-		static float rot = 0;
-		rot += deltaTime * 5;
-		m_transform.setRotation(0, rot, 0);
-		updateViewMatrix();
-	}
-
 	XMMATRIX PerspectiveCamera::GetViewMatrix()
 	{
 		return XMMatrixInverse(nullptr, m_transform.getWorldMatrix());
@@ -56,7 +45,8 @@ namespace Twinkle
 
 	PerspectiveCamera::~PerspectiveCamera()
 	{
-		Singleton<BindableManager>::GetInstance().Release(constantBuffers);
+		Singleton<BindableManager>::GetInstance().Release(m_viewMatrixCB);
+		Singleton<BindableManager>::GetInstance().Release(m_projMatrixCB);
 	}
 
 	void PerspectiveCamera::updateViewMatrix()

@@ -30,6 +30,6 @@ namespace Twinkle
 		float a = 1;
 
 		QString fps = (" FPS:" + std::to_string(Singleton<Engine>::GetInstance().GetFps())).c_str();
-		setWindowTitle("Twinkle-v0.002" + fps);
+		setWindowTitle("Twinkle-v0.002 " + fps);
 	}
 }

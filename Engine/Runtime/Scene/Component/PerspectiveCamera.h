@@ -41,7 +41,6 @@ namespace Twinkle
 		void SetPosition(float x, float y, float z);
 		void SetRotation(float x, float y, float z);
 		void SetFrustum(const Frustum& frustum);
-		void Update(float deltaTime);
 	public:
 		XMMATRIX GetViewMatrix();
 		XMMATRIX GetProjMatrix();
@@ -58,6 +57,5 @@ namespace Twinkle
 		Frustum m_frustum;
 		IBindable* m_viewMatrixCB{ nullptr };
 		IBindable* m_projMatrixCB{ nullptr };
-		std::vector<IBindable*> constantBuffers;
 	};
 }
