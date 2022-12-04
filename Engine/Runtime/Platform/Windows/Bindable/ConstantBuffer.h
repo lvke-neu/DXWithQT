@@ -19,6 +19,8 @@ namespace Twinkle
 		void update(const T& t);
 	private:
 		ConstantBuffer(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, UINT startSlot);
+		ConstantBuffer(const ConstantBuffer&) = delete;
+		ConstantBuffer& operator=(const ConstantBuffer&) = delete;
 		virtual ~ConstantBuffer();
 		virtual void bind() override;
 	private:

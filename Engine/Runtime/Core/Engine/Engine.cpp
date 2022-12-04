@@ -1,12 +1,14 @@
 #include "Engine.h"
 #include "Runtime/Core/Log/LogManager.h"
 #include "Runtime/Scene/SceneManager.h"
+#include "Runtime/Scene/Component/PerspectiveCamera.h"
 
 namespace Twinkle
 {
 	void Engine::Initialize(HWND hwndWindow, UINT width, UINT height)
 	{
 		Singleton<DirectX11Manager>::GetInstance().Initialize(hwndWindow, width, height);
+		Singleton<PerspectiveCamera>::GetInstance().Initialize();
 
 		m_timer.Reset();
 		m_timer.Start();
@@ -19,6 +21,13 @@ namespace Twinkle
 		LOG_INFO("onResize: width = " + std::to_string(width) + " height = " + std::to_string(height));
 
 		Singleton<DirectX11Manager>::GetInstance().OnResize(width, height);
+
+		Frustum frustum;
+		frustum.FovAngleY = XM_PI / 3.0f;
+		frustum.AspectRatio = static_cast<float>(width) / height;
+		frustum.FovAngleY = 1.0f;
+		frustum.FovAngleY = 1000.0f;
+		Singleton<PerspectiveCamera>::GetInstance().SetFrustum(frustum);
 	}
 
 	void Engine::Update()

@@ -20,6 +20,8 @@ namespace Twinkle
 		void Initialize(HWND hwndWindow, UINT width, UINT height);
 		void OnResize(UINT width, UINT height);
 
+		float GetAspectRatio();
+
 		ID3DBlob* ReadFileToBlob(const std::string& relativeFilePath);
 		ID3D11ShaderResourceView* LoadTexture(const std::string& relativeFilePath);
 
@@ -41,5 +43,7 @@ namespace Twinkle
 		ID3D11RenderTargetView* m_pRenderTargetView{ nullptr };
 		ID3D11Texture2D* m_pDepthStencilBuffer{ nullptr };
 		ID3D11DepthStencilView* m_pDepthStencilView{ nullptr };
+
+		float m_AspectRatio = 1.0f;
 	};
 }

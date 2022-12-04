@@ -1,6 +1,7 @@
 #include "TestComponent.h"
 #include "../../Platform/Windows/Bindable/BindableManager.h"
 #include "VertexType.h"
+#include "Transform.h"
 
 namespace Twinkle
 {
@@ -93,32 +94,13 @@ namespace Twinkle
 
 
 		//constantbuffer
-		struct MVP
-		{
-			XMMATRIX MVPMatrix;
-		};
-
-		XMMATRIX worldMatrix;
-		worldMatrix.r[0] = g_XMIdentityR0;
-		worldMatrix.r[1] = g_XMIdentityR1;
-		worldMatrix.r[2] = g_XMIdentityR2;
-		worldMatrix.r[3] = XMVECTORF32{ { { 0.0f, 0.0f, 5.0f, 1.0f } } };
+		Transform transform;
+		transform.setPosition(0, 0, 5);
+		WorldMatrix worldMatrix;
+		worldMatrix.worldMatrix = XMMatrixTranspose(transform.getWorldMatrix());
 		
-		XMMATRIX viewMatrix;
-		viewMatrix.r[0] = g_XMIdentityR0;
-		viewMatrix.r[1] = g_XMIdentityR1;
-		viewMatrix.r[2] = g_XMIdentityR2;
-		viewMatrix.r[3] = g_XMIdentityR3;
-		viewMatrix = XMMatrixInverse(nullptr, viewMatrix);
-
-		XMMATRIX projMatrix;
-		projMatrix = XMMatrixPerspectiveFovLH(XM_PI / 3, 1.7f, 0.5f, 1000);
-
-		MVP mvp;
-		mvp.MVPMatrix = XMMatrixTranspose(worldMatrix * viewMatrix * projMatrix);
-		
-		IBindable* constantBuffer = Singleton<BindableManager>::GetInstance().CreateConstantBuffer<MVP>(0);
-		dynamic_cast<ConstantBuffer<MVP>*>(constantBuffer)->update(mvp);
+		IBindable* constantBuffer = Singleton<BindableManager>::GetInstance().CreateConstantBuffer<WorldMatrix>(0);
+		dynamic_cast<ConstantBuffer<WorldMatrix>*>(constantBuffer)->update(worldMatrix);
 		cbs.push_back(constantBuffer);
 	}
 

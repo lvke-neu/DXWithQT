@@ -49,6 +49,9 @@
     <Filter Include="Scene\Component\Common">
       <UniqueIdentifier>{25345132-69e5-4780-bf5f-8d8faa0fa65c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Component\Interface">
+      <UniqueIdentifier>{9e4a660b-0178-442b-97c4-09ea0c50aec4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -93,6 +96,15 @@
     </ClCompile>
     <ClCompile Include="Utility\Utility.cpp">
       <Filter>Utility</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\Transform.cpp">
+      <Filter>Scene\Component\Common</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\ComponentInterface.cpp">
+      <Filter>Scene\Component\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Component\PerspectiveCamera.cpp">
+      <Filter>Scene\Component</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -179,6 +191,15 @@
     </ClInclude>
     <ClInclude Include="Scene\Component\VertexType.h">
       <Filter>Scene\Component\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\Transform.h">
+      <Filter>Scene\Component\Common</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\ComponentInterface.h">
+      <Filter>Scene\Component\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\PerspectiveCamera.h">
+      <Filter>Scene\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -56,6 +56,7 @@ namespace Twinkle
 
 	void DirectX11Manager::OnResize(UINT width, UINT height)
 	{
+		m_AspectRatio = static_cast<float>(width) / height;
 		//rebuild RenderTargetView
 		SAFE_RELEASE(m_pRenderTargetView);
 		SAFE_RELEASE(m_pDepthStencilBuffer);
@@ -98,6 +99,11 @@ namespace Twinkle
 		vp.MinDepth = 0.0f;
 		vp.MaxDepth = 1.0f;
 		m_pDeviceContent->RSSetViewports(1, &vp);
+	}
+
+	float DirectX11Manager::GetAspectRatio()
+	{
+		return m_AspectRatio;
 	}
 
 	DirectX11Manager::~DirectX11Manager()

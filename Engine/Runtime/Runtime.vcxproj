@@ -170,7 +170,10 @@
     <ClCompile Include="Platform\Windows\DirectX11Manager.cpp" />
     <ClCompile Include="Platform\Windows\TextureLoader\DDSTextureLoader.cpp" />
     <ClCompile Include="Platform\Windows\TextureLoader\WICTextureLoader.cpp" />
+    <ClCompile Include="Scene\Component\ComponentInterface.cpp" />
+    <ClCompile Include="Scene\Component\PerspectiveCamera.cpp" />
     <ClCompile Include="Scene\Component\TestComponent.cpp" />
+    <ClCompile Include="Scene\Component\Transform.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Utility\Utility.cpp" />
   </ItemGroup>
@@ -199,7 +202,10 @@
     <ClInclude Include="Platform\Windows\DirectX11Manager.h" />
     <ClInclude Include="Platform\Windows\TextureLoader\DDSTextureLoader.h" />
     <ClInclude Include="Platform\Windows\TextureLoader\WICTextureLoader.h" />
+    <ClInclude Include="Scene\Component\ComponentInterface.h" />
+    <ClInclude Include="Scene\Component\PerspectiveCamera.h" />
     <ClInclude Include="Scene\Component\TestComponent.h" />
+    <ClInclude Include="Scene\Component\Transform.h" />
     <ClInclude Include="Scene\Component\VertexType.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Utility\Utility.h" />
