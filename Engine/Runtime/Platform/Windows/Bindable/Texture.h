@@ -28,7 +28,7 @@ namespace Twinkle
 		m_pDeviceContent = pDeviceContent;
 		m_startSlot = startSlot;
 
-		m_pShaderResourceView = Singleton<Engine>::GetInstance().LoadTexture(relativeFilePath);
+		m_pShaderResourceView = Singleton<DirectX11Manager>::GetInstance().LoadTexture(relativeFilePath);
 	}
 
 	Texture::~Texture()

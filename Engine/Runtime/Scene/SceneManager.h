@@ -6,7 +6,7 @@ Scene Manager
 ****************************************************************************************/
 #pragma once
 
-#include "Component/TestComponent.h"
+#include "../Core/Interface/SingletonInterface.h"
 
 namespace Twinkle
 {
@@ -23,9 +23,6 @@ namespace Twinkle
 		SceneManager(const SceneManager&) = delete;
 		SceneManager& operator=(const SceneManager&) = delete;
 	private:
-		ID3D11Device* m_pDevice{ nullptr };
-		ID3D11DeviceContext* m_pDeviceContent{ nullptr };
-
 		TestComponent* m_testComponent{ nullptr };
 	};
 }

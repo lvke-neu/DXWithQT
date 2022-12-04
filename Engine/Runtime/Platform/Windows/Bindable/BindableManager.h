@@ -6,7 +6,7 @@ Bindable Manager : create and drawcall
 ****************************************************************************************/
 #pragma once
 
-#include "../Interface/SingletonInterface.h"
+#include "../../../Core/Interface/SingletonInterface.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "ConstantBuffer.h"
@@ -85,7 +85,7 @@ namespace Twinkle
 		void Release(std::vector<IBindable*>& constantBuffers);
 	private:
 		BindableManager();
-		virtual ~BindableManager() =default;
+		virtual ~BindableManager() = default;
 		BindableManager(const BindableManager&) = delete;
 		BindableManager& operator=(const BindableManager&) = delete;
 	private:

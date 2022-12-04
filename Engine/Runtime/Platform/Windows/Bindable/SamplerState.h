@@ -31,6 +31,7 @@ namespace Twinkle
 
 		SamplerStateDesc::init();
 		
+		SamplerStateDesc::samplerStateTyPeDesc[samplerStateType];
 		m_pDevice->CreateSamplerState(&SamplerStateDesc::samplerStateTyPeDesc[samplerStateType], &m_pSamplerState);
 	}
 

@@ -28,20 +28,23 @@
     <Filter Include="Shader">
       <UniqueIdentifier>{a41a4ab1-4aae-446d-9fbe-357c157c3f07}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Bindable">
-      <UniqueIdentifier>{67478c86-a3ed-40ab-a142-5b30de46223f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Bindable\Interface">
-      <UniqueIdentifier>{4d6d5f76-4ee1-4e4f-90ee-27e2b78d8458}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene">
       <UniqueIdentifier>{9d478906-5a68-4cec-93b0-9b7e36b78db9}</UniqueIdentifier>
     </Filter>
     <Filter Include="Scene\Component">
       <UniqueIdentifier>{0eddaa46-2fe3-4d2d-a6a1-eb8cdeeaba75}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\TextureLoader">
-      <UniqueIdentifier>{fbfeaed2-75cf-451f-b105-c1e5c464b4ca}</UniqueIdentifier>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{0231f10b-4334-467f-8707-94063187f803}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{3779f79c-2e1c-4d9c-929e-fdc444127bff}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows\Bindable">
+      <UniqueIdentifier>{c04943ef-7b12-42cc-bdcd-f7d81d7cafc7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows\TextureLoader">
+      <UniqueIdentifier>{6f7454e3-d1a1-4ba6-92ac-dfbf18986807}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -67,26 +70,26 @@
     <ClCompile Include="Core\Timer\GameTimer.cpp">
       <Filter>Core\Timer</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Bindable\BindableInterface.h">
-      <Filter>Core\Bindable\Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Bindable\BindableManager.cpp">
-      <Filter>Core\Bindable</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Component\TestComponent.cpp">
       <Filter>Scene\Component</Filter>
     </ClCompile>
-    <ClCompile Include="Core\TextureLoader\DDSTextureLoader.cpp">
-      <Filter>Core\TextureLoader</Filter>
+    <ClCompile Include="Platform\Windows\DirectX11Manager.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Core\TextureLoader\WICTextureLoader.cpp">
-      <Filter>Core\TextureLoader</Filter>
+    <ClCompile Include="Platform\Windows\Bindable\BindableManager.cpp">
+      <Filter>Platform\Windows\Bindable</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Bindable\SamplerStateDesc.cpp">
-      <Filter>Core\Bindable</Filter>
+    <ClCompile Include="Platform\Windows\Bindable\SamplerStateDesc.cpp">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\TextureLoader\DDSTextureLoader.cpp">
+      <Filter>Platform\Windows\TextureLoader</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\TextureLoader\WICTextureLoader.cpp">
+      <Filter>Platform\Windows\TextureLoader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -123,47 +126,53 @@
     <ClInclude Include="Core\Timer\GameTimer.h">
       <Filter>Core\Timer</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Bindable\IndexBuffer.h">
-      <Filter>Core\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Bindable\VertexBuffer.h">
-      <Filter>Core\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Bindable\VertexShader.h">
-      <Filter>Core\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Bindable\InputLayout.h">
-      <Filter>Core\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Bindable\PixelShader.h">
-      <Filter>Core\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Bindable\BindableManager.h">
-      <Filter>Core\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Bindable\ConstantBuffer.h">
-      <Filter>Core\Bindable</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Component\TestComponent.h">
       <Filter>Scene\Component</Filter>
     </ClInclude>
-    <ClInclude Include="Core\TextureLoader\DDSTextureLoader.h">
-      <Filter>Core\TextureLoader</Filter>
+    <ClInclude Include="Platform\Windows\DirectX11Manager.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Core\TextureLoader\WICTextureLoader.h">
-      <Filter>Core\TextureLoader</Filter>
+    <ClInclude Include="Platform\Windows\Bindable\BindableInterface.h">
+      <Filter>Platform\Windows\Bindable</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Bindable\Texture.h">
-      <Filter>Core\Bindable</Filter>
+    <ClInclude Include="Platform\Windows\Bindable\BindableManager.h">
+      <Filter>Platform\Windows\Bindable</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Bindable\SamplerState.h">
-      <Filter>Core\Bindable</Filter>
+    <ClInclude Include="Platform\Windows\Bindable\ConstantBuffer.h">
+      <Filter>Platform\Windows\Bindable</Filter>
     </ClInclude>
-    <ClInclude Include="Core\Bindable\SamplerStateDesc.h">
-      <Filter>Core\Bindable</Filter>
+    <ClInclude Include="Platform\Windows\Bindable\IndexBuffer.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\InputLayout.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\PixelShader.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\SamplerState.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\SamplerStateDesc.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\Texture.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\VertexBuffer.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\VertexShader.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\TextureLoader\DDSTextureLoader.h">
+      <Filter>Platform\Windows\TextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\TextureLoader\WICTextureLoader.h">
+      <Filter>Platform\Windows\TextureLoader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

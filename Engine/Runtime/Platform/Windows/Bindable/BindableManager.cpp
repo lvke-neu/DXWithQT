@@ -1,10 +1,10 @@
 #include "BindableManager.h"
-#include "../Engine/Engine.h"
 #include "VertexShader.h"
 #include "InputLayout.h"
 #include "PixelShader.h"
 #include "Texture.h"
 #include "SamplerState.h"
+#include "../DirectX11Manager.h"
 
 namespace Twinkle
 {
@@ -12,8 +12,9 @@ namespace Twinkle
 
 	BindableManager::BindableManager()
 	{
-		m_pDevice = Singleton<Engine>::GetInstance().GetDevice();
-		m_pDeviceContent = Singleton<Engine>::GetInstance().GetDeviceContent();
+		m_pDevice = Singleton<DirectX11Manager>::GetInstance().GetDevice();
+		m_pDeviceContent = Singleton<DirectX11Manager>::GetInstance().GetDeviceContent();
+
 	}
 
 	IBindable* BindableManager::CreateVertexShader(const std::string& relativeFilePath)

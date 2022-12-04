@@ -1,5 +1,5 @@
 #include "TestComponent.h"
-#include "../../Core/Bindable/BindableManager.h"
+#include "../../Platform/Windows/Bindable/BindableManager.h"
 
 namespace Twinkle
 {

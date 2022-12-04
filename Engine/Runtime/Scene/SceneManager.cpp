@@ -1,13 +1,10 @@
 #include "SceneManager.h"
-
+#include "Component/TestComponent.h"
 
 namespace Twinkle
 {
 	SceneManager::SceneManager()
 	{
-		m_pDevice = Singleton<Engine>::GetInstance().GetDevice();
-		m_pDeviceContent = Singleton<Engine>::GetInstance().GetDeviceContent();
-
 		m_testComponent = new TestComponent;
 	}
 

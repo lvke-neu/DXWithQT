@@ -27,7 +27,7 @@ namespace Twinkle
 		m_pDevice = pDevice;
 		m_pDeviceContent = pDeviceContent;
 
-		m_pBlob = Singleton<Engine>::GetInstance().ReadFileToBlob(relativeFilePath);
+		m_pBlob = Singleton<DirectX11Manager>::GetInstance().ReadFileToBlob(relativeFilePath);
 		if (m_pBlob)
 			m_pDevice->CreatePixelShader(m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), nullptr, &m_pPixelShader);
 	}
