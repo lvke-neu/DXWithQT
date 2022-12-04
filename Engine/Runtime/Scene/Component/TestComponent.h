@@ -6,13 +6,6 @@ namespace Twinkle
 	class IBindable;
 	class TestComponent
 	{
-		struct Vertex
-		{
-			float x;
-			float y;
-			float u;
-			float v;
-		};
 	public:
 		TestComponent();
 		~TestComponent();

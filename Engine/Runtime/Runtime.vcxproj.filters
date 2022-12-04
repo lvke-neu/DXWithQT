@@ -46,6 +46,9 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{639ea62f-858e-4ed4-bfc3-be22862fe77e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\Component\Common">
+      <UniqueIdentifier>{25345132-69e5-4780-bf5f-8d8faa0fa65c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -173,6 +176,9 @@
     </ClInclude>
     <ClInclude Include="Utility\Utility.h">
       <Filter>Utility</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Component\VertexType.h">
+      <Filter>Scene\Component\Common</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

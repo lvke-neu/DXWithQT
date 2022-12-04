@@ -3,7 +3,7 @@
 VsOut main(VsIn vIn)
 {
 	VsOut vOut;
-	vOut.pos = float4(vIn.pos, 0.0f, 1.0f);
+	vOut.pos = mul(float4(vIn.pos, 1.0f), g_mvp);
 	vOut.uv = vIn.uv;
 
 	return vOut;
