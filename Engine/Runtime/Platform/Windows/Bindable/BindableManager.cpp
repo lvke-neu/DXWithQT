@@ -4,7 +4,6 @@
 #include "PixelShader.h"
 #include "Texture.h"
 #include "SamplerState.h"
-#include "../DirectX11Manager.h"
 
 namespace Twinkle
 {

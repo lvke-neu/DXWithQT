@@ -9,7 +9,7 @@ The LogManager is implemented by spdlog
 #include "spdlog/spdlog.h"
 #include <cstdint>
 #include <stdexcept>
-#include "../Interface/SingletonInterface.h"
+#include "Runtime/Interface/SingletonInterface.h"
 
 namespace Twinkle
 {

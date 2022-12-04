@@ -8,8 +8,8 @@ DirextX11 Manager
 
 #include <d3d11.h>
 #include <d3dcompiler.h>
-#include "../../Core/Utility/Utility.h"
-#include "../../Core/Interface/SingletonInterface.h"
+#include "Runtime/Utility/Utility.h"
+#include "Runtime/Interface/SingletonInterface.h"
 
 namespace Twinkle
 {

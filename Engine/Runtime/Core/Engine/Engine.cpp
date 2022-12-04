@@ -1,6 +1,6 @@
 #include "Engine.h"
-#include "../Log/LogManager.h"
-#include "../../Scene/SceneManager.h"
+#include "Runtime/Core/Log/LogManager.h"
+#include "Runtime/Scene/SceneManager.h"
 
 namespace Twinkle
 {

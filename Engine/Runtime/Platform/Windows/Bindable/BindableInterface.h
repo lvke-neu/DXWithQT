@@ -7,7 +7,7 @@ Bindable Interface
 #pragma once
 #include <d3d11.h>
 #include "../DirectX11Manager.h"
-#include "../../../Core/Utility/Utility.h"
+#include "Runtime/Utility/Utility.h"
 
 namespace Twinkle
 {

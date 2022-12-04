@@ -85,7 +85,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/;../</AdditionalIncludeDirectories>
       <BasicRuntimeChecks>Default</BasicRuntimeChecks>
       <PreprocessorDefinitions>NOMINMAX;%(PreprocessorDefinitions);_DEBUG</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -139,7 +139,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../../thirdparty/spdlog/include/;../../thirdparty/rapidjson/include/;../</AdditionalIncludeDirectories>
       <WholeProgramOptimization>false</WholeProgramOptimization>
       <PreprocessorDefinitions>NOMINMAX;%(PreprocessorDefinitions);NDEBUG;</PreprocessorDefinitions>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -164,7 +164,6 @@
     <ClCompile Include="Core\Serialization\DataStream.cpp" />
     <ClCompile Include="Core\Serialization\SerializationManager.cpp" />
     <ClCompile Include="Core\Timer\GameTimer.cpp" />
-    <ClCompile Include="Core\Utility\Utility.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Platform\Windows\Bindable\BindableManager.cpp" />
     <ClCompile Include="Platform\Windows\Bindable\SamplerStateDesc.cpp" />
@@ -173,10 +172,10 @@
     <ClCompile Include="Platform\Windows\TextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Scene\Component\TestComponent.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
+    <ClCompile Include="Utility\Utility.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Engine\Engine.h" />
-    <ClInclude Include="Core\Interface\SingletonInterface.h" />
     <ClInclude Include="Core\Log\LogManager.h" />
     <ClInclude Include="Core\Reflection\ReflectionManager.h" />
     <ClInclude Include="Core\Reflection\testReflection.h" />
@@ -185,7 +184,7 @@
     <ClInclude Include="Core\Serialization\SerializationManager.h" />
     <ClInclude Include="Core\Serialization\testSerialization.h" />
     <ClInclude Include="Core\Timer\GameTimer.h" />
-    <ClInclude Include="Core\Utility\Utility.h" />
+    <ClInclude Include="Interface\SingletonInterface.h" />
     <ClInclude Include="Platform\Windows\Bindable\BindableInterface.h" />
     <ClInclude Include="Platform\Windows\Bindable\BindableManager.h" />
     <ClInclude Include="Platform\Windows\Bindable\ConstantBuffer.h" />
@@ -202,6 +201,7 @@
     <ClInclude Include="Platform\Windows\TextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Scene\Component\TestComponent.h" />
     <ClInclude Include="Scene\SceneManager.h" />
+    <ClInclude Include="Utility\Utility.h" />
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\PixelShader.hlsl">

@@ -6,7 +6,7 @@ Serialization Manager
 ****************************************************************************************/
 #pragma once
 
-#include "../Interface/SingletonInterface.h"
+#include "Runtime/Interface/SingletonInterface.h"
 #include "DataStream.h"
 
 namespace Twinkle

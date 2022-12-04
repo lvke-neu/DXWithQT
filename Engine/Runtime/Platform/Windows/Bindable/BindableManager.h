@@ -6,7 +6,7 @@ Bindable Manager : create and drawcall
 ****************************************************************************************/
 #pragma once
 
-#include "../../../Core/Interface/SingletonInterface.h"
+#include "Runtime/Interface/SingletonInterface.h"
 #include "VertexBuffer.h"
 #include "IndexBuffer.h"
 #include "ConstantBuffer.h"

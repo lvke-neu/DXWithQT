@@ -1,8 +1,8 @@
 #include "EditorWindow.h"
 #include "RenderWindow.h"
-#include "Runtime/Core/Utility/Utility.h"
 #include "Runtime/Core/Log/LogManager.h"
 #include "Runtime/Core/Engine/Engine.h"
+#include "Runtime/Utility/Utility.h"
 
 namespace Twinkle
 {
@@ -15,7 +15,7 @@ namespace Twinkle
 		m_renderWindow = new RenderWindow(this);
 		setCentralWidget(m_renderWindow);
 
-		startTimer(1000);
+		startTimer(0);
 		LOG_INFO("Window initialization is complete");
 	}
 

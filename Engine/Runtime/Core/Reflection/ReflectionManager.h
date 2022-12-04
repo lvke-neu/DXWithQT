@@ -10,7 +10,7 @@ Reflection Manager
 #include <map>
 #include <vector>
 #include <functional>
-#include "../Interface/SingletonInterface.h"
+#include "Runtime/Interface/SingletonInterface.h"
 
 namespace Twinkle
 {

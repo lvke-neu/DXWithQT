@@ -6,8 +6,8 @@ Twinkle Engine
 ****************************************************************************************/
 #pragma once
 
-#include "../../Platform/Windows/DirectX11Manager.h"
-#include "../Timer/GameTimer.h"
+#include "Runtime/Platform/Windows/DirectX11Manager.h"
+#include "Runtime/Core/Timer/GameTimer.h"
 
 namespace Twinkle
 {

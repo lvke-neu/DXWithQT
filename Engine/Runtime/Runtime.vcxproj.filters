@@ -7,12 +7,6 @@
     <Filter Include="Core\Reflection">
       <UniqueIdentifier>{217d4774-bb8e-4d60-999c-2b66bfe4a930}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Core\Interface">
-      <UniqueIdentifier>{0666747c-676d-4e10-a0dd-fb09d4564acf}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Core\Utility">
-      <UniqueIdentifier>{285defb1-3d70-4cdd-b72c-e7ad24cd4709}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Core\Serialization">
       <UniqueIdentifier>{d1b647b6-58ac-4d90-b2aa-2788cc55d788}</UniqueIdentifier>
     </Filter>
@@ -46,14 +40,17 @@
     <Filter Include="Platform\Windows\TextureLoader">
       <UniqueIdentifier>{6f7454e3-d1a1-4ba6-92ac-dfbf18986807}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Interface">
+      <UniqueIdentifier>{032b7cc0-9f86-4f31-8fd6-8600d9df7270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Utility">
+      <UniqueIdentifier>{639ea62f-858e-4ed4-bfc3-be22862fe77e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Core\Reflection\ReflectionManager.cpp">
       <Filter>Core\Reflection</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Utility\Utility.cpp">
-      <Filter>Core\Utility</Filter>
     </ClCompile>
     <ClCompile Include="Core\Serialization\SerializationManager.cpp">
       <Filter>Core\Serialization</Filter>
@@ -91,16 +88,13 @@
     <ClCompile Include="Platform\Windows\TextureLoader\WICTextureLoader.cpp">
       <Filter>Platform\Windows\TextureLoader</Filter>
     </ClCompile>
+    <ClCompile Include="Utility\Utility.cpp">
+      <Filter>Utility</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Core\Interface\SingletonInterface.h">
-      <Filter>Core\Interface</Filter>
-    </ClInclude>
     <ClInclude Include="Core\Reflection\ReflectionManager.h">
       <Filter>Core\Reflection</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Utility\Utility.h">
-      <Filter>Core\Utility</Filter>
     </ClInclude>
     <ClInclude Include="Core\Serialization\SerializationManager.h">
       <Filter>Core\Serialization</Filter>
@@ -173,6 +167,12 @@
     </ClInclude>
     <ClInclude Include="Platform\Windows\TextureLoader\WICTextureLoader.h">
       <Filter>Platform\Windows\TextureLoader</Filter>
+    </ClInclude>
+    <ClInclude Include="Interface\SingletonInterface.h">
+      <Filter>Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Utility\Utility.h">
+      <Filter>Utility</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

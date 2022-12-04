@@ -6,7 +6,7 @@ Scene Manager
 ****************************************************************************************/
 #pragma once
 
-#include "../Core/Interface/SingletonInterface.h"
+#include "Runtime/Interface/SingletonInterface.h"
 
 namespace Twinkle
 {

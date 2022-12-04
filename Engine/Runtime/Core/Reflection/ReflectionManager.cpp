@@ -1,5 +1,5 @@
 #include "ReflectionManager.h"
-#include "../../Core/Utility/Utility.h"
+#include "Runtime/Utility/Utility.h"
 
 namespace Twinkle
 {
