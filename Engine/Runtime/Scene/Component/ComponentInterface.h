@@ -6,7 +6,7 @@ Component Interface
 ****************************************************************************************/
 #pragma once
 
-#include "Transform.h"
+#include "Runtime/Platform/Windows/Math/Transform.h"
 
 namespace Twinkle
 {

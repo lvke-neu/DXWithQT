@@ -1,7 +1,7 @@
 #include "TestComponent.h"
-#include "../../Platform/Windows/Bindable/BindableManager.h"
-#include "VertexType.h"
-#include "Transform.h"
+#include "Runtime/Platform/Windows/Bindable/BindableManager.h"
+#include "Runtime/Platform/Windows/Math/VertexType.h"
+#include "Runtime/Platform/Windows/Math/Transform.h"
 
 namespace Twinkle
 {

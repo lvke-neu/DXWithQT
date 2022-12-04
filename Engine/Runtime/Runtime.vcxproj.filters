@@ -46,11 +46,11 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{639ea62f-858e-4ed4-bfc3-be22862fe77e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Component\Common">
-      <UniqueIdentifier>{25345132-69e5-4780-bf5f-8d8faa0fa65c}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scene\Component\Interface">
       <UniqueIdentifier>{9e4a660b-0178-442b-97c4-09ea0c50aec4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\Windows\Math">
+      <UniqueIdentifier>{63c63a56-b1b9-43aa-902f-096740e679fe}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -97,14 +97,14 @@
     <ClCompile Include="Utility\Utility.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Component\Transform.cpp">
-      <Filter>Scene\Component\Common</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\Component\ComponentInterface.cpp">
       <Filter>Scene\Component\Interface</Filter>
     </ClCompile>
     <ClCompile Include="Scene\Component\PerspectiveCamera.cpp">
       <Filter>Scene\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\Math\Transform.cpp">
+      <Filter>Platform\Windows\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,17 +189,17 @@
     <ClInclude Include="Utility\Utility.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Component\VertexType.h">
-      <Filter>Scene\Component\Common</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Component\Transform.h">
-      <Filter>Scene\Component\Common</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\Component\ComponentInterface.h">
       <Filter>Scene\Component\Interface</Filter>
     </ClInclude>
     <ClInclude Include="Scene\Component\PerspectiveCamera.h">
       <Filter>Scene\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Math\Transform.h">
+      <Filter>Platform\Windows\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Math\VertexType.h">
+      <Filter>Platform\Windows\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
