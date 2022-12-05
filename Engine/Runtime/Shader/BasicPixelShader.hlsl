@@ -1,4 +1,4 @@
-#include "CommonShader.hlsli"
+#include "Basic.hlsli"
 
 Texture2D g_texture : register(t0);
 SamplerState g_samplerState : register (s0);

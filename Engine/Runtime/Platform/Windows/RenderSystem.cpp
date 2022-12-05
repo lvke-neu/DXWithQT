@@ -1,4 +1,5 @@
 #include "RenderSystem.h"
+#include "Runtime/Utility/Utility.h"
 #include "Bindable/VertexShader.h"
 #include "Bindable/InputLayout.h"
 #include "Bindable/PixelShader.h"

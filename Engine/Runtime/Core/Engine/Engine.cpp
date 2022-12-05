@@ -1,7 +1,7 @@
 #include "Engine.h"
 #include "Runtime/Core/Log/LogManager.h"
 #include "Runtime/Scene/SceneManager.h"
-#include "Runtime/Scene/Component/PerspectiveCamera.h"
+#include "Runtime/Scene/PerspectiveCamera.h"
 
 namespace Twinkle
 {
@@ -30,7 +30,7 @@ namespace Twinkle
 		Singleton<PerspectiveCamera>::GetInstance().SetFrustum(frustum);
 	}
 
-	void Engine::Update()
+	void Engine::Tick()
 	{
 		m_timer.Tick();
 		if (m_bPause)
@@ -40,8 +40,8 @@ namespace Twinkle
 		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearRenderTargetView(Singleton<RenderSystem>::GetInstance().GetRenderTargetView(), color);
 		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearDepthStencilView(Singleton<RenderSystem>::GetInstance().GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-		Singleton<SceneManager>::GetInstance().Update(m_timer.DeltaTime());
-		Singleton<SceneManager>::GetInstance().Draw();
+		Singleton<SceneManager>::GetInstance().Tick(m_timer.DeltaTime());
+
 
 		Singleton<RenderSystem>::GetInstance().GetSwapChain()->Present(0u, 0u);
 	}

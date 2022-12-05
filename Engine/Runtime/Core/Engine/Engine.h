@@ -17,7 +17,7 @@ namespace Twinkle
 	public:
 		void Initialize(HWND hwndWindow, UINT width, UINT height);
 		void OnResize(UINT width, UINT height);
-		void Update();
+		void Tick();
 		float GetFps();
 		void Pause();
 		void Start();

@@ -1,4 +1,7 @@
 #include "BindableInterface.h"
+#include <d3dcompiler.h>
+#include "../TextureLoader/DDSTextureLoader.h"
+#include "../TextureLoader/WICTextureLoader.h"
 
 namespace Twinkle
 {

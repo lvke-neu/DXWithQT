@@ -6,9 +6,6 @@ Bindable Interface
 ****************************************************************************************/
 #pragma once
 #include <d3d11.h>
-#include <d3dcompiler.h>
-#include "../TextureLoader/DDSTextureLoader.h"
-#include "../TextureLoader/WICTextureLoader.h"
 #include "Runtime/Utility/Utility.h"
 
 namespace Twinkle

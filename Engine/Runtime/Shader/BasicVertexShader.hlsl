@@ -1,4 +1,4 @@
-#include "CommonShader.hlsli"
+#include "Basic.hlsli"
 
 VsOut main(VsIn vIn)
 {

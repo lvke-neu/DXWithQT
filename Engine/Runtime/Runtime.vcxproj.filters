@@ -25,9 +25,6 @@
     <Filter Include="Scene">
       <UniqueIdentifier>{9d478906-5a68-4cec-93b0-9b7e36b78db9}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Component">
-      <UniqueIdentifier>{0eddaa46-2fe3-4d2d-a6a1-eb8cdeeaba75}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Platform">
       <UniqueIdentifier>{0231f10b-4334-467f-8707-94063187f803}</UniqueIdentifier>
     </Filter>
@@ -46,11 +43,26 @@
     <Filter Include="Utility">
       <UniqueIdentifier>{639ea62f-858e-4ed4-bfc3-be22862fe77e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\Component\Interface">
-      <UniqueIdentifier>{9e4a660b-0178-442b-97c4-09ea0c50aec4}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Platform\Windows\Math">
       <UniqueIdentifier>{63c63a56-b1b9-43aa-902f-096740e679fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Shader\Basic">
+      <UniqueIdentifier>{9aa57341-273a-4a7f-8791-fddc3564eb3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\ECS">
+      <UniqueIdentifier>{8122b67b-4507-41d3-8ac6-73cb242ca2c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\ECS\GameObject">
+      <UniqueIdentifier>{984a95c2-0edb-40ae-9fcf-281d3b69fab8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\ECS\Component">
+      <UniqueIdentifier>{0174e8b2-353f-4e00-925c-75c1d6b0fa2a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\ECS\Component\Interface">
+      <UniqueIdentifier>{f85ef588-8b8d-400d-9805-24cd1540e132}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\ECS\GameObject\Interface">
+      <UniqueIdentifier>{3b02d4b8-a88e-41e7-8697-89e5326dc081}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -76,9 +88,6 @@
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Component\TestComponent.cpp">
-      <Filter>Scene\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Platform\Windows\Bindable\SamplerStateDesc.cpp">
       <Filter>Platform\Windows\Bindable</Filter>
     </ClCompile>
@@ -91,23 +100,35 @@
     <ClCompile Include="Utility\Utility.cpp">
       <Filter>Utility</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\Component\ComponentInterface.cpp">
-      <Filter>Scene\Component\Interface</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\Component\PerspectiveCamera.cpp">
-      <Filter>Scene\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Platform\Windows\Math\Transform.cpp">
       <Filter>Platform\Windows\Math</Filter>
     </ClCompile>
     <ClCompile Include="Platform\Windows\RenderSystem.cpp">
       <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="Platform\Windows\Bindable\BindableManager1.cpp">
-      <Filter>Platform\Windows\Bindable</Filter>
-    </ClCompile>
     <ClCompile Include="Platform\Windows\Bindable\BindableInterface.cpp">
       <Filter>Platform\Windows\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\PerspectiveCamera.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\TestComponent.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ECS\GameObject\Interface\GameObjectInterface.cpp">
+      <Filter>Scene\ECS\GameObject\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ECS\GameObject\PlayerGameObject.cpp">
+      <Filter>Scene\ECS\GameObject</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ECS\Component\TransformComponent.cpp">
+      <Filter>Scene\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\ECS\Component\MeshComponent.cpp">
+      <Filter>Scene\ECS\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\Math\VertexType.cpp">
+      <Filter>Platform\Windows\Math</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,9 +161,6 @@
     </ClInclude>
     <ClInclude Include="Scene\SceneManager.h">
       <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Component\TestComponent.h">
-      <Filter>Scene\Component</Filter>
     </ClInclude>
     <ClInclude Include="Platform\Windows\Bindable\BindableInterface.h">
       <Filter>Platform\Windows\Bindable</Filter>
@@ -186,12 +204,6 @@
     <ClInclude Include="Utility\Utility.h">
       <Filter>Utility</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\Component\ComponentInterface.h">
-      <Filter>Scene\Component\Interface</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\Component\PerspectiveCamera.h">
-      <Filter>Scene\Component</Filter>
-    </ClInclude>
     <ClInclude Include="Platform\Windows\Math\Transform.h">
       <Filter>Platform\Windows\Math</Filter>
     </ClInclude>
@@ -201,16 +213,34 @@
     <ClInclude Include="Platform\Windows\RenderSystem.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Platform\Windows\Bindable\BindableManager1.h">
-      <Filter>Platform\Windows\Bindable</Filter>
+    <ClInclude Include="Scene\PerspectiveCamera.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\TestComponent.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ECS\Component\Interface\ComponentInterface.h">
+      <Filter>Scene\ECS\Component\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ECS\GameObject\Interface\GameObjectInterface.h">
+      <Filter>Scene\ECS\GameObject\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ECS\GameObject\PlayerGameObject.h">
+      <Filter>Scene\ECS\GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ECS\Component\TransformComponent.h">
+      <Filter>Scene\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\ECS\Component\MeshComponent.h">
+      <Filter>Scene\ECS\Component</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <FxCompile Include="Shader\VertexShader.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="Shader\BasicVertexShader.hlsl">
+      <Filter>Shader\Basic</Filter>
     </FxCompile>
-    <FxCompile Include="Shader\PixelShader.hlsl">
-      <Filter>Shader</Filter>
+    <FxCompile Include="Shader\BasicPixelShader.hlsl">
+      <Filter>Shader\Basic</Filter>
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
@@ -218,5 +248,8 @@
       <Filter>Shader</Filter>
     </None>
     <None Include="Readme.md" />
+    <None Include="Shader\Basic.hlsli">
+      <Filter>Shader\Basic</Filter>
+    </None>
   </ItemGroup>
 </Project>

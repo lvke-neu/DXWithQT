@@ -23,7 +23,7 @@ namespace  Twinkle
 
 	void RenderWindow::timerEvent(QTimerEvent* event)
 	{
-		Singleton<Engine>::GetInstance().Update();
+		Singleton<Engine>::GetInstance().Tick();
 		
 	}
 	void RenderWindow::resizeEvent(QResizeEvent* event)

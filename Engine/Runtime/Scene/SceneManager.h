@@ -10,19 +10,18 @@ Scene Manager
 
 namespace Twinkle
 {
-	class TestComponent;
+	class IGameObject;
 	class SceneManager
 	{
 		FRIEND_SINGLETON(SceneManager);
 	public:
-		void Update(float deltaTime);
-		void Draw();
+		void Tick(float deltaTime);
 	private:
 		SceneManager();
 		virtual ~SceneManager();
 		SceneManager(const SceneManager&) = delete;
 		SceneManager& operator=(const SceneManager&) = delete;
 	private:
-		TestComponent* m_testComponent{ nullptr };
+		IGameObject* m_player{ nullptr };
 	};
 }

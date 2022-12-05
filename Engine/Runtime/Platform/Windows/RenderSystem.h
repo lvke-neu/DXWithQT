@@ -7,7 +7,6 @@ DirextX11 Manager
 #pragma once
 
 #include <d3d11.h>
-#include "Runtime/Utility/Utility.h"
 #include "Runtime/Interface/SingletonInterface.h"
 #include "Bindable/VertexBuffer.h"
 #include "Bindable/IndexBuffer.h"
