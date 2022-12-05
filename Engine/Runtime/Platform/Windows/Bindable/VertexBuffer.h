@@ -14,7 +14,7 @@ namespace Twinkle
 	template<class T>
 	class VertexBuffer : public IBindable
 	{
-		friend class BindableManager;
+		friend class RenderSystem;
 	private:
 		VertexBuffer(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::vector<T>& vertices);
 		virtual ~VertexBuffer();

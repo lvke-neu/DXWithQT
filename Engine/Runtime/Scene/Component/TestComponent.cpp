@@ -1,5 +1,5 @@
 #include "TestComponent.h"
-#include "Runtime/Platform/Windows/Bindable/BindableManager.h"
+#include "Runtime/Platform/Windows/RenderSystem.h"
 #include "Runtime/Platform/Windows/Math/VertexType.h"
 #include "Runtime/Platform/Windows/Math/Transform.h"
 
@@ -61,7 +61,7 @@ namespace Twinkle
 			vertices[i * 4 + 3].texcoord = XMFLOAT2(1.0f, 1.0f);
 		}
 
-		vertexBuffer = Singleton<BindableManager>::GetInstance().CreateVertexBuffer<VertexPosNormalTex>(vertices);
+		vertexBuffer = Singleton<RenderSystem>::GetInstance().CreateVertexBuffer<VertexPosNormalTex>(vertices);
 
 		//indexbuffer
 		std::vector<UINT32> indices{
@@ -73,23 +73,23 @@ namespace Twinkle
 		20, 21, 22, 22, 23, 20
 		};
 		
-		indexBuffer = Singleton<BindableManager>::GetInstance().CreateIndexBuffer<UINT32>(indices, DXGI_FORMAT_R32_UINT);
+		indexBuffer = Singleton<RenderSystem>::GetInstance().CreateIndexBuffer<UINT32>(indices, DXGI_FORMAT_R32_UINT);
 
 		//vertexshader
-		vertexShader = Singleton<BindableManager>::GetInstance().CreateVertexShader("\\builtin\\BinShader\\VertexShader.cso");
+		vertexShader = Singleton<RenderSystem>::GetInstance().CreateVertexShader("\\builtin\\BinShader\\VertexShader.cso");
 		
 		//inputlayout
-		inputLayout = Singleton<BindableManager>::GetInstance().CreateInputLayout("\\builtin\\BinShader\\VertexShader.cso", VertexPosNormalTex::ied);
+		inputLayout = Singleton<RenderSystem>::GetInstance().CreateInputLayout("\\builtin\\BinShader\\VertexShader.cso", VertexPosNormalTex::ied);
 
 		//pixelshader
-		pixelShader = Singleton<BindableManager>::GetInstance().CreatePixelShader("\\builtin\\BinShader\\PixelShader.cso");
+		pixelShader = Singleton<RenderSystem>::GetInstance().CreatePixelShader("\\builtin\\BinShader\\PixelShader.cso");
 
 		//texture
-		texture = Singleton<BindableManager>::GetInstance().CreateTexture(0, "\\builtin\\Texture\\WoodCrate.dds");
+		texture = Singleton<RenderSystem>::GetInstance().CreateTexture(0, "\\builtin\\Texture\\WoodCrate.dds");
 
 		//samplerstate
 
-		samplerState = Singleton<BindableManager>::GetInstance().CreateSamplerState(0, SamplerStateType::SSLinearWrap);
+		samplerState = Singleton<RenderSystem>::GetInstance().CreateSamplerState(0, SamplerStateType::SSLinearWrap);
 
 
 
@@ -99,26 +99,26 @@ namespace Twinkle
 		WorldMatrix worldMatrix;
 		worldMatrix.worldMatrix = XMMatrixTranspose(transform.getWorldMatrix());
 		
-		IBindable* constantBuffer = Singleton<BindableManager>::GetInstance().CreateConstantBuffer<WorldMatrix>(0);
+		IBindable* constantBuffer = Singleton<RenderSystem>::GetInstance().CreateConstantBuffer<WorldMatrix>(0);
 		dynamic_cast<ConstantBuffer<WorldMatrix>*>(constantBuffer)->update(worldMatrix);
 		cbs.push_back(constantBuffer);
 	}
 
 	TestComponent::~TestComponent()
 	{
-		Singleton<BindableManager>::GetInstance().Release(vertexBuffer);
-		Singleton<BindableManager>::GetInstance().Release(indexBuffer);
-		Singleton<BindableManager>::GetInstance().Release(vertexShader);
-		Singleton<BindableManager>::GetInstance().Release(inputLayout);
-		Singleton<BindableManager>::GetInstance().Release(pixelShader);
-		Singleton<BindableManager>::GetInstance().Release(cbs);
-		Singleton<BindableManager>::GetInstance().Release(texture);
-		Singleton<BindableManager>::GetInstance().Release(samplerState);
+		Singleton<RenderSystem>::GetInstance().Release(vertexBuffer);
+		Singleton<RenderSystem>::GetInstance().Release(indexBuffer);
+		Singleton<RenderSystem>::GetInstance().Release(vertexShader);
+		Singleton<RenderSystem>::GetInstance().Release(inputLayout);
+		Singleton<RenderSystem>::GetInstance().Release(pixelShader);
+		Singleton<RenderSystem>::GetInstance().Release(cbs);
+		Singleton<RenderSystem>::GetInstance().Release(texture);
+		Singleton<RenderSystem>::GetInstance().Release(samplerState);
 	}
 
 	void TestComponent::draw()
 	{
-		Singleton<BindableManager>::GetInstance().DrawCall<UINT32>(vertexBuffer, indexBuffer, vertexShader, inputLayout, pixelShader, 
+		Singleton<RenderSystem>::GetInstance().DrawCall<UINT32>(vertexBuffer, indexBuffer, vertexShader, inputLayout, pixelShader,
 			D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST, texture, samplerState, cbs);
 	}
 }

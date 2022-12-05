@@ -7,7 +7,7 @@ namespace Twinkle
 {
 	void Engine::Initialize(HWND hwndWindow, UINT width, UINT height)
 	{
-		Singleton<DirectX11Manager>::GetInstance().Initialize(hwndWindow, width, height);
+		Singleton<RenderSystem>::GetInstance().Initialize(hwndWindow, width, height);
 		Singleton<PerspectiveCamera>::GetInstance().Initialize();
 
 		m_timer.Reset();
@@ -20,7 +20,7 @@ namespace Twinkle
 	{
 		LOG_INFO("onResize: width = " + std::to_string(width) + " height = " + std::to_string(height));
 
-		Singleton<DirectX11Manager>::GetInstance().OnResize(width, height);
+		Singleton<RenderSystem>::GetInstance().OnResize(width, height);
 
 		Frustum frustum;
 		frustum.FovAngleY = XM_PI / 3.0f;
@@ -37,13 +37,13 @@ namespace Twinkle
 			return;
 		
 		static float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
-		Singleton<DirectX11Manager>::GetInstance().GetDeviceContent()->ClearRenderTargetView(Singleton<DirectX11Manager>::GetInstance().GetRenderTargetView(), color);
-		Singleton<DirectX11Manager>::GetInstance().GetDeviceContent()->ClearDepthStencilView(Singleton<DirectX11Manager>::GetInstance().GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearRenderTargetView(Singleton<RenderSystem>::GetInstance().GetRenderTargetView(), color);
+		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearDepthStencilView(Singleton<RenderSystem>::GetInstance().GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 		Singleton<SceneManager>::GetInstance().Update(m_timer.DeltaTime());
 		Singleton<SceneManager>::GetInstance().Draw();
 
-		Singleton<DirectX11Manager>::GetInstance().GetSwapChain()->Present(0u, 0u);
+		Singleton<RenderSystem>::GetInstance().GetSwapChain()->Present(0u, 0u);
 	}
 
 	float Engine::GetFps()

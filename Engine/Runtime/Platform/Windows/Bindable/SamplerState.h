@@ -12,8 +12,7 @@ namespace Twinkle
 {
 	class SamplerState : public IBindable
 	{
-
-		friend class BindableManager;
+		friend class RenderSystem;
 	private:
 		SamplerState(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, UINT startSlot, SamplerStateType samplerStateType);
 		virtual ~SamplerState();

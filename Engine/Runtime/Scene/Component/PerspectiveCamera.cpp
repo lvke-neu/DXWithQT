@@ -1,12 +1,12 @@
 #include "PerspectiveCamera.h"
-#include "Runtime/Platform/Windows/Bindable/BindableManager.h"
+#include "Runtime/Platform/Windows/RenderSystem.h"
 
 namespace Twinkle
 {
 	void PerspectiveCamera::Initialize()
 	{
-		m_viewMatrixCB = Singleton<BindableManager>::GetInstance().CreateConstantBuffer<ViewMatrix>(1);
-		m_projMatrixCB = Singleton<BindableManager>::GetInstance().CreateConstantBuffer<ProjMatrix>(2);
+		m_viewMatrixCB = Singleton<RenderSystem>::GetInstance().CreateConstantBuffer<ViewMatrix>(1);
+		m_projMatrixCB = Singleton<RenderSystem>::GetInstance().CreateConstantBuffer<ProjMatrix>(2);
 
 		updateViewMatrix();
 		updateProjMatrix();
@@ -45,8 +45,8 @@ namespace Twinkle
 
 	PerspectiveCamera::~PerspectiveCamera()
 	{
-		Singleton<BindableManager>::GetInstance().Release(m_viewMatrixCB);
-		Singleton<BindableManager>::GetInstance().Release(m_projMatrixCB);
+		Singleton<RenderSystem>::GetInstance().Release(m_viewMatrixCB);
+		Singleton<RenderSystem>::GetInstance().Release(m_projMatrixCB);
 	}
 
 	void PerspectiveCamera::updateViewMatrix()

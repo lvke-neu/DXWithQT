@@ -1,10 +1,13 @@
-#include "DirectX11Manager.h"
-#include "TextureLoader/DDSTextureLoader.h"
-#include "TextureLoader/WICTextureLoader.h"
+#include "RenderSystem.h"
+#include "Bindable/VertexShader.h"
+#include "Bindable/InputLayout.h"
+#include "Bindable/PixelShader.h"
+#include "Bindable/Texture.h"
+#include "Bindable/SamplerState.h"
 
 namespace Twinkle
 {
-	void DirectX11Manager::Initialize(HWND hwndWindow, UINT width, UINT height)
+	void RenderSystem::Initialize(HWND hwndWindow, UINT width, UINT height)
 	{
 		//create device and deviceContent
 		const D3D_FEATURE_LEVEL featureLevels[] =
@@ -54,7 +57,7 @@ namespace Twinkle
 		OnResize(width, height);
 	}
 
-	void DirectX11Manager::OnResize(UINT width, UINT height)
+	void RenderSystem::OnResize(UINT width, UINT height)
 	{
 		//rebuild RenderTargetView
 		SAFE_RELEASE(m_pRenderTargetView);
@@ -100,7 +103,7 @@ namespace Twinkle
 		m_pDeviceContent->RSSetViewports(1, &vp);
 	}
 
-	DirectX11Manager::~DirectX11Manager()
+	RenderSystem::~RenderSystem()
 	{
 		SAFE_RELEASE(m_pDevice);
 		SAFE_RELEASE(m_pDeviceContent);
@@ -110,64 +113,75 @@ namespace Twinkle
 		SAFE_RELEASE(m_pDepthStencilView);
 	}
 
-	ID3DBlob * DirectX11Manager::ReadFileToBlob(const std::string & relativeFilePath)
-	{
-		ID3DBlob* blob{ nullptr };
-		std::string absoluteFilePath;
-
-		RelativePath2AbsolutePath(relativeFilePath, absoluteFilePath);
-
-		D3DReadFileToBlob(multiByteToWideChar(absoluteFilePath), &blob);
-
-		return blob;
-	}
-
-	ID3D11ShaderResourceView * DirectX11Manager::LoadTexture(const std::string & relativeFilePath)
-	{
-		std::string absoluteFilePath;
-		ID3D11ShaderResourceView* pTextureSRV;
-
-		RelativePath2AbsolutePath(relativeFilePath, absoluteFilePath);
-
-		if (absoluteFilePath.substr(absoluteFilePath.size() - 3) == "dds")
-		{
-			DirectX::CreateDDSTextureFromFile(m_pDevice, multiByteToWideChar(absoluteFilePath), nullptr, &pTextureSRV);
-		}
-		else
-		{
-			DirectX::CreateWICTextureFromFile(m_pDevice, multiByteToWideChar(absoluteFilePath), nullptr, &pTextureSRV);
-		}
-
-		return pTextureSRV;
-	}
-
-	ID3D11Device* DirectX11Manager::GetDevice()
+	ID3D11Device* RenderSystem::GetDevice()
 	{
 		return m_pDevice;
 	}
 
-	ID3D11DeviceContext* DirectX11Manager::GetDeviceContent()
+	ID3D11DeviceContext* RenderSystem::GetDeviceContent()
 	{
 		return m_pDeviceContent;
 	}
 
-	IDXGISwapChain* DirectX11Manager::GetSwapChain()
+	IDXGISwapChain* RenderSystem::GetSwapChain()
 	{
 		return m_pSwapChain;
 	}
 
-	ID3D11RenderTargetView * DirectX11Manager::GetRenderTargetView()
+	ID3D11RenderTargetView * RenderSystem::GetRenderTargetView()
 	{
 		return m_pRenderTargetView;
 	}
 
-	ID3D11Texture2D * DirectX11Manager::GetDepthStencilBuffer()
+	ID3D11Texture2D * RenderSystem::GetDepthStencilBuffer()
 	{
 		return m_pDepthStencilBuffer;
 	}
 
-	ID3D11DepthStencilView * DirectX11Manager::GetDepthStencilView()
+	ID3D11DepthStencilView * RenderSystem::GetDepthStencilView()
 	{
 		return m_pDepthStencilView;
+	}
+
+
+	/*******************************************Bindabel Manager*********************************************************/
+	std::vector<IBindable*> RenderSystem::defaultConstantBuffers;
+
+	IBindable* RenderSystem::CreateVertexShader(const std::string& relativeFilePath)
+	{
+		return new VertexShader(m_pDevice, m_pDeviceContent, relativeFilePath);
+	}
+
+	IBindable* RenderSystem::CreateInputLayout(const std::string& relativeFilePath, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied)
+	{
+		return new InputLayout(m_pDevice, m_pDeviceContent, relativeFilePath, ied);
+	}
+
+	IBindable* RenderSystem::CreatePixelShader(const std::string& relativeFilePath)
+	{
+		return new PixelShader(m_pDevice, m_pDeviceContent, relativeFilePath);
+	}
+
+	IBindable * RenderSystem::CreateTexture(UINT startSlot, const std::string & relativeFilePath)
+	{
+		return new Texture(m_pDevice, m_pDeviceContent, startSlot, relativeFilePath);
+	}
+
+	IBindable * RenderSystem::CreateSamplerState(UINT startSlot, SamplerStateType samplerStateType)
+	{
+		return new SamplerState(m_pDevice, m_pDeviceContent, startSlot, samplerStateType);
+	}
+
+	void RenderSystem::Release(IBindable*& bindable)
+	{
+		SAFE_DELETE_SETNULL(bindable);
+	}
+
+	void RenderSystem::Release(std::vector<IBindable*>& constantBuffers)
+	{
+		for (auto& constantBuffer : constantBuffers)
+		{
+			Release(constantBuffer);
+		}
 	}
 }

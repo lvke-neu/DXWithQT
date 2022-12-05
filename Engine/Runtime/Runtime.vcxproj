@@ -22,7 +22,7 @@
     <VCProjectVersion>15.0</VCProjectVersion>
     <ProjectGuid>{69E006B0-A841-40C4-B034-43B3F90AFB81}</ProjectGuid>
     <RootNamespace>Runtime</RootNamespace>
-    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
     <ProjectName>Runtime</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -42,13 +42,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v142</PlatformToolset>
+    <PlatformToolset>v141</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
@@ -165,9 +165,10 @@
     <ClCompile Include="Core\Serialization\SerializationManager.cpp" />
     <ClCompile Include="Core\Timer\GameTimer.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Platform\Windows\Bindable\BindableManager.cpp" />
+    <ClCompile Include="Platform\Windows\Bindable\BindableInterface.cpp" />
+    <ClCompile Include="Platform\Windows\Bindable\BindableManager1.cpp" />
     <ClCompile Include="Platform\Windows\Bindable\SamplerStateDesc.cpp" />
-    <ClCompile Include="Platform\Windows\DirectX11Manager.cpp" />
+    <ClCompile Include="Platform\Windows\RenderSystem.cpp" />
     <ClCompile Include="Platform\Windows\Math\Transform.cpp" />
     <ClCompile Include="Platform\Windows\TextureLoader\DDSTextureLoader.cpp" />
     <ClCompile Include="Platform\Windows\TextureLoader\WICTextureLoader.cpp" />
@@ -189,7 +190,7 @@
     <ClInclude Include="Core\Timer\GameTimer.h" />
     <ClInclude Include="Interface\SingletonInterface.h" />
     <ClInclude Include="Platform\Windows\Bindable\BindableInterface.h" />
-    <ClInclude Include="Platform\Windows\Bindable\BindableManager.h" />
+    <ClInclude Include="Platform\Windows\Bindable\BindableManager1.h" />
     <ClInclude Include="Platform\Windows\Bindable\ConstantBuffer.h" />
     <ClInclude Include="Platform\Windows\Bindable\IndexBuffer.h" />
     <ClInclude Include="Platform\Windows\Bindable\InputLayout.h" />
@@ -199,7 +200,7 @@
     <ClInclude Include="Platform\Windows\Bindable\Texture.h" />
     <ClInclude Include="Platform\Windows\Bindable\VertexBuffer.h" />
     <ClInclude Include="Platform\Windows\Bindable\VertexShader.h" />
-    <ClInclude Include="Platform\Windows\DirectX11Manager.h" />
+    <ClInclude Include="Platform\Windows\RenderSystem.h" />
     <ClInclude Include="Platform\Windows\Math\Transform.h" />
     <ClInclude Include="Platform\Windows\Math\VertexType.h" />
     <ClInclude Include="Platform\Windows\TextureLoader\DDSTextureLoader.h" />
@@ -229,6 +230,7 @@
     </FxCompile>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Readme.md" />
     <None Include="Shader\CommonShader.hlsli" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

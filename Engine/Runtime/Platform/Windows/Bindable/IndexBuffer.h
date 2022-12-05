@@ -14,7 +14,7 @@ namespace Twinkle
 	template<class T>
 	class IndexBuffer : public IBindable
 	{
-		friend class BindableManager;
+		friend class RenderSystem;
 	public:
 		 UINT getIndexCount();
 	private:

@@ -14,7 +14,7 @@ namespace Twinkle
 	template<class T>
 	class ConstantBuffer : public IBindable
 	{
-		friend class BindableManager;
+		friend class RenderSystem;
 	public:
 		void update(const T& t);
 	private:

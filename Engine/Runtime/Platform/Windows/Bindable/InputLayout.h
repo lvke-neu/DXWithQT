@@ -13,7 +13,7 @@ namespace Twinkle
 {
 	class InputLayout : public IBindable
 	{
-		friend class BindableManager;
+		friend class RenderSystem;
 	private:
 		InputLayout(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::string& relativeFilePath, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied);
 		virtual ~InputLayout();
@@ -28,7 +28,7 @@ namespace Twinkle
 		m_pDevice = pDevice;
 		m_pDeviceContent = pDeviceContent;
 
-		m_pBlob = Singleton<DirectX11Manager>::GetInstance().ReadFileToBlob(relativeFilePath);
+		m_pBlob = ReadFileToBlob(relativeFilePath);
 		if (m_pBlob)
 		{
 			m_pDevice->CreateInputLayout(ied.data(), (UINT)ied.size(), m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), &m_pInputLayout);

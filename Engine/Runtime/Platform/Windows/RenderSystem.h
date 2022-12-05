@@ -1,16 +1,18 @@
 /***************************************************************************************
 Author: lvke
-Date:2022/12/02 11:31
+Date:2022/12/04 10:45
 Description:
-Bindable Manager : create and drawcall
+DirextX11 Manager
 ****************************************************************************************/
 #pragma once
 
+#include <d3d11.h>
+#include "Runtime/Utility/Utility.h"
 #include "Runtime/Interface/SingletonInterface.h"
-#include "VertexBuffer.h"
-#include "IndexBuffer.h"
-#include "ConstantBuffer.h"
-#include "SamplerStateDesc.h"
+#include "Bindable/VertexBuffer.h"
+#include "Bindable/IndexBuffer.h"
+#include "Bindable/ConstantBuffer.h"
+#include "Bindable/SamplerStateDesc.h"
 
 namespace Twinkle
 {
@@ -18,10 +20,34 @@ namespace Twinkle
 	class InputLayout;
 	class PixelShader;
 	class Texture;
-
-	class BindableManager
+	class RenderSystem
 	{
-		FRIEND_SINGLETON(BindableManager);
+		FRIEND_SINGLETON(RenderSystem);
+	public:
+		void Initialize(HWND hwndWindow, UINT width, UINT height);
+		void OnResize(UINT width, UINT height);
+
+		ID3D11Device* GetDevice();
+		ID3D11DeviceContext* GetDeviceContent();
+		IDXGISwapChain* GetSwapChain();
+		ID3D11RenderTargetView* GetRenderTargetView();
+		ID3D11Texture2D* GetDepthStencilBuffer();
+		ID3D11DepthStencilView* GetDepthStencilView();
+	private:
+		RenderSystem() = default;
+		virtual ~RenderSystem();
+		RenderSystem(const RenderSystem&) = delete;
+		RenderSystem& operator=(const RenderSystem&) = delete;
+	private:
+		ID3D11Device* m_pDevice{ nullptr };
+		ID3D11DeviceContext* m_pDeviceContent{ nullptr };
+		IDXGISwapChain* m_pSwapChain{ nullptr };
+		ID3D11RenderTargetView* m_pRenderTargetView{ nullptr };
+		ID3D11Texture2D* m_pDepthStencilBuffer{ nullptr };
+		ID3D11DepthStencilView* m_pDepthStencilView{ nullptr };
+
+
+		/*******************************************Bindabel Manager*********************************************************/
 	public:
 		template <class T>
 		IBindable* CreateVertexBuffer(const std::vector<T>& vertices)
@@ -53,7 +79,7 @@ namespace Twinkle
 
 		template <class IndexBufferType>
 		void DrawCall(IBindable* vertexBuffer, IBindable* indexbuffer,
-			IBindable* vertexShader, IBindable* inputLayout, IBindable* pixelShader, D3D11_PRIMITIVE_TOPOLOGY drawType, 
+			IBindable* vertexShader, IBindable* inputLayout, IBindable* pixelShader, D3D11_PRIMITIVE_TOPOLOGY drawType,
 			IBindable* texture = nullptr, IBindable* samplerState = nullptr, const std::vector<IBindable*>& constantBuffers = defaultConstantBuffers)
 		{
 			if (vertexBuffer)
@@ -76,7 +102,7 @@ namespace Twinkle
 				if (constantBuffer)
 					constantBuffer->bind();
 			}
-		
+
 			m_pDeviceContent->IASetPrimitiveTopology(drawType);
 			m_pDeviceContent->DrawIndexed(dynamic_cast<IndexBuffer<IndexBufferType>*>(indexbuffer)->getIndexCount(), 0, 0);
 		}
@@ -84,16 +110,6 @@ namespace Twinkle
 		void Release(IBindable*& bindable);
 		void Release(std::vector<IBindable*>& constantBuffers);
 	private:
-		BindableManager();
-		virtual ~BindableManager() = default;
-		BindableManager(const BindableManager&) = delete;
-		BindableManager& operator=(const BindableManager&) = delete;
-	private:
-		ID3D11Device* m_pDevice{ nullptr };
-		ID3D11DeviceContext* m_pDeviceContent{ nullptr };
-
 		static std::vector<IBindable*> defaultConstantBuffers;
 	};
-
-	
 }

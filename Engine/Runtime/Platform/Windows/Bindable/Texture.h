@@ -12,7 +12,7 @@ namespace Twinkle
 {
 	class Texture : public IBindable
 	{
-		friend class BindableManager;
+		friend class RenderSystem;
 	private:
 		Texture(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, UINT startSlot, const std::string& relativeFilePath);
 		virtual ~Texture();
@@ -28,7 +28,7 @@ namespace Twinkle
 		m_pDeviceContent = pDeviceContent;
 		m_startSlot = startSlot;
 
-		m_pShaderResourceView = Singleton<DirectX11Manager>::GetInstance().LoadTexture(relativeFilePath);
+		m_pShaderResourceView = LoadTexture(relativeFilePath);
 	}
 
 	Texture::~Texture()

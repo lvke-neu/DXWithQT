@@ -12,7 +12,7 @@ namespace Twinkle
 {
 	class PixelShader : public IBindable
 	{
-		friend class BindableManager;
+		friend class RenderSystem;
 	private:
 		PixelShader(ID3D11Device* pDevice, ID3D11DeviceContext* pDeviceContent, const std::string& relativeFilePath);
 		virtual ~PixelShader();
@@ -27,7 +27,7 @@ namespace Twinkle
 		m_pDevice = pDevice;
 		m_pDeviceContent = pDeviceContent;
 
-		m_pBlob = Singleton<DirectX11Manager>::GetInstance().ReadFileToBlob(relativeFilePath);
+		m_pBlob = ReadFileToBlob(relativeFilePath);
 		if (m_pBlob)
 			m_pDevice->CreatePixelShader(m_pBlob->GetBufferPointer(), m_pBlob->GetBufferSize(), nullptr, &m_pPixelShader);
 	}
