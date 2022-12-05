@@ -1,10 +1,14 @@
-ÊäÈë×°Åä ------> ¶¥µã×ÅÉ«Æ÷ ------> ¹âÕ¤»¯£¨ÊÓ¿Ú±ä»»£© ------> ÏñËØ×ÅÉ«Æ÷ ------> Êä³öºÏ²¢£¨Ä£°å²âÊÔ¡úÉî¶È²âÊÔ¡ú»ìºÏ²Ù×÷£©
+è¾“å…¥è£…é… ------> é¡¶ç‚¹ç€è‰²å™¨ ------> å…‰æ …åŒ–ï¼ˆè§†å£å˜æ¢ï¼‰ ------> åƒç´ ç€è‰²å™¨ ------> è¾“å‡ºåˆå¹¶ï¼ˆæ¨¡æ¿æµ‹è¯•â†’æ·±åº¦æµ‹è¯•â†’æ··åˆæ“ä½œï¼‰
 
-ECS(ÊµÌå¶ÔÏóÏµÍ³):https://blog.csdn.net/qq_52855744/article/details/125802048
+ECS(å®ä½“å¯¹è±¡ç³»ç»Ÿ):https://blog.csdn.net/qq_52855744/article/details/125802048
 
-CompoentBase(»ùÀà£¬virtual void tick() = 0)
-TransformComponent¼Ì³Ğ×ÔCompoentBase£¨position, ÖØĞ´tickº¯Êı£©
-ModelComponentCompoentBase£¨mesh, ÖØĞ´tickº¯Êı£©
+CompoentBase(åŸºç±»ï¼Œvirtual void tick() = 0)
+TransformComponentç»§æ‰¿è‡ªCompoentBaseï¼ˆposition, é‡å†™tickå‡½æ•°ï¼‰
+ModelComponentCompoentBaseï¼ˆmesh, é‡å†™tickå‡½æ•°ï¼‰
 
-GameObjectÓÉ¶à¸öComponent×é³É£¨std::vector<CompoentBase*>£©
+GameObjectç”±å¤šä¸ªComponentç»„æˆï¼ˆstd::vector<CompoentBase*>ï¼‰
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!
+å†™bindableæ¨¡å—çš„æ—¶å€™å¤ªå›°äº†ï¼ŒåŸºç±»ææ„å‡½æ•°å¿˜è®°å†™virtualäº†å¯¼è‡´å†…å­˜æ³„æ¼ï¼ˆåœ¨æ¯ä¸€å¸§è¯»å–çº¹ç†ï¼Œå¾ˆå¿«å†…å­˜å°±æ»¡äº†ï¼‰
 					

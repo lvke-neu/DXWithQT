@@ -28,6 +28,7 @@ namespace Twinkle
 		m_pDeviceContent = pDeviceContent;
 		m_startSlot = startSlot;
 
+		SAFE_RELEASE(m_pShaderResourceView);
 		m_pShaderResourceView = LoadTexture(relativeFilePath);
 	}
 

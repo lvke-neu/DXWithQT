@@ -167,6 +167,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Platform\Windows\Bindable\BindableInterface.cpp" />
     <ClCompile Include="Platform\Windows\Bindable\SamplerStateDesc.cpp" />
+    <ClCompile Include="Platform\Windows\Math\Geometry.cpp" />
     <ClCompile Include="Platform\Windows\Math\VertexType.cpp" />
     <ClCompile Include="Platform\Windows\RenderSystem.cpp" />
     <ClCompile Include="Platform\Windows\Math\Transform.cpp" />
@@ -202,6 +203,7 @@
     <ClInclude Include="Platform\Windows\Bindable\Texture.h" />
     <ClInclude Include="Platform\Windows\Bindable\VertexBuffer.h" />
     <ClInclude Include="Platform\Windows\Bindable\VertexShader.h" />
+    <ClInclude Include="Platform\Windows\Math\Geometry.h" />
     <ClInclude Include="Platform\Windows\RenderSystem.h" />
     <ClInclude Include="Platform\Windows\Math\Transform.h" />
     <ClInclude Include="Platform\Windows\Math\VertexType.h" />

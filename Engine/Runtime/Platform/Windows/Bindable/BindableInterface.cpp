@@ -12,7 +12,10 @@ namespace Twinkle
 
 		RelativePath2AbsolutePath(relativeFilePath, absoluteFilePath);
 
-		D3DReadFileToBlob(multiByteToWideChar(absoluteFilePath), &blob);
+		wchar_t* absoluteFilePathWchar = multiByteToWideChar(absoluteFilePath);
+		D3DReadFileToBlob(absoluteFilePathWchar, &blob);
+
+		SAFE_DELETE_SETNULL(absoluteFilePathWchar);
 
 		return blob;
 	}
@@ -24,14 +27,17 @@ namespace Twinkle
 
 		RelativePath2AbsolutePath(relativeFilePath, absoluteFilePath);
 
+		wchar_t* absoluteFilePathWchar = multiByteToWideChar(absoluteFilePath);
 		if (absoluteFilePath.substr(absoluteFilePath.size() - 3) == "dds")
 		{
-			DirectX::CreateDDSTextureFromFile(m_pDevice, multiByteToWideChar(absoluteFilePath), nullptr, &pTextureSRV);
+			DirectX::CreateDDSTextureFromFile(m_pDevice, absoluteFilePathWchar, nullptr, &pTextureSRV);
 		}
 		else
 		{
-			DirectX::CreateWICTextureFromFile(m_pDevice, multiByteToWideChar(absoluteFilePath), nullptr, &pTextureSRV);
+			DirectX::CreateWICTextureFromFile(m_pDevice, absoluteFilePathWchar, nullptr, &pTextureSRV);
 		}
+
+		SAFE_DELETE_SETNULL(absoluteFilePathWchar);
 
 		return pTextureSRV;
 	}

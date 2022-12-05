@@ -130,6 +130,9 @@
     <ClCompile Include="Platform\Windows\Math\VertexType.cpp">
       <Filter>Platform\Windows\Math</Filter>
     </ClCompile>
+    <ClCompile Include="Platform\Windows\Math\Geometry.cpp">
+      <Filter>Platform\Windows\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Reflection\ReflectionManager.h">
@@ -233,6 +236,9 @@
     </ClInclude>
     <ClInclude Include="Scene\ECS\Component\MeshComponent.h">
       <Filter>Scene\ECS\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Math\Geometry.h">
+      <Filter>Platform\Windows\Math</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

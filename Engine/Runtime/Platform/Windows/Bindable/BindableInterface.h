@@ -13,6 +13,8 @@ namespace Twinkle
 	class IBindable
 	{
 	public:
+		IBindable() = default;
+		virtual ~IBindable() = default;
 		virtual void bind() = 0;
 		ID3DBlob* ReadFileToBlob(const std::string& relativeFilePath);
 		ID3D11ShaderResourceView* LoadTexture(const std::string& relativeFilePath);
