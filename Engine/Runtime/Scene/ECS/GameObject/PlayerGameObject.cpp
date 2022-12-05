@@ -34,14 +34,32 @@ namespace Twinkle
 		sum += deltaTime * 5;
 		
 
+		//if (std::sin(sum) <= 0)
+		//{
+		//	dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\WoodCrate.dds");
+		//}
+		//else
+		//{
+		//	dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\grass.dds");
+		//}
+
+		std::vector<VertexPosNormalTex> vertices;
+		std::vector<UINT32> indices;
 		if (std::sin(sum) <= 0)
 		{
+			Geometry::CreateCube<VertexPosNormalTex, UINT32>(vertices, indices);
+			dynamic_cast<MeshComponent*>(m_meshComponent)->setMesh<VertexPosNormalTex, UINT32>(vertices, indices, DXGI_FORMAT_R32_UINT);
 			dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\WoodCrate.dds");
 		}
 		else
 		{
+			Geometry::CreateCylinder<VertexPosNormalTex, UINT32>(vertices, indices);
+			dynamic_cast<MeshComponent*>(m_meshComponent)->setMesh<VertexPosNormalTex, UINT32>(vertices, indices, DXGI_FORMAT_R32_UINT);
 			dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\grass.dds");
 		}
+
+	
+
 
 		m_transformComponent->tick(deltaTime);
 		m_meshComponent->tick(deltaTime);

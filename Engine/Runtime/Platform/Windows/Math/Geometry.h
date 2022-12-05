@@ -7,6 +7,10 @@ namespace Twinkle
 	public:
 		template<class VertexType, class IndexType>
 		static void CreateCube(std::vector<VertexType>& vertices, std::vector<IndexType>& indices);
+
+		template<class VertexType, class IndexType>
+		static void CreateCylinder(std::vector<VertexType>& vertices, std::vector<IndexType>& indices);
+
 	};
 
 	template<class VertexType, class IndexType>
@@ -75,4 +79,70 @@ namespace Twinkle
 		};
 		indices = indicesTmp;
 	}
+
+	template<class VertexType, class IndexType>
+	void Geometry::CreateCylinder(std::vector<VertexType>& vertices, std::vector<IndexType>& indices)
+	{
+		const uint32_t c_radiusSegments = 20;
+		const UINT vertexCount = (c_radiusSegments + 1) * 2 + (c_radiusSegments + 2) * 2;
+		vertices.resize(vertexCount);
+
+		for (uint16_t i = 0; i < 2; i++)
+		{
+			uint16_t posStart = 0;
+			if (i == 0)
+			{
+				posStart = 2 * (c_radiusSegments + 1);
+				vertices[posStart].normal = XMFLOAT3(0, -1, 0);
+			}
+			else
+			{
+				posStart = 2 * (c_radiusSegments + 1) + (c_radiusSegments + 2);
+				vertices[posStart].normal = XMFLOAT3(0, 1, 0);
+			}
+			float y = i;
+			vertices[posStart].position = XMFLOAT3(0, y, 0);
+			vertices[posStart].texcoord = XMFLOAT2(0.5, (float)i);
+
+
+			float dTheta = static_cast<float>(2.0f * XM_PI / c_radiusSegments);
+			for (UINT j = 0; j <= c_radiusSegments; ++j)
+			{
+				float c = cosf(j*dTheta);
+				float s = sinf(j*dTheta);
+				float r = 0.5;
+
+				vertices[posStart + 1 + j].position = XMFLOAT3(r*c, y, r*s);
+				vertices[posStart + 1 + j].normal = vertices[posStart].normal;
+				vertices[posStart + 1 + j].texcoord = vertices[posStart].texcoord;
+
+				vertices[i*(c_radiusSegments + 1) + j].position = XMFLOAT3(r*c, y, r*s);
+				vertices[i*(c_radiusSegments + 1) + j].normal = XMFLOAT3(c, 0, s);
+				vertices[i*(c_radiusSegments + 1) + j].texcoord = XMFLOAT2((float)j / c_radiusSegments, 1.0f - (float)i);
+			}
+		}
+
+
+		const uint16_t c_indexCount = c_radiusSegments * 2 * 2 * 3;
+		indices.resize(c_indexCount);
+		for (uint16_t j = 0; j < c_radiusSegments; ++j)
+		{
+			//侧面
+			indices[0 + 12 * j] = j;
+			indices[1 + 12 * j] = c_radiusSegments + j + 1;
+			indices[2 + 12 * j] = c_radiusSegments + j + 2;
+			indices[3 + 12 * j] = j;
+			indices[4 + 12 * j] = c_radiusSegments + j + 2;
+			indices[5 + 12 * j] = 1 + j;
+
+			indices[6 + 12 * j] = 2 * (c_radiusSegments + 1);
+			indices[7 + 12 * j] = indices[6 + 12 * j] + 1 + j;
+			indices[8 + 12 * j] = 1 + indices[7 + 12 * j];
+			indices[9 + 12 * j] = 2 * (c_radiusSegments + 1) + (c_radiusSegments + 2);
+			indices[10 + 12 * j] = indices[9 + 12 * j] + 2 + j;
+			indices[11 + 12 * j] = indices[10 + 12 * j] - 1;
+		}
+	}
+
+	
 }
