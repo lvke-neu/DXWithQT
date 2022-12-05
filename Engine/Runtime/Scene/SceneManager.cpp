@@ -1,6 +1,6 @@
 #include "SceneManager.h"
 #include "Component/TestComponent.h"
-#include "Runtime/Platform/Windows/DirectX11Manager.h"
+#include "Runtime/Utility/Utility.h"
 #include "Runtime/Scene/Component/PerspectiveCamera.h"
 
 namespace Twinkle
