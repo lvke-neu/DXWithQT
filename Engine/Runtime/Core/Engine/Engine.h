@@ -7,7 +7,7 @@ Twinkle Engine
 #pragma once
 
 #include "Runtime/Platform/Windows/RenderSystem.h"
-#include "Runtime/Core/Timer/GameTimer.h"
+#include "../Timer/GameTimer.h"
 
 namespace Twinkle
 {
@@ -15,8 +15,7 @@ namespace Twinkle
 	{
 		FRIEND_SINGLETON(Engine);
 	public:
-		void Initialize(HWND hwndWindow, UINT width, UINT height);
-		void OnResize(UINT width, UINT height);
+		void Initialize();
 		void Tick();
 		float GetFps();
 		void Pause();

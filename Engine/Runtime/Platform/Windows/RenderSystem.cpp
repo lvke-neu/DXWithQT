@@ -1,10 +1,12 @@
 #include "RenderSystem.h"
-#include "Runtime/Utility/Utility.h"
 #include "Bindable/VertexShader.h"
 #include "Bindable/InputLayout.h"
 #include "Bindable/PixelShader.h"
 #include "Bindable/Texture.h"
 #include "Bindable/SamplerState.h"
+#include "Runtime/Utility/Utility.h"
+#include "Runtime/Core/Log/LogManager.h"
+#include "PerspectiveCamera.h"
 
 namespace Twinkle
 {
@@ -55,11 +57,17 @@ namespace Twinkle
 		dxgiFactory1->CreateSwapChain(m_pDevice, &sd, &m_pSwapChain);
 		dxgiFactory1->MakeWindowAssociation(hwndWindow, DXGI_MWA_NO_ALT_ENTER | DXGI_MWA_NO_WINDOW_CHANGES);
 
-		OnResize(width, height);
+		Singleton<PerspectiveCamera>::GetInstance().Initialize();
+
+		//OnResize(width, height);
+
+		LOG_INFO("RenderSystem Initialization is complete");
 	}
 
 	void RenderSystem::OnResize(UINT width, UINT height)
 	{
+		LOG_INFO("Resize window : width = " + std::to_string(width) + ", height = " + std::to_string(height));
+
 		//rebuild RenderTargetView
 		SAFE_RELEASE(m_pRenderTargetView);
 		SAFE_RELEASE(m_pDepthStencilBuffer);
@@ -102,6 +110,8 @@ namespace Twinkle
 		vp.MinDepth = 0.0f;
 		vp.MaxDepth = 1.0f;
 		m_pDeviceContent->RSSetViewports(1, &vp);
+
+		Singleton<PerspectiveCamera>::GetInstance().SetFrustum(XM_PI / 3.0f, static_cast<float>(width) / height, 1.0f, 1000.0f);
 	}
 
 	RenderSystem::~RenderSystem()

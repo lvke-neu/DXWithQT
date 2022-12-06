@@ -8,7 +8,7 @@ Perspective Camera:
 ****************************************************************************************/
 #pragma once
 
-#include "Runtime/Platform/Windows/Math/Transform.h"
+#include "Math/Transform.h"
 #include "Runtime/Interface/SingletonInterface.h"
 #include <vector>
 
@@ -41,6 +41,7 @@ namespace Twinkle
 		void SetPosition(float x, float y, float z);
 		void SetRotation(float x, float y, float z);
 		void SetFrustum(const Frustum& frustum);
+		void SetFrustum(float FovAngleY, float AspectRatio, float NearZ, float FarZ);
 	public:
 		XMMATRIX GetViewMatrix();
 		XMMATRIX GetProjMatrix();

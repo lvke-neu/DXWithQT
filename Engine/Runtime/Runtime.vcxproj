@@ -169,6 +169,7 @@
     <ClCompile Include="Platform\Windows\Bindable\SamplerStateDesc.cpp" />
     <ClCompile Include="Platform\Windows\Math\Geometry.cpp" />
     <ClCompile Include="Platform\Windows\Math\VertexType.cpp" />
+    <ClCompile Include="Platform\Windows\PerspectiveCamera.cpp" />
     <ClCompile Include="Platform\Windows\RenderSystem.cpp" />
     <ClCompile Include="Platform\Windows\Math\Transform.cpp" />
     <ClCompile Include="Platform\Windows\TextureLoader\DDSTextureLoader.cpp" />
@@ -177,7 +178,6 @@
     <ClCompile Include="Scene\ECS\Component\TransformComponent.cpp" />
     <ClCompile Include="Scene\ECS\GameObject\Interface\GameObjectInterface.cpp" />
     <ClCompile Include="Scene\ECS\GameObject\BasicGeometryGameObject.cpp" />
-    <ClCompile Include="Scene\PerspectiveCamera.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TestComponent.cpp" />
     <ClCompile Include="Utility\Utility.cpp" />
@@ -204,6 +204,7 @@
     <ClInclude Include="Platform\Windows\Bindable\VertexBuffer.h" />
     <ClInclude Include="Platform\Windows\Bindable\VertexShader.h" />
     <ClInclude Include="Platform\Windows\Math\Geometry.h" />
+    <ClInclude Include="Platform\Windows\PerspectiveCamera.h" />
     <ClInclude Include="Platform\Windows\RenderSystem.h" />
     <ClInclude Include="Platform\Windows\Math\Transform.h" />
     <ClInclude Include="Platform\Windows\Math\VertexType.h" />
@@ -214,7 +215,6 @@
     <ClInclude Include="Scene\ECS\Component\TransformComponent.h" />
     <ClInclude Include="Scene\ECS\GameObject\Interface\GameObjectInterface.h" />
     <ClInclude Include="Scene\ECS\GameObject\BasicGeometryGameObject.h" />
-    <ClInclude Include="Scene\PerspectiveCamera.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TestComponent.h" />
     <ClInclude Include="Utility\Utility.h" />

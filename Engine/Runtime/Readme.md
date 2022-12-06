@@ -11,4 +11,7 @@ GameObject由多个Component组成（std::vector<CompoentBase*>）
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!
 写bindable模块的时候太困了，基类析构函数忘记写virtual了导致内存泄漏（在每一帧读取纹理，很快内存就满了）
+
+RenderSystem:渲染系统
+Engine 负责 tick
 					

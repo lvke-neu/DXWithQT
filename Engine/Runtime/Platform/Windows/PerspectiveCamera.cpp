@@ -1,5 +1,5 @@
 #include "PerspectiveCamera.h"
-#include "Runtime/Platform/Windows/RenderSystem.h"
+#include "RenderSystem.h"
 
 namespace Twinkle
 {
@@ -30,6 +30,15 @@ namespace Twinkle
 	void PerspectiveCamera::SetFrustum(const Frustum & frustum)
 	{
 		m_frustum = frustum;
+		updateProjMatrix();
+	}
+
+	void PerspectiveCamera::SetFrustum(float FovAngleY, float AspectRatio, float NearZ, float FarZ)
+	{
+		m_frustum.FovAngleY = FovAngleY;
+		m_frustum.AspectRatio = AspectRatio;
+		m_frustum.NearZ = NearZ;
+		m_frustum.FarZ = FarZ;
 		updateProjMatrix();
 	}
 

@@ -109,9 +109,6 @@
     <ClCompile Include="Platform\Windows\Bindable\BindableInterface.cpp">
       <Filter>Platform\Windows\Bindable</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\PerspectiveCamera.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="Scene\TestComponent.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
@@ -132,6 +129,9 @@
     </ClCompile>
     <ClCompile Include="Platform\Windows\Math\Geometry.cpp">
       <Filter>Platform\Windows\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Platform\Windows\PerspectiveCamera.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,9 +216,6 @@
     <ClInclude Include="Platform\Windows\RenderSystem.h">
       <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\PerspectiveCamera.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Scene\TestComponent.h">
       <Filter>Scene</Filter>
     </ClInclude>
@@ -239,6 +236,9 @@
     </ClInclude>
     <ClInclude Include="Platform\Windows\Math\Geometry.h">
       <Filter>Platform\Windows\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\PerspectiveCamera.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
