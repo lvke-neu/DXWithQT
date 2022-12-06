@@ -15,6 +15,38 @@ namespace Twinkle
 		Singleton<TickEventManager>::GetInstance().UnRegisterEvent(this);
 	}
 
+	void CameraController::onMousePress(MouseState mouseState)
+	{
+		if (mouseState.mouseButton == RightButton)
+		{
+			m_oldMousePosX = mouseState.x;
+			m_oldMousePosY = mouseState.y;
+		}		
+	}
+
+	void CameraController::onMouseRelease(MouseState mouseState)
+	{
+		if (mouseState.mouseButton == RightButton)
+		{
+			m_deltaMousePosX = 0;
+			m_deltaMousePosY = 0;
+		}	
+	}
+
+	void CameraController::onMouseMove(MouseState mouseState)
+	{
+		if (mouseState.mouseButton == RightButton)
+		{
+			m_deltaMousePosX = mouseState.x - m_oldMousePosX;
+			m_deltaMousePosY = mouseState.y - m_oldMousePosY;
+
+			Singleton<PerspectiveCamera>::GetInstance().rotateXY(-m_deltaMousePosY * 0.01f, -m_deltaMousePosX * 0.01f);
+			
+			m_oldMousePosX = mouseState.x;
+			m_oldMousePosY = mouseState.y;
+		}
+	}
+
 	void CameraController::tick(float deltaTime)
 	{
 		if (Singleton<InputEventManager>::GetInstance().IsKeyPress(Key_W))

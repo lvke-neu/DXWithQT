@@ -31,6 +31,12 @@ namespace Twinkle
 		XMStoreFloat3(&m_position, position);
 	}
 
+	void Transform::rotateXY(float x, float y)
+	{
+		m_rotation.x -= x;
+		m_rotation.y -= y;
+	}
+
 	XMMATRIX Transform::getWorldMatrix() const
 	{
 		return XMMatrixScaling(m_scale.x, m_scale.y, m_scale.z) *

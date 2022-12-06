@@ -14,17 +14,13 @@ namespace Twinkle
 	class SerializationManager
 	{
 		FRIEND_SINGLETON(SerializationManager);
+		PRIVATE_CONSTRUCTOR(SerializationManager);
 	public:
 		template<class T>
 		void Serialize(const T& t_In, DataStream& dataStream_Out);
 
 		template<class T>
 		void UnSerialize(DataStream& dataStream_In, T& t_Out);
-	private:
-		SerializationManager() = default;
-		virtual ~SerializationManager() = default;
-		SerializationManager(const SerializationManager&) = default;
-		SerializationManager& operator=(const SerializationManager&) = default;
 	};
 
 

@@ -14,4 +14,7 @@ GameObject由多个Component组成（std::vector<CompoentBase*>）
 
 RenderSystem:渲染系统
 Engine 负责 tick
+
+
+qt的 鼠标移动事件 mouseMoveEvent(QMouseEvent * event) 中获取鼠标类型（左键 中键 右键）用 event->buttons() 而不是event->button（）
 					

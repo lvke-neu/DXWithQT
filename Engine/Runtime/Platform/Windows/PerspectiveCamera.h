@@ -46,6 +46,7 @@ namespace Twinkle
 
 		void moveXAxis(float distance);
 		void moveZAxis(float distance);
+		void rotateXY(float x, float y);
 	public:
 		XMMATRIX GetViewMatrix();
 		XMMATRIX GetProjMatrix();

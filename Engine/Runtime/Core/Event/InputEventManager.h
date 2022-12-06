@@ -12,7 +12,7 @@ namespace Twinkle
 {
     enum KeyBoard
     {
-        Key_Escape = 0x01000000,                // misc keys
+		Key_Escape = 0x01000000,                // misc keys
         Key_Tab = 0x01000001,
         Key_Backtab = 0x01000002,
         Key_Backspace = 0x01000003,
@@ -533,11 +533,34 @@ namespace Twinkle
 
         Key_unknown = 0x01ffffff
     };
+
+	enum MouseButton
+	{
+		NoButton = 0x00000000,
+		LeftButton = 0x00000001,
+		RightButton = 0x00000002,
+		MidButton = 0x00000004, // ### Qt 6: remove me
+		MiddleButton = MidButton,
+	};
+
+	struct MouseState
+	{
+		MouseButton mouseButton = NoButton;
+		int x = 0;
+		int y = 0;
+		int delta = 0;
+	};
+
 	class InputEvent : public virtual IEvent
 	{
 	public:
 		virtual void onKeyPress(KeyBoard key) {};
 		virtual void onKeyRelease(KeyBoard key) {};
+
+		virtual void onMousePress(MouseState mouseState) {};
+		virtual void onMouseRelease(MouseState mouseState) {};
+		virtual void onMouseMove(MouseState mouseState) {};
+		virtual void onMouseWheel(MouseState mouseState) {};
 	};
 
 	class InputEventManager : public IEventManager
@@ -547,6 +570,12 @@ namespace Twinkle
     public:
         void NotifyKeyPress(KeyBoard key);
         void NotifyKeyRelease(KeyBoard key);
+
+		void NotifyMousePress(MouseState mouseState);
+		void NotifyMouseRelease(MouseState mouseState);
+		void NotifyMouseMove(MouseState mouseState);
+		void NotifyMouseWheel(MouseState mouseState);
+
         bool IsKeyPress(KeyBoard key);
     private:
         std::map<KeyBoard, bool> m_keyPressMap;

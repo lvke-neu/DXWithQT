@@ -54,6 +54,12 @@ namespace Twinkle
 		updateViewMatrix();
 	}
 
+	void PerspectiveCamera::rotateXY(float x, float y)
+	{
+		m_transform.rotateXY(x, y);
+		updateViewMatrix();
+	}
+
 	XMMATRIX PerspectiveCamera::GetViewMatrix()
 	{
 		return XMMatrixInverse(nullptr, m_transform.getWorldMatrix());

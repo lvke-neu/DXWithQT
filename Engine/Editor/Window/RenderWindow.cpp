@@ -44,5 +44,62 @@ namespace  Twinkle
 	{
 		Singleton<InputEventManager>::GetInstance().NotifyKeyRelease((KeyBoard)event->key());
 	}
+
+	void RenderWindow::mousePressEvent(QMouseEvent * event)
+	{
+		MouseState mouseState;
+		mouseState.mouseButton = (MouseButton)event->button();
+		mouseState.x = event->pos().x();
+		mouseState.y = event->pos().y();
+
+		Singleton<InputEventManager>::GetInstance().NotifyMousePress(mouseState);
+	}
+
+	void RenderWindow::mouseReleaseEvent(QMouseEvent * event)
+	{
+		MouseState mouseState;
+		mouseState.mouseButton = (MouseButton)event->button();
+		mouseState.x = event->pos().x();
+		mouseState.y = event->pos().y();
+
+		Singleton<InputEventManager>::GetInstance().NotifyMouseRelease(mouseState);
+	}
+
+	void RenderWindow::mouseMoveEvent(QMouseEvent * event)
+	{
+		MouseState mouseState;
+
+		if (event->buttons() == Qt::NoButton)
+		{
+			mouseState.mouseButton = NoButton;
+		}
+		else if (event->buttons() == Qt::LeftButton)
+		{
+			mouseState.mouseButton = LeftButton;
+		}
+		else if (event->buttons() == Qt::RightButton)
+		{
+			mouseState.mouseButton = RightButton;
+		}
+		else if (event->buttons() == Qt::MiddleButton)
+		{
+			mouseState.mouseButton = MiddleButton;
+		}
+
+		mouseState.x = event->pos().x();
+		mouseState.y = event->pos().y();
+
+		Singleton<InputEventManager>::GetInstance().NotifyMouseMove(mouseState);
+	}
+
+	void RenderWindow::wheelEvent(QWheelEvent * event)
+	{
+		MouseState mouseState;
+		mouseState.x = event->pos().x();
+		mouseState.y = event->pos().y();
+		mouseState.delta = event->delta();
+
+		Singleton<InputEventManager>::GetInstance().NotifyMouseWheel(mouseState);
+	}
 }
 
