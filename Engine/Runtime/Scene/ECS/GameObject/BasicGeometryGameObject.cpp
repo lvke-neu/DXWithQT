@@ -45,4 +45,14 @@ namespace Twinkle
 		m_transformComponent->tick(deltaTime);
 		m_meshComponent->tick(deltaTime);
 	}
+
+	IComponent * BasicGeometryGameObject::getTransformComponent()
+	{
+		return m_transformComponent;
+	}
+
+	IComponent * BasicGeometryGameObject::getMeshComponent()
+	{
+		return m_meshComponent;
+	}
 }

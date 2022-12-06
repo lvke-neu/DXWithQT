@@ -23,7 +23,8 @@ namespace Twinkle
 		SceneManager(const SceneManager&) = delete;
 		SceneManager& operator=(const SceneManager&) = delete;
 	private:
-		IGameObject* m_basicGeometryGameObject{ nullptr };
+		IGameObject* m_cube{ nullptr };
+		IGameObject* m_plane{ nullptr };
 		CameraController* m_cameraController{ nullptr };
 	};
 }

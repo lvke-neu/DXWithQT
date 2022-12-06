@@ -68,7 +68,7 @@ namespace Twinkle
 
 	void TransformComponent::tick(float deltaTime)
 	{
-
+		m_worldMatrixCB->bind();
 	}
 
 	void TransformComponent::updateWorldMatrix()

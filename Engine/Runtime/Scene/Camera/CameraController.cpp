@@ -47,26 +47,36 @@ namespace Twinkle
 		}
 	}
 
+	void CameraController::onMouseWheel(MouseState mouseState)
+	{
+		Singleton<PerspectiveCamera>::GetInstance().moveZAxis(mouseState.delta * m_moveSpeed * 0.001f);
+	}
+
 	void CameraController::tick(float deltaTime)
 	{
 		if (Singleton<InputEventManager>::GetInstance().IsKeyPress(Key_W))
 		{
-			Singleton<PerspectiveCamera>::GetInstance().moveZAxis(deltaTime * 10.0f);
+			Singleton<PerspectiveCamera>::GetInstance().moveZAxis(deltaTime * m_moveSpeed);
 		}
 
 		if (Singleton<InputEventManager>::GetInstance().IsKeyPress(Key_S))
 		{
-			Singleton<PerspectiveCamera>::GetInstance().moveZAxis(-deltaTime * 10.0f);
+			Singleton<PerspectiveCamera>::GetInstance().moveZAxis(-deltaTime * m_moveSpeed);
 		}
 
 		if (Singleton<InputEventManager>::GetInstance().IsKeyPress(Key_A))
 		{
-			Singleton<PerspectiveCamera>::GetInstance().moveXAxis(-deltaTime * 10.0f);
+			Singleton<PerspectiveCamera>::GetInstance().moveXAxis(-deltaTime * m_moveSpeed);
 		}
 
 		if (Singleton<InputEventManager>::GetInstance().IsKeyPress(Key_D))
 		{
-			Singleton<PerspectiveCamera>::GetInstance().moveXAxis(deltaTime * 10.0f);
+			Singleton<PerspectiveCamera>::GetInstance().moveXAxis(deltaTime * m_moveSpeed);
 		}
+	}
+
+	void CameraController::setMoveSpeed(float speed)
+	{
+		m_moveSpeed = speed;
 	}
 }

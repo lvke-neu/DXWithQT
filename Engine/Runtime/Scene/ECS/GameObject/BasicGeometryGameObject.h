@@ -22,6 +22,9 @@ namespace Twinkle
 		virtual ~BasicGeometryGameObject();
 
 		virtual void tick(float deltaTime) override;
+	public:
+		IComponent* getTransformComponent();
+		IComponent* getMeshComponent();
 	private:
 		IComponent* m_transformComponent{ nullptr };
 		IComponent* m_meshComponent{ nullptr };
