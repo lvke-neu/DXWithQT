@@ -3,6 +3,7 @@
 #include "../Component/MeshComponent.h"
 #include "Runtime/Utility/Utility.h"
 #include "Runtime/Platform/Windows/Math/Geometry.h"
+#include <cmath>
 
 namespace Twinkle
 {
