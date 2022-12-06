@@ -42,4 +42,9 @@ namespace Twinkle
 	{
 		m_bPause = false;
 	}
+
+	float Engine::GetDeltaTime()
+	{
+		return m_timer.DeltaTime();
+	}
 }

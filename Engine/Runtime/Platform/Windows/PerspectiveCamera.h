@@ -38,10 +38,14 @@ namespace Twinkle
 		FRIEND_SINGLETON(PerspectiveCamera)
 	public:
 		void Initialize();
+
 		void SetPosition(float x, float y, float z);
 		void SetRotation(float x, float y, float z);
 		void SetFrustum(const Frustum& frustum);
 		void SetFrustum(float FovAngleY, float AspectRatio, float NearZ, float FarZ);
+
+		void moveXAxis(float distance);
+		void moveZAxis(float distance);
 	public:
 		XMMATRIX GetViewMatrix();
 		XMMATRIX GetProjMatrix();

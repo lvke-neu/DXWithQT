@@ -24,6 +24,9 @@ namespace  Twinkle
 
 		virtual void timerEvent(QTimerEvent* event) override;
 		virtual void resizeEvent(QResizeEvent* event) override;
+
+		virtual void keyPressEvent(QKeyEvent* event) override;
+		virtual void keyReleaseEvent(QKeyEvent* event) override;
 	};
 }
 

@@ -1,6 +1,8 @@
+#include <qevent.h>
 #include "RenderWindow.h"
 #include "Runtime/Core/Engine/Engine.h"
-
+#include "Runtime/Core/Event/InputEventManager.h"
+#include "Runtime/Core/Event/TickEventManager.h"
 
 namespace  Twinkle
 {
@@ -25,11 +27,22 @@ namespace  Twinkle
 	void RenderWindow::timerEvent(QTimerEvent* event)
 	{
 		Singleton<Engine>::GetInstance().Tick();
+		Singleton<TickEventManager>::GetInstance().NotifyTick(Singleton<Engine>::GetInstance().GetDeltaTime());
 	}
 
 	void RenderWindow::resizeEvent(QResizeEvent* event)
 	{
 		Singleton<RenderSystem>::GetInstance().OnResize(width(), height());
+	}
+
+	void RenderWindow::keyPressEvent(QKeyEvent* event)
+	{
+		Singleton<InputEventManager>::GetInstance().NotifyKeyPress((KeyBoard)event->key());
+	}
+
+	void RenderWindow::keyReleaseEvent(QKeyEvent* event)
+	{
+		Singleton<InputEventManager>::GetInstance().NotifyKeyRelease((KeyBoard)event->key());
 	}
 }
 

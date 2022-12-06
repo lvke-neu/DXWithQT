@@ -26,4 +26,12 @@ namespace Twinkle
 
 #define FRIEND_SINGLETON(T) \
 	friend class Singleton<T>;
+
+#define PRIVATE_CONSTRUCTOR(T) \
+	private: \
+		T() = default; \
+		virtual ~T() = default; \
+		T(const T&) = default; \
+		T& operator=(const T&) = default;
+
 }

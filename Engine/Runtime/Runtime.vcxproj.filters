@@ -64,6 +64,15 @@
     <Filter Include="Scene\ECS\GameObject\Interface">
       <UniqueIdentifier>{3b02d4b8-a88e-41e7-8697-89e5326dc081}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Event">
+      <UniqueIdentifier>{006fece6-77f1-4a31-8800-1ad3201c435b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Event\Interface">
+      <UniqueIdentifier>{5c1f3714-484b-4ad0-b703-4bd3be52d8c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Camera">
+      <UniqueIdentifier>{2db4653b-5918-458f-a7ce-d2dcb7bb1c04}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -132,6 +141,18 @@
     </ClCompile>
     <ClCompile Include="Platform\Windows\PerspectiveCamera.cpp">
       <Filter>Platform\Windows</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Event\Interface\EventManagerInterface.cpp">
+      <Filter>Core\Event\Interface</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Event\InputEventManager.cpp">
+      <Filter>Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Event\TickEventManager.cpp">
+      <Filter>Core\Event</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\Camera\CameraController.cpp">
+      <Filter>Scene\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -239,6 +260,18 @@
     </ClInclude>
     <ClInclude Include="Platform\Windows\PerspectiveCamera.h">
       <Filter>Platform\Windows</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Event\Interface\EventManagerInterface.h">
+      <Filter>Core\Event\Interface</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Event\InputEventManager.h">
+      <Filter>Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\Camera\CameraController.h">
+      <Filter>Scene\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Event\TickEventManager.h">
+      <Filter>Core\Event</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

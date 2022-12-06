@@ -159,6 +159,9 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Core\Engine\Engine.cpp" />
+    <ClCompile Include="Core\Event\InputEventManager.cpp" />
+    <ClCompile Include="Core\Event\Interface\EventManagerInterface.cpp" />
+    <ClCompile Include="Core\Event\TickEventManager.cpp" />
     <ClCompile Include="Core\Log\LogManager.cpp" />
     <ClCompile Include="Core\Reflection\ReflectionManager.cpp" />
     <ClCompile Include="Core\Serialization\DataStream.cpp" />
@@ -174,6 +177,7 @@
     <ClCompile Include="Platform\Windows\Math\Transform.cpp" />
     <ClCompile Include="Platform\Windows\TextureLoader\DDSTextureLoader.cpp" />
     <ClCompile Include="Platform\Windows\TextureLoader\WICTextureLoader.cpp" />
+    <ClCompile Include="Scene\Camera\CameraController.cpp" />
     <ClCompile Include="Scene\ECS\Component\MeshComponent.cpp" />
     <ClCompile Include="Scene\ECS\Component\TransformComponent.cpp" />
     <ClCompile Include="Scene\ECS\GameObject\Interface\GameObjectInterface.cpp" />
@@ -184,6 +188,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Engine\Engine.h" />
+    <ClInclude Include="Core\Event\InputEventManager.h" />
+    <ClInclude Include="Core\Event\Interface\EventManagerInterface.h" />
+    <ClInclude Include="Core\Event\TickEventManager.h" />
     <ClInclude Include="Core\Log\LogManager.h" />
     <ClInclude Include="Core\Reflection\ReflectionManager.h" />
     <ClInclude Include="Core\Reflection\testReflection.h" />
@@ -210,6 +217,7 @@
     <ClInclude Include="Platform\Windows\Math\VertexType.h" />
     <ClInclude Include="Platform\Windows\TextureLoader\DDSTextureLoader.h" />
     <ClInclude Include="Platform\Windows\TextureLoader\WICTextureLoader.h" />
+    <ClInclude Include="Scene\Camera\CameraController.h" />
     <ClInclude Include="Scene\ECS\Component\Interface\ComponentInterface.h" />
     <ClInclude Include="Scene\ECS\Component\MeshComponent.h" />
     <ClInclude Include="Scene\ECS\Component\TransformComponent.h" />

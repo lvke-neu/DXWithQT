@@ -20,6 +20,7 @@ namespace Twinkle
 		float GetFps();
 		void Pause();
 		void Start();
+		float GetDeltaTime();
 	private:
 		Engine() = default;
 		virtual ~Engine() = default;
