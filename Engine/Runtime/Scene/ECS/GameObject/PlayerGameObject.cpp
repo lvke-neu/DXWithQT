@@ -32,34 +32,29 @@ namespace Twinkle
 	void PlayerGameObject::tick(float deltaTime)
 	{
 		static float sum = 0.0f;
-		sum += deltaTime * 5;
+		sum += deltaTime;
 		
 
+		//std::vector<VertexPosNormalTex> vertices;
+		//std::vector<UINT32> indices;
 		//if (std::sin(sum) <= 0)
 		//{
+		//	Geometry::CreateCube<VertexPosNormalTex, UINT32>(vertices, indices);
+		//	dynamic_cast<MeshComponent*>(m_meshComponent)->setMesh<VertexPosNormalTex, UINT32>(vertices, indices, DXGI_FORMAT_R32_UINT);
 		//	dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\WoodCrate.dds");
 		//}
 		//else
 		//{
+		//	Geometry::CreateCylinder<VertexPosNormalTex, UINT32>(vertices, indices);
+		//	dynamic_cast<MeshComponent*>(m_meshComponent)->setMesh<VertexPosNormalTex, UINT32>(vertices, indices, DXGI_FORMAT_R32_UINT);
 		//	dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\grass.dds");
 		//}
 
-		std::vector<VertexPosNormalTex> vertices;
-		std::vector<UINT32> indices;
-		if (std::sin(sum) <= 0)
-		{
-			Geometry::CreateCube<VertexPosNormalTex, UINT32>(vertices, indices);
-			dynamic_cast<MeshComponent*>(m_meshComponent)->setMesh<VertexPosNormalTex, UINT32>(vertices, indices, DXGI_FORMAT_R32_UINT);
-			dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\WoodCrate.dds");
-		}
-		else
-		{
-			Geometry::CreateCylinder<VertexPosNormalTex, UINT32>(vertices, indices);
-			dynamic_cast<MeshComponent*>(m_meshComponent)->setMesh<VertexPosNormalTex, UINT32>(vertices, indices, DXGI_FORMAT_R32_UINT);
-			dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\grass.dds");
-		}
 
-	
+		//dynamic_cast<TransformComponent*>(m_transformComponent)->setPosition(std::sin(sum), std::sin(sum), std::sin(sum));
+		///dynamic_cast<TransformComponent*>(m_transformComponent)->setRotation(std::sin(sum), 1.0f, 1.0f);
+		//dynamic_cast<TransformComponent*>(m_transformComponent)->setScale(std::sin(sum), 1.0f, 1.0f);
+
 
 
 		m_transformComponent->tick(deltaTime);

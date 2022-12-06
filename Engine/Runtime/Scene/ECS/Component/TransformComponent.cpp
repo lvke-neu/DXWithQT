@@ -7,6 +7,7 @@ namespace Twinkle
 	{
 		m_worldMatrixCB = Singleton<RenderSystem>::GetInstance().CreateConstantBuffer<WorldMatrix>(0);
 		updateWorldMatrix();
+		m_worldMatrixCB->bind();
 	}
 
 	TransformComponent::~TransformComponent()
@@ -14,19 +15,33 @@ namespace Twinkle
 		Singleton<RenderSystem>::GetInstance().Release(m_worldMatrixCB);
 	}
 
+	void TransformComponent::setScale(float x, float y, float z)
+	{
+		m_transform.setScale(x, y, z);
+		updateWorldMatrix();
+	}
+
+	void TransformComponent::setRotation(float x, float y, float z)
+	{
+		m_transform.setRotation(x, y, z);
+		updateWorldMatrix();
+	}
+
+	void TransformComponent::setPosition(float x, float y, float z)
+	{
+		m_transform.setPosition(x, y, z);
+		updateWorldMatrix();
+	}
+
 	void TransformComponent::tick(float deltaTime)
 	{
-		static float rotY = 0.0f;
-		rotY += deltaTime;
-		m_transform.setRotation(0.0f, rotY, 0.0f);
-		updateWorldMatrix();
+
 	}
 
 	void TransformComponent::updateWorldMatrix()
 	{
 		WorldMatrix worldMatrix;
-		worldMatrix.worldMatrix = m_transform.getWorldMatrix();
+		worldMatrix.worldMatrix = XMMatrixTranspose(m_transform.getWorldMatrix());
 		dynamic_cast<ConstantBuffer<WorldMatrix>*>(m_worldMatrixCB)->update(worldMatrix);
-		m_worldMatrixCB->bind();
 	}
 }

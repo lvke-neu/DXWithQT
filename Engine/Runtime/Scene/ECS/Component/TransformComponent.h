@@ -17,6 +17,10 @@ namespace Twinkle
 		TransformComponent();
 		virtual ~TransformComponent();
 
+		void setScale(float x, float y, float z);
+		void setRotation(float x, float y, float z);
+		void setPosition(float x, float y, float z);
+
 		virtual void tick(float deltaTime) override;
 	private:
 		void updateWorldMatrix();

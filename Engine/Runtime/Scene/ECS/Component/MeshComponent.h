@@ -18,7 +18,6 @@ namespace Twinkle
 
 		template<class VertexType, class IndexType>
 		void setMesh(const std::vector<VertexType>& vertices, const std::vector<IndexType>& indices, DXGI_FORMAT dxgi);
-
 		void setVsShader(const std::string& relativeFilePath);
 		void setInputLayout(const std::string& relativeFilePath, const std::vector<D3D11_INPUT_ELEMENT_DESC>& ied);
 		void setPsShader(const std::string& relativeFilePath);
