@@ -118,7 +118,7 @@
     <ClCompile Include="Scene\ECS\GameObject\Interface\GameObjectInterface.cpp">
       <Filter>Scene\ECS\GameObject\Interface</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\ECS\GameObject\PlayerGameObject.cpp">
+    <ClCompile Include="Scene\ECS\GameObject\BasicGeometryGameObject.cpp">
       <Filter>Scene\ECS\GameObject</Filter>
     </ClCompile>
     <ClCompile Include="Scene\ECS\Component\TransformComponent.cpp">
@@ -228,7 +228,7 @@
     <ClInclude Include="Scene\ECS\GameObject\Interface\GameObjectInterface.h">
       <Filter>Scene\ECS\GameObject\Interface</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\ECS\GameObject\PlayerGameObject.h">
+    <ClInclude Include="Scene\ECS\GameObject\BasicGeometryGameObject.h">
       <Filter>Scene\ECS\GameObject</Filter>
     </ClInclude>
     <ClInclude Include="Scene\ECS\Component\TransformComponent.h">

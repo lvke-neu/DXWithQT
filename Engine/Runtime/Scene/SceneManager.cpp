@@ -1,6 +1,6 @@
 #include "SceneManager.h"
 #include "PerspectiveCamera.h"
-#include "ECS/GameObject/PlayerGameObject.h"
+#include "ECS/GameObject/BasicGeometryGameObject.h"
 #include "Runtime/Utility/Utility.h"
 
 
@@ -10,16 +10,16 @@ namespace Twinkle
 	{
 		Singleton<PerspectiveCamera>::GetInstance().SetPosition(0.0f, 0.0f, -10.0f);
 
-		m_player = new PlayerGameObject;
+		m_basicGeometryGameObject = new BasicGeometryGameObject(Cube);
 	}
 
 	SceneManager::~SceneManager()
 	{
-		SAFE_DELETE_SETNULL(m_player);
+		SAFE_DELETE_SETNULL(m_basicGeometryGameObject);
 	}
 
 	void SceneManager::Tick(float deltaTime)
 	{
-		m_player->tick(deltaTime);
+		m_basicGeometryGameObject->tick(deltaTime);
 	}
 }
