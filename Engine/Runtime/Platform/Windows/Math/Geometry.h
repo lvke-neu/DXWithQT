@@ -11,6 +11,9 @@ namespace Twinkle
 		template<class VertexType, class IndexType>
 		static void CreateCylinder(std::vector<VertexType>& vertices, std::vector<IndexType>& indices);
 
+		template<class VertexType, class IndexType>
+		static void CreatePlane(std::vector<VertexType>& vertices, std::vector<IndexType>& indices, float width, float depth, float texU, float texV);
+
 	};
 
 	template<class VertexType, class IndexType>
@@ -144,5 +147,28 @@ namespace Twinkle
 		}
 	}
 
+	template<class VertexType, class IndexType>
+	void Geometry::CreatePlane(std::vector<VertexType>& vertices, std::vector<IndexType>& indices, float width, float depth, float texU, float texV)
+	{
+		vertices.resize(4);
+		vertices[0].position = XMFLOAT3(-width / 2, 0.0f, -depth / 2);
+		vertices[0].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
+		vertices[0].texcoord = XMFLOAT2(0.0f, texV);
+
+		vertices[1].position = XMFLOAT3(-width / 2, 0.0f, depth / 2);
+		vertices[1].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
+		vertices[1].texcoord = XMFLOAT2(0.0f, 0.0f);
+
+		vertices[2].position = XMFLOAT3(width / 2, 0.0f, depth / 2);
+		vertices[2].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
+		vertices[2].texcoord = XMFLOAT2(texU, 0.0f);
+
+		vertices[3].position = XMFLOAT3(width / 2, 0.0f, -depth / 2);
+		vertices[3].normal = XMFLOAT3(0.0f, 1.0f, 0.0f);
+		vertices[3].texcoord = XMFLOAT2(texU, texV);
+
+		std::vector<IndexType> indicesTmp{0, 1, 2, 2, 3, 0};
+		indices = indicesTmp;
+	}
 	
 }

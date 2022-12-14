@@ -1,7 +1,5 @@
 #include "SceneManager.h"
 #include "ECS/GameObject/BasicGeometryGameObject.h"
-#include "ECS/Component/TransformComponent.h"
-#include "ECS/Component/MeshComponent.h"
 #include "Runtime/Utility/Utility.h"
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Camera/CameraController.h"
@@ -14,14 +12,18 @@ namespace Twinkle
 		m_cameraController = new CameraController();
 
 		m_cube = new BasicGeometryGameObject(Cube);
-		m_plane = new BasicGeometryGameObject(Cube);
+		m_plane = new BasicGeometryGameObject(Plane);
 		
-		TransformComponent* planeTransformComponent = dynamic_cast<TransformComponent*>(dynamic_cast<BasicGeometryGameObject*>(m_plane)->getTransformComponent());
-		planeTransformComponent->setPosition(0.0f, -5.0f, 0.0f);
-		planeTransformComponent->setScale(200.0f, 0.1f, 200.0f);
+		if (m_plane->getTransformComponent())
+		{
+			m_plane->getTransformComponent()->setPosition(0.0f, -5.0f, 0.0f);
+		}
 
-		MeshComponent* planeMeshComponent = dynamic_cast<MeshComponent*>(dynamic_cast<BasicGeometryGameObject*>(m_plane)->getMeshComponent());
-		planeMeshComponent->setTexture("\\builtin\\Texture\\grass.dds");
+		if (m_plane->getMeshComponent())
+		{
+			m_plane->getMeshComponent()->setTexture("\\builtin\\Texture\\grass.dds");
+		}
+
 	}
 
 	SceneManager::~SceneManager()

@@ -12,21 +12,16 @@ namespace Twinkle
 	enum BasicGeometryType
 	{
 		Cube,
-		Cylinder
+		Cylinder,
+		Plane
 	};
 
 	class BasicGeometryGameObject : public IGameObject
 	{
 	public:
 		BasicGeometryGameObject(BasicGeometryType geometryType);
-		virtual ~BasicGeometryGameObject();
+		virtual ~BasicGeometryGameObject() = default;
 
 		virtual void tick(float deltaTime) override;
-	public:
-		IComponent* getTransformComponent();
-		IComponent* getMeshComponent();
-	private:
-		IComponent* m_transformComponent{ nullptr };
-		IComponent* m_meshComponent{ nullptr };
 	};
 }

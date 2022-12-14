@@ -2,7 +2,6 @@
 #include <Windows.h>
 #include "Runtime/Utility/Utility.h"
 
-
 namespace Twinkle
 {
 	IGameObject::IGameObject()
@@ -20,8 +19,24 @@ namespace Twinkle
 		m_guid = guidStr;
 	}
 
+	IGameObject::~IGameObject()
+	{
+		SAFE_DELETE_SETNULL(m_transformComponent);
+		SAFE_DELETE_SETNULL(m_meshComponent);
+	}
+
 	std::string IGameObject::getGuid() const
 	{
 		return m_guid;
+	}
+
+	TransformComponent * IGameObject::getTransformComponent() const
+	{
+		return m_transformComponent;
+	}
+
+	MeshComponent * IGameObject::getMeshComponent() const
+	{
+		return m_meshComponent;
 	}
 }

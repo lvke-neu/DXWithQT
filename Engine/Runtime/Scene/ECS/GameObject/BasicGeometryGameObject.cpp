@@ -1,9 +1,5 @@
 #include "BasicGeometryGameObject.h"
-#include "../Component/TransformComponent.h"
-#include "../Component/MeshComponent.h"
-#include "Runtime/Utility/Utility.h"
 #include "Runtime/Platform/Windows/Math/Geometry.h"
-#include <cmath>
 
 namespace Twinkle
 {
@@ -22,37 +18,23 @@ namespace Twinkle
 			break;
 		case Cylinder:
 			Geometry::CreateCylinder<VertexPosNormalTex, UINT32>(vertices, indices);
+		case Plane:
+			Geometry::CreatePlane<VertexPosNormalTex, UINT32>(vertices, indices, 200.0f, 200.0f, 50.0f, 50.0f);
 		default:
 			break;
 		}
 
-		dynamic_cast<MeshComponent*>(m_meshComponent)->setMesh<VertexPosNormalTex, UINT32>(vertices, indices, DXGI_FORMAT_R32_UINT);
-		dynamic_cast<MeshComponent*>(m_meshComponent)->setVsShader("\\builtin\\BinShader\\BasicVertexShader.cso");
-		dynamic_cast<MeshComponent*>(m_meshComponent)->setInputLayout("\\builtin\\BinShader\\BasicVertexShader.cso", VertexPosNormalTex::ied);
-		dynamic_cast<MeshComponent*>(m_meshComponent)->setPsShader("\\builtin\\BinShader\\BasicPixelShader.cso");
-		dynamic_cast<MeshComponent*>(m_meshComponent)->setTexture("\\builtin\\Texture\\WoodCrate.dds");
-		dynamic_cast<MeshComponent*>(m_meshComponent)->setSamplerState(SamplerStateType::SSLinearWrap);
-	}
-
-	BasicGeometryGameObject::~BasicGeometryGameObject()
-	{
-		SAFE_DELETE_SETNULL(m_transformComponent);
-		SAFE_DELETE_SETNULL(m_meshComponent);
+		m_meshComponent->setMesh<VertexPosNormalTex, UINT32>(vertices, indices, DXGI_FORMAT_R32_UINT);
+		m_meshComponent->setVsShader("\\builtin\\BinShader\\BasicVertexShader.cso");
+		m_meshComponent->setInputLayout("\\builtin\\BinShader\\BasicVertexShader.cso", VertexPosNormalTex::ied);
+		m_meshComponent->setPsShader("\\builtin\\BinShader\\BasicPixelShader.cso");
+		m_meshComponent->setTexture("\\builtin\\Texture\\WoodCrate.dds");
+		m_meshComponent->setSamplerState(SamplerStateType::SSLinearWrap);
 	}
 
 	void BasicGeometryGameObject::tick(float deltaTime)
 	{
 		m_transformComponent->tick(deltaTime);
 		m_meshComponent->tick(deltaTime);
-	}
-
-	IComponent * BasicGeometryGameObject::getTransformComponent()
-	{
-		return m_transformComponent;
-	}
-
-	IComponent * BasicGeometryGameObject::getMeshComponent()
-	{
-		return m_meshComponent;
 	}
 }
