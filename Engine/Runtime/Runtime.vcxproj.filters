@@ -97,9 +97,6 @@
     <ClCompile Include="Scene\SceneManager.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
-    <ClCompile Include="Platform\Windows\Bindable\SamplerStateDesc.cpp">
-      <Filter>Platform\Windows\Bindable</Filter>
-    </ClCompile>
     <ClCompile Include="Platform\Windows\TextureLoader\DDSTextureLoader.cpp">
       <Filter>Platform\Windows\TextureLoader</Filter>
     </ClCompile>
@@ -154,6 +151,9 @@
     <ClCompile Include="Scene\Camera\CameraController.cpp">
       <Filter>Scene\Camera</Filter>
     </ClCompile>
+    <ClCompile Include="Platform\Windows\Bindable\StateDesc.cpp">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Reflection\ReflectionManager.h">
@@ -202,9 +202,6 @@
       <Filter>Platform\Windows\Bindable</Filter>
     </ClInclude>
     <ClInclude Include="Platform\Windows\Bindable\SamplerState.h">
-      <Filter>Platform\Windows\Bindable</Filter>
-    </ClInclude>
-    <ClInclude Include="Platform\Windows\Bindable\SamplerStateDesc.h">
       <Filter>Platform\Windows\Bindable</Filter>
     </ClInclude>
     <ClInclude Include="Platform\Windows\Bindable\Texture.h">
@@ -272,6 +269,12 @@
     </ClInclude>
     <ClInclude Include="Core\Event\TickEventManager.h">
       <Filter>Core\Event</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\RasterizerState.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\StateDesc.h">
+      <Filter>Platform\Windows\Bindable</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

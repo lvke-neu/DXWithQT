@@ -5,8 +5,7 @@ Description:
 Encapsulate SamplerState
 ****************************************************************************************/
 #pragma once
-
-#include "SamplerStateDesc.h"
+#include "StateDesc.h"
 
 namespace Twinkle
 {
@@ -28,10 +27,7 @@ namespace Twinkle
 		m_pDeviceContent = pDeviceContent;
 		m_startSlot = startSlot;
 
-		SamplerStateDesc::init();
-		
-		SamplerStateDesc::samplerStateTyPeDesc[samplerStateType];
-		m_pDevice->CreateSamplerState(&SamplerStateDesc::samplerStateTyPeDesc[samplerStateType], &m_pSamplerState);
+		m_pDevice->CreateSamplerState(&StateDesc::samplerStateTypeDesc[samplerStateType], &m_pSamplerState);
 	}
 
 	SamplerState::~SamplerState()

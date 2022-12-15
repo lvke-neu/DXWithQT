@@ -11,7 +11,7 @@ DirextX11 Manager
 #include "Bindable/VertexBuffer.h"
 #include "Bindable/IndexBuffer.h"
 #include "Bindable/ConstantBuffer.h"
-#include "Bindable/SamplerStateDesc.h"
+#include "Bindable/StateDesc.h"
 
 namespace Twinkle
 {
@@ -75,6 +75,10 @@ namespace Twinkle
 		IBindable* CreateTexture(UINT startSlot, const std::string& relativeFilePath);
 
 		IBindable* CreateSamplerState(UINT startSlot, SamplerStateType samplerStateType);
+
+		IBindable* CreateRasterizerState(RasterizerStateType rasterizerStateType);
+
+		void SetRasterizerState(IBindable* rasterizerState);
 
 		template <class IndexBufferType>
 		void DrawCall(IBindable* vertexBuffer, IBindable* indexbuffer,

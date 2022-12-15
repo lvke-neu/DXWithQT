@@ -4,6 +4,7 @@
 #include "Bindable/PixelShader.h"
 #include "Bindable/Texture.h"
 #include "Bindable/SamplerState.h"
+#include "Bindable/RasterizerState.h"
 #include "Runtime/Utility/Utility.h"
 #include "Runtime/Core/Log/LogManager.h"
 #include "PerspectiveCamera.h"
@@ -59,7 +60,7 @@ namespace Twinkle
 
 		Singleton<PerspectiveCamera>::GetInstance().Initialize();
 
-		//OnResize(width, height);
+		StateDesc::init();
 
 		LOG_INFO("RenderSystem Initialization is complete");
 	}
@@ -181,6 +182,19 @@ namespace Twinkle
 	IBindable * RenderSystem::CreateSamplerState(UINT startSlot, SamplerStateType samplerStateType)
 	{
 		return new SamplerState(m_pDevice, m_pDeviceContent, startSlot, samplerStateType);
+	}
+
+	IBindable * RenderSystem::CreateRasterizerState(RasterizerStateType rasterizerStateType)
+	{
+		return new RasterizerState(m_pDevice, m_pDeviceContent, rasterizerStateType);
+	}
+
+	void RenderSystem::SetRasterizerState(IBindable * rasterizerState)
+	{
+		if (rasterizerState)
+		{
+			rasterizerState->bind();
+		}
 	}
 
 	void RenderSystem::Release(IBindable*& bindable)

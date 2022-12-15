@@ -3,6 +3,7 @@
 #include "Runtime/Utility/Utility.h"
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Camera/CameraController.h"
+#include "Runtime/Platform/Windows/RenderSystem.h"
 
 namespace Twinkle
 {
@@ -23,7 +24,6 @@ namespace Twinkle
 		{
 			m_plane->getMeshComponent()->setTexture("\\builtin\\Texture\\grass.dds");
 		}
-
 	}
 
 	SceneManager::~SceneManager()
