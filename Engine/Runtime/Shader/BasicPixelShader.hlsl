@@ -5,6 +5,7 @@ SamplerState g_samplerState : register (s0);
 
 float4 main(VsOut pIn) : SV_Target
 {
-	
-	return g_texture.Sample(g_samplerState, pIn.uv);
+	float4 color = g_texture.Sample(g_samplerState, pIn.uv);
+	//color.a = 0.5f;
+	return color;
 }

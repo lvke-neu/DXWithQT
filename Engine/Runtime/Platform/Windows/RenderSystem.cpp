@@ -5,6 +5,7 @@
 #include "Bindable/Texture.h"
 #include "Bindable/SamplerState.h"
 #include "Bindable/RasterizerState.h"
+#include "Bindable/BlendState.h"
 #include "Runtime/Utility/Utility.h"
 #include "Runtime/Core/Log/LogManager.h"
 #include "PerspectiveCamera.h"
@@ -194,6 +195,19 @@ namespace Twinkle
 		if (rasterizerState)
 		{
 			rasterizerState->bind();
+		}
+	}
+
+	IBindable * RenderSystem::CreateBlendState(BlendStateType blendStateType)
+	{
+		return new BlendState(m_pDevice, m_pDeviceContent, blendStateType);
+	}
+
+	void RenderSystem::SetBlendState(IBindable * blendState)
+	{
+		if (blendState)
+		{
+			blendState->bind();
 		}
 	}
 

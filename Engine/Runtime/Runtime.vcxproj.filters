@@ -276,6 +276,9 @@
     <ClInclude Include="Platform\Windows\Bindable\StateDesc.h">
       <Filter>Platform\Windows\Bindable</Filter>
     </ClInclude>
+    <ClInclude Include="Platform\Windows\Bindable\BlendState.h">
+      <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <FxCompile Include="Shader\BasicVertexShader.hlsl">

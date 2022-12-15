@@ -80,6 +80,10 @@ namespace Twinkle
 
 		void SetRasterizerState(IBindable* rasterizerState);
 
+		IBindable* CreateBlendState(BlendStateType blendStateType);
+
+		void SetBlendState(IBindable* blendState);
+
 		template <class IndexBufferType>
 		void DrawCall(IBindable* vertexBuffer, IBindable* indexbuffer,
 			IBindable* vertexShader, IBindable* inputLayout, IBindable* pixelShader, D3D11_PRIMITIVE_TOPOLOGY drawType,

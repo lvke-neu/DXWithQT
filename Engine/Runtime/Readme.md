@@ -17,4 +17,11 @@ Engine 负责 tick
 
 
 qt的 鼠标移动事件 mouseMoveEvent(QMouseEvent * event) 中获取鼠标类型（左键 中键 右键）用 event->buttons() 而不是event->button（）
+
+//中间搁置了一个星期，因为阳了 o_O, ^v^, :)
+
+光栅化状态（光栅化阶段）
+采样器状态（像素着色阶段）
+混合状态（输出合并阶段）
+深度/模板状态（输出合并阶段）
 					
