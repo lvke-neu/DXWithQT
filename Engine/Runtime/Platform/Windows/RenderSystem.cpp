@@ -212,9 +212,9 @@ namespace Twinkle
 		}
 	}
 
-	IBindable * RenderSystem::CreateDepthStencilState(DepthStencilStateType depthStencilStateType)
+	IBindable * RenderSystem::CreateDepthStencilState(DepthStencilStateType depthStencilStateType, UINT StencilRef)
 	{
-		return new DepthStencilState(m_pDevice, m_pDeviceContent, depthStencilStateType);
+		return new DepthStencilState(m_pDevice, m_pDeviceContent, depthStencilStateType, StencilRef);
 	}
 
 	void RenderSystem::SetDepthStencilState(IBindable * depthStencilState)

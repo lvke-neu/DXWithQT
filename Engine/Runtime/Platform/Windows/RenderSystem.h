@@ -82,7 +82,7 @@ namespace Twinkle
 		IBindable* CreateBlendState(BlendStateType blendStateType);
 		void SetBlendState(IBindable* blendState);
 
-		IBindable* CreateDepthStencilState(DepthStencilStateType depthStencilStateType);
+		IBindable* CreateDepthStencilState(DepthStencilStateType depthStencilStateType, UINT StencilRef);
 		void SetDepthStencilState(IBindable* depthStencilState);
 
 		template <class IndexBufferType>
