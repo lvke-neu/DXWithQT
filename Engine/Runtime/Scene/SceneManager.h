@@ -25,6 +25,7 @@ namespace Twinkle
 	private:
 		IGameObject* m_cube{ nullptr };
 		IGameObject* m_plane{ nullptr };
+		IGameObject* m_cylinder{ nullptr };
 		CameraController* m_cameraController{ nullptr };
 	};
 }

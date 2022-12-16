@@ -15,7 +15,7 @@ namespace Twinkle
 		//SSLinearWrap
 		D3D11_SAMPLER_DESC samplerDescSSLinearWrap;
 		ZeroMemory(&samplerDescSSLinearWrap, sizeof(samplerDescSSLinearWrap));
-		samplerDescSSLinearWrap.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+		samplerDescSSLinearWrap.Filter = D3D11_FILTER_MIN_MAG_MIP_LINEAR;
 		samplerDescSSLinearWrap.AddressU = D3D11_TEXTURE_ADDRESS_WRAP;
 		samplerDescSSLinearWrap.AddressV = D3D11_TEXTURE_ADDRESS_WRAP;
 		samplerDescSSLinearWrap.AddressW = D3D11_TEXTURE_ADDRESS_WRAP;

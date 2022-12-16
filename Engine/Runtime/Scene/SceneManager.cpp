@@ -16,6 +16,12 @@ namespace Twinkle
 
 		m_cube = new BasicGeometryGameObject(Cube);
 		m_plane = new BasicGeometryGameObject(Plane);
+		m_cylinder = new BasicGeometryGameObject(Cylinder);
+
+		if (m_cylinder->getTransformComponent())
+		{
+			m_cylinder->getTransformComponent()->setPosition(0.0f, 0.0f, 5.0f);
+		}
 		
 		if (m_plane->getTransformComponent())
 		{
@@ -31,6 +37,7 @@ namespace Twinkle
 	SceneManager::~SceneManager()
 	{
 		SAFE_DELETE_SETNULL(m_cube);
+		SAFE_DELETE_SETNULL(m_cylinder);
 		SAFE_DELETE_SETNULL(m_plane);
 		SAFE_DELETE_SETNULL(m_cameraController);
 	}
@@ -38,6 +45,7 @@ namespace Twinkle
 	void SceneManager::Tick(float deltaTime)
 	{
 		m_cube->tick(deltaTime);
+		m_cylinder->tick(deltaTime);
 		m_plane->tick(deltaTime);
 	}
 }
