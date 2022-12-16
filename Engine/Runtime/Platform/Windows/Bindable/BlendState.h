@@ -30,7 +30,7 @@ namespace Twinkle
 
 	BlendState::~BlendState()
 	{
-		SAFE_DELETE_SETNULL(m_pBlendState);
+		SAFE_RELEASE(m_pBlendState);
 	}
 
 	void BlendState::bind()

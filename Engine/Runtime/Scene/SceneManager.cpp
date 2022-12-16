@@ -7,8 +7,7 @@
 
 namespace Twinkle
 {
-	IBindable* bsDefault;
-	IBindable* bsTransparent;
+	IBindable* dssNoDepthTest;
 	SceneManager::SceneManager()
 	{
 		Singleton<PerspectiveCamera>::GetInstance().SetPosition(0.0f, 0.0f, -10.0f);
@@ -31,7 +30,7 @@ namespace Twinkle
 		if (m_plane->getMeshComponent())
 		{
 			m_plane->getMeshComponent()->setTexture("\\builtin\\Texture\\grass.dds");
-		}	
+		}
 	}
 
 	SceneManager::~SceneManager()

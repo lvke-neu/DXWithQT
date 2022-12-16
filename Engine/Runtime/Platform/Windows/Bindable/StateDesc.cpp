@@ -6,6 +6,7 @@ namespace Twinkle
 	std::map<SamplerStateType, D3D11_SAMPLER_DESC> StateDesc::samplerStateTypeDesc;
 	std::map<RasterizerStateType, D3D11_RASTERIZER_DESC> StateDesc::rasterizerStateTypeDesc;
 	std::map<BlendStateType, D3D11_BLEND_DESC> StateDesc::blendStateTypeDesc;
+	std::map<DepthStencilStateType, D3D11_DEPTH_STENCIL_DESC> StateDesc::depthStencilStateTypeDesc;
 
 	void StateDesc::init()
 	{
@@ -86,6 +87,13 @@ namespace Twinkle
 		bsDesc2.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
 		bsDesc2.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
 		blendStateTypeDesc.insert({ BSTransparent, bsDesc2 });
+
+		//DSSNoDepthTest
+		D3D11_DEPTH_STENCIL_DESC dssDesc1;
+		ZeroMemory(&dssDesc1, sizeof(dssDesc1));
+		dssDesc1.DepthEnable = false;
+		dssDesc1.StencilEnable = false;
+		depthStencilStateTypeDesc.insert({ DSSNoDepthTest, dssDesc1 });
 
 		bIsInit = true;
 	}

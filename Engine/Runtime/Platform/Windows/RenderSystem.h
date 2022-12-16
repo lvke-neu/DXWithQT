@@ -77,12 +77,13 @@ namespace Twinkle
 		IBindable* CreateSamplerState(UINT startSlot, SamplerStateType samplerStateType);
 
 		IBindable* CreateRasterizerState(RasterizerStateType rasterizerStateType);
-
 		void SetRasterizerState(IBindable* rasterizerState);
 
 		IBindable* CreateBlendState(BlendStateType blendStateType);
-
 		void SetBlendState(IBindable* blendState);
+
+		IBindable* CreateDepthStencilState(DepthStencilStateType depthStencilStateType);
+		void SetDepthStencilState(IBindable* depthStencilState);
 
 		template <class IndexBufferType>
 		void DrawCall(IBindable* vertexBuffer, IBindable* indexbuffer,

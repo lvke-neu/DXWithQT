@@ -203,6 +203,7 @@
     <ClInclude Include="Platform\Windows\Bindable\BindableInterface.h" />
     <ClInclude Include="Platform\Windows\Bindable\BlendState.h" />
     <ClInclude Include="Platform\Windows\Bindable\ConstantBuffer.h" />
+    <ClInclude Include="Platform\Windows\Bindable\DepthStencilState.h" />
     <ClInclude Include="Platform\Windows\Bindable\IndexBuffer.h" />
     <ClInclude Include="Platform\Windows\Bindable\InputLayout.h" />
     <ClInclude Include="Platform\Windows\Bindable\PixelShader.h" />

@@ -23,6 +23,12 @@ namespace Twinkle
 		BSTransparent
 	};
 
+	enum DepthStencilStateType
+	{
+		DSSDefault,
+		DSSNoDepthTest
+	};
+
 	class StateDesc
 	{
 	public:
@@ -30,6 +36,7 @@ namespace Twinkle
 		static std::map<SamplerStateType, D3D11_SAMPLER_DESC> samplerStateTypeDesc;
 		static std::map<RasterizerStateType, D3D11_RASTERIZER_DESC> rasterizerStateTypeDesc;
 		static std::map<BlendStateType, D3D11_BLEND_DESC> blendStateTypeDesc;
+		static std::map<DepthStencilStateType, D3D11_DEPTH_STENCIL_DESC> depthStencilStateTypeDesc;
 	private:
 		static bool bIsInit;
 	};

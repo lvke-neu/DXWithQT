@@ -30,7 +30,7 @@ namespace Twinkle
 
 	RasterizerState::~RasterizerState()
 	{
-		SAFE_DELETE_SETNULL(m_pRasterizerState);
+		SAFE_RELEASE(m_pRasterizerState);
 	}
 
 	void RasterizerState::bind()

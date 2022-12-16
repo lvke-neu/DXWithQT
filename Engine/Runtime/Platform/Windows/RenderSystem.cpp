@@ -6,6 +6,7 @@
 #include "Bindable/SamplerState.h"
 #include "Bindable/RasterizerState.h"
 #include "Bindable/BlendState.h"
+#include "Bindable/DepthStencilState.h"
 #include "Runtime/Utility/Utility.h"
 #include "Runtime/Core/Log/LogManager.h"
 #include "PerspectiveCamera.h"
@@ -208,6 +209,19 @@ namespace Twinkle
 		if (blendState)
 		{
 			blendState->bind();
+		}
+	}
+
+	IBindable * RenderSystem::CreateDepthStencilState(DepthStencilStateType depthStencilStateType)
+	{
+		return new DepthStencilState(m_pDevice, m_pDeviceContent, depthStencilStateType);
+	}
+
+	void RenderSystem::SetDepthStencilState(IBindable * depthStencilState)
+	{
+		if (depthStencilState)
+		{
+			depthStencilState->bind();
 		}
 	}
 
