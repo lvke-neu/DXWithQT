@@ -1,25 +1,37 @@
 #pragma once
-#include <vector>
+#include <string>
+#include <rttr/type>
 
 namespace Twinkle
 {
-	class IBindable;
+
 	class TestComponent
 	{
 	public:
 		TestComponent();
 		~TestComponent();
 
-		void draw();
+		const std::string& getName() const;
+		void setName(const std::string& name);
 
-	private:
-		IBindable* vertexBuffer{ nullptr };
-		IBindable* indexBuffer{ nullptr };
-		IBindable*	vertexShader{ nullptr };
-		IBindable* inputLayout{ nullptr };
-		IBindable* pixelShader{ nullptr };
-		IBindable* texture{ nullptr };
-		IBindable* samplerState{ nullptr };
-		std::vector<IBindable*> cbs;
+		int getAge();
+		void setAge(int age);
+	protected:
+		std::string m_name{ "" };
+		int m_age = -1;
+
+		RTTR_ENABLE()
 	};
+
+	class Son : public TestComponent
+	{
+	public:
+		int getSex();
+		void setSex(int sex);
+	private:
+		int m_sex = 0;
+
+		RTTR_ENABLE()
+	};
+
 }

@@ -154,6 +154,9 @@
     <ClCompile Include="Platform\Windows\Bindable\StateDesc.cpp">
       <Filter>Platform\Windows\Bindable</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\RttrSonClass.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Reflection\ReflectionManager.h">
@@ -281,6 +284,9 @@
     </ClInclude>
     <ClInclude Include="Platform\Windows\Bindable\DepthStencilState.h">
       <Filter>Platform\Windows\Bindable</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\RttrSonClass.h">
+      <Filter>Scene</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -70,7 +70,7 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <Link>
-      <AdditionalDependencies>Runtime_d.lib;%(AdditionalDependencies);d3d11.lib;d3dcompiler.lib</AdditionalDependencies>
+      <AdditionalDependencies>Runtime_d.lib;%(AdditionalDependencies);d3d11.lib;d3dcompiler.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../bin/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>
@@ -89,7 +89,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <Link>
-      <AdditionalDependencies>Runtime.lib;%(AdditionalDependencies);d3d11.lib;d3dcompiler.lib</AdditionalDependencies>
+      <AdditionalDependencies>Runtime.lib;%(AdditionalDependencies);d3d11.lib;d3dcompiler.lib;</AdditionalDependencies>
       <AdditionalLibraryDirectories>../../bin/;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <ClCompile>

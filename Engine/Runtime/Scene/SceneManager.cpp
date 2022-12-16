@@ -4,6 +4,10 @@
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Camera/CameraController.h"
 #include "Runtime/Platform/Windows/RenderSystem.h"
+#include "Runtime/Core/Log/LogManager.h"
+
+#include <rttr/type>
+#include "RttrSonClass.h"
 
 namespace Twinkle
 {
@@ -31,6 +35,20 @@ namespace Twinkle
 		{
 			m_plane->getMeshComponent()->setTexture("\\builtin\\Texture\\grass.dds");
 		}
+
+		//rttr test
+		rttr::type t = rttr::type::get_by_name("Son");
+		size_t sizeee = t.get_properties().size();
+		
+		LOG_INFO("******************************************************************");
+
+		for (auto& prop : t.get_properties())
+		{
+			LOG_INFO(prop.get_name().to_string() + ", " + prop.get_type().get_name().to_string());
+		}
+		
+		int i = 0;
+		i++;
 	}
 
 	SceneManager::~SceneManager()
