@@ -31,17 +31,23 @@ namespace Twinkle
 	public:
 		XMMATRIX getWorldMatrix() const;
 
-		XMFLOAT3 getScale() const;
+		const XMFLOAT3& getScale() const;
 		void setScale(float x, float y, float z);
 		void setScale(const XMFLOAT3& scale);
 
-		XMFLOAT3 getRotation() const;
+		const XMFLOAT3& getRotation() const;
 		void setRotation(float x, float y, float z);
 		void setRotation(const XMFLOAT3& rotation);
 
-		XMFLOAT3 getPosition() const;
+		const XMFLOAT3& getPosition() const;
 		void setPosition(float x, float y, float z);
 		void setPosition(const XMFLOAT3& position);
+
+		//used for rttr
+		void SetScale(const XMFLOAT3& scale);
+		void SetRotation(const XMFLOAT3& rotation);
+		void SetPosition(const XMFLOAT3& position);
+
 	private:
 		XMFLOAT3 m_scale{ 1.0f, 1.0f, 1.0f };
 		XMFLOAT3 m_rotation{ 0.0f, 0.0f, 0.0f }; // radian

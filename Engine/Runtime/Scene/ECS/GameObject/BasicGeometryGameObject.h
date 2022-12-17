@@ -19,6 +19,7 @@ namespace Twinkle
 	class BasicGeometryGameObject : public IGameObject
 	{
 	public:
+		BasicGeometryGameObject() = default;
 		BasicGeometryGameObject(BasicGeometryType geometryType);
 		virtual ~BasicGeometryGameObject() = default;
 

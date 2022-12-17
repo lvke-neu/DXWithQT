@@ -24,6 +24,10 @@ namespace Twinkle
 		void setTexture(const std::string& relativeFilePath);
 		void setSamplerState(SamplerStateType samplerStateType);
 
+		const std::string& getVsShader() const;
+		const std::string& getPsShader() const;
+		const std::string& getTexture() const;
+
 		virtual void tick(float deltaTime) override;
 	private:
 		IBindable* m_vertexBuffer{ nullptr };
@@ -33,6 +37,10 @@ namespace Twinkle
 		IBindable* m_pixelShader{ nullptr };
 		IBindable* m_texture{ nullptr };
 		IBindable* m_samplerState{ nullptr };
+
+		std::string m_vsShaderPath{ "" };
+		std::string m_psShaderPath{ "" };
+		std::string m_texturePath{ "" };
 	};
 
 	template<class VertexType, class IndexType>

@@ -27,6 +27,9 @@ namespace Twinkle
 		void setPosition(float x, float y, float z);
 		void setPosition(const XMFLOAT3& position);
 
+		const Transform& getTransform();
+		void setTransform(const Transform& transform);
+
 		virtual void tick(float deltaTime) override;
 	private:
 		void updateWorldMatrix();

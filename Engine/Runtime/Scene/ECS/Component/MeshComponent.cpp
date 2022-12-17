@@ -20,6 +20,7 @@ namespace Twinkle
 
 	void MeshComponent::setVsShader(const std::string & relativeFilePath)
 	{
+		m_vsShaderPath = relativeFilePath;
 		Singleton<RenderSystem>::GetInstance().Release(m_vertexShader);
 		m_vertexShader = Singleton<RenderSystem>::GetInstance().CreateVertexShader(relativeFilePath);
 	}
@@ -32,12 +33,14 @@ namespace Twinkle
 
 	void MeshComponent::setPsShader(const std::string & relativeFilePath)
 	{
+		m_psShaderPath = relativeFilePath;
 		Singleton<RenderSystem>::GetInstance().Release(m_pixelShader);
 		m_pixelShader = Singleton<RenderSystem>::GetInstance().CreatePixelShader(relativeFilePath);
 	}
 
 	void MeshComponent::setTexture(const std::string & relativeFilePath)
 	{
+		m_texturePath = relativeFilePath;
 		Singleton<RenderSystem>::GetInstance().Release(m_texture);
 		m_texture = Singleton<RenderSystem>::GetInstance().CreateTexture(0, relativeFilePath);
 	}
@@ -46,6 +49,21 @@ namespace Twinkle
 	{
 		Singleton<RenderSystem>::GetInstance().Release(m_samplerState);
 		m_samplerState = Singleton<RenderSystem>::GetInstance().CreateSamplerState(0, samplerStateType);
+	}
+
+	const std::string & MeshComponent::getVsShader() const
+	{
+		return m_vsShaderPath;
+	}
+
+	const std::string & MeshComponent::getPsShader() const
+	{
+		return m_psShaderPath;
+	}
+
+	const std::string & MeshComponent::getTexture() const
+	{
+		return m_texturePath;
 	}
 
 	void MeshComponent::tick(float deltaTime)

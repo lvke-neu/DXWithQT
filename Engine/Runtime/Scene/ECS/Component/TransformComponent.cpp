@@ -66,6 +66,16 @@ namespace Twinkle
 		updateWorldMatrix();
 	}
 
+	const Transform & TransformComponent::getTransform()
+	{
+		return m_transform;
+	}
+
+	void TransformComponent::setTransform(const Transform & transform)
+	{
+		m_transform = transform;
+	}
+
 	void TransformComponent::tick(float deltaTime)
 	{
 		m_worldMatrixCB->bind();

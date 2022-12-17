@@ -35,8 +35,18 @@ namespace Twinkle
 		return m_transformComponent;
 	}
 
+	void IGameObject::setTransformComponent(TransformComponent * transformComponent)
+	{
+		m_transformComponent = transformComponent;
+	}
+
 	MeshComponent * IGameObject::getMeshComponent() const
 	{
 		return m_meshComponent;
+	}
+
+	void IGameObject::setMeshComponent(MeshComponent * meshComponent)
+	{
+		m_meshComponent = meshComponent;
 	}
 }

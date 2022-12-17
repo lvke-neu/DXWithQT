@@ -16,11 +16,14 @@ namespace Twinkle
 	public:
 		IGameObject();
 		virtual ~IGameObject();
-
 		virtual void tick(float deltaTime) = 0;
+		std::string getGuid() const;
+
 		TransformComponent* getTransformComponent() const;
+		void setTransformComponent(TransformComponent* transformComponent);
+
 		MeshComponent* getMeshComponent() const;
-		std::string getGuid() const; 
+		void setMeshComponent(MeshComponent* meshComponent);
 	protected:
 		std::string m_guid{ "" };
 

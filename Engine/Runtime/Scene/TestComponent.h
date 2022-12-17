@@ -40,11 +40,11 @@ namespace Twinkle
 		int getSex();
 		void setSex(int sex);
 
-		const comp& getCp() const;
-		void setCp(const comp& cp);
+		comp* getCp() const;
+		void setCp(comp* cp);
 	private:
 		int m_sex = 0;
-		comp m_cp;
+		comp* m_cp;
 		RTTR_ENABLE(TestComponent)
 	};
 

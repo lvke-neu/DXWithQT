@@ -44,7 +44,7 @@ namespace Twinkle
 			XMMatrixTranslation(m_position.x, m_position.y, m_position.z);
 	}
 
-	XMFLOAT3 Transform::getScale() const
+	const XMFLOAT3& Transform::getScale() const
 	{
 		return m_scale;
 	}
@@ -62,7 +62,7 @@ namespace Twinkle
 		m_scale = scale;
 	}
 
-	XMFLOAT3 Transform::getRotation() const
+	const XMFLOAT3& Transform::getRotation() const
 	{
 		return m_rotation;
 	}
@@ -79,7 +79,7 @@ namespace Twinkle
 		m_rotation = rotation;
 	}
 
-	XMFLOAT3 Transform::getPosition() const
+	const XMFLOAT3& Transform::getPosition() const
 	{
 		return m_position;
 	}
@@ -96,4 +96,18 @@ namespace Twinkle
 		m_position = position;
 	}
 
+	void Transform::SetScale(const XMFLOAT3 & scale)
+	{
+		setScale(scale);
+	}
+
+	void Transform::SetRotation(const XMFLOAT3 & rotation)
+	{
+		setRotation(rotation);
+	}
+
+	void Transform::SetPosition(const XMFLOAT3 & position)
+	{
+		setPosition(position);
+	}
 }

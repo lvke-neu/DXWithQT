@@ -42,12 +42,12 @@ namespace Twinkle
 	{
 		m_sex = sex;
 	}
-	const comp& Son::getCp() const
+	comp* Son::getCp() const
 	{
 		return m_cp;
 	}
 
-	void Son::setCp(const comp& cp)
+	void Son::setCp(comp* cp)
 	{
 		m_cp = cp;
 	}
