@@ -26,4 +26,5 @@ qt的 鼠标移动事件 mouseMoveEvent(QMouseEvent * event) 中获取鼠标类�
 深度/模板状态（输出合并阶段）
 
 成熟的反射库 RTTR:https://github.com/rttrorg/rttr
+界面反射设计（反射gameobject）
 					

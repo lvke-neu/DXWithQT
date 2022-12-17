@@ -1,13 +1,13 @@
 /***************************************************************************************
 Author: lvke
-Date:2022/11/28 21:56
+Date:2022/12/17 12:30
 Description:
-Serialization Manager
+Serialization Manager based on RTTR
 ****************************************************************************************/
 #pragma once
-
+#include <rttr/type>
 #include "Runtime/Interface/SingletonInterface.h"
-#include "DataStream.h"
+#include "RegisterAllClass.h"
 
 namespace Twinkle
 {
@@ -16,23 +16,7 @@ namespace Twinkle
 		FRIEND_SINGLETON(SerializationManager);
 		PRIVATE_CONSTRUCTOR(SerializationManager);
 	public:
-		template<class T>
-		void Serialize(const T& t_In, DataStream& dataStream_Out);
-
-		template<class T>
-		void UnSerialize(DataStream& dataStream_In, T& t_Out);
+		void Serialize(rttr::instance obj_In, std::string& jsonStr_Out);
+		void UnSerialize(std::string& jsonStr_In, rttr::instance obj_Out);
 	};
-
-
-	template<class T>
-	void SerializationManager::Serialize(const T& t_In, DataStream& dataStream_Out)
-	{
-		dataStream_Out << t_In;
-	}
-
-	template<class T>
-	void SerializationManager::UnSerialize(DataStream& dataStream_In, T& t_Out)
-	{
-		dataStream_In >> t_Out;
-	}
 }

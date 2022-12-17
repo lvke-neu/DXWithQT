@@ -6,8 +6,9 @@
 #include "Runtime/Platform/Windows/RenderSystem.h"
 #include "Runtime/Core/Log/LogManager.h"
 
-#include <rttr/type>
-#include "RttrSonClass.h"
+
+#include "Runtime/Core/Serialization/SerializationManager.h"
+
 
 namespace Twinkle
 {
@@ -47,8 +48,28 @@ namespace Twinkle
 			LOG_INFO(prop.get_name().to_string() + ", " + prop.get_type().get_name().to_string());
 		}
 		
+
+
+		std::string jsonStr{ "" };
+		Son sn;
+		sn.setAge(250);
+		sn.setName("lvke");
+		sn.setSex(123);
+		Singleton<SerializationManager>::GetInstance().Serialize(sn, jsonStr);
+
+
+		
+		
+
+		rttr::variant var = rttr::type::get_by_name("Son").create();
+		Singleton<SerializationManager>::GetInstance().UnSerialize(jsonStr, var);
+
+		Son* s2 = var.get_value<Son*>();
+
+
 		int i = 0;
 		i++;
+
 	}
 
 	SceneManager::~SceneManager()

@@ -164,7 +164,6 @@
     <ClCompile Include="Core\Event\TickEventManager.cpp" />
     <ClCompile Include="Core\Log\LogManager.cpp" />
     <ClCompile Include="Core\Reflection\ReflectionManager.cpp" />
-    <ClCompile Include="Core\Serialization\DataStream.cpp" />
     <ClCompile Include="Core\Serialization\SerializationManager.cpp" />
     <ClCompile Include="Core\Timer\GameTimer.cpp" />
     <ClCompile Include="main.cpp" />
@@ -182,7 +181,6 @@
     <ClCompile Include="Scene\ECS\Component\TransformComponent.cpp" />
     <ClCompile Include="Scene\ECS\GameObject\Interface\GameObjectInterface.cpp" />
     <ClCompile Include="Scene\ECS\GameObject\BasicGeometryGameObject.cpp" />
-    <ClCompile Include="Scene\RttrSonClass.cpp" />
     <ClCompile Include="Scene\SceneManager.cpp" />
     <ClCompile Include="Scene\TestComponent.cpp" />
     <ClCompile Include="Utility\Utility.cpp" />
@@ -195,10 +193,8 @@
     <ClInclude Include="Core\Log\LogManager.h" />
     <ClInclude Include="Core\Reflection\ReflectionManager.h" />
     <ClInclude Include="Core\Reflection\testReflection.h" />
-    <ClInclude Include="Core\Serialization\DataStream.h" />
-    <ClInclude Include="Core\Serialization\Serialization.h" />
+    <ClInclude Include="Core\Serialization\RegisterAllClass.h" />
     <ClInclude Include="Core\Serialization\SerializationManager.h" />
-    <ClInclude Include="Core\Serialization\testSerialization.h" />
     <ClInclude Include="Core\Timer\GameTimer.h" />
     <ClInclude Include="Interface\SingletonInterface.h" />
     <ClInclude Include="Platform\Windows\Bindable\BindableInterface.h" />
@@ -227,7 +223,6 @@
     <ClInclude Include="Scene\ECS\Component\TransformComponent.h" />
     <ClInclude Include="Scene\ECS\GameObject\Interface\GameObjectInterface.h" />
     <ClInclude Include="Scene\ECS\GameObject\BasicGeometryGameObject.h" />
-    <ClInclude Include="Scene\RttrSonClass.h" />
     <ClInclude Include="Scene\SceneManager.h" />
     <ClInclude Include="Scene\TestComponent.h" />
     <ClInclude Include="Utility\Utility.h" />

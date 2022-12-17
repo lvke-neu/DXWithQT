@@ -82,9 +82,6 @@
     <ClCompile Include="Core\Serialization\SerializationManager.cpp">
       <Filter>Core\Serialization</Filter>
     </ClCompile>
-    <ClCompile Include="Core\Serialization\DataStream.cpp">
-      <Filter>Core\Serialization</Filter>
-    </ClCompile>
     <ClCompile Include="Core\Engine\Engine.cpp">
       <Filter>Core\Engine</Filter>
     </ClCompile>
@@ -154,24 +151,12 @@
     <ClCompile Include="Platform\Windows\Bindable\StateDesc.cpp">
       <Filter>Platform\Windows\Bindable</Filter>
     </ClCompile>
-    <ClCompile Include="Scene\RttrSonClass.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Core\Reflection\ReflectionManager.h">
       <Filter>Core\Reflection</Filter>
     </ClInclude>
     <ClInclude Include="Core\Serialization\SerializationManager.h">
-      <Filter>Core\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Serialization\DataStream.h">
-      <Filter>Core\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Serialization\Serialization.h">
-      <Filter>Core\Serialization</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Serialization\testSerialization.h">
       <Filter>Core\Serialization</Filter>
     </ClInclude>
     <ClInclude Include="Core\Reflection\testReflection.h">
@@ -285,8 +270,8 @@
     <ClInclude Include="Platform\Windows\Bindable\DepthStencilState.h">
       <Filter>Platform\Windows\Bindable</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\RttrSonClass.h">
-      <Filter>Scene</Filter>
+    <ClInclude Include="Core\Serialization\RegisterAllClass.h">
+      <Filter>Core\Serialization</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
