@@ -127,7 +127,7 @@ namespace Twinkle
 			}
 			else
 			{
-				SetWindowText(m_hwnd, ("Twinkle-v0.002 " + std::to_string(Singleton<Engine>::GetInstance().GetFps())).c_str());
+				//SetWindowText(m_hwnd, ("Twinkle-v0.002 " + std::to_string(Singleton<Engine>::GetInstance().GetFps())).c_str());
 				Singleton<Engine>::GetInstance().Tick();
 				Singleton<TickEventManager>::GetInstance().NotifyTick(Singleton<Engine>::GetInstance().GetDeltaTime());
 			}

@@ -22,7 +22,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE prevInstance,
 	_In_ LPSTR cmdLine, _In_ int showCmd)
 {
 
+	AllocConsole();
+
 	Twinkle::NativeWindow nativeWindow(hInstance);
 
-	return nativeWindow.Run();
+	return Twinkle::NativeWindow::Run();
 }

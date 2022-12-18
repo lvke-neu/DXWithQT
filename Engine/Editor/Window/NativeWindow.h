@@ -13,7 +13,7 @@ namespace Twinkle
 	{
 	public:
 		NativeWindow(HINSTANCE hInstance);
-		int Run();
+		static int Run();
 	private:
 		HWND m_hwnd{ nullptr };
 	};
