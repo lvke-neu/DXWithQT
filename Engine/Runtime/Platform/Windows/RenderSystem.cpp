@@ -64,11 +64,16 @@ namespace Twinkle
 
 		StateDesc::init();
 
+
+		OnResize(width, height);
 		LOG_INFO("RenderSystem Initialization is complete");
 	}
 
 	void RenderSystem::OnResize(UINT width, UINT height)
 	{
+		if (!m_pSwapChain || !m_pDevice || !m_pDeviceContent)
+			return;
+
 		LOG_INFO("Resize window : width = " + std::to_string(width) + ", height = " + std::to_string(height));
 
 		//rebuild RenderTargetView
