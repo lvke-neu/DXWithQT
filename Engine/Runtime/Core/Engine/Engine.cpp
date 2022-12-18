@@ -1,6 +1,7 @@
 #include "Engine.h"
 #include "../Log/LogManager.h"
 #include "Runtime/Scene/SceneManager.h"
+#include "../Ui/ImGuiManager.h"
 
 namespace Twinkle
 {
@@ -23,7 +24,8 @@ namespace Twinkle
 		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearDepthStencilView(Singleton<RenderSystem>::GetInstance().GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 		Singleton<SceneManager>::GetInstance().Tick(m_timer.DeltaTime());
-
+	
+		Singleton<ImGuiManager>::GetInstance().Tick();
 
 		Singleton<RenderSystem>::GetInstance().GetSwapChain()->Present(0u, 0u);
 	}

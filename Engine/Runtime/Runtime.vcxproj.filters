@@ -73,6 +73,12 @@
     <Filter Include="Scene\Camera">
       <UniqueIdentifier>{2db4653b-5918-458f-a7ce-d2dcb7bb1c04}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Core\Ui">
+      <UniqueIdentifier>{ece00c67-eafd-4a69-9b49-e4fa3717d3f9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Core\Ui\ImGui">
+      <UniqueIdentifier>{0da9e0ac-a25f-466a-84d7-a20456cb66e6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
@@ -150,6 +156,30 @@
     </ClCompile>
     <ClCompile Include="Platform\Windows\Bindable\StateDesc.cpp">
       <Filter>Platform\Windows\Bindable</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ui\ImGui\imgui.cpp">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ui\ImGui\imgui_demo.cpp">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ui\ImGui\imgui_draw.cpp">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ui\ImGui\imgui_impl_dx11.cpp">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ui\ImGui\imgui_impl_win32.cpp">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ui\ImGui\imgui_tables.cpp">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ui\ImGui\imgui_widgets.cpp">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Ui\ImGuiManager.cpp">
+      <Filter>Core\Ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -272,6 +302,33 @@
     </ClInclude>
     <ClInclude Include="Core\Serialization\RegisterAllClass.h">
       <Filter>Core\Serialization</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGui\imconfig.h">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGui\imgui.h">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGui\imgui_impl_dx11.h">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGui\imgui_impl_win32.h">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGui\imgui_internal.h">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGui\imstb_rectpack.h">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGui\imstb_textedit.h">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGui\imstb_truetype.h">
+      <Filter>Core\Ui\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Ui\ImGuiManager.h">
+      <Filter>Core\Ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

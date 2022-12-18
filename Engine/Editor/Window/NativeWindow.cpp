@@ -2,11 +2,17 @@
 #include "Runtime/Core/Engine/Engine.h"
 #include "Runtime/Core/Event/InputEventManager.h"
 #include "Runtime/Core/Event/TickEventManager.h"
+#include "Runtime/Core/Ui/ImGuiManager.h"
+
+
 
 namespace Twinkle
 {
 	LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
+		if (Singleton<ImGuiManager>::GetInstance().WndProcHandler(hwnd, msg, wParam, lParam))
+			return 0;
+
 		switch (msg)
 		{
 		case WM_SIZE:
@@ -69,6 +75,7 @@ namespace Twinkle
 		}
 			return 0;
 		}
+
 		return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
 
@@ -112,6 +119,7 @@ namespace Twinkle
 
 		Singleton<RenderSystem>::GetInstance().Initialize(m_hwnd, 1280, 760);
 		Singleton<Engine>::GetInstance().Initialize();
+		Singleton<ImGuiManager>::GetInstance().Initialize(m_hwnd);
 	}
 
 	int NativeWindow::Run()
@@ -128,11 +136,20 @@ namespace Twinkle
 			else
 			{
 				//SetWindowText(m_hwnd, ("Twinkle-v0.002 " + std::to_string(Singleton<Engine>::GetInstance().GetFps())).c_str());
+
+
+				
+
 				Singleton<Engine>::GetInstance().Tick();
 				Singleton<TickEventManager>::GetInstance().NotifyTick(Singleton<Engine>::GetInstance().GetDeltaTime());
 			}
 		}
 
 		return (int)msg.wParam;
+	}
+
+	HWND NativeWindow::hwnd()
+	{
+		return m_hwnd;
 	}
 }
