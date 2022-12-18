@@ -5,8 +5,10 @@
 
 namespace Twinkle
 {
-	void Engine::Initialize()
+	void Engine::Initialize(WindowType windowType)
 	{
+		m_windowType = windowType;
+
 		m_timer.Reset();
 		m_timer.Start();
 
@@ -25,7 +27,8 @@ namespace Twinkle
 
 		Singleton<SceneManager>::GetInstance().Tick(m_timer.DeltaTime());
 	
-		Singleton<ImGuiManager>::GetInstance().Tick();
+		if(m_windowType == NativeWindow)
+			Singleton<ImGuiManager>::GetInstance().Tick();
 
 		Singleton<RenderSystem>::GetInstance().GetSwapChain()->Present(0u, 0u);
 	}

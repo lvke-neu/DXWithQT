@@ -118,7 +118,7 @@ namespace Twinkle
 		UpdateWindow(m_hwnd);
 
 		Singleton<RenderSystem>::GetInstance().Initialize(m_hwnd, 1280, 760);
-		Singleton<Engine>::GetInstance().Initialize();
+		Singleton<Engine>::GetInstance().Initialize(WindowType::NativeWindow);
 		Singleton<ImGuiManager>::GetInstance().Initialize(m_hwnd);
 	}
 

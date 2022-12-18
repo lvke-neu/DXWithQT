@@ -11,11 +11,17 @@ Twinkle Engine
 
 namespace Twinkle
 {
+	enum WindowType
+	{
+		NativeWindow,
+		Qt
+	};
+
 	class Engine
 	{
 		FRIEND_SINGLETON(Engine);
 	public:
-		void Initialize();
+		void Initialize(WindowType windowType = Qt);
 		void Tick();
 		float GetFps();
 		void Pause();
@@ -29,5 +35,7 @@ namespace Twinkle
 	private:
 		GameTimer m_timer;
 		bool m_bPause = false;
+
+		WindowType m_windowType{ Qt };
 	};
 }
