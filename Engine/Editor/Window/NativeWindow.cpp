@@ -4,18 +4,20 @@
 #include "Runtime/Core/Event/TickEventManager.h"
 #include "Runtime/Core/Ui/ImGuiManager.h"
 
-
+#include "Runtime/Core/Log/LogManager.h"
 
 namespace Twinkle
 {
 	LRESULT CALLBACK MainWndProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 	{
 		if (Singleton<ImGuiManager>::GetInstance().WndProcHandler(hwnd, msg, wParam, lParam))
-			return 0;
+			return true;
 
 		switch (msg)
 		{
 		case WM_SIZE:
+			static UINT width = LOWORD(lParam);
+			static UINT height = HIWORD(lParam);
 			Singleton<RenderSystem>::GetInstance().OnResize(LOWORD(lParam), HIWORD(lParam));
 			return 0;
 		case WM_DESTROY:
@@ -101,13 +103,13 @@ namespace Twinkle
 		}
 
 		// Compute window rectangle dimensions based on requested client area dimensions.
-		RECT R = { 0, 0, 1280, 760 };
+		RECT R = { 0, 0, 1280, 720 };
 		AdjustWindowRect(&R, WS_OVERLAPPEDWINDOW, false);
 		int width = R.right - R.left;
 		int height = R.bottom - R.top;
 
 		m_hwnd = CreateWindow("D3DWndClassName", "Twinkle-v0.002 ",
-			WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, 1280, 760, 0, 0, hInstance, 0);
+			WS_OVERLAPPEDWINDOW, CW_USEDEFAULT, CW_USEDEFAULT, width, height, 0, 0, hInstance, 0);
 		if (!m_hwnd)
 		{
 			MessageBox(0, "CreateWindow Failed.", 0, 0);
@@ -117,7 +119,8 @@ namespace Twinkle
 		ShowWindow(m_hwnd, SW_SHOW);
 		UpdateWindow(m_hwnd);
 
-		Singleton<RenderSystem>::GetInstance().Initialize(m_hwnd, 1280, 760);
+		LOG_INFO(std::to_string(width) + "," + std::to_string(height));
+		Singleton<RenderSystem>::GetInstance().Initialize(m_hwnd, 1280, 720);
 		Singleton<Engine>::GetInstance().Initialize(WindowType::NativeWindow);
 		Singleton<ImGuiManager>::GetInstance().Initialize(m_hwnd);
 	}

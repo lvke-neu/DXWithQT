@@ -1,7 +1,7 @@
-//#include <QtWidgets/QApplication>
-//#include "window/EditorWindow.h"
-//
-//
+#include <QtWidgets/QApplication>
+#include "window/EditorWindow.h"
+
+
 //int main(int argc, char *argv[])
 //{
 //    if (QT_VERSION >= QT_VERSION_CHECK(5, 6, 0))
