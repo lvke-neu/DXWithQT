@@ -13,6 +13,7 @@ namespace Twinkle
 	{
 	public:
 		NativeWindow(HINSTANCE hInstance);
+		~NativeWindow();
 		static int Run();
 		HWND hwnd();
 	private:

@@ -81,7 +81,6 @@ namespace Twinkle
 		return DefWindowProc(hwnd, msg, wParam, lParam);
 	}
 
-
 	NativeWindow::NativeWindow(HINSTANCE hInstance)
 	{
 		WNDCLASS wc;
@@ -123,6 +122,11 @@ namespace Twinkle
 		Singleton<RenderSystem>::GetInstance().Initialize(m_hwnd, 1280, 720);
 		Singleton<Engine>::GetInstance().Initialize(WindowType::NativeWindow);
 		Singleton<ImGuiManager>::GetInstance().Initialize(m_hwnd);
+	}
+
+	NativeWindow::~NativeWindow()
+	{
+		Singleton<ImGuiManager>::GetInstance().Destroy();
 	}
 
 	int NativeWindow::Run()

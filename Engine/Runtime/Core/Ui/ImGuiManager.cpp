@@ -39,6 +39,23 @@ namespace Twinkle
 		ImGui::ShowDemoWindow();
 		ImGui::ShowUserGuide();
 
+		ImGui::Begin("trans");
+		static float trans1[3];
+		static float trans2[3];
+		static float trans3[3];
+		ImGui::Text("Scale:    ");
+		ImGui::SameLine();
+		ImGui::DragFloat3("1", trans1, 0.01f, 0.0f, 10.0f);
+		ImGui::Text("Rotation: ");
+		ImGui::SameLine();
+		ImGui::DragFloat3("2", trans2, 0.01f, 0.0f, 10.0f);
+		ImGui::Text("Position: ");
+		ImGui::SameLine();
+		ImGui::DragFloat3("3", trans3, 0.01f, 0.0f, 10.0f);
+		//ImGui::SliderFloat3("slider float3", trans, 0.0f, 1.0f);
+		ImGui::End();
+
+
 		ImGui::Render();
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
 	}
