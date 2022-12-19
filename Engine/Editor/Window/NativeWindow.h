@@ -6,7 +6,7 @@ Windows native window
 ****************************************************************************************/
 #pragma once
 #include <Windows.h>
-#include "Runtime/Core/Ui/ImGuiManager.h"
+
 namespace Twinkle
 {
 	class NativeWindow

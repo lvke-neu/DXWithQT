@@ -74,6 +74,7 @@ namespace Twinkle
 	void TransformComponent::setTransform(const Transform & transform)
 	{
 		m_transform = transform;
+		updateWorldMatrix();
 	}
 
 	void TransformComponent::tick(float deltaTime)

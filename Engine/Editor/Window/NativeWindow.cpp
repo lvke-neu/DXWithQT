@@ -5,6 +5,7 @@
 
 
 #include "Runtime/Core/Log/LogManager.h"
+#include "Runtime/Core/Ui/ImGuiManager.h"
 
 namespace Twinkle
 {
