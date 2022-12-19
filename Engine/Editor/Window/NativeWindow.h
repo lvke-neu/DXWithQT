@@ -6,7 +6,7 @@ Windows native window
 ****************************************************************************************/
 #pragma once
 #include <Windows.h>
-
+#include "Runtime/Core/Ui/ImGuiManager.h"
 namespace Twinkle
 {
 	class NativeWindow
@@ -18,5 +18,6 @@ namespace Twinkle
 		HWND hwnd();
 	private:
 		HWND m_hwnd{ nullptr };
+		HINSTANCE m_hInstance;
 	};
 }

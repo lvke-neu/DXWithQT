@@ -2,7 +2,7 @@
 #include "Runtime/Core/Engine/Engine.h"
 #include "Runtime/Core/Event/InputEventManager.h"
 #include "Runtime/Core/Event/TickEventManager.h"
-#include "Runtime/Core/Ui/ImGuiManager.h"
+
 
 #include "Runtime/Core/Log/LogManager.h"
 
@@ -83,6 +83,8 @@ namespace Twinkle
 
 	NativeWindow::NativeWindow(HINSTANCE hInstance)
 	{
+		m_hInstance = hInstance;
+
 		WNDCLASS wc;
 		wc.style = CS_HREDRAW | CS_VREDRAW;
 		wc.lpfnWndProc = MainWndProc;
@@ -127,6 +129,9 @@ namespace Twinkle
 	NativeWindow::~NativeWindow()
 	{
 		Singleton<ImGuiManager>::GetInstance().Destroy();
+
+		::DestroyWindow(m_hwnd);
+		::UnregisterClassW(L"D3DWndClassName", m_hInstance);
 	}
 
 	int NativeWindow::Run()
