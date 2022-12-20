@@ -6,13 +6,11 @@ ImGui Manager
 ****************************************************************************************/
 #pragma once
 #include "Runtime/Interface/SingletonInterface.h"
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_dx11.h"
-#include "ImGui/imgui_impl_win32.h"
-#include <Windows.h>
+#include <vector>
 
 namespace Twinkle
 {
+	class IGameObject;
 	class ImGuiManager
 	{
 		FRIEND_SINGLETON(ImGuiManager);
@@ -21,6 +19,16 @@ namespace Twinkle
 		void Initialize(void* hwnd);
 		void Destroy();
 		void Tick();
-		IMGUI_IMPL_API LRESULT WndProcHandler(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam);
+		__int64 WndProcHandler(void* hwnd, unsigned int msg, unsigned __int64 wParam, __int64 lParam);
+
+		void setSceneGameObjects(const std::vector<IGameObject*>& sceneGameObjects);
+	private:
+		void showSceneGameObjects();
+		void showSelectedGameObjectDetail();
+		void showTransformComponent();
+		void showMeshComponent();
+	private:
+		IGameObject* m_currentSelectedGo{ nullptr };
+		std::vector<IGameObject*> m_sceneGameObjects;
 	};
 }

@@ -39,4 +39,9 @@ namespace Twinkle
 		m_transformComponent->tick(deltaTime);
 		m_meshComponent->tick(deltaTime);
 	}
+
+	std::string BasicGeometryGameObject::getType()
+	{
+		return "BasicGeometryGameObject";
+	}
 }

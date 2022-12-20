@@ -1,13 +1,12 @@
 #include "SceneManager.h"
 #include "ECS/GameObject/BasicGeometryGameObject.h"
 #include "Runtime/Utility/Utility.h"
-#include "Runtime/Platform/Windows/PerspectiveCamera.h"
-#include "Camera/CameraController.h"
-#include "Runtime/Platform/Windows/RenderSystem.h"
 #include "Runtime/Core/Log/LogManager.h"
+#include "Runtime/Core/Ui/ImGuiManager.h"
+#include "Runtime/Platform/Windows/PerspectiveCamera.h"
+#include "Runtime/Platform/Windows/RenderSystem.h"
 
-
-#include "Runtime/Core/Serialization/SerializationManager.h"
+#include "Camera/CameraController.h"
 
 
 namespace Twinkle
@@ -18,47 +17,47 @@ namespace Twinkle
 		Singleton<PerspectiveCamera>::GetInstance().SetPosition(0.0f, 0.0f, -10.0f);
 		m_cameraController = new CameraController();
 
-		m_cube = new BasicGeometryGameObject(Cube);
-		m_plane = new BasicGeometryGameObject(Plane);
-		m_cylinder = new BasicGeometryGameObject(Cylinder);
+		IGameObject* cube = new BasicGeometryGameObject(Cube);
+		IGameObject* cylinder = new BasicGeometryGameObject(Cylinder);
+		IGameObject* plane = new BasicGeometryGameObject(Plane);
+		m_sceneGameObjects.push_back(cube);
+		m_sceneGameObjects.push_back(cylinder);
+		m_sceneGameObjects.push_back(plane);
 
-		if (m_cylinder->getTransformComponent())
+		if (cylinder->getTransformComponent())
 		{
-			m_cylinder->getTransformComponent()->setPosition(0.0f, 0.0f, 5.0f);
+			cylinder->getTransformComponent()->setPosition(0.0f, 0.0f, 5.0f);
 		}
 		
-		if (m_plane->getTransformComponent())
+		if (plane->getTransformComponent())
 		{
-			m_plane->getTransformComponent()->setPosition(0.0f, -5.0f, 0.0f);
+			plane->getTransformComponent()->setPosition(0.0f, -5.0f, 0.0f);
 		}
 
-		if (m_plane->getMeshComponent())
+		if (plane->getMeshComponent())
 		{
-			m_plane->getMeshComponent()->setTexture("\\builtin\\Texture\\grass.dds");
+			plane->getMeshComponent()->setTexture("\\builtin\\Texture\\grass.dds");
 		}
-	
 
-		std::string jsonStr{ "" };
-		Singleton<SerializationManager>::GetInstance().Serialize(*(BasicGeometryGameObject*)m_cube, jsonStr);
 
-		
-		int i = 0;
-		i++;
-
+		Singleton<ImGuiManager>::GetInstance().setSceneGameObjects(m_sceneGameObjects);
 	}
 
 	SceneManager::~SceneManager()
 	{
-		SAFE_DELETE_SETNULL(m_cube);
-		SAFE_DELETE_SETNULL(m_cylinder);
-		SAFE_DELETE_SETNULL(m_plane);
+		for (auto& go : m_sceneGameObjects)
+		{
+			SAFE_DELETE_SETNULL(go);
+		}
+
 		SAFE_DELETE_SETNULL(m_cameraController);
 	}
 
 	void SceneManager::Tick(float deltaTime)
 	{
-		m_cube->tick(deltaTime);
-		m_cylinder->tick(deltaTime);
-		m_plane->tick(deltaTime);
+		for (auto& go : m_sceneGameObjects)
+		{
+			go->tick(deltaTime);
+		}
 	}
 }

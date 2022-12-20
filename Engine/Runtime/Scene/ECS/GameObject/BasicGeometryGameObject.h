@@ -24,5 +24,6 @@ namespace Twinkle
 		virtual ~BasicGeometryGameObject() = default;
 
 		virtual void tick(float deltaTime) override;
+		virtual std::string getType() override;
 	};
 }

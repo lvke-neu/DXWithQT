@@ -7,6 +7,7 @@ Scene Manager
 #pragma once
 
 #include "Runtime/Interface/SingletonInterface.h"
+#include <vector>
 
 namespace Twinkle
 {
@@ -23,9 +24,8 @@ namespace Twinkle
 		SceneManager(const SceneManager&) = delete;
 		SceneManager& operator=(const SceneManager&) = delete;
 	private:
-		IGameObject* m_cube{ nullptr };
-		IGameObject* m_plane{ nullptr };
-		IGameObject* m_cylinder{ nullptr };
 		CameraController* m_cameraController{ nullptr };
+
+		std::vector<IGameObject*> m_sceneGameObjects;
 	};
 }

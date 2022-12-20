@@ -18,6 +18,7 @@ namespace Twinkle
 		virtual ~IGameObject();
 		virtual void tick(float deltaTime) = 0;
 		std::string getGuid() const;
+		virtual std::string getType() = 0;
 
 		TransformComponent* getTransformComponent() const;
 		void setTransformComponent(TransformComponent* transformComponent);
