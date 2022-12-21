@@ -3,7 +3,10 @@
 #include "ImGui/imgui_impl_dx11.h"
 #include "ImGui/imgui_impl_win32.h"
 #include "Runtime/Platform/Windows/RenderSystem.h"
+#include "Runtime/Scene/Camera/CameraController.h"
+#include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Runtime/Core/Serialization/SerializationManager.h"
+
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 namespace Twinkle
@@ -41,8 +44,11 @@ namespace Twinkle
 		ImGui::ShowDemoWindow();
 		ImGui::ShowUserGuide();
 
-
+		showMenuBar();
+		ImGui::Begin("Scene Property");
+		showCamera();
 		showSceneGameObjects();
+		ImGui::End();
 		showSelectedGameObjectDetail();
 
 		ImGui::Render();
@@ -59,21 +65,76 @@ namespace Twinkle
 		m_sceneGameObjects = sceneGameObjects;
 	}
 
+	void ImGuiManager::showMenuBar()
+	{
+		if (ImGui::BeginMainMenuBar())
+		{
+			if (ImGui::BeginMenu("File"))
+			{
+				if (ImGui::MenuItem("Open"))
+				{
+				
+				}
+				if (ImGui::MenuItem("Save")) 
+				{
+
+				}
+				ImGui::EndMenu();
+			}
+			ImGui::EndMainMenuBar();
+		}
+	}
+
+	void ImGuiManager::showCamera()
+	{
+		if (ImGui::TreeNode("Camera"))
+		{
+			if (ImGui::TreeNode("Transform")) {
+				float scale[3];
+				float rotation[3];
+				float position[3];
+				scale[0] = { Singleton<PerspectiveCamera>::GetInstance().getTransform().getScale().x };
+				scale[1] = {  Singleton<PerspectiveCamera>::GetInstance().getTransform().getScale().y };
+				scale[2] = {  Singleton<PerspectiveCamera>::GetInstance().getTransform().getScale().z };
+
+				rotation[0] = { Singleton<PerspectiveCamera>::GetInstance().getTransform().getRotation().x };
+				rotation[1] = { Singleton<PerspectiveCamera>::GetInstance().getTransform().getRotation().y };
+				rotation[2] = { Singleton<PerspectiveCamera>::GetInstance().getTransform().getRotation().z };
+
+				position[0] = {  Singleton<PerspectiveCamera>::GetInstance().getTransform().getPosition().x };
+				position[1] = {  Singleton<PerspectiveCamera>::GetInstance().getTransform().getPosition().y };
+				position[2] = {  Singleton<PerspectiveCamera>::GetInstance().getTransform().getPosition().z };
+
+				ImGui::DragFloat3("Scale", scale, 0.1f, -9999.0f, 9999.0f);
+				ImGui::DragFloat3("Rotation", rotation, 0.1f, -9999.0f, 9999.0f);
+				ImGui::DragFloat3("Position", position, 0.1f, -9999.0f, 9999.0f);
+				ImGui::TreePop();
+
+				Singleton<PerspectiveCamera>::GetInstance().setTransform(Transform({ scale[0], scale[1], scale[2] }, { rotation[0], rotation[1], rotation[2] }, { position[0], position[1], position[2] }));
+			}
+			float moveSpeed = Singleton<CameraController>::GetInstance().getMoveSpeed();
+			ImGui::InputFloat("Move Speed", &moveSpeed);
+			Singleton<CameraController>::GetInstance().setMoveSpeed(moveSpeed);
+
+			ImGui::TreePop();
+		}
+	}
+
 	void ImGuiManager::showSceneGameObjects()
 	{
-		ImGui::Begin("Scene GameObject");
-
-		static std::string selected{ "" };
-		for (auto& go : m_sceneGameObjects)
+		if (ImGui::TreeNode("Scene GameObject")) 
 		{
-			if (ImGui::Selectable(go->getGuid().c_str(), selected == go->getGuid()))
+			static std::string selected{ "" };
+			for (auto& go : m_sceneGameObjects)
 			{
-				m_currentSelectedGo = go;
-				selected = go->getGuid();
+				if (ImGui::Selectable(go->getGuid().c_str(), selected == go->getGuid()))
+				{
+					m_currentSelectedGo = go;
+					selected = go->getGuid();
+				}
 			}
+			ImGui::TreePop();
 		}
-
-		ImGui::End();
 	}
 
 	void ImGuiManager::showSelectedGameObjectDetail()

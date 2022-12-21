@@ -47,6 +47,9 @@ namespace Twinkle
 		void moveXAxis(float distance);
 		void moveZAxis(float distance);
 		void rotateXY(float x, float y);
+
+		const Transform& getTransform();
+		void setTransform(const Transform& transform);
 	public:
 		XMMATRIX GetViewMatrix();
 		XMMATRIX GetProjMatrix();

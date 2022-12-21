@@ -60,6 +60,17 @@ namespace Twinkle
 		updateViewMatrix();
 	}
 
+	const Transform & PerspectiveCamera::getTransform()
+	{
+		return m_transform;
+	}
+
+	void PerspectiveCamera::setTransform(const Transform & transform)
+	{
+		m_transform = transform;
+		updateViewMatrix();
+	}
+
 	XMMATRIX PerspectiveCamera::GetViewMatrix()
 	{
 		return XMMatrixInverse(nullptr, m_transform.getWorldMatrix());

@@ -1,4 +1,5 @@
 #include "SceneManager.h"
+#include "Camera/CameraController.h"
 #include "ECS/GameObject/BasicGeometryGameObject.h"
 #include "Runtime/Utility/Utility.h"
 #include "Runtime/Core/Log/LogManager.h"
@@ -6,7 +7,7 @@
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Runtime/Platform/Windows/RenderSystem.h"
 
-#include "Camera/CameraController.h"
+
 
 
 namespace Twinkle
@@ -15,7 +16,7 @@ namespace Twinkle
 	SceneManager::SceneManager()
 	{
 		Singleton<PerspectiveCamera>::GetInstance().SetPosition(0.0f, 0.0f, -10.0f);
-		m_cameraController = new CameraController();
+		Singleton<CameraController>::GetInstance();
 
 		IGameObject* cube = new BasicGeometryGameObject(Cube);
 		IGameObject* cylinder = new BasicGeometryGameObject(Cylinder);
@@ -56,7 +57,6 @@ namespace Twinkle
 			SAFE_DELETE_SETNULL(go);
 		}
 
-		SAFE_DELETE_SETNULL(m_cameraController);
 	}
 
 	void SceneManager::Tick(float deltaTime)

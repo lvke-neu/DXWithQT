@@ -6,6 +6,7 @@ Camera Controller
 ****************************************************************************************/
 #pragma once
 
+#include "Runtime/Interface/SingletonInterface.h"
 #include "Runtime/Core/Event/InputEventManager.h"
 #include "Runtime/Core/Event/TickEventManager.h"
 
@@ -13,9 +14,12 @@ namespace Twinkle
 {
 	class CameraController : public InputEvent, public TickEvent
 	{
-	public:
+		FRIEND_SINGLETON(CameraController);
+	private:
 		CameraController();
 		~CameraController();
+		CameraController(const CameraController&) = delete;
+		CameraController& operator=(const CameraController&) = delete;
 	public:
 		virtual void onMousePress(MouseState mouseState) override;
 		virtual void onMouseRelease(MouseState mouseState) override;
@@ -25,6 +29,7 @@ namespace Twinkle
 		virtual void tick(float deltaTime) override;
 	public:
 		void setMoveSpeed(float speed);
+		float getMoveSpeed();
 	private:
 		float m_moveSpeed = 10.0f;
 

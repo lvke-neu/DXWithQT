@@ -11,7 +11,6 @@ Scene Manager
 
 namespace Twinkle
 {
-	class CameraController;
 	class IGameObject;
 	class SceneManager
 	{
@@ -24,8 +23,6 @@ namespace Twinkle
 		SceneManager(const SceneManager&) = delete;
 		SceneManager& operator=(const SceneManager&) = delete;
 	private:
-		CameraController* m_cameraController{ nullptr };
-
 		std::vector<IGameObject*> m_sceneGameObjects;
 	};
 }

@@ -79,4 +79,9 @@ namespace Twinkle
 	{
 		m_moveSpeed = speed;
 	}
+
+	float CameraController::getMoveSpeed()
+	{
+		return m_moveSpeed;
+	}
 }
