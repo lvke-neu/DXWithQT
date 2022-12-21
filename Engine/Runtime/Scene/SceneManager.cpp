@@ -21,6 +21,9 @@ namespace Twinkle
 		IGameObject* cylinder = new BasicGeometryGameObject(Cylinder);
 		IGameObject* plane = new BasicGeometryGameObject(Plane);
 		IGameObject* m_light = new BasicGeometryGameObject(Sphere);
+		m_light->getTransformComponent()->setScale(0.5f, 0.5f, 0.5f);
+		m_light->getTransformComponent()->setPosition(0.0f, 3.0f, 0.0f);
+		m_light->getMeshComponent()->setPsShader("\\builtin\\BinShader\\LightSpherePixelShader.cso");
 
 		m_sceneGameObjects.push_back(cube);
 		m_sceneGameObjects.push_back(cylinder);
