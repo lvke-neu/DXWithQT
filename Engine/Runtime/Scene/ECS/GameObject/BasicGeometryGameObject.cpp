@@ -22,6 +22,8 @@ namespace Twinkle
 		case Plane:
 			Geometry::CreatePlane<VertexPosNormalTex, UINT32>(vertices, indices, 200.0f, 200.0f, 50.0f, 50.0f);
 			break;
+		case Sphere:
+			Geometry::CreateSphere<VertexPosNormalTex, UINT32>(vertices, indices);
 		default:
 			break;
 		}

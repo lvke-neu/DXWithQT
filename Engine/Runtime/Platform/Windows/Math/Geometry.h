@@ -14,6 +14,8 @@ namespace Twinkle
 		template<class VertexType, class IndexType>
 		static void CreatePlane(std::vector<VertexType>& vertices, std::vector<IndexType>& indices, float width, float depth, float texU, float texV);
 
+		template<class VertexType, class IndexType>
+		static void CreateSphere(std::vector<VertexType>& vertices, std::vector<IndexType>& indices);
 	};
 
 	template<class VertexType, class IndexType>
@@ -170,5 +172,78 @@ namespace Twinkle
 		std::vector<IndexType> indicesTmp{0, 1, 2, 2, 3, 0};
 		indices = indicesTmp;
 	}
-	
+
+	template<class VertexType, class IndexType>
+	void Geometry::CreateSphere(std::vector<VertexType>& vertices, std::vector<IndexType>& indices)
+	{
+		const float radius = 1.0f;
+		const UINT levels = 20;
+		const UINT slices = 20;
+
+		const UINT vertexCount = 2 + (levels - 1) * (slices + 1);
+		vertices.resize(vertexCount);
+
+		DWORD vIndex = 0, iIndex = 0;
+
+		float phi = 0.0f, theta = 0.0f;
+		float per_phi = XM_PI / levels;
+		float per_theta = XM_2PI / slices;
+		float x, y, z;
+
+		vertices[vIndex++] = VertexType({ XMFLOAT3(0.0f, radius, 0.0f), XMFLOAT3(0.0f, 1.0f, 0.0f), XMFLOAT2(0.0f, 0.0f) });
+
+		for (UINT i = 1; i < levels; ++i)
+		{
+			phi = per_phi * i;
+
+			for (UINT j = 0; j <= slices; ++j)
+			{
+				theta = per_theta * j;
+				x = radius * sinf(phi) * cosf(theta);
+				y = radius * cosf(phi);
+				z = radius * sinf(phi) * sinf(theta);
+
+				XMFLOAT3 pos = XMFLOAT3(x, y, z), normal;
+				XMStoreFloat3(&normal, XMVector3Normalize(XMLoadFloat3(&pos)));
+
+				vertices[vIndex++] = VertexPosNormalTex({ pos, normal, XMFLOAT2(theta / XM_2PI, phi / XM_PI) });
+			}
+		}
+		vertices[vIndex++] = VertexPosNormalTex({ XMFLOAT3(0.0f, -radius, 0.0f), XMFLOAT3(0.0f, -1.0f, 0.0f), XMFLOAT2(0.0f, 1.0f) });
+
+		indices.resize(6 * (levels - 1) * slices);
+		if (levels > 1)
+		{
+			for (UINT j = 1; j <= slices; ++j)
+			{
+				indices[iIndex++] = 0;
+				indices[iIndex++] = j % (slices + 1) + 1;
+				indices[iIndex++] = j;
+			}
+		}
+
+		for (UINT i = 1; i < levels - 1; ++i)
+		{
+			for (UINT j = 1; j <= slices; ++j)
+			{
+				indices[iIndex++] = (i - 1) * (slices + 1) + j;
+				indices[iIndex++] = (i - 1) * (slices + 1) + j % (slices + 1) + 1;
+				indices[iIndex++] = i * (slices + 1) + j % (slices + 1) + 1;
+
+				indices[iIndex++] = i * (slices + 1) + j % (slices + 1) + 1;
+				indices[iIndex++] = i * (slices + 1) + j;
+				indices[iIndex++] = (i - 1) * (slices + 1) + j;
+			}
+		}
+
+		if (levels > 1)
+		{
+			for (UINT j = 1; j <= slices; ++j)
+			{
+				indices[iIndex++] = (levels - 2) * (slices + 1) + j;
+				indices[iIndex++] = (levels - 2) * (slices + 1) + j % (slices + 1) + 1;
+				indices[iIndex++] = (levels - 1) * (slices + 1) + 1;
+			}
+		}
+	}
 }

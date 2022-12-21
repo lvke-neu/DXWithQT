@@ -13,7 +13,8 @@ namespace Twinkle
 	{
 		Cube,
 		Cylinder,
-		Plane
+		Plane,
+		Sphere
 	};
 
 	class BasicGeometryGameObject : public IGameObject

@@ -20,9 +20,12 @@ namespace Twinkle
 		IGameObject* cube = new BasicGeometryGameObject(Cube);
 		IGameObject* cylinder = new BasicGeometryGameObject(Cylinder);
 		IGameObject* plane = new BasicGeometryGameObject(Plane);
+		IGameObject* m_light = new BasicGeometryGameObject(Sphere);
+
 		m_sceneGameObjects.push_back(cube);
 		m_sceneGameObjects.push_back(cylinder);
 		m_sceneGameObjects.push_back(plane);
+		m_sceneGameObjects.push_back(m_light);
 
 		if (cylinder->getTransformComponent())
 		{
