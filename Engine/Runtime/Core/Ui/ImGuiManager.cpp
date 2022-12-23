@@ -42,12 +42,14 @@ namespace Twinkle
 		ImGui::NewFrame();
 
 		static std::string fps = "";
+		static std::string deltaTime = "";
 		static float sumDeltaTime = 0.0f;
 		sumDeltaTime += Singleton<Engine>::GetInstance().GetDeltaTime();
 
 		if (sumDeltaTime > 1.0f)
 		{
-			fps = std::to_string(1 / Singleton<Engine>::GetInstance().GetDeltaTime());
+			fps = std::to_string((uint32_t)(1 / Singleton<Engine>::GetInstance().GetDeltaTime()));
+			deltaTime = std::to_string(Singleton<Engine>::GetInstance().GetDeltaTime());
 			sumDeltaTime = 0.0f;
 		}
 
@@ -57,11 +59,11 @@ namespace Twinkle
 
 		showMenuBar();
 		ImGui::Begin("Scene Property");
-		ImGui::Text(("FPS:" + fps).c_str());
+		ImGui::Text(("FPS:" + fps + ", DeltaTime:" + deltaTime).c_str());
 		showCamera();
 		showSceneGameObjects();
 		ImGui::End();
-		showSelectedGameObjectDetail();
+
 
 		ImGui::Render();
 		ImGui_ImplDX11_RenderDrawData(ImGui::GetDrawData());
@@ -136,47 +138,45 @@ namespace Twinkle
 	{
 		if (ImGui::TreeNode("Scene GameObject")) 
 		{
-			static std::string selected{ "" };
+			//static std::string selected{ "" };
+			//for (auto& go : m_sceneGameObjects)
+			//{
+			//	if (ImGui::Selectable(go->getGuid().c_str(), selected == go->getGuid()))
+			//	{
+			//		m_currentSelectedGo = go;
+
+			//		selected = go->getGuid();
+			//	}
+			//}
+
+
 			for (auto& go : m_sceneGameObjects)
 			{
-				if (ImGui::Selectable(go->getGuid().c_str(), selected == go->getGuid()))
+				if (ImGui::TreeNode(go->getGuid().c_str()))
 				{
 					m_currentSelectedGo = go;
-
-					selected = go->getGuid();
+					rttr::type type = rttr::type::get_by_name(m_currentSelectedGo->getType());
+					for (auto& prop : type.get_properties())
+					{
+						if (prop.get_type().get_name().to_string() == "TransformComponent" ||
+							prop.get_type().get_name().to_string() == "TransformComponent*")
+						{
+							showTransformComponent();
+						}
+						if (prop.get_type().get_name().to_string() == "MeshComponent" ||
+							prop.get_type().get_name().to_string() == "MeshComponent*")
+						{
+							showMeshComponent();
+						}
+					}
+					ImGui::TreePop();
 				}
 			}
+
+
+
 			ImGui::TreePop();
 		}
-	}
-
-	void ImGuiManager::showSelectedGameObjectDetail()
-	{
-		ImGui::Begin("GameObject Detail");
-		if (!m_currentSelectedGo)
-		{
-			ImGui::End();
-			return;
-		}
-
-		rttr::type type = rttr::type::get_by_name(m_currentSelectedGo->getType());
-		for (auto& prop : type.get_properties())
-		{
-			if (prop.get_type().get_name().to_string() == "TransformComponent" ||
-				prop.get_type().get_name().to_string() == "TransformComponent*")
-			{
-				showTransformComponent();
-			}
-			if (prop.get_type().get_name().to_string() == "MeshComponent" ||
-				prop.get_type().get_name().to_string() == "MeshComponent*")
-			{
-				showMeshComponent();
-			}
-
-
-		}
-
-		ImGui::End();
 	}
 
 	void ImGuiManager::showTransformComponent()

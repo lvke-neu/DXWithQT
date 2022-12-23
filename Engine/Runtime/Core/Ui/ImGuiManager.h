@@ -26,7 +26,6 @@ namespace Twinkle
 		void showMenuBar();
 		void showCamera();
 		void showSceneGameObjects();
-		void showSelectedGameObjectDetail();
 		void showTransformComponent();
 		void showMeshComponent();
 	private:
