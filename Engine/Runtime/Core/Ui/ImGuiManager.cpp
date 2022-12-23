@@ -6,7 +6,7 @@
 #include "Runtime/Scene/Camera/CameraController.h"
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Runtime/Core/Serialization/SerializationManager.h"
-
+#include "Runtime/Core/Engine/Engine.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 namespace Twinkle
@@ -19,8 +19,9 @@ namespace Twinkle
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO();
-		io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
-		io.ConfigWindowsMoveFromTitleBarOnly = true;
+		//io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+		//io.ConfigWindowsMoveFromTitleBarOnly = true;
+
 
 		ImGui::StyleColorsDark();
 		ImGui_ImplWin32_Init(hwnd);
@@ -40,12 +41,23 @@ namespace Twinkle
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
+		static std::string fps = "";
+		static float sumDeltaTime = 0.0f;
+		sumDeltaTime += Singleton<Engine>::GetInstance().GetDeltaTime();
+
+		if (sumDeltaTime > 1.0f)
+		{
+			fps = std::to_string(1 / Singleton<Engine>::GetInstance().GetDeltaTime());
+			sumDeltaTime = 0.0f;
+		}
+
 		ImGui::ShowAboutWindow();
 		ImGui::ShowDemoWindow();
 		ImGui::ShowUserGuide();
 
 		showMenuBar();
 		ImGui::Begin("Scene Property");
+		ImGui::Text(("FPS:" + fps).c_str());
 		showCamera();
 		showSceneGameObjects();
 		ImGui::End();
@@ -130,6 +142,7 @@ namespace Twinkle
 				if (ImGui::Selectable(go->getGuid().c_str(), selected == go->getGuid()))
 				{
 					m_currentSelectedGo = go;
+
 					selected = go->getGuid();
 				}
 			}
