@@ -3,7 +3,7 @@
 #include "Runtime/Core/Log/LogManager.h"
 #include "Runtime/Core/Engine/Engine.h"
 #include "Runtime/Utility/Utility.h"
-
+#include "Runtime/Core/Event/InputEventManager.h"
 namespace Twinkle
 {
 	EditorWindow::EditorWindow(QWidget* parent) :
@@ -29,5 +29,10 @@ namespace Twinkle
 	{
 		QString fps = (" FPS:" + std::to_string(Singleton<Engine>::GetInstance().GetFps())).c_str();
 		setWindowTitle("Twinkle-v0.002 " + fps);
+
+		if (Singleton<InputEventManager>::GetInstance().IsKeyPress(Key_Escape))
+			Singleton<Engine>::GetInstance().ShutDown();
+		if (Singleton<Engine>::GetInstance().IsShutDown())
+			this->close();
 	}
 }
