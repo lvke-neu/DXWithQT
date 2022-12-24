@@ -34,3 +34,5 @@ imgui 鼠标指针指向不太准确的BUG（需要注意创建windows原生窗�
 
 GameEngine : assets ---->engine----->screen----->interact
 					
+可以通过ID3D11Texture2D 创建 ID3D11RenderTargetView
+可以通过ID3D11Texture2D 创建 ID3D11ShaderResourceView

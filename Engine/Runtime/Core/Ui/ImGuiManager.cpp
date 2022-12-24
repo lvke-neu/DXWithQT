@@ -5,6 +5,8 @@
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Runtime/Core/Serialization/SerializationManager.h"
 #include "Runtime/Core/Engine/Engine.h"
+#include "Runtime/Platform/Windows/RenderSystem.h"
+
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 namespace Twinkle
@@ -156,8 +158,16 @@ namespace Twinkle
 		}
 
 		//draw dock window
-		ImGui::ShowDemoWindow();
 		showScenePropertyWindow();
+
+		//render widnow
+		ImGui::Begin("render widow", &b_open);
+		//ImGui::Image(Singleton<Engine>::GetInstance().m_pOutputTextureSRV, ImVec2{256, 256});
+		ImGui::End();
+
+		//demo window
+		ImGui::ShowDemoWindow();
+		
 
 		ImGui::End();
 
