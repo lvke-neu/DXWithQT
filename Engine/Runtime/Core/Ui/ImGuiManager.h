@@ -7,6 +7,9 @@ ImGui Manager
 #pragma once
 #include "Runtime/Interface/SingletonInterface.h"
 #include <vector>
+#include "ImGui/imgui.h"
+#include "ImGui/imgui_impl_dx11.h"
+#include "ImGui/imgui_impl_win32.h"
 
 namespace Twinkle
 {

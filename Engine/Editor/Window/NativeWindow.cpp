@@ -32,8 +32,19 @@ namespace Twinkle
 			((MINMAXINFO*)lParam)->ptMinTrackSize.x = 200;
 			((MINMAXINFO*)lParam)->ptMinTrackSize.y = 200;
 			return 0;
-
-		
+		case WM_SYSCOMMAND:
+			if ((wParam & 0xfff0) == SC_KEYMENU) // Disable ALT application menu
+				return 0;
+			break;
+		case WM_DPICHANGED:
+			if (ImGui::GetIO().ConfigFlags & ImGuiConfigFlags_DpiEnableScaleViewports)
+			{
+				//const int dpi = HIWORD(wParam);
+				//printf("WM_DPICHANGED to %d (%.0f%%)\n", dpi, (float)dpi / 96.0f * 100.0f);
+				const RECT* suggested_rect = (RECT*)lParam;
+				::SetWindowPos(hwnd, NULL, suggested_rect->left, suggested_rect->top, suggested_rect->right - suggested_rect->left, suggested_rect->bottom - suggested_rect->top, SWP_NOZORDER | SWP_NOACTIVATE);
+			}
+			break;
 		case WM_MBUTTONDOWN:
 		case WM_MBUTTONUP:
 			return 0;

@@ -7,9 +7,6 @@
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Runtime/Platform/Windows/RenderSystem.h"
 
-
-
-
 namespace Twinkle
 {
 	IBindable* dssNoDepthTest;

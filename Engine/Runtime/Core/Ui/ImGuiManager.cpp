@@ -1,7 +1,5 @@
 #include "ImGuiManager.h"
-#include "ImGui/imgui.h"
-#include "ImGui/imgui_impl_dx11.h"
-#include "ImGui/imgui_impl_win32.h"
+
 #include "Runtime/Platform/Windows/RenderSystem.h"
 #include "Runtime/Scene/Camera/CameraController.h"
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
@@ -78,7 +76,8 @@ namespace Twinkle
 		ImGui::ShowUserGuide();
 
 		showMenuBar();
-		ImGui::Begin("Scene Property");
+		bool b = true;
+		ImGui::Begin("Scene Property", &b);
 		ImGui::Text(("FPS:" + fps + ", DeltaTime:" + deltaTime).c_str());
 		showCamera();
 		showSceneGameObjects();
