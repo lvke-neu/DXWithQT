@@ -27,6 +27,9 @@ namespace Twinkle
 		void Pause();
 		void Start();
 		float GetDeltaTime();
+
+		bool IsShutDown();
+		void ShutDown();
 	private:
 		Engine() = default;
 		virtual ~Engine() = default;
@@ -35,7 +38,7 @@ namespace Twinkle
 	private:
 		GameTimer m_timer;
 		bool m_bPause = false;
-
+		bool m_bShutDown = false;
 		WindowType m_windowType{ Qt };
 	};
 }

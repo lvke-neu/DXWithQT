@@ -52,4 +52,14 @@ namespace Twinkle
 	{
 		return m_timer.DeltaTime();
 	}
+
+	bool Engine::IsShutDown()
+	{
+		return m_bShutDown;
+	}
+
+	void Engine::ShutDown()
+	{
+		m_bShutDown = true;
+	}
 }

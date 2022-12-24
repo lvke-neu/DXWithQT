@@ -150,7 +150,7 @@ namespace Twinkle
 	{
 		MSG msg = { 0 };
 
-		while (msg.message != WM_QUIT)
+		while (msg.message != WM_QUIT && !Singleton<Engine>::GetInstance().IsShutDown())
 		{
 			if (PeekMessage(&msg, 0, 0, 0, PM_REMOVE))
 			{
