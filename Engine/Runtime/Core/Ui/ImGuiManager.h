@@ -8,6 +8,7 @@ ImGui Manager
 #include "Runtime/Interface/SingletonInterface.h"
 #include <vector>
 #include "ImGui/imgui.h"
+#include "ImGui/imgui_internal.h"
 #include "ImGui/imgui_impl_dx11.h"
 #include "ImGui/imgui_impl_win32.h"
 
@@ -26,9 +27,10 @@ namespace Twinkle
 
 		void setSceneGameObjects(const std::vector<IGameObject*>& sceneGameObjects);
 	private:
-		void showMenuBar();
+		void showDockSpace();
+		void showScenePropertyWindow();
 		void showCamera();
-		void showSceneGameObjects();
+		void showGameObjects();
 		void showTransformComponent();
 		void showMeshComponent();
 	private:
