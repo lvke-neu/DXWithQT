@@ -157,6 +157,9 @@
     <ClCompile Include="Platform\Windows\Bindable\StateDesc.cpp">
       <Filter>Platform\Windows\Bindable</Filter>
     </ClCompile>
+    <ClCompile Include="Core\Ui\ImGuiManager.cpp">
+      <Filter>Core\Ui</Filter>
+    </ClCompile>
     <ClCompile Include="Core\Ui\ImGui\imgui.cpp">
       <Filter>Core\Ui\ImGui</Filter>
     </ClCompile>
@@ -177,9 +180,6 @@
     </ClCompile>
     <ClCompile Include="Core\Ui\ImGui\imgui_widgets.cpp">
       <Filter>Core\Ui\ImGui</Filter>
-    </ClCompile>
-    <ClCompile Include="Core\Ui\ImGuiManager.cpp">
-      <Filter>Core\Ui</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -303,6 +303,9 @@
     <ClInclude Include="Core\Serialization\RegisterAllClass.h">
       <Filter>Core\Serialization</Filter>
     </ClInclude>
+    <ClInclude Include="Core\Ui\ImGuiManager.h">
+      <Filter>Core\Ui</Filter>
+    </ClInclude>
     <ClInclude Include="Core\Ui\ImGui\imconfig.h">
       <Filter>Core\Ui\ImGui</Filter>
     </ClInclude>
@@ -326,9 +329,6 @@
     </ClInclude>
     <ClInclude Include="Core\Ui\ImGui\imstb_truetype.h">
       <Filter>Core\Ui\ImGui</Filter>
-    </ClInclude>
-    <ClInclude Include="Core\Ui\ImGuiManager.h">
-      <Filter>Core\Ui</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
