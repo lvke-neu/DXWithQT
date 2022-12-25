@@ -11,6 +11,7 @@ ImGui Manager
 #include "ImGui/imgui_internal.h"
 #include "ImGui/imgui_impl_dx11.h"
 #include "ImGui/imgui_impl_win32.h"
+#include "Runtime/Platform/Windows/RenderSystem.h"
 
 namespace Twinkle
 {
@@ -26,6 +27,9 @@ namespace Twinkle
 		__int64 WndProcHandler(void* hwnd, unsigned int msg, unsigned __int64 wParam, __int64 lParam);
 
 		void setSceneGameObjects(const std::vector<IGameObject*>& sceneGameObjects);
+
+		void Begin();
+		void End();
 	private:
 		void showDockSpace();
 		void showScenePropertyWindow();
@@ -36,5 +40,18 @@ namespace Twinkle
 	private:
 		IGameObject* m_currentSelectedGo{ nullptr };
 		std::vector<IGameObject*> m_sceneGameObjects;
+
+
+		ID3D11ShaderResourceView*	m_pOutputTextureSRV{ nullptr };
+		ID3D11DepthStencilView*		m_pOutputTextureDSV{ nullptr };
+		ID3D11RenderTargetView*		m_pOutputTextureRTV{ nullptr };
+		D3D11_VIEWPORT						m_OutputViewPort;
+
+		ID3D11RenderTargetView*	m_pCacheRTV{ nullptr };
+		ID3D11DepthStencilView*	m_pCacheDSV{ nullptr };
+		D3D11_VIEWPORT						m_CacheViewPort;
+
+		bool								m_GenerateMips = false;
+		bool								m_ShadowMap = false;
 	};
 }

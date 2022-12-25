@@ -80,11 +80,16 @@ namespace Twinkle
 		SAFE_RELEASE(m_pRenderTargetView);
 		SAFE_RELEASE(m_pDepthStencilBuffer);
 		SAFE_RELEASE(m_pDepthStencilView);
+		SAFE_RELEASE(m_pBackBufferSRV);
 
 		ID3D11Texture2D* pBackBuffer{ nullptr };
 		m_pSwapChain->ResizeBuffers(1, width, height, DXGI_FORMAT_R8G8B8A8_UNORM, 0);
 		m_pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), reinterpret_cast<void**>(&pBackBuffer));
 		m_pDevice->CreateRenderTargetView(pBackBuffer, nullptr, &m_pRenderTargetView);
+
+		//CD3D11_SHADER_RESOURCE_VIEW_DESC srvDesc(pBackBuffer, D3D11_SRV_DIMENSION_TEXTURE2D);
+		HRESULT hr = m_pDevice->CreateShaderResourceView(pBackBuffer, nullptr, &m_pBackBufferSRV);
+
 		SAFE_RELEASE(pBackBuffer);
 
 		//rebuild DepthStencilView
@@ -160,6 +165,11 @@ namespace Twinkle
 	ID3D11DepthStencilView * RenderSystem::GetDepthStencilView()
 	{
 		return m_pDepthStencilView;
+	}
+
+	ID3D11ShaderResourceView * RenderSystem::GetBackBufferSRV()
+	{
+		return m_pBackBufferSRV;
 	}
 
 

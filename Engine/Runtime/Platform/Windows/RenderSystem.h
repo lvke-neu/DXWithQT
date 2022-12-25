@@ -32,6 +32,7 @@ namespace Twinkle
 		ID3D11RenderTargetView* GetRenderTargetView();
 		ID3D11Texture2D* GetDepthStencilBuffer();
 		ID3D11DepthStencilView* GetDepthStencilView();
+		ID3D11ShaderResourceView* GetBackBufferSRV();
 	private:
 		RenderSystem() = default;
 		virtual ~RenderSystem();
@@ -44,7 +45,7 @@ namespace Twinkle
 		ID3D11RenderTargetView* m_pRenderTargetView{ nullptr };
 		ID3D11Texture2D* m_pDepthStencilBuffer{ nullptr };
 		ID3D11DepthStencilView* m_pDepthStencilView{ nullptr };
-
+		ID3D11ShaderResourceView* m_pBackBufferSRV{ nullptr };
 
 		/*******************************************Bindabel Manager*********************************************************/
 	public:

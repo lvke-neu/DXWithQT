@@ -58,6 +58,11 @@ namespace Twinkle
 
 	void SceneManager::Tick(float deltaTime)
 	{
+		static float y = 0.0f;
+		y += deltaTime;
+		m_sceneGameObjects[0]->getTransformComponent()->setRotation(0.0f, y, 0.0f);
+
+
 		for (auto& go : m_sceneGameObjects)
 		{
 			go->tick(deltaTime);
