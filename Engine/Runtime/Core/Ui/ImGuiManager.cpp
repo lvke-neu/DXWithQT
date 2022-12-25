@@ -1,11 +1,10 @@
 #include "ImGuiManager.h"
-
 #include "Runtime/Platform/Windows/RenderSystem.h"
 #include "Runtime/Scene/Camera/CameraController.h"
 #include "Runtime/Platform/Windows/PerspectiveCamera.h"
 #include "Runtime/Core/Serialization/SerializationManager.h"
 #include "Runtime/Core/Engine/Engine.h"
-
+#include "Runtime/Scene/SceneManager.h"
 
 extern IMGUI_IMPL_API LRESULT ImGui_ImplWin32_WndProcHandler(HWND hWnd, UINT msg, WPARAM wParam, LPARAM lParam);
 namespace Twinkle
@@ -299,6 +298,8 @@ namespace Twinkle
 		ImGui::Text(("FPS:" + fps + ", DeltaTime:" + deltaTime).c_str());
 		showCamera();
 		showGameObjects();
+		showGoDetail();
+		ImGui::ShowDemoWindow();
 
 		ImGui::End();
 	}
@@ -341,37 +342,91 @@ namespace Twinkle
 	void ImGuiManager::showGameObjects()
 	{
 		if (ImGui::TreeNode("Scene GameObject")) 
-		{
+		{	
+			static bool b_enableOutline = true;
+			
+			if (ImGui::Checkbox("Enable Outline", &b_enableOutline))
+			{
+				Singleton<SceneManager>::GetInstance().setOutLineGO(b_enableOutline ? m_currentSelectedGo : nullptr);
+			}
+
+			static std::string selected{ "" };
 			for (auto& go : m_sceneGameObjects)
 			{
-				if (ImGui::TreeNode(go->getGuid().c_str()))
+				if (ImGui::Selectable(go->getGuid().c_str(), selected == go->getGuid()))
 				{
 					m_currentSelectedGo = go;
-					rttr::type type = rttr::type::get_by_name(m_currentSelectedGo->getType());
-					for (auto& prop : type.get_properties())
-					{
-						if (prop.get_type().get_name().to_string() == "TransformComponent" ||
-							prop.get_type().get_name().to_string() == "TransformComponent*")
-						{
-							showTransformComponent();
-						}
-						if (prop.get_type().get_name().to_string() == "MeshComponent" ||
-							prop.get_type().get_name().to_string() == "MeshComponent*")
-						{
-							showMeshComponent();
-						}
-					}
-					ImGui::TreePop();
+
+					Singleton<SceneManager>::GetInstance().setOutLineGO(b_enableOutline ? m_currentSelectedGo : nullptr);
+		
+					selected = go->getGuid();
 				}
+
+				//if (ImGui::TreeNode(go->getGuid().c_str()))
+				//{
+				//	m_currentSelectedGo = go;
+
+				//	Singleton<SceneManager>::GetInstance().setOutLineGO(m_currentSelectedGo);
+
+				//	rttr::type type = rttr::type::get_by_name(m_currentSelectedGo->getType());
+				//	for (auto& prop : type.get_properties())
+				//	{
+				//		if (prop.get_type().get_name().to_string() == "TransformComponent" ||
+				//			prop.get_type().get_name().to_string() == "TransformComponent*")
+				//		{
+				//			showTransformComponent();
+				//		}
+				//		if (prop.get_type().get_name().to_string() == "MeshComponent" ||
+				//			prop.get_type().get_name().to_string() == "MeshComponent*")
+				//		{
+				//			showMeshComponent();
+				//		}
+				//	}
+				//	ImGui::TreePop();
+				//}
 			}
+
 			ImGui::TreePop();
 		}
+	}
+
+	void ImGuiManager::showGoDetail()
+	{
+		ImGui::Begin("GameObject Detail");
+
+		if (!m_currentSelectedGo)
+		{
+			ImGui::End();
+			return;
+		}
+
+		ImGui::LabelText(":", m_currentSelectedGo->getGuid().c_str());
+
+		rttr::type type = rttr::type::get_by_name(m_currentSelectedGo->getType());
+		for (auto& prop : type.get_properties())
+		{
+			if (prop.get_type().get_name().to_string() == "TransformComponent" ||
+				prop.get_type().get_name().to_string() == "TransformComponent*")
+			{
+				showTransformComponent();
+			}
+			if (prop.get_type().get_name().to_string() == "MeshComponent" ||
+				prop.get_type().get_name().to_string() == "MeshComponent*")
+			{
+				showMeshComponent();
+			}
+
+		}
+
+		ImGui::End();
 	}
 
 	void ImGuiManager::showTransformComponent()
 	{
 		if (!m_currentSelectedGo)
 			return;
+		
+	
 		if (ImGui::TreeNode("TransformComponent")) {
 			if (ImGui::TreeNode("Transform")) {
 				float scale[3];
@@ -398,6 +453,7 @@ namespace Twinkle
 			}
 			ImGui::TreePop();
 		}
+		
 	}
 
 	void ImGuiManager::showMeshComponent()

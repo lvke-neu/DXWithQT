@@ -12,6 +12,7 @@ Scene Manager
 namespace Twinkle
 {
 	class IGameObject;
+	class IBindable;
 	class SceneManager
 	{
 		FRIEND_SINGLETON(SceneManager);
@@ -24,5 +25,12 @@ namespace Twinkle
 		SceneManager& operator=(const SceneManager&) = delete;
 	private:
 		std::vector<IGameObject*> m_sceneGameObjects;
+	//outline effect
+	public:
+		void setOutLineGO(IGameObject* outLineGO);
+	private:
+		IBindable* m_dssWrtie{ nullptr };
+		IBindable* m_dssMask{ nullptr };
+		IGameObject* m_outLineGO{ nullptr };
 	};
 }

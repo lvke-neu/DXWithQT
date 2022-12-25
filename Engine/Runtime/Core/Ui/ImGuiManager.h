@@ -36,6 +36,7 @@ namespace Twinkle
 		void showScenePropertyWindow();
 		void showCamera();
 		void showGameObjects();
+		void showGoDetail();
 		void showTransformComponent();
 		void showMeshComponent();
 	private:
