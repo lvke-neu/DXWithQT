@@ -67,35 +67,31 @@ namespace Twinkle
 		m_ShadowMap = false;
 		m_GenerateMips = true;
 
-		if (!m_ShadowMap)
-		{
-			m_GenerateMips = false;
 
+		ID3D11Texture2D* texture;
+		CD3D11_TEXTURE2D_DESC texDesc(DXGI_FORMAT_R8G8B8A8_UNORM, 1264, 666, 1,
+			(m_GenerateMips ? 0 : 1), D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE,
+			D3D11_USAGE_DEFAULT, 0, 1, 0, (m_GenerateMips ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0));
 
-			ID3D11Texture2D* texture;
-			CD3D11_TEXTURE2D_DESC texDesc(DXGI_FORMAT_R8G8B8A8_UNORM, 1264, 666, 1,
-				(m_GenerateMips ? 0 : 1), D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE,
-				D3D11_USAGE_DEFAULT, 0, 1, 0, (m_GenerateMips ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0));
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateTexture2D(&texDesc, nullptr, &texture);
 
-			Singleton<RenderSystem>::GetInstance().GetDevice()->CreateTexture2D(&texDesc, nullptr, &texture);
+		CD3D11_RENDER_TARGET_VIEW_DESC rtvDesc(texture, D3D11_RTV_DIMENSION_TEXTURE2D);
 
-			CD3D11_RENDER_TARGET_VIEW_DESC rtvDesc(texture, D3D11_RTV_DIMENSION_TEXTURE2D);
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateRenderTargetView(texture, &rtvDesc, &m_pOutputTextureRTV);
 
-			Singleton<RenderSystem>::GetInstance().GetDevice()->CreateRenderTargetView(texture, &rtvDesc, &m_pOutputTextureRTV);
+		CD3D11_SHADER_RESOURCE_VIEW_DESC srvDesc(texture, D3D11_SRV_DIMENSION_TEXTURE2D);
 
-			CD3D11_SHADER_RESOURCE_VIEW_DESC srvDesc(texture, D3D11_SRV_DIMENSION_TEXTURE2D);
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateShaderResourceView(texture, &srvDesc,
+			&m_pOutputTextureSRV);
 
-			Singleton<RenderSystem>::GetInstance().GetDevice()->CreateShaderResourceView(texture, &srvDesc,
-				&m_pOutputTextureSRV);
+		
 
-		}
-
-		CD3D11_TEXTURE2D_DESC texDesc((m_ShadowMap ? DXGI_FORMAT_R24G8_TYPELESS : DXGI_FORMAT_D24_UNORM_S8_UINT),
+		CD3D11_TEXTURE2D_DESC texDesc2(DXGI_FORMAT_D24_UNORM_S8_UINT,
 			1264, 666, 1, 1,
-			D3D11_BIND_DEPTH_STENCIL | (m_ShadowMap ? D3D11_BIND_SHADER_RESOURCE : 0));
+			D3D11_BIND_DEPTH_STENCIL | 0);
 
 		ID3D11Texture2D* depthTex;
-		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateTexture2D(&texDesc, nullptr, &depthTex);
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateTexture2D(&texDesc2, nullptr, &depthTex);
 
 		CD3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc(depthTex, D3D11_DSV_DIMENSION_TEXTURE2D, DXGI_FORMAT_D24_UNORM_S8_UINT);
 
@@ -103,20 +99,15 @@ namespace Twinkle
 			&m_pOutputTextureDSV);
 
 
-		if (m_ShadowMap)
-		{
-			CD3D11_SHADER_RESOURCE_VIEW_DESC srvDesc(depthTex, D3D11_SRV_DIMENSION_TEXTURE2D, DXGI_FORMAT_R24_UNORM_X8_TYPELESS);
-
-			Singleton<RenderSystem>::GetInstance().GetDevice()->CreateShaderResourceView(depthTex, &srvDesc,
-				&m_pOutputTextureSRV);
-		}
-
 		m_OutputViewPort.TopLeftX =0;
 		m_OutputViewPort.TopLeftY = 0;
 		m_OutputViewPort.Width = static_cast<float>(1264);
 		m_OutputViewPort.Height = static_cast<float>(666);
 		m_OutputViewPort.MinDepth = 0.0f;
 		m_OutputViewPort.MaxDepth = 1.0f;
+
+		SAFE_RELEASE(texture);
+		SAFE_RELEASE(depthTex);
 	}
 
 	void ImGuiManager::Destroy()
@@ -164,15 +155,11 @@ namespace Twinkle
 		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->RSGetViewports(&num_Viewports, &m_CacheViewPort);
 
 		static float color[4]{ 0.0f, 0.0f, 0.0f, 1.0f };
-		if (!m_ShadowMap)
-		{
-			Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearRenderTargetView(m_pOutputTextureRTV, color);
-
-		}
-		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearDepthStencilView(m_pOutputTextureDSV, D3D11_CLEAR_DEPTH | (m_ShadowMap ? 0 : D3D11_CLEAR_STENCIL), 1.0f, 0);
+		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearRenderTargetView(m_pOutputTextureRTV, color);
+		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearDepthStencilView(m_pOutputTextureDSV, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
 
-		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->OMSetRenderTargets((m_ShadowMap ? 0 : 1),
+		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->OMSetRenderTargets(1,
 			(m_ShadowMap ? nullptr : &m_pOutputTextureRTV),
 			m_pOutputTextureDSV);
 
