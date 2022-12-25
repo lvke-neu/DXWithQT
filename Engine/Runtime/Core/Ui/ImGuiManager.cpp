@@ -256,20 +256,18 @@ namespace Twinkle
 		//draw dock window
 		showScenePropertyWindow();
 
-
+		ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, { 0,0 });
 		//render widnow
 		ImGui::Begin("render widow", &b_open);
-	
 		Singleton<InputEventManager>::GetInstance().b_isRenderWindowFocused = ImGui::IsWindowFocused();
-
 		if (m_renderWindowViewPort.x != ImGui::GetContentRegionAvail().x || m_renderWindowViewPort.y != ImGui::GetContentRegionAvail().y)
 		{
 			m_renderWindowViewPort = ImGui::GetContentRegionAvail();
 			ResizeRenderWindow();
 		}
-
 		ImGui::Image(m_pOutputTextureSRV, m_renderWindowViewPort);
 		ImGui::End();
+		ImGui::PopStyleVar();
 
 		//demo window
 		ImGui::ShowDemoWindow();
