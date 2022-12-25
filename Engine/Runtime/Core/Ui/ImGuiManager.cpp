@@ -73,7 +73,7 @@ namespace Twinkle
 
 
 			ID3D11Texture2D* texture;
-			CD3D11_TEXTURE2D_DESC texDesc(DXGI_FORMAT_R8G8B8A8_UNORM, 2048, 2048, 1,
+			CD3D11_TEXTURE2D_DESC texDesc(DXGI_FORMAT_R8G8B8A8_UNORM, 1264, 666, 1,
 				(m_GenerateMips ? 0 : 1), D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE,
 				D3D11_USAGE_DEFAULT, 0, 1, 0, (m_GenerateMips ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0));
 
@@ -91,7 +91,7 @@ namespace Twinkle
 		}
 
 		CD3D11_TEXTURE2D_DESC texDesc((m_ShadowMap ? DXGI_FORMAT_R24G8_TYPELESS : DXGI_FORMAT_D24_UNORM_S8_UINT),
-			2048, 2048, 1, 1,
+			1264, 666, 1, 1,
 			D3D11_BIND_DEPTH_STENCIL | (m_ShadowMap ? D3D11_BIND_SHADER_RESOURCE : 0));
 
 		ID3D11Texture2D* depthTex;
@@ -113,8 +113,8 @@ namespace Twinkle
 
 		m_OutputViewPort.TopLeftX =0;
 		m_OutputViewPort.TopLeftY = 0;
-		m_OutputViewPort.Width = static_cast<float>(2500);
-		m_OutputViewPort.Height = static_cast<float>(2500);
+		m_OutputViewPort.Width = static_cast<float>(1264);
+		m_OutputViewPort.Height = static_cast<float>(666);
 		m_OutputViewPort.MinDepth = 0.0f;
 		m_OutputViewPort.MaxDepth = 1.0f;
 	}
@@ -264,7 +264,9 @@ namespace Twinkle
 		//render widnow
 		ImGui::Begin("render widow", &b_open);
 
-		ImGui::Image(m_pOutputTextureSRV, ImVec2{500, 500 });
+		ImVec2 viewSize = ImGui::GetContentRegionAvail();
+
+		ImGui::Image(m_pOutputTextureSRV, viewSize);
 		ImGui::End();
 
 		//demo window

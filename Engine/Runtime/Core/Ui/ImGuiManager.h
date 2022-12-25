@@ -53,5 +53,7 @@ namespace Twinkle
 
 		bool								m_GenerateMips = false;
 		bool								m_ShadowMap = false;
+
+		ImVec2 m_renderWindowViewPort{ 0,0 };
 	};
 }
