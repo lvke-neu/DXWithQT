@@ -21,15 +21,16 @@ namespace Twinkle
 		if (m_bPause)
 			return;
 		
-		Singleton<ImGuiManager>::GetInstance().Begin();
-		Singleton<SceneManager>::GetInstance().Tick(m_timer.DeltaTime());
-		Singleton<ImGuiManager>::GetInstance().End();
+		//Singleton<ImGuiManager>::GetInstance().Begin();
+		//Singleton<SceneManager>::GetInstance().Tick(m_timer.DeltaTime());
+		//Singleton<ImGuiManager>::GetInstance().End();
 
 		static float color[4] = { 0.0f, 0.0f, 0.0f, 1.0f };
 		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearRenderTargetView(Singleton<RenderSystem>::GetInstance().GetRenderTargetView(), color);
 		Singleton<RenderSystem>::GetInstance().GetDeviceContent()->ClearDepthStencilView(Singleton<RenderSystem>::GetInstance().GetDepthStencilView(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 		
-	
+		Singleton<SceneManager>::GetInstance().Tick(m_timer.DeltaTime());
+
 		if(m_windowType == NativeWindow)
 			Singleton<ImGuiManager>::GetInstance().Tick();
 
