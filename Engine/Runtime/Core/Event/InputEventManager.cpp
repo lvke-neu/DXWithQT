@@ -2,8 +2,12 @@
 
 namespace Twinkle
 {
+	bool InputEventManager::b_isRenderWindowFocused = true;
+
 	void InputEventManager::NotifyKeyPress(KeyBoard key)
 	{
+		if (!b_isRenderWindowFocused)
+			return;
 		m_keyPressMap[key] = true;
 		for (auto& event : m_events)
 		{
@@ -16,6 +20,8 @@ namespace Twinkle
 
 	void InputEventManager::NotifyKeyRelease(KeyBoard key)
 	{
+		if (!b_isRenderWindowFocused)
+			return;
 		m_keyPressMap[key] = false;
 		for (auto& event : m_events)
 		{
@@ -28,6 +34,8 @@ namespace Twinkle
 
 	void InputEventManager::NotifyMousePress(MouseState mouseState)
 	{
+		if (!b_isRenderWindowFocused)
+			return;
 		for (auto& event : m_events)
 		{
 			if (dynamic_cast<InputEvent*>(event))
@@ -39,6 +47,8 @@ namespace Twinkle
 
 	void InputEventManager::NotifyMouseRelease(MouseState mouseState)
 	{
+		if (!b_isRenderWindowFocused)
+			return;
 		for (auto& event : m_events)
 		{
 			if (dynamic_cast<InputEvent*>(event))
@@ -50,6 +60,8 @@ namespace Twinkle
 
 	void InputEventManager::NotifyMouseMove(MouseState mouseState)
 	{
+		if (!b_isRenderWindowFocused)
+			return;
 		for (auto& event : m_events)
 		{
 			if (dynamic_cast<InputEvent*>(event))
@@ -61,6 +73,8 @@ namespace Twinkle
 
 	void InputEventManager::NotifyMouseWheel(MouseState mouseState)
 	{
+		if (!b_isRenderWindowFocused)
+			return;
 		for (auto& event : m_events)
 		{
 			if (dynamic_cast<InputEvent*>(event))

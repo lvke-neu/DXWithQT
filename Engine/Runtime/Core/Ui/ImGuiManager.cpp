@@ -132,6 +132,8 @@ namespace Twinkle
 		ImGui_ImplWin32_NewFrame();
 		ImGui::NewFrame();
 
+		
+
 		showDockSpace();
 		
 		ImGui::Render();
@@ -242,7 +244,7 @@ namespace Twinkle
 			ImGuiID dockspace_id = ImGui::GetID("MyDockSpace");
 			ImGui::DockSpace(dockspace_id, ImVec2(0.0f, 0.0f), dockspace_flags);
 		}
-
+		
 		if (ImGui::BeginMenuBar())
 		{
 			if (ImGui::BeginMenu("File"))
@@ -263,6 +265,8 @@ namespace Twinkle
 
 		//render widnow
 		ImGui::Begin("render widow", &b_open);
+	
+		Singleton<InputEventManager>::GetInstance().b_isRenderWindowFocused = ImGui::IsWindowFocused();
 
 		ImVec2 viewSize = ImGui::GetContentRegionAvail();
 
@@ -279,7 +283,7 @@ namespace Twinkle
 
 	void ImGuiManager::showScenePropertyWindow()
 	{
-		static std::string fps = "";
+		static std::string fps = ""; 
 		static std::string deltaTime = "";
 		static float sumDeltaTime = 0.0f;
 		sumDeltaTime += Singleton<Engine>::GetInstance().GetDeltaTime();

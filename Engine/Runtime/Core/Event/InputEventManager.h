@@ -568,6 +568,7 @@ namespace Twinkle
         FRIEND_SINGLETON(InputEventManager);
         PRIVATE_CONSTRUCTOR(InputEventManager);
     public:
+		static bool b_isRenderWindowFocused;
         void NotifyKeyPress(KeyBoard key);
         void NotifyKeyRelease(KeyBoard key);
 
