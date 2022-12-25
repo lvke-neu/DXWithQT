@@ -26,7 +26,10 @@ namespace Twinkle
 	enum DepthStencilStateType
 	{
 		DSSDefault,
-		DSSNoDepthTest
+		DSSNoDepthTest,
+		//MASK
+		DSSWrite,
+		DSSMask
 	};
 
 	class StateDesc

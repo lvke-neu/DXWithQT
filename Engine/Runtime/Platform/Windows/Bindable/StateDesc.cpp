@@ -95,6 +95,25 @@ namespace Twinkle
 		dssDesc1.StencilEnable = false;
 		depthStencilStateTypeDesc.insert({ DSSNoDepthTest, dssDesc1 });
 
+		//DSWrite
+		D3D11_DEPTH_STENCIL_DESC dssDesc2 = CD3D11_DEPTH_STENCIL_DESC(CD3D11_DEFAULT());
+		//ZeroMemory(&dssDesc2, sizeof(dssDesc2));
+		dssDesc2.StencilEnable = false;
+		dssDesc2.StencilWriteMask = 0xFF;
+		dssDesc2.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+		dssDesc2.FrontFace.StencilPassOp = D3D11_STENCIL_OP_REPLACE;
+		depthStencilStateTypeDesc.insert({ DSSWrite, dssDesc2 });
+		
+		//DSSMask
+		D3D11_DEPTH_STENCIL_DESC dssDesc3 = CD3D11_DEPTH_STENCIL_DESC(CD3D11_DEFAULT());
+		//ZeroMemory(&dssDesc3, sizeof(dssDesc3));
+		dssDesc3.DepthEnable = false;
+		dssDesc3.StencilEnable = true;
+		dssDesc3.StencilReadMask = 0xFF;
+		dssDesc3.FrontFace.StencilFunc = D3D11_COMPARISON_NOT_EQUAL;
+		dssDesc3.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+		depthStencilStateTypeDesc.insert({ DSSMask, dssDesc3 });
+
 		bIsInit = true;
 	}
 }
