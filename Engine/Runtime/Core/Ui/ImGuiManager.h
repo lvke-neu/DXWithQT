@@ -30,6 +30,7 @@ namespace Twinkle
 
 		void Begin();
 		void End();
+		void ResizeRenderWindow();
 	private:
 		void showDockSpace();
 		void showScenePropertyWindow();

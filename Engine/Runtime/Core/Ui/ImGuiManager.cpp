@@ -58,56 +58,6 @@ namespace Twinkle
 
 
 
-		SAFE_RELEASE(m_pOutputTextureSRV);
-		SAFE_RELEASE(m_pOutputTextureRTV);
-		SAFE_RELEASE(m_pOutputTextureDSV);
-		SAFE_RELEASE(m_pCacheRTV);
-		SAFE_RELEASE(m_pCacheDSV);
-
-		m_ShadowMap = false;
-		m_GenerateMips = true;
-
-
-		ID3D11Texture2D* texture;
-		CD3D11_TEXTURE2D_DESC texDesc(DXGI_FORMAT_R8G8B8A8_UNORM, 1264, 666, 1,
-			(m_GenerateMips ? 0 : 1), D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE,
-			D3D11_USAGE_DEFAULT, 0, 1, 0, (m_GenerateMips ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0));
-
-		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateTexture2D(&texDesc, nullptr, &texture);
-
-		CD3D11_RENDER_TARGET_VIEW_DESC rtvDesc(texture, D3D11_RTV_DIMENSION_TEXTURE2D);
-
-		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateRenderTargetView(texture, &rtvDesc, &m_pOutputTextureRTV);
-
-		CD3D11_SHADER_RESOURCE_VIEW_DESC srvDesc(texture, D3D11_SRV_DIMENSION_TEXTURE2D);
-
-		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateShaderResourceView(texture, &srvDesc,
-			&m_pOutputTextureSRV);
-
-		
-
-		CD3D11_TEXTURE2D_DESC texDesc2(DXGI_FORMAT_D24_UNORM_S8_UINT,
-			1264, 666, 1, 1,
-			D3D11_BIND_DEPTH_STENCIL | 0);
-
-		ID3D11Texture2D* depthTex;
-		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateTexture2D(&texDesc2, nullptr, &depthTex);
-
-		CD3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc(depthTex, D3D11_DSV_DIMENSION_TEXTURE2D, DXGI_FORMAT_D24_UNORM_S8_UINT);
-
-		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateDepthStencilView(depthTex, &dsvDesc,
-			&m_pOutputTextureDSV);
-
-
-		m_OutputViewPort.TopLeftX =0;
-		m_OutputViewPort.TopLeftY = 0;
-		m_OutputViewPort.Width = static_cast<float>(1264);
-		m_OutputViewPort.Height = static_cast<float>(666);
-		m_OutputViewPort.MinDepth = 0.0f;
-		m_OutputViewPort.MaxDepth = 1.0f;
-
-		SAFE_RELEASE(texture);
-		SAFE_RELEASE(depthTex);
 	}
 
 	void ImGuiManager::Destroy()
@@ -178,6 +128,63 @@ namespace Twinkle
 
 		SAFE_RELEASE(m_pCacheDSV);
 		SAFE_RELEASE(m_pCacheRTV);
+	}
+
+	void ImGuiManager::ResizeRenderWindow()
+	{
+
+		SAFE_RELEASE(m_pOutputTextureSRV);
+		SAFE_RELEASE(m_pOutputTextureRTV);
+		SAFE_RELEASE(m_pOutputTextureDSV);
+		SAFE_RELEASE(m_pCacheRTV);
+		SAFE_RELEASE(m_pCacheDSV);
+
+		m_ShadowMap = false;
+		m_GenerateMips = true;
+
+
+		ID3D11Texture2D* texture;
+		CD3D11_TEXTURE2D_DESC texDesc(DXGI_FORMAT_R8G8B8A8_UNORM, (UINT)m_renderWindowViewPort.x, (UINT)m_renderWindowViewPort.y, 1,
+			(m_GenerateMips ? 0 : 1), D3D11_BIND_RENDER_TARGET | D3D11_BIND_SHADER_RESOURCE,
+			D3D11_USAGE_DEFAULT, 0, 1, 0, (m_GenerateMips ? D3D11_RESOURCE_MISC_GENERATE_MIPS : 0));
+
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateTexture2D(&texDesc, nullptr, &texture);
+
+		CD3D11_RENDER_TARGET_VIEW_DESC rtvDesc(texture, D3D11_RTV_DIMENSION_TEXTURE2D);
+
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateRenderTargetView(texture, &rtvDesc, &m_pOutputTextureRTV);
+
+		CD3D11_SHADER_RESOURCE_VIEW_DESC srvDesc(texture, D3D11_SRV_DIMENSION_TEXTURE2D);
+
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateShaderResourceView(texture, &srvDesc,
+			&m_pOutputTextureSRV);
+
+
+
+		CD3D11_TEXTURE2D_DESC texDesc2(DXGI_FORMAT_D24_UNORM_S8_UINT,
+			(UINT)m_renderWindowViewPort.x, (UINT)m_renderWindowViewPort.y, 1, 1,
+			D3D11_BIND_DEPTH_STENCIL | 0);
+
+		ID3D11Texture2D* depthTex;
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateTexture2D(&texDesc2, nullptr, &depthTex);
+
+		CD3D11_DEPTH_STENCIL_VIEW_DESC dsvDesc(depthTex, D3D11_DSV_DIMENSION_TEXTURE2D, DXGI_FORMAT_D24_UNORM_S8_UINT);
+
+		Singleton<RenderSystem>::GetInstance().GetDevice()->CreateDepthStencilView(depthTex, &dsvDesc,
+			&m_pOutputTextureDSV);
+
+
+		m_OutputViewPort.TopLeftX = 0;
+		m_OutputViewPort.TopLeftY = 0;
+		m_OutputViewPort.Width = m_renderWindowViewPort.x;
+		m_OutputViewPort.Height = m_renderWindowViewPort.y;
+		m_OutputViewPort.MinDepth = 0.0f;
+		m_OutputViewPort.MaxDepth = 1.0f;
+
+		Singleton<PerspectiveCamera>::GetInstance().SetFrustum(XM_PI / 3.0f, m_renderWindowViewPort.x / m_renderWindowViewPort.y, 1.0f, 1000.0f);
+
+		SAFE_RELEASE(texture);
+		SAFE_RELEASE(depthTex);
 	}
 
 	void ImGuiManager::showDockSpace()
@@ -255,9 +262,13 @@ namespace Twinkle
 	
 		Singleton<InputEventManager>::GetInstance().b_isRenderWindowFocused = ImGui::IsWindowFocused();
 
-		ImVec2 viewSize = ImGui::GetContentRegionAvail();
+		if (m_renderWindowViewPort.x != ImGui::GetContentRegionAvail().x || m_renderWindowViewPort.y != ImGui::GetContentRegionAvail().y)
+		{
+			m_renderWindowViewPort = ImGui::GetContentRegionAvail();
+			ResizeRenderWindow();
+		}
 
-		ImGui::Image(m_pOutputTextureSRV, viewSize);
+		ImGui::Image(m_pOutputTextureSRV, m_renderWindowViewPort);
 		ImGui::End();
 
 		//demo window
