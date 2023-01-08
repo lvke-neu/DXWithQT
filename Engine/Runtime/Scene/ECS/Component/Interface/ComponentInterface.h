@@ -12,7 +12,7 @@ namespace Twinkle
 	{
 	public:
 		IComponent() = default;
-		~IComponent() = default;
+		virtual ~IComponent() = default;
 
 		virtual void tick(float deltaTime) = 0;
 	};
